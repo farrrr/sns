@@ -62,7 +62,7 @@ return array (
     'title' => 'ThinkSNS 安全及性能补丁（只有两个文件，请大家务必升级）',
     'version' => 'ThinkSNS.V3.26000',
     'package' => 'thinksns_d2013080101_v26000.zip',
-    'status' => 0,
+    'status' => 2,
   ),
 );
 ?>
