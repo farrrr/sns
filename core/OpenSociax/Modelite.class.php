@@ -11,21 +11,21 @@
 // $Id$
 
 /**
- * 简洁Modelite接口抽象类
- * @category	core
- * @package		OpenSociax
- * @author		liuxiaoqing <liuxiaoqing@thinksns.com>
- * @version		$0.1$
+ * 簡潔Modelite介面抽象類
+ * @category    core
+ * @package     OpenSociax
+ * @author      liuxiaoqing <liuxiaoqing@thinksns.com>
+ * @version     $0.1$
  */
 abstract class Modelite {
 
-	// 最近错误信息
+    // 最近錯誤資訊
     protected $error = '';
 
     /**
-     * 架构函数
-     * 取得DB类的实例对象 字段检查
-     * @param string $name 模型名称
+     * 架構函數
+     * 取得DB類的例項物件 欄位檢查
+     * @param string $name 模型名稱
      * @access public
      */
     public function __construct($name='') {
@@ -33,12 +33,12 @@ abstract class Modelite {
         $this->_initialize();
     }
 
-    // 回调方法 初始化模型
+    // 回撥方法 初始化模型
     protected function _initialize() {}
-	
-	// 获取最近的错误信息
-	public function getError() {
-        return $this->error;
-    }
+
+        // 獲取最近的錯誤資訊
+        public function getError() {
+            return $this->error;
+        }
 }
 ?>

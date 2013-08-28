@@ -3,15 +3,15 @@
     <div id="main-wrap" class=" bd-not">
         <div class="extend">
             <div style="margin:50px">
-                后台选择部门wigdet：（下拉形式）
+                後臺選擇部門wigdet：（下拉形式）
                 <div>
                     {:W('Department',array('tpl'=>'admin','select'=>1,'sid'=>0,'nosid'=>1))}
                 </div>
-                通过input框选择部门:
+                通過input框選擇部門:
                 <div>
-                     {:W('Department',array('inputName'=>'depart','canChange'=>1,'tpl'=>'input','defaultName'=>'无','defaultId'=>'0'))}
+                     {:W('Department',array('inputName'=>'depart','canChange'=>1,'tpl'=>'input','defaultName'=>'無','defaultId'=>'0'))}
                 </div>
-                菜单形式选择部门：(可设定回调函数)
+                選單形式選擇部門：(可設定回撥函數)
                 <div>
                      {:W('Department',array('tpl'=>'menu','pid'=>0,'sid'=>0,'nosid'=>0,'callback'=>'contactBack'))}
                      <script>
@@ -24,17 +24,17 @@
             </div>
 <div>
 <pre>
-调用：W('Department',array('tpl'=>'input','inputName'=>'depart','canChange'=>1,'notop'=>1,'defaultName'=>'无','defaultId'=>'0','callback'=>'contactBack'))
-参数说明：
-tpl：		wigdet调用的模版 有admin(后台下拉形式)，input：表单输入形式，menu：菜单形式
-select:		是否下拉显示，目前只针对tpl=admin有效
-inputName：	表单输入的值，只针对tpl=input
-sid:		当前选择的部门ID
-nosid:		选项里面是否包括当前ID，
-canChange	是否可修改，只针对tpl=input有效
-defaultName 默认的部门名称，只针对tpl=input有效
-defaultId	默认的部门ID，只针对tpl=input有效
-callback	选择部门之后的回调函数，只针对tpl=menu有效
+呼叫：W('Department',array('tpl'=>'input','inputName'=>'depart','canChange'=>1,'notop'=>1,'defaultName'=>'無','defaultId'=>'0','callback'=>'contactBack'))
+參數說明：
+tpl：		wigdet呼叫的模版 有admin(後臺下拉形式)，input：表單輸入形式，menu：選單形式
+select:		是否下拉顯示，目前只針對tpl=admin有效
+inputName：	表單輸入的值，只針對tpl=input
+sid:		當前選擇的部門ID
+nosid:		選項裡面是否包括當前ID，
+canChange	是否可修改，只針對tpl=input有效
+defaultName 默認的部門名稱，只針對tpl=input有效
+defaultId	默認的部門ID，只針對tpl=input有效
+callback	選擇部門之後的回撥函數，只針對tpl=menu有效
 </pre>
 </div>
         </div>

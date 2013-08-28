@@ -1,36 +1,36 @@
 <include file="../Public/_header" />
 <div class="so_main">
-  <div class="page_tit">积分等级设置</div>
+  <div class="page_tit">積分等級設定</div>
   <div class="tit_tab">
     <ul>
-    <li><a href="{:U('admin/Global/credit')}">积分规则</a></li>
-    <li><a href="{:U('admin/Global/creditType')}" >积分类型</a></li>
-    <li><a href="{:U('admin/Global/creditUser')}">设置用户积分</a></li>
-    <li><a href="{:U('admin/Global/creditLevel')}" class="on">积分等级</a></li>
+    <li><a href="{:U('admin/Global/credit')}">積分規則</a></li>
+    <li><a href="{:U('admin/Global/creditType')}" >積分類型</a></li>
+    <li><a href="{:U('admin/Global/creditUser')}">設定使用者積分</a></li>
+    <li><a href="{:U('admin/Global/creditLevel')}" class="on">積分等級</a></li>
     </ul>
   </div>
   <div class="form2">
     <eq name="type" value="add">
       <form method="post" action="{:U('admin/Global/doAddCreditLevel')}">
-      <h3>添加积分等级</h3>
+      <h3>添加積分等級</h3>
   <else/>
       <form method="post" action="{:U('admin/Global/doEditCreditLevel')}">
-      <h3>编辑积分等级</h3>
+      <h3>編輯積分等級</h3>
     <input type="hidden" name="level" value="{$id}">
   </eq>
     <dl>
-      <dt>积分：</dt>
+      <dt>積分：</dt>
       <dd><input name="start" type="text" value="{$value['start']}" class="s-txt"> - <input name="end" type="text" value="{$value['end']}" class="s-txt">
-    <!-- <p>积分 + 经验值</p> -->
+    <!-- <p>積分 + 經驗值</p> -->
     </dl>
     <dl class="lineD">
-      <dt>等级名称：</dt>
+      <dt>等級名稱：</dt>
       <dd><input name="name" type="text" value="{$value['name']}" class="s-txt"> *
-    <!-- <p>等级名称</p> -->
+    <!-- <p>等級名稱</p> -->
     </dl>
     
     <div class="page_btm">
-      <input type="submit" class="btn_b" value="确定" />
+      <input type="submit" class="btn_b" value="確定" />
     </div>
     </form>
   </div>

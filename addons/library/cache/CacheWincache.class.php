@@ -11,7 +11,7 @@
 
 defined('THINK_PATH') or exit();
 /**
- * Wincache缓存驱动
+ * Wincache快取驅動
  * @category   Extend
  * @package  Extend
  * @subpackage  Driver.Cache
@@ -20,8 +20,8 @@ defined('THINK_PATH') or exit();
 class CacheWincache extends Cache {
 
     /**
-     * 架构函数
-     * @param array $options 缓存参数
+     * 架構函數
+     * @param array $options 快取參數
      * @access public
      */
     public function __construct($options=array()) {
@@ -34,9 +34,9 @@ class CacheWincache extends Cache {
     }
 
     /**
-     * 读取缓存
+     * 讀取快取
      * @access public
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return mixed
      */
     public function get($name) {
@@ -46,11 +46,11 @@ class CacheWincache extends Cache {
     }
 
     /**
-     * 写入缓存
+     * 寫入快取
      * @access public
-     * @param string $name 缓存变量名
-     * @param mixed $value  存储数据
-     * @param integer $expire  有效时间（秒）
+     * @param string $name 快取變數名
+     * @param mixed $value  存儲資料
+     * @param integer $expire  有效時間（秒）
      * @return boolen
      */
     public function set($name, $value,$expire=null) {
@@ -61,7 +61,7 @@ class CacheWincache extends Cache {
         $name   =   $this->options['prefix'].$name;
         if(wincache_ucache_set($name, $value, $expire)) {
             if($this->options['length']>0) {
-                // 记录缓存队列
+                // 記錄快取佇列
                 $this->queue($name);
             }
             return true;
@@ -70,9 +70,9 @@ class CacheWincache extends Cache {
     }
 
     /**
-     * 删除缓存
+     * 刪除快取
      * @access public
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return boolen
      */
     public function rm($name) {
@@ -80,11 +80,11 @@ class CacheWincache extends Cache {
     }
 
     /**
-     * 清除缓存
+     * 清除快取
      * @access public
      * @return boolen
      */
     public function clear() {
-    	return wincache_ucache_clear();
+        return wincache_ucache_clear();
     }
 }

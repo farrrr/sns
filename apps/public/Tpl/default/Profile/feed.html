@@ -5,9 +5,9 @@ function addDigg(feed_id){
        if(res==1){
 	       var num = $('#digg'+feed_id).attr('rel');
     	   num++;
-    	   $('#digg'+feed_id).html('已赞('+num+')');
+    	   $('#digg'+feed_id).html('已贊('+num+')');
 	   }else {
-	       ui.error('操作失败，如没有登录请先登录再操作');
+	       ui.error('操作失敗，如沒有登入請先登入再操作');
        }
    });
 }
@@ -19,7 +19,7 @@ function addDigg(feed_id){
                 <!--<div class="app-tab-menu clearfix">
                                                       
                     <dl>
-                        <dt><a href="{:U('public/Profile/index',array('type'=>$type,'feed_type'=>'','uid'=>$uid))}" class="current">微博</a><a href="{:U('public/Profile/data',array('uid'=>$uid))}">资料</a></dt>
+                        <dt><a href="{:U('public/Profile/index',array('type'=>$type,'feed_type'=>'','uid'=>$uid))}" class="current">微博</a><a href="{:U('public/Profile/data',array('uid'=>$uid))}">資料</a></dt>
                     </dl>
                 </div>-->
         </div>
@@ -43,9 +43,9 @@ function addDigg(feed_id){
                                 <span class="right">
 	<span id='digg{$feedInfo.feed_id}' rel='{$feedInfo.digg_count}'>
 	<php>if(!isset($diggArr[$feedInfo['feed_id']])) { </php>
-	   <a href="javascript:void(0)" onclick="addDigg({$feedInfo.feed_id})" >赞<if condition='!empty($feedInfo[digg_count])'>({$feedInfo.digg_count})</if></a>
+	   <a href="javascript:void(0)" onclick="addDigg({$feedInfo.feed_id})" >贊<if condition='!empty($feedInfo[digg_count])'>({$feedInfo.digg_count})</if></a>
 	<php> } else { </php>
-	   已赞<if condition='!empty($feedInfo[digg_count])'>({$feedInfo.digg_count})</if>
+	   已贊<if condition='!empty($feedInfo[digg_count])'>({$feedInfo.digg_count})</if>
 	<php> } </php></span>
 	<i class="vline">|</i>                                
                                     <php>$cancomment_old = empty($feedInfo['app_row_id'])  ? 0 : 1;</php>
@@ -76,7 +76,7 @@ function addDigg(feed_id){
                             <php>}</php>
                             <i class="vline"></i>
                             <eq name='feedInfo.actions.delete' value='true'>
-                            <!-- 做普通删除权限 和 管理删除权限 判断 & 只有微博可以被删除  -->
+                            <!-- 做普通刪除許可權 和 管理刪除許可權 判斷 & 只有微博可以被刪除  -->
                             <php>if(($feedInfo['uid'] == $GLOBALS['ts']['mid']) ) {</php>
                             <a href="javascript:void(0)" event-node ='delFeed' event-args='feed_id={$feedInfo.feed_id}&uid={$feedInfo.uid}&isrefresh=1'>{:L('PUBLIC_STREAM_DELETE')}</a>
                             <php>}</php>
@@ -129,7 +129,7 @@ function addDigg(feed_id){
                     </div>
                  </div>
             <php>}else{</php>
-                   <p class="extend"> -_-。sorry！根据对方隐私设置，您无权查看TA的微博</p>
+                   <p class="extend"> -_-。sorry！根據對方隱私設定，您無權檢視TA的微博</p>
             <php>}</php>
         </div>
     </div>

@@ -2,25 +2,25 @@
         <form id="quick_login_form" method="POST" action="{:U('public/Passport/doLogin')}" onsubmit="return quicksubmit()">
             <ul>
                 <li>
-                    <label class="">邮箱：</label>
+                    <label class="">郵箱：</label>
                     <div class="input-box"><input type="text" id="login_email" class="s-txt"/></div>
                 </li>
                 <li class="mb">
-                    <label class="">密码：</label>
+                    <label class="">密碼：</label>
                     <div class="input-box">
                 <input id="login_password" type="password" class="s-txt" />
             </div>
                 </li>
                 <li>
                     <div class="input-box h">
-                    <a href="{:U('public/Passport/findPassword')}" class="right">忘记密码？</a><span><input type="checkbox" id="login_remeber" class="checkbox" checked="checked" />下次自动登录</span></div>
+                    <a href="{:U('public/Passport/findPassword')}" class="right">忘記密碼？</a><span><input type="checkbox" id="login_remeber" class="checkbox" checked="checked" />下次自動登入</span></div>
                 </li>
                 <li>
                     <div class="input-box">
                     <php>if($register_type == 'open'):</php>
-                          <a href="{:U('public/Register')}" class="right f14">注册帐号</a>
+                          <a href="{:U('public/Register')}" class="right f14">註冊帳號</a>
                     <php>endif;</php>
-                    <input type="submit" value="登录" class="btn-green-big" style="border:0px;" />
+                    <input type="submit" value="登入" class="btn-green-big" style="border:0px;" />
                     </div>
                 </li>
             </ul>
@@ -35,10 +35,10 @@ function quicksubmit(){
 	var password = $.trim($('#login_password').val());
 	var remember = 0;
 	if ( !email ){
-		ui.error('用户邮箱不能为空！');return false;
+		ui.error('使用者郵箱不能為空！');return false;
 	}
 	if ( !password ){
-		ui.error('密码不能为空！');return false;
+		ui.error('密碼不能為空！');return false;
 	}
 	if ( $('#login_remeber').get(0).checked == true ){
 		remember = 1;

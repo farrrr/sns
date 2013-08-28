@@ -3,24 +3,24 @@
     <div class="pop_up_main">
         <div class="pop_up_tab">
             <div class="tab attrSetTab">
-                <a href="javascript:void(0)" rel="diy_baseSet" class="on">基本设置</a>
+                <a href="javascript:void(0)" rel="diy_baseSet" class="on">基本設定</a>
             </div>
         </div>
         <div class="pop_up_box">
             <ul class="pop_up_box_form" id="diy_baseSet">
               <li>
                     <div class="c1">
-                        数据源：
+                        資料來源：
                     </div>
                     <div class="c2">
                         <label>
-                            <input name="source" rel="not_input" type="radio" value="new" checked="checked" class="param_post radio_select in_mr5" />最新注册用户
+                            <input name="source" rel="not_input" type="radio" value="new" checked="checked" class="param_post radio_select in_mr5" />最新註冊使用者
                         </label>&nbsp;
                         <label>
-                            <input name="source" rel="user_input" class="param_post radio_select in_mr5" type="radio" value="follow"/>粉丝最多用户
+                            <input name="source" rel="user_input" class="param_post radio_select in_mr5" type="radio" value="follow"/>粉絲最多使用者
                         </label>&nbsp;
                         <label>
-                            <input name="source" rel="custom_input" class="param_post radio_select in_mr5" type="radio" value="custom"/>指定用户
+                            <input name="source" rel="custom_input" class="param_post radio_select in_mr5" type="radio" value="custom"/>指定使用者
                         </label>&nbsp;
                         <div id="custom_input" class="param_select" style="display:none;">
                            {:W('SearchUser', array('uids'=>$attr['users'], 'name'=>'searchuid','follow'=>0, 'max'=>0,'noself'=>0))}
@@ -30,7 +30,7 @@
             
                 <li>
                     <div class="c1">
-                        标题：
+                        標題：
                     </div>
                     <div class="c2">
                         <input id="title" value="" class="param_post text"/>
@@ -38,7 +38,7 @@
                 </li>
 								                  <li>
                     <div class="c1">
-                        展示数量：
+                        展示數量：
                     </div>
                     <div class="c2">
                         <input id="limit" value="10" class="param_post text"/>
@@ -51,9 +51,9 @@
                     <div class="c2">
                        <select name="u" id="style" class="param_post text">
                             <option value="user_list" selected="selected">列表展示</option>
-                            <option value="user_slide_list">列表横向滚动展示</option>
-                            <option value="numdown">粉丝数字列表</option>
-                           	<option value="down">粉丝数</option>
+                            <option value="user_slide_list">列表橫向滾動展示</option>
+                            <option value="numdown">粉絲數字列表</option>
+                           	<option value="down">粉絲數</option>
                         </select>
                     </div>
                     </li>
@@ -62,21 +62,21 @@
                         模板高度：
                     </div>
                     <div class="c2">
-                        <input id="tplHeight" value="" class="param_post text"/>(请输入完整高度。px为单位。可以为百分比)
+                        <input id="tplHeight" value="" class="param_post text"/>(請輸入完整高度。px為單位。可以為百分比)
                     </div>
                 </li>
  		<li>
                     <div class="c1">
-                        右角链接：
+                        右角連結：
                     </div>
                     <div class="c2">
                         <ul id="diy_links_items">
                             <li class="link_items1">
-                                标题: <input type="text" rel="linkItemsComment1" class="linkItems" />链接：<input type="text" id="linkItemsComment1"/>
-                                <a href="javascript:void(0)" class="dellinkHref" rel="1">删除</a>
+                                標題: <input type="text" rel="linkItemsComment1" class="linkItems" />連結：<input type="text" id="linkItemsComment1"/>
+                                <a href="javascript:void(0)" class="dellinkHref" rel="1">刪除</a>
                             </li>
                             <li class="link_items2">
-                                标题: <input type="text" rel="linkItemsComment2" class="linkItems" />链接：<input type="text" id="linkItemsComment2"/><a href="javascript:void(0)" class="dellinkHref" rel="2">删除</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="addlinkHref" rel="2">增加</a>
+                                標題: <input type="text" rel="linkItemsComment2" class="linkItems" />連結：<input type="text" id="linkItemsComment2"/><a href="javascript:void(0)" class="dellinkHref" rel="2">刪除</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="addlinkHref" rel="2">增加</a>
                             </li>
                         </ul>
                     </div>
@@ -113,7 +113,7 @@ M(document.getElementById('diy_baseSet'));
             						defaultAttr["{$key}"] = "{$vo}";
 								<php>}</php>
             				</volist>
-            				//重新监听事件
+            				//重新監聽事件
             				
             		
             				
@@ -206,10 +206,10 @@ M(document.getElementById('diy_baseSet'));
                                     success: function(result){
                                         $('#preview').html(result.html);
                                         var content = '<div id="diy_copyHtmlContent">\
-                                            		复制源代码:<input type="text" id="copyHtmlContent" onclick="select();" style="width:150px;" />\
+                                            		複製原始碼:<input type="text" id="copyHtmlContent" onclick="select();" style="width:150px;" />\
                                         		</div>'
 										var widget = '<div id="diy_copyHtmlContent">\
-                                            		复制标签:<input type="text" id="copyWidgetContent" onclick="select();" style="width:150px;" />\
+                                            		複製標籤:<input type="text" id="copyWidgetContent" onclick="select();" style="width:150px;" />\
                                         		</div>';
                                         $('#preview').append(content);
 										$('#preview').append(widget);
@@ -238,11 +238,11 @@ M(document.getElementById('diy_baseSet'));
                                         frameArray[parentId][layout][index] = result['sign'];
                                         if ($('#' + id).html() == null) {
                                             $('#placeholder').html(result['html']);
-                                            $('#placeholder').removeAttr('class').removeAttr('style').addClass('mb10').attr('id', id).attr('rel', namespace).attr('sign', result['sign']).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\'' + id + '\',\'' + namespace + '\')" class="ico_diyedit" title="设置">设置</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="删除">删除</a></div></div>');
+                                            $('#placeholder').removeAttr('class').removeAttr('style').addClass('mb10').attr('id', id).attr('rel', namespace).attr('sign', result['sign']).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\'' + id + '\',\'' + namespace + '\')" class="ico_diyedit" title="設定">設定</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="刪除">刪除</a></div></div>');
                                         }
                                         else {
                                             $('#' + id).html(result['html']).attr('sign', result['sign']);
-                                            $('#' + id).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\'' + id + '\',\'' + namespace + '\')" class="ico_diyedit" title="设置">设置</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="删除">删除</a></div></div>');
+                                            $('#' + id).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\'' + id + '\',\'' + namespace + '\')" class="ico_diyedit" title="設定">設定</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="刪除">刪除</a></div></div>');
                                         }
                                         
                                     }
@@ -269,7 +269,7 @@ M(document.getElementById('diy_baseSet'));
                                 });
                                 var result = 'tagName=' + namespace;
     							
-                                //取得参数值
+                                //取得參數值
                                 var newTempArray = new Array();
                                 $('.linkItems').each(function(){
                                     var value = $('#' + $(this).attr('rel')).val().replace(/&/g, "[@]");
@@ -308,7 +308,7 @@ M(document.getElementById('diy_baseSet'));
     									customTpl = $('#customContent').val();
     									var last = $('#style option:last').val();
     									if( last.indexOf('custom') == -1 ){
-    										$('#style').append('<option value="'+time+'" selected>自定义模板</option>');
+    										$('#style').append('<option value="'+time+'" selected>自定義模板</option>');
     									}else{
     										$('#style option:last').val(time).attr('selected','selected');
     									}
@@ -334,7 +334,7 @@ M(document.getElementById('diy_baseSet'));
     							$('.attrSetTab a[rel=diy_customContent]').addClass('on');
     							$('.attrSetTab a[rel=diy_baseSet]').removeClass('on');
     							
-    							//保存模板
+    							//儲存模板
     							$('#diy_saveTpl').click(function(){
     								$('.attrSetTab a[rel=diy_baseSet]').click();	
     							})

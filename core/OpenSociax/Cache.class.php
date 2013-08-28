@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 
 /**
- * 缓存管理类
+ * 快取管理類
  * @category   Think
  * @package  Think
  * @subpackage  Core
@@ -19,24 +19,24 @@
 class Cache {
 
     /**
-     * 操作句柄
+     * 操作控制代碼
      * @var string
      * @access protected
      */
     protected $handler    ;
 
     /**
-     * 缓存连接参数
+     * 快取連線參數
      * @var integer
      * @access protected
      */
     protected $options = array();
 
     /**
-     * 连接缓存
+     * 連線快取
      * @access public
-     * @param string $type 缓存类型
-     * @param array $options  配置数组
+     * @param string $type 快取類型
+     * @param array $options  配置陣列
      * @return object
      */
     public function connect($type='',$options=array()) {
@@ -71,23 +71,23 @@ class Cache {
     }
 
     /**
-     * 取得缓存类实例
+     * 取得快取類例項
      * @static
      * @access public
      * @return mixed
      */
     static function getInstance() {
-       $param = func_get_args();
+        $param = func_get_args();
         return get_instance_of(__CLASS__,'connect',$param);
     }
 
     /**
-     * 队列缓存
+     * 佇列快取
      * @access protected
-     * @param string $key 队列名
+     * @param string $key 佇列名
      * @return mixed
      */
-    // 
+    //
     protected function queue($key) {
         static $_handler = array(
             'file'  =>  array('F','F'),
@@ -101,25 +101,25 @@ class Cache {
         if(!$value) {
             $value   =  array();
         }
-        // 进列
+        // 進列
         if(false===array_search($key, $value))  array_push($value,$key);
         if(count($value) > $this->options['length']) {
             // 出列
             $key =  array_shift($value);
-            // 删除缓存
+            // 刪除快取
             $this->rm($key);
-             if(APP_DEUBG){
-                //调试模式下，记录出列次数
+            if(APP_DEUBG){
+                //偵錯模式下，記錄出列次數
                 N($queue_name.'_out_times',1,true);
             }
         }
         return $fun[1]($queue_name,$value);
     }
-    
+
     public function __call($method,$args){
-        //调用缓存类型自己的方法
+        //呼叫快取類型自己的方法
         if(method_exists($this->handler, $method)){
-           return call_user_func_array(array($this->handler,$method), $args);
+            return call_user_func_array(array($this->handler,$method), $args);
         }else{
             throw_exception(__CLASS__.':'.$method.L('_METHOD_NOT_EXIST_'));
             return;

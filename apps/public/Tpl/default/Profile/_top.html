@@ -15,11 +15,11 @@
             
             <div class="grade"><if condition="$user_info[$uid]['sex'] eq 1"><i class="ico-male"></i><else /><i class="ico-female"></i></if>&nbsp;{$user_info[$uid]['location']}</div>
             <php>if(!empty($user_info[$uid]['intro'])){</php>
-                <div class="grade">个人简介：{$user_info[$uid]['intro']|getShort=100}</div>
+                <div class="grade">個人簡介：{$user_info[$uid]['intro']|getShort=100}</div>
             <php>}</php>
             <php>if($user_tag[$user_info[$uid]['uid']]){</php>
                 <div class="grade tag-lists">
-                        个人标签：
+                        個人標籤：
                         <volist name="user_tag[$user_info[$uid]['uid']]" id="u_t_v">
                             <a href="{:U('public/Search/index',array('t'=>3,'a'=>'public','k'=>$u_t_v))}">{$u_t_v}</a>&nbsp;&nbsp;
                         </volist>
@@ -32,7 +32,7 @@
                     {:W('FollowBtn', array('fid'=>$user_info[$uid]['uid'], 'uname'=>$user_info[$uid]['uname'], 'follow_state'=>$follow_state[$user_info[$uid]['uid']], 'isrefresh'=>1))}
                     <php>if(CheckPermission('core_normal','send_message')){</php>
                     <eq name='userPrivacy.message' value='0'>
-                    <a onclick="ui.sendmessage({$user_info[$uid]['uid']}, 0)" href="javascript:void(0)" event-node="postMsg" class="ml5 btn-cancel"><span>发私信</span></a>
+                    <a onclick="ui.sendmessage({$user_info[$uid]['uid']}, 0)" href="javascript:void(0)" event-node="postMsg" class="ml5 btn-cancel"><span>發私信</span></a>
                     </eq>&nbsp;
                     <php>}</php>
                     <div class="more-box"><span class="ml5"><a href="javascript:;" event-node="more_operation" class="ml5">更多</a></span>
@@ -40,7 +40,7 @@
                         <ul onmouseover="$('#more_operation').show();" onmouseout="$('#more_operation').hide()">
                             <li id="blacklist">{:W('Blacklist',array('tpl'=>'btn', 'fid'=>$user_info[$uid]['uid'], 'isrefresh'=>1))}</li>
                             <php>if($follow_state[$user_info[$uid]['uid']]['following'] == 1){</php>
-                                <li><a href="javascript:void(0)" onclick="setFollowGroup({$user_info[$uid]['uid']}, 1)">设置分组</a></li>
+                                <li><a href="javascript:void(0)" onclick="setFollowGroup({$user_info[$uid]['uid']}, 1)">設定分組</a></li>
                             <php>}</php>
                         </ul>
                     </div></div>
@@ -53,15 +53,15 @@
     </dl>
     <ul class="person-info-b clearfix">
         <li><a href="{:U('public/Profile/index',array('type'=>$type,'feed_type'=>'','uid'=>$uid))}" <php>if(ACTION_NAME=='index'||ACTION_NAME=='feed'){</php>class="current"<php>}</php>><span>微博</span><strong event-node="weibo_count" event-args="uid={$user_info[$uid]['uid']}">{$userData.weibo_count|default=0}</strong></a></li>
-        <li><a href="{:U('public/Profile/following',array('uid'=>$user_info[$uid]['uid']))}" <eq name="ACTION_NAME" value="following">class="current"</eq>><span>关注</span><strong event-node="<php>if($user_info[$uid]['uid']==$mid){</php>following<php>}</php>_count" event-args="uid={$user_info[$uid]['uid']}">{$userData.following_count|default=0}</a></strong></li>
+        <li><a href="{:U('public/Profile/following',array('uid'=>$user_info[$uid]['uid']))}" <eq name="ACTION_NAME" value="following">class="current"</eq>><span>關注</span><strong event-node="<php>if($user_info[$uid]['uid']==$mid){</php>following<php>}</php>_count" event-args="uid={$user_info[$uid]['uid']}">{$userData.following_count|default=0}</a></strong></li>
         <li class="no-border"><a href="{:U('public/Profile/follower',array('uid'=>$user_info[$uid]['uid']))}"
-         <eq name="ACTION_NAME" value="follower">class="current"</eq>><span>粉丝</span><strong event-node="<php>if($user_info[$uid]['uid']!=$mid){</php>following<php>}</php>_count" event-args="uid={$user_info[$uid]['uid']}">{$userData.follower_count|default=0}</a></strong></li>
+         <eq name="ACTION_NAME" value="follower">class="current"</eq>><span>粉絲</span><strong event-node="<php>if($user_info[$uid]['uid']!=$mid){</php>following<php>}</php>_count" event-args="uid={$user_info[$uid]['uid']}">{$userData.follower_count|default=0}</a></strong></li>
         <!-- <li class="no-border <eq name='current' value='collection'>current</eq>"><a href="{:U('public/Collection/index')}"><span>收藏</span>{$userData.favorite_count|default=0}</a></li> -->
     </ul>
 </div>
 
 <script type="text/javascript">
-// 事件监听
+// 事件監聽
 M.addEventFns({
     ico_level_right: {
         load: function() {

@@ -1,6 +1,6 @@
 /**
- * 	本js内为微博关的JS函数及监听
- *	TODO 需要优化重构 重构方式参考 core.comment 和 core.searchUser
+ * 	本js內為微博關的JS函數及監聽
+ *	TODO 需要優化重構 重構方式參考 core.comment 和 core.searchUser
  */
 
 
@@ -17,7 +17,7 @@ if("undefinde" == typeof(firstId)){
 	var firstId = 0;
 }
 if("undefined" == typeof(feedType)){
-	var feedType = 'following';	// 默认的微博类型(关注的)
+	var feedType = 'following';	// 默認的微博類型(關注的)
 }
 if("undefined" == typeof(feed_type)){
 	var feed_type ='';
@@ -65,10 +65,10 @@ if("undefined" == typeof(core.weibo)){	//只init一次
 	});
 }
 /**
- * 事件绑定器
+ * 事件繫結器
  */
 M.addEventFns({
-	insert_face: {	//弹出插入表情框
+	insert_face: {	//彈出插入表情框
 		click: function(){
 			// alert(1);
 			var target = this.parentModel.parentModel.childModels["mini_editor"][0];
@@ -76,14 +76,14 @@ M.addEventFns({
 			core.plugInit('face',this,$(target).find('textarea'),parentDiv);
 		}
 	},
-	insert_video: {	//弹出插入视频框
+	insert_video: {	//彈出插入視訊框
 		click: function(){
 			var target = this.parentModel.parentModel.childModels["mini_editor"][0];
 			var postfeed = this.parentModel.childEvents[$(this).attr('rel')][0];
 			core.plugInit('video',this,$(target).find('textarea'),postfeed);
 		}
 	},
-	show_url_detail: {	//链接地址详情显示
+	show_url_detail: {	//連結地址詳情顯示
 		mouseover: function(){
 			$(this).parent().find('.url-detail').show();
 		},
@@ -106,7 +106,7 @@ M.addEventFns({
 			}
 		}
 	},
-	post_feed:{	//发布普通|图片微博 
+	post_feed:{	//釋出普通|圖片微博 
 		click:function(){
 			if (feedbtnlock == 0) {
 				feedbtnlock = 1;
@@ -114,7 +114,7 @@ M.addEventFns({
 					feedbtnlock = 0;
 				}, 1500);
 			} else {
-				ui.error('正在发布请勿重复点击！');
+				ui.error('正在釋出請勿重複點選！');
 				return false;
 			}
 			if($('.upload_tips').length >0){
@@ -135,7 +135,7 @@ M.addEventFns({
 					feedbtnlock = 0;
 				}, 1500);
 			} else {
-				ui.error('正在发布请勿重复点击！');
+				ui.error('正在釋出請勿重複點選！');
 				return false;
 			}
 			var _this = this;
@@ -161,7 +161,7 @@ M.addEventFns({
 	},
 	insert_topic: {
 		click: function() {
-			var text = '#请在这里输入自定义话题#';
+			var text = '#請在這裡輸入自定義話題#';
 			var patt   =   new   RegExp(text,"g");
 			var target = this.parentModel.parentModel.childModels['mini_editor'][0];
 			var textarea = $(target).find('textarea');
@@ -209,7 +209,7 @@ M.addEventFns({
 							$(_this.parentModel).fadeOut();
 						}
 						updateUserData('weibo_count',-1,attrs.uid);
-						if(attrs.isrefresh == 1){    //在微博详情页删除后跳转到首页
+						if(attrs.isrefresh == 1){    //在微博詳情頁刪除後跳轉到首頁
 							window.location.href = SITE_URL;
 						}
 					}else{
@@ -220,13 +220,13 @@ M.addEventFns({
 			ui.confirm(this,L('PUBLIC_DELETE_THISNEWS'),delFeed);
 		}
 	},
-	denounce:{	//举报 
+	denounce:{	//舉報 
 		click:function(){
 			var attrs = M.getEventArgs(this);
 			core.plugInit('denouce',attrs.aid,attrs.type,attrs.uid);
 		}	
 	},
-	img_small:{ //图片显示
+	img_small:{ //圖片顯示
 		click:function(){
 			$(this.parentModel).find('div').each(function(){
 				if($(this).attr('rel') == 'small'){
@@ -246,7 +246,7 @@ M.addEventFns({
 					
 					var Y1 =this.getBoundingClientRect().top;
 					if(Y1 < 0){
-						//点击大图缩小时  定位
+						//點選大圖縮小時  定位
 						var dl_id = $(_this.parentModel).attr('id');
 						window.location.hash = "#"+dl_id;
 						window.location=window.location;
@@ -283,25 +283,25 @@ M.addEventFns({
 			ui.box.load(U('widget/FollowGroup/editgroup'),L('PUBLIC_MANAGE_GROUP'));
 		}
 	},
-	//加载帖子详情
+	//載入帖子詳情
 	loadPost:{
 		click:function(){
 			var _this = this;
 			var attrs = M.getEventArgs(this);
 			if($(_this).parent().parent().find('.feed_img_lists').css('display') == 'none'){
-				$(_this).parent().parent().find('.feed_img_lists').before('<dl id="loading" class="comment"><div class="loading" style="z-index:99;">加载中<img src="'+THEME_URL+'/image/load.gif" class="load"></div></dl>');
+				$(_this).parent().parent().find('.feed_img_lists').before('<dl id="loading" class="comment"><div class="loading" style="z-index:99;">載入中<img src="'+THEME_URL+'/image/load.gif" class="load"></div></dl>');
 			};
 			$.post(U('widget/FeedList/getPostDetail'),{post_id:attrs.post_id},function(res){
 				html = '';
 				html += '<dl class="comment">';
 				if(res == 0){
 					html += '<dt class="arrow bgcolor_arrow"><em class="arrline">◆</em><span class="downline">◆</span>';
-					html += '<dd>帖子不存在或已被删除</dd>';
+					html += '<dd>帖子不存在或已被刪除</dd>';
 					html += '</dt>';
 				}else{
-					html += '<div><a href="javascript:void(0);" onclick="$(\'#post_'+attrs.feed_id+'_'+attrs.post_id+'\').slideToggle()" class="ico-pack-up mr10">收起</a><a target="_blank" href="'+res.post_url+'" class="ico-show-all">查看原文</a></div>';
-					html += '<div class="content clearfix weiba-detail"><h3>'+res.title+'</h3><p class="f9"><a class="date right">'+res.post_time+'</a><span class="mr15">楼主：'+res.author+'</span><span>来自<a target="_blank" href="'+res.weiba_url+'">'+res.from_weiba+'</a></span></p><div><p>'+res.content+'</p></div></div>'
-					html += '<div><a href="javascript:void(0);" onclick="$(\'#post_'+attrs.feed_id+'_'+attrs.post_id+'\').slideToggle();window.location.hash=\'#feed'+attrs.feed_id+'\';window.location=window.location;" class="ico-pack-up mr10">收起</a><a target="_blank" href="'+res.post_url+'" class="ico-show-all">查看原文</a></div>';
+					html += '<div><a href="javascript:void(0);" onclick="$(\'#post_'+attrs.feed_id+'_'+attrs.post_id+'\').slideToggle()" class="ico-pack-up mr10">收起</a><a target="_blank" href="'+res.post_url+'" class="ico-show-all">檢視原文</a></div>';
+					html += '<div class="content clearfix weiba-detail"><h3>'+res.title+'</h3><p class="f9"><a class="date right">'+res.post_time+'</a><span class="mr15">樓主：'+res.author+'</span><span>來自<a target="_blank" href="'+res.weiba_url+'">'+res.from_weiba+'</a></span></p><div><p>'+res.content+'</p></div></div>'
+					html += '<div><a href="javascript:void(0);" onclick="$(\'#post_'+attrs.feed_id+'_'+attrs.post_id+'\').slideToggle();window.location.hash=\'#feed'+attrs.feed_id+'\';window.location=window.location;" class="ico-pack-up mr10">收起</a><a target="_blank" href="'+res.post_url+'" class="ico-show-all">檢視原文</a></div>';
 				}
 				html += '</div>';
 				$('#loading').remove();
@@ -310,14 +310,14 @@ M.addEventFns({
 		}	
 	},
 	show_admin: {
-		// 是否显示按钮
+		// 是否顯示按鈕
 		load: function() {
 			var args = M.getEventArgs(this);
 			if(args.feed_del == 1 || args.channel_recommend == 1) {
 				$(this).css('display', 'block');
 			}
 		},
-		// 显示与隐藏微博操作弹窗
+		// 顯示與隱藏微博操作彈窗
 		click: function() {
 			$('#weibo_admin_box').remove();
 			var _this = this;
@@ -329,16 +329,16 @@ M.addEventFns({
 			if(args.channel_recommend == 1) {
 				var channel_id = args.channel_id || 0;
 				var clear = args.clear || 0;
-				html += '<li><a href="javascript:;" onclick="getAdminBox('+args.feed_id+', '+channel_id+', '+clear+');">推荐到频道</a></li>';
+				html += '<li><a href="javascript:;" onclick="getAdminBox('+args.feed_id+', '+channel_id+', '+clear+');">推薦到頻道</a></li>';
 			}
 			if(args.vtask_recommend == 1) {
-				html += '<li><a href="javascript:;" onclick="addToVtask('+args.feed_id+');">添加到事务</a></li>';  //添加到事务
+				html += '<li><a href="javascript:;" onclick="addToVtask('+args.feed_id+');">添加到事務</a></li>';  //添加到事務
 			}
 			if(args.feed_del == 1) {
 				if(typeof args.isrefresh == 'undefined') {
 					args.isrefresh = 0;
 				}
-				html += '<li><a href="javascript:;" event-node ="delFeed" event-args="feed_id='+args.feed_id+'&uid='+args.uid+'&isrefresh='+args.isrefresh+'">删除</a></li>';
+				html += '<li><a href="javascript:;" event-node ="delFeed" event-args="feed_id='+args.feed_id+'&uid='+args.uid+'&isrefresh='+args.isrefresh+'">刪除</a></li>';
 			}
 			html += '</ul></div>';
 			$('body').append(html);
@@ -353,7 +353,7 @@ M.addEventFns({
 			M(document.getElementById('weibo_admin_box'));
 		}
 	},
-	// 微博内容输入框
+	// 微博內容輸入框
 	mini_editor_textarea: {
 		click: function() {
 			if(!this.ready) {
@@ -395,7 +395,7 @@ M.addEventFns({
 						}
 						switch ( args.t ){
 							case 'comment':
-								// 评论
+								// 評論
 								var c = this.parentModel.parentModel.childEvents['do_comment'][0]; 
 								var attrs = M.getEventArgs(c);
 								attrs.to_comment_id = $(c).attr('to_comment_id');
@@ -410,7 +410,7 @@ M.addEventFns({
 								setTimeout(docomment, 150);
 								break;
 							case 'feed':
-								// 动态
+								// 動態
 								var postObj = this.parentModel.parentModel.childModels['send_action'][0].childEvents['post_feed'][0];
 								core.weibo.post_feed(postObj,this.parentModel,_this);
 								break;
@@ -448,7 +448,7 @@ M.addEventFns({
 			removeClass(this,'focus');
 		}
 	},
-	// 微博内容输入框
+	// 微博內容輸入框
 	mini_editor_textarea: {	
 	}
 });
@@ -460,13 +460,13 @@ $(".feed_img_lists li a").mouseout(function(){
 });
 var getAdminBox = function(feedId, channelId, clear)
 {
-	ui.box.load(U('channel/Manage/getAdminBox')+'&feed_id='+feedId+'&channel_id='+channelId+'&clear='+clear, '推荐到频道');
+	ui.box.load(U('channel/Manage/getAdminBox')+'&feed_id='+feedId+'&channel_id='+channelId+'&clear='+clear, '推薦到頻道');
 };
 /**
- * 添加微事务窗口
+ * 添加微事務視窗
  * @param integer feedId 微博ID
  * @return void
  */
 var addToVtask = function(feedId) {
-	ui.box.load(U('vtask/Index/addToVtask') + '&feed_id=' + feedId, '添加到微事务');
+	ui.box.load(U('vtask/Index/addToVtask') + '&feed_id=' + feedId, '添加到微事務');
 };

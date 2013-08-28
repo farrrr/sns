@@ -40,14 +40,14 @@ function gonext(type,level){
           <div class="boxShadow">
               <div class="find-type">
 	   	   	   	   <div class="app-title clearfix">
-                       <a href="{:U('public/Medal/index')}" class="right">查看我的勋章</a> 
-                       <h4 class="left"><img src="__APP__/image/ico-app-account.png" />&nbsp;&nbsp;任务</h4>                     
+                       <a href="{:U('public/Medal/index')}" class="right">檢視我的勳章</a> 
+                       <h4 class="left"><img src="__APP__/image/ico-app-account.png" />&nbsp;&nbsp;任務</h4>                     
                        <div class="app-tab-menu clearfix" style="margin:0 0  0 130px;">
                            
                            <ul>
-                             <li><a href="{:U('public/Task/index' , array('type'=>2))}" <php>if($task_type==2){</php>class="current"<php>}</php>>主线任务<eq name="task_type" value="2"><span class="triangle"></span></eq></a><i class="line"></i></li>
-                             <li><a href="{:U('public/Task/index' , array('type'=>1))}" <php>if($task_type==1){</php>class="current"<php>}</php>>每日任务<eq name="task_type" value="1"><span class="triangle"></span></eq></a><i class="line"></i></li>
-                             <li><a href="{:U('public/Task/customIndex')}" <php>if($task_type==3){</php>class="current"<php>}</php>>副本任务<eq name="task_type" value="3"><span class="triangle"></span></eq></a></li>
+                             <li><a href="{:U('public/Task/index' , array('type'=>2))}" <php>if($task_type==2){</php>class="current"<php>}</php>>主線任務<eq name="task_type" value="2"><span class="triangle"></span></eq></a><i class="line"></i></li>
+                             <li><a href="{:U('public/Task/index' , array('type'=>1))}" <php>if($task_type==1){</php>class="current"<php>}</php>>每日任務<eq name="task_type" value="1"><span class="triangle"></span></eq></a><i class="line"></i></li>
+                             <li><a href="{:U('public/Task/customIndex')}" <php>if($task_type==3){</php>class="current"<php>}</php>>副本任務<eq name="task_type" value="3"><span class="triangle"></span></eq></a></li>
                            </ul>
                        </div>
                    </div>
@@ -55,17 +55,17 @@ function gonext(type,level){
 	   	   	<div id="col" class="extend clearfix">
                 <php>if($task_type==2){</php>
                 <div class="task-stage">
-                   	<div class="stage{$task_level}"><span class="a">新手任务</span><span class="b">进阶任务</span><span class="c">达人任务</span><span class="d">高手任务</span><span class="e">终极任务</span></div>
+                   	<div class="stage{$task_level}"><span class="a">新手任務</span><span class="b">進階任務</span><span class="c">達人任務</span><span class="d">高手任務</span><span class="e">終極任務</span></div>
                 </div>
                 <php>}</php>
                  <div class="task-content">
                     <div class="task-list-title clearfix">
                        <ul>
                            <!--<li class="c0">&nbsp;</li>-->
-                           <li class="c1">任务名称</li>
-                           <li class="c2">积分奖励</li>
-                           <li class="c3">勋章奖励</li>
-                           <li class="c4">状态</li>
+                           <li class="c1">任務名稱</li>
+                           <li class="c2">積分獎勵</li>
+                           <li class="c3">勳章獎勵</li>
+                           <li class="c4">狀態</li>
                         </ul>
                     </div>
                     <div class="task-lists">
@@ -75,20 +75,20 @@ function gonext(type,level){
                             <ul>
                                <!--<li class="c0">{$key+1}.</li>-->
                                <li class="c1"><h4 class="strong">{$v.step_name} </h4><p>{$v.step_desc} </p></li>
-                               <li class="c2"><span>经验值<em>+<php>echo $v['reward']->exp;</php></em>点</span><span>财富值<em>+<php>echo $v['reward']->score;</php></em>点</span></li>
-                               <li class="c3"><span><php>if ( $v['reward']->medal->name ){</php><img src="<php>echo getImageUrl( $v['reward']->medal->src);</php>" width="50" height="50"/><php>echo $v['reward']->medal->name;}else{echo '<em>无</em>';}</php></span></li>
+                               <li class="c2"><span>經驗值<em>+<php>echo $v['reward']->exp;</php></em>點</span><span>財富值<em>+<php>echo $v['reward']->score;</php></em>點</span></li>
+                               <li class="c3"><span><php>if ( $v['reward']->medal->name ){</php><img src="<php>echo getImageUrl( $v['reward']->medal->src);</php>" width="50" height="50"/><php>echo $v['reward']->medal->name;}else{echo '<em>無</em>';}</php></span></li>
                                <li class="c4">
                                		<php>if($v['status']){</php>
                                			<span id="step_{$v.id}">
                                			<php>if( $v['receive']){</php>
 											<img src="__APP__/image/ico-perform.png" />
 										<php>}else{</php>
-											<a href="javascript:void(0);" onclick="complete_step({$v['id']},this,{$task_type},{$task_level})" class="btn-att-green">领取奖励</a>
+											<a href="javascript:void(0);" onclick="complete_step({$v['id']},this,{$task_type},{$task_level})" class="btn-att-green">領取獎勵</a>
 										<php>}</php>
 										</span>
                                		<php>}else{</php>
 	                               		<php>if($v['action']){</php>
-	                               		<a href="{$v['action']}" class="btn-cancel" target="_blank"><span>去做任务</span></a>
+	                               		<a href="{$v['action']}" class="btn-cancel" target="_blank"><span>去做任務</span></a>
 	                               		<php>}else{</php>
 	                               		<span>未完成</span>
 	                               		<php>}</php>
@@ -102,7 +102,7 @@ function gonext(type,level){
 						<php>if($receive){</php>
 						已完成{$task_name}
 						<php>}else{</php>
-						<a href="javascript:void(0)" onclick="complete_task({$task_type},{$task_level})" class="btn-cancel mt10"><span>已完成{$task_name}，领取奖励</span></a>
+						<a href="javascript:void(0)" onclick="complete_task({$task_type},{$task_level})" class="btn-cancel mt10"><span>已完成{$task_name}，領取獎勵</span></a>
 						<php>}</php>
 					<php>}</php>
 					</span>

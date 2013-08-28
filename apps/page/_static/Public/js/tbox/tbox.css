@@ -2,7 +2,7 @@
 .tb_background{FLOAT:LEFT;Z-INDEX:1000;POSITION:ABSOLUTE;TOP:0PX;LEFT:0PX;WIDTH:100%;HEIGHT:100%;FILTER:ALPHA(OPACITY=80);_MOZ-OPACITY:0.8;OPACITY:0.8;BACKGROUND-COLOR:#999;}
 #tbox .tb_popup{BACKGROUND:URL(b.png);MARGIN:0 AUTO;}
 #tbox .tb_loading{PADDING:5PX 20PX;TEXT-ALIGN:CENTER;BACKGROUND:URL(BIGLOADING.GIF) NO REPEAT;}
-#tbox .tb_body{POSITION:RELATIVE;BACKGROUND:#FFF;BORDER:1PX SOLID #666;MARGIN:8px;min-height:178px;/*高度最小值设置为：178px*/ height:auto !important;/*兼容FF,IE7也支持 !important标签*/ height:178px;/*兼容ie6*/ overflow:visible;padding-bottom:15px;}
+#tbox .tb_body{POSITION:RELATIVE;BACKGROUND:#FFF;BORDER:1PX SOLID #666;MARGIN:8px;min-height:178px;/*高度最小值設定為：178px*/ height:auto !important;/*相容FF,IE7也支援 !important標籤*/ height:178px;/*相容ie6*/ overflow:visible;padding-bottom:15px;}
 #tbox .tb_header{padding:0 5px;LINE-HEIGHT:30px;HEIGHT:30px;background-color:#f6f6f6;background-image:url(pop_tit.gif);margin-bottom:10px;background-repeat:repeat-x;background-position:0px 0px;overflow:hidden;}
 #tbox .tb_title{FONT-WEIGHT:bold;FONT-SIZE:14px;CURSOR:move;COLOR:#333 }
 #tbox .tb_content{BACKGROUND:#FFF;PADDING:0PX;WIDTH:100%;}

@@ -1,31 +1,31 @@
 <?php
 /**
- * 插件机制接口
+ * 插件機制介面
  * @author SamPeng <penglingjun@zhishisoft.com>
  * @version TS3.0
  */
 interface AddonsInterface
 {
     /**
-     * 告之系统，该插件使用了哪些hooks以及排序等信息
+     * 告之系統，該插件使用了哪些hooks以及排序等資訊
      * @return array()
      */
     public function getHooksInfo();
     /**
-     * 插件初始化时需要的数据信息。所以就不需要写类的构造函数
+     * 插件初始化時需要的資料資訊。所以就不需要寫類的建構函式
      * Enter description here ...
      */
     public function start();
     /**
-     * 该插件的基本信息
-     * 这个方法不需要用户实现，将在下一层抽象中实现。
-     * 用户需要填写几个基本信息作为该插件的属性即可
+     * 該插件的基本資訊
+     * 這個方法不需要使用者實現，將在下一層抽象中實現。
+     * 使用者需要填寫幾個基本資訊作為該插件的屬性即可
      */
     public function getAddonInfo();
 
     /**
      * setUp
-     * 启动插件时的接口
+     * 啟動插件時的介面
      * @access public
      * @return void
      */
@@ -33,50 +33,50 @@ interface AddonsInterface
 
     /**
      * setDown
-     * 卸载插件时的接口;
+     * 解除安裝插件時的介面;
      * @access public
      * @return void
      */
     public function uninstall();
 
     /**
-     * 显示不同的管理面板或表单等操作的处理受理接口。默认$page为false.也就是只显示第一个管理面板页面
+     * 顯示不同的管理面板或表單等操作的處理受理介面。默認$page為false.也就是隻顯示第一個管理面板頁面
      */
     public function adminMenu();
 }
 
 /**
- * 插件机制抽象类
+ * 插件機制抽象類
  * @author SamPeng <penglingjun@zhishisoft.com>
  * @version TS3.0
  */
 abstract class AbstractAddons implements AddonsInterface
 {
-    protected $version;         // 插件版本号
+    protected $version;         // 插件版本號
     protected $author;          // 作者
-    protected $site;            // 网站
-    protected $info;            // 插件描述信息
+    protected $site;            // 網站
+    protected $info;            // 插件描述資訊
     protected $pluginName;      // 插件名字
-    protected $path;            // 插件路径
+    protected $path;            // 插件路徑
     protected $url;             // 插件URL
-    protected $tVar;	        // 模板变量
-    protected $mid;             // 登录用户ID
-    protected $model;           // 插件数据模型对象
-	
+    protected $tVar;	        // 模板變數
+    protected $mid;             // 登入使用者ID
+    protected $model;           // 插件資料模型物件
+
     /**
-     * 初始化相关信息
+     * 初始化相關資訊
      * @return void
      */
-	public function __construct()
+    public function __construct()
     {
         $this->mid = @intval($_SESSION['mid']);
         $this->model = model("AddonData");
         $this->tVar = array();
         $this->start();
     }
-    
+
     /**
-     * 获取URL地址
+     * 獲取URL地址
      * @return string URL地址
      */
     public function getUrl()
@@ -85,7 +85,7 @@ abstract class AbstractAddons implements AddonsInterface
     }
 
     /**
-     * 设置URL地址
+     * 設定URL地址
      * @param string $url URL地址
      */
     public function setUrl($url)
@@ -94,8 +94,8 @@ abstract class AbstractAddons implements AddonsInterface
     }
 
     /**
-     * 获取路径地址
-     * @return string 路径地址
+     * 獲取路徑地址
+     * @return string 路徑地址
      */
     public function getPath()
     {
@@ -103,7 +103,7 @@ abstract class AbstractAddons implements AddonsInterface
     }
 
     /**
-     * @param 设置路径地址
+     * @param 設定路徑地址
      * @return void
      */
     public function setPath($path)
@@ -114,8 +114,8 @@ abstract class AbstractAddons implements AddonsInterface
     abstract function getHooksList($name);
 
     /**
-     * 获取插件信息
-     * @return array 插件信息
+     * 獲取插件資訊
+     * @return array 插件資訊
      */
     public function getAddonInfo()
     {
@@ -129,7 +129,7 @@ abstract class AbstractAddons implements AddonsInterface
     }
 
     /**
-     * 将数据渲染到HTML页面，设置模板变量的值
+     * 將資料渲染到HTML頁面，設定模板變數的值
      * @param string $name Key值
      * @param string $value Value值
      * @return void
@@ -138,24 +138,24 @@ abstract class AbstractAddons implements AddonsInterface
     {
         $this->tVar[$name] = $value;
     }
-    
+
     /**
-     * 获取指定模板变量的值
+     * 獲取指定模板變數的值
      * @param string $name Key值
-     * @return mixed 指定模板变量的值
+     * @return mixed 指定模板變數的值
      */
     protected function get($name)
     {
         $data = isset($this->tVar[$name]) ? $this->tVar[$name] : false;
-    	return $data;
+        return $data;
     }
 
     /**
-     * 渲染HTML页面
-     * @param string $templateFile 模板文件路径
-     * @param string $charset 字符集，默认为UTF8
-     * @param string $contentType 内容类型，默认为text/html
-     * @return string HTML页面数据
+     * 渲染HTML頁面
+     * @param string $templateFile 模板檔案路徑
+     * @param string $charset 字符集，默認為UTF8
+     * @param string $contentType 內容類型，默認為text/html
+     * @return string HTML頁面資料
      */
     public function fetch($templateFile = '', $charset = 'utf-8', $contentType = 'text/html')
     {
@@ -164,11 +164,11 @@ abstract class AbstractAddons implements AddonsInterface
     }
 
     /**
-     * 显示指定HTML页面
-     * @param string $templateFile 模板文件路径
-     * @param string $charset 字符集，默认为UTF8
-     * @param string $contentType 内容类型，默认为text/html
-     * @return string HTML页面数据
+     * 顯示指定HTML頁面
+     * @param string $templateFile 模板檔案路徑
+     * @param string $charset 字符集，默認為UTF8
+     * @param string $contentType 內容類型，默認為text/html
+     * @return string HTML頁面資料
      */
     public function display($templateFile = '', $charset = 'utf-8', $contentType = 'text/html')
     {
@@ -176,61 +176,61 @@ abstract class AbstractAddons implements AddonsInterface
     }
 
     /**
-     * 错误提示方法
-     * @param string $message 提示信息
+     * 錯誤提示方法
+     * @param string $message 提示資訊
      * @return void
      */
     protected function error($message)
     {
-        $message = $message ? $message : '操作失败';
+        $message = $message ? $message : '操作失敗';
         $this->_dispatch_jump($message, 0);
-    }
+}
 
-    /**
-     * 成功提示方法
-     * @param string $message 提示信息
-     * @return void
-     */
-    protected function success($message)
-    {
-        $message = $message ? $message : '操作成功';
-        $this->_dispatch_jump($message, 1);
-    }
+/**
+ * 成功提示方法
+ * @param string $message 提示資訊
+ * @return void
+ */
+protected function success($message)
+{
+    $message = $message ? $message : '操作成功';
+    $this->_dispatch_jump($message, 1);
+}
 
-    /**
-     * 跳转操作
-     * @param string $message 提示信息
-     * @param integer $status 状态。1表示成功，0表示失败
-     * @return void
-     */
-    private function _dispatch_jump($message, $status = 1)
-    {
-		// 跳转时不展示广告
-		unset($GLOBALS['ts']['ad']);
+/**
+ * 跳轉操作
+ * @param string $message 提示資訊
+ * @param integer $status 狀態。1表示成功，0表示失敗
+ * @return void
+ */
+private function _dispatch_jump($message, $status = 1)
+{
+    // 跳轉時不展示廣告
+    unset($GLOBALS['ts']['ad']);
 
-        // 提示标题
-        $this->assign('msgTitle',$status? L('_OPERATION_SUCCESS_') : L('_OPERATION_FAIL_'));
-        $this->assign('status',$status);   // 状态
-        $this->assign('message',$message);// 提示信息
-        //保证输出不受静态缓存影响
-        C('HTML_CACHE_ON',false);
-        if($status) { //发送成功信息
-            // 成功操作后默认停留1秒
-            $this->assign('waitSecond',"1");
-            // 默认操作成功自动返回操作前页面            
-            if(!$this->get('jumpUrl')) $this->assign("jumpUrl",$_SERVER["HTTP_REFERER"]);
-             
-			echo $this->fetch(THEME_PATH.'/success.html');
-		}else{
-            //发生错误时候默认停留3秒
-            $this->assign('waitSecond',"5");
-            // 默认发生错误的话自动返回上页
-            if(!$this->get('jumpUrl'))  $this->assign('jumpUrl',"javascript:history.back(-1);");
+    // 提示標題
+    $this->assign('msgTitle',$status? L('_OPERATION_SUCCESS_') : L('_OPERATION_FAIL_'));
+    $this->assign('status',$status);   // 狀態
+    $this->assign('message',$message);// 提示資訊
+    //保證輸出不受靜態快取影響
+    C('HTML_CACHE_ON',false);
+    if($status) { //發送成功資訊
+        // 成功操作後默認停留1秒
+        $this->assign('waitSecond',"1");
+        // 默認操作成功自動返回操作前頁面
+        if(!$this->get('jumpUrl')) $this->assign("jumpUrl",$_SERVER["HTTP_REFERER"]);
 
-			echo $this->fetch(THEME_PATH.'/success.html');
-        }
-        if(C('LOG_RECORD')) Log::save();
-        // 中止执行  避免出错后继续执行
-        exit ;
-    }
+        echo $this->fetch(THEME_PATH.'/success.html');
+}else{
+    //發生錯誤時候默認停留3秒
+    $this->assign('waitSecond',"5");
+    // 默認發生錯誤的話自動返回上頁
+    if(!$this->get('jumpUrl'))  $this->assign('jumpUrl',"javascript:history.back(-1);");
+
+    echo $this->fetch(THEME_PATH.'/success.html');
+}
+if(C('LOG_RECORD')) Log::save();
+// 中止執行  避免出錯後繼續執行
+exit ;
+}
 }

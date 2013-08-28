@@ -11,7 +11,7 @@
      		<div class="DtabTitle">
      			<a href="javascript:;" onclick="oSpaceStyle.fCancel();" class="ico-close right"></a>
      			<ul>
-					<li class="select"><b>自定义皮肤</b></li>
+					<li class="select"><b>自定義面板</b></li>
 				</ul>
 				<span class="right"></span>
 			</div>
@@ -23,26 +23,26 @@
 								<input type="file" class="inputTxt" hidefoucs="true" name="pic" onchange="oSpaceStyle.oBackground.fSetImage(this, this.value);">
 							</form>
 						</p>
-						<p>支持2M以内的gif、jpg、jpeg、png图片上传</p>
+						<p>支援2M以內的gif、jpg、jpeg、png圖片上傳</p>
 					</div>
 			        <div class="themebg_set">
 						<div class="themebg">
-							<div class="nobg" id="nobg" <php>if(!empty($pic)):</php>style="display:none;"<php>endif;</php>>未上传图片</div>
-							<div class="nobg loading" id="loading" style="display:none;">上传中..</div>
+							<div class="nobg" id="nobg" <php>if(!empty($pic)):</php>style="display:none;"<php>endif;</php>>未上傳圖片</div>
+							<div class="nobg loading" id="loading" style="display:none;">上傳中..</div>
 							<div class="imgbg" id="success_img" <php>if(empty($pic)):</php>style="display:none;"<php>endif;</php>>
-								<a href="javascript:oSpaceStyle.oBackground.fUnsetImage(this)" class="del" title="删除"></a>
+								<a href="javascript:oSpaceStyle.oBackground.fUnsetImage(this)" class="del" title="刪除"></a>
 								<img src="{$pic}" id="success_pic" />
 							</div>
 						</div>
 						<div class="bgSetting">
-							<p>设置背景图</p>
+							<p>設定背景圖</p>
 							<p class="bgPosition">
 								<a href="#" rel="left" onclick="return oSpaceStyle.oBackground.fSetPosition(this)">居左</a>
 								<a href="#" rel="center" onclick="return oSpaceStyle.oBackground.fSetPosition(this)">居中</a>
 								<a href="#" rel="right"  onclick="return oSpaceStyle.oBackground.fSetPosition(this)">居右</a>
 							</p>
 							<p>
-								<label><input type="checkbox" class="check1" name="repeat" onclick="oSpaceStyle.oBackground.fSetRepeat(this);" value="repeat"/>背景平铺</label>
+								<label><input type="checkbox" class="check1" name="repeat" onclick="oSpaceStyle.oBackground.fSetRepeat(this);" value="repeat"/>背景平鋪</label>
 								<label><input type="checkbox" class="check1" name="attachment" onclick="oSpaceStyle.oBackground.fSetAttachment(this);" value="fixed">背景固定</label>
 							</p>
 						</div>
@@ -66,8 +66,8 @@
 				</div>
 			</div>
 			<div class="funBoxx">
-				<a class="btn-green-small buttonObj" onclick="oSpaceStyle.fSave();" style="margin: 10px;"><span>保存</span></a>
-				<a class="btn-green-small buttonObj" onclick="oSpaceStyle.fDefault()" style="margin: 10px;padding:0 5px"><span>恢复默认</span></a>
+				<a class="btn-green-small buttonObj" onclick="oSpaceStyle.fSave();" style="margin: 10px;"><span>儲存</span></a>
+				<a class="btn-green-small buttonObj" onclick="oSpaceStyle.fDefault()" style="margin: 10px;padding:0 5px"><span>恢復默認</span></a>
 				<a class="btn-cancel buttonObj" onclick="oSpaceStyle.fCancel();" href="javascript:;" style="margin: 10px;"><span>取消</span></a>
 			</div>
 		</div>
@@ -80,13 +80,13 @@ var is_upload=0;
 var is_save=0;
 var defaultStyle = <?php echo json_encode($defaultStyle); ?>;
 /**
- * JQuery插件，换肤
+ * JQuery插件，換膚
  * @author liu21st <liu21st@gmail.com>
  * @version TS3.0
  */
 $.extend(oSpaceStyle, {
 	/**
-	 * 换肤插件相关属性
+	 * 換膚插件相關屬性
 	 */
 	oStyleData: {
 		classname: "<?php echo $styleData['classname']; ?>",
@@ -98,10 +98,10 @@ $.extend(oSpaceStyle, {
 			position: "<?php echo $styleData['background']['position']; ?>"
 		}
 	},
-	// 是否进行改变
+	// 是否進行改變
 	nIsChange: 0,
 	/**
-	 * 换肤窗口初始化
+	 * 換膚視窗初始化
 	 * @return {[type]}
 	 */
 	fInitBox: function() {
@@ -122,9 +122,9 @@ $.extend(oSpaceStyle, {
 		sPosition && $SpaceStyleBox.find( ["a[rel='", sPosition.replace('top ', ''), "']"].join( "" ) ).addClass( "select" );
 	},
 	/**
-	 * 改变样式
-	 * @param string type 样式类型
-	 * @param object obj 对象
+	 * 改變樣式
+	 * @param string type 樣式類型
+	 * @param object obj 物件
 	 * @return void
 	 */
 	fChange: function(type, obj) {      
@@ -145,7 +145,7 @@ $.extend(oSpaceStyle, {
 		$('#change_skin').attr('href',path);
 		this.oBackground.fUnsetImage();
 		oSpaceStyle.oStyleData.classname = type;
-		// 获取自定义设置
+		// 獲取自定義設定
 		var Images = 'top '+$('a.select').attr('rel');
 		var repeats = $('input[name=\'repeat\']').attr('checked');
 		if(repeats) {
@@ -168,7 +168,7 @@ $.extend(oSpaceStyle, {
 		return true;
     },
     /**
-     * 样式背景设置
+     * 樣式背景設定
      */
     oBackground: {
     	fSetColor: function() {
@@ -177,7 +177,7 @@ $.extend(oSpaceStyle, {
 		fSetImage: function(o, str) {
 			var d = /\.[^\.]+$/.exec(str).toString().toLowerCase();
 			if(d != '.jpg' && d != '.jpeg' && d != '.png' && d != '.gif') {
-				ui.error('仅支持【jpg,png,gif】后缀文件');
+				ui.error('僅支援【jpg,png,gif】字尾檔案');
 				$(o).val('');
 			} else {
 				var options = {
@@ -225,7 +225,7 @@ $.extend(oSpaceStyle, {
         	oSpaceStyle.nIsChange = 1;
 		},
 		/**
-		 * 重置图片
+		 * 重置圖片
 		 * @return void
 		 */
 		fUnsetImage: function() {
@@ -243,7 +243,7 @@ $.extend(oSpaceStyle, {
         	oSpaceStyle.nIsChange = 1;
 		},
 		/**
-		 * 设置Repeat属性
+		 * 設定Repeat屬性
 		 * @param object obj [description]
 		 * @return void
 		 */
@@ -270,7 +270,7 @@ $.extend(oSpaceStyle, {
         	oSpaceStyle.nIsChange = 1;
 		},
 		/**
-		 * 设置Position属性
+		 * 設定Position屬性
 		 * @param object obj [description]
 		 * @return void
 		 */
@@ -286,7 +286,7 @@ $.extend(oSpaceStyle, {
 		}
     },
     /**
-     * 恢复默认操作
+     * 恢復默認操作
      * @return void
      */
 	fDefault: function() {
@@ -302,7 +302,7 @@ $.extend(oSpaceStyle, {
 		}, 800);
 	},
 	/**
-	 * 保存样式操作
+	 * 儲存樣式操作
 	 * @return void
 	 */
 	fSave: function() {
@@ -333,7 +333,7 @@ $.extend(oSpaceStyle, {
 	}
 });
 /**
- * 初始化载入样式
+ * 初始化載入樣式
  * @return void
  */
 $(document).ready(function(){

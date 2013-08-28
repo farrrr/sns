@@ -48,9 +48,9 @@
 		},
 		
 		/**
-		 * 得到第一个子节点（element），firefox会得到到文本节点等。这里统一得到element。
+		 * 得到第一個子節點（element），firefox會得到到文字節點等。這裡統一得到element。
 		 * 
-		 * @param {HTMLElement} node 对象
+		 * @param {HTMLElement} node 物件
 		 *            @example
 		 *            var element=QZFL.dom.getFirstChild(QZFL.dom.get("el_id"));
 		 * @return HTMLElement
@@ -62,9 +62,9 @@
 		},
 		
 		/**
-		 * 得到下一个兄弟节点（element），firefox会得到到文本节点等。这里统一得到element。
+		 * 得到下一個兄弟節點（element），firefox會得到到文字節點等。這裡統一得到element。
 		 * 
-		 * @param {HTMLElement} el 对象
+		 * @param {HTMLElement} el 物件
 		 *            @example
 		 *            QZFL.dom.getNextSibling(QZFL.dom.get("el_id"));
 		 * @return HTMLElement
@@ -95,7 +95,7 @@
 		},
 		
 		/**
-		 * 获取对象尺寸
+		 * 獲取物件尺寸
 		 * 
 		 * @param {HTMLElement} el
 		 * @return Array [width,height]
@@ -107,7 +107,7 @@
 		getSize : function(el) {
 			var _fix = [0,0];
 			if (el) {
-				//修正 border 和 padding 对 getSize的影响
+				//修正 border 和 padding 對 getSize的影響
 				jWidget.each(["Left", "Right", "Top", "Bottom"], function(v){ 
 					_fix[v == "Left" || v == "Right" ? 0 : 1] += (parseInt(jWidget.dom.getStyle(el, "border" + v + "Width"), 10) || 0) + (parseInt(jWidget.dom.getStyle(el, "padding" + v), 10) || 0);
 				});
@@ -117,13 +117,13 @@
 		},
 		
 		/**
-		 * 获取对象渲染后的样式规则
+		 * 獲取物件渲染後的樣式規則
 		 * 
-		 * @param {String|HTMLElement} el 对象id或则dom
-		 * @param {String} property 样式规则
+		 * @param {String|HTMLElement} el 物件id或則dom
+		 * @param {String} property 樣式規則
 		 *            @example
 		 *            var width=QZFL.dom.getStyle("div_id","width");//width=163px;
-		 * @return 样式值
+		 * @return 樣式值
 		 */
 		getStyle : function(el, property) {
 			el = this.get(el);
@@ -163,10 +163,10 @@
 		},
 		
 		/**
-		 * 设置样式规则
+		 * 設定樣式規則
 		 * 
-		 * @param {String|HTMLElement} el 对象id或则dom
-		 * @param {String} property 样式规则
+		 * @param {String|HTMLElement} el 物件id或則dom
+		 * @param {String} property 樣式規則
 		 *            @example
 		 *            QZFL.dom.setStyle("div_id","width","200px");
 		 * @return 成功返回 true
@@ -198,9 +198,9 @@
 		},
 		
 		/**
-		 * 是否有指定的样式类名称
+		 * 是否有指定的樣式類名稱
 		 * @param {Object} el 指定的HTML元素
-		 * @param {String} cname 指定的类名称
+		 * @param {String} cname 指定的類名稱
 		 * @example QZFL.css.hasClass($("div_id"),"cname");
 		 * @return Boolean
 		 */
@@ -209,9 +209,9 @@
 		},
 		
 		/**
-		 * 增加一个样式类名
+		 * 增加一個樣式類名
 		 * @param {Object} el 指定的HTML元素
-		 * @param {Object} cname 指定的类名称
+		 * @param {Object} cname 指定的類名稱
 		 * @example QZFL.css.addClass($("ele"),"cname");
 		 * @return Boolean
 		 */
@@ -232,9 +232,9 @@
 		},
 	
 		/**
-		 * 除去一个样式类名
+		 * 除去一個樣式類名
 		 * @param {Object} el 指定的HTML元素
-		 * @param {String} cname 指定的类名称
+		 * @param {String} cname 指定的類名稱
 		 * @example QZFL.css.removeClass($("ele"),"cname");
 		 * @return Boolean
 		 */
@@ -265,19 +265,19 @@
 		$D = $.dom;	
 	
 	/**
-	 * Slide轮播效果
-	 * @param {json} 配置参数
-	 *		@param {String|HTMLElement} container 包括id号，或则Html Element对象，Slider容
-	 *		@param eventType         'mouseover' or 'click'，默认'mouseover'
-	 *		@param autoPlay          是否自动播放,默认自动播放
-	 *		@param autoPlayInterval  自动播放间隔时间，默认3秒
+	 * Slide輪播效果
+	 * @param {json} 配置參數
+	 *		@param {String|HTMLElement} container 包括id號，或則Html Element物件，Slider容
+	 *		@param eventType         'mouseover' or 'click'，默認'mouseover'
+	 *		@param autoPlay          是否自動播放,默認自動播放
+	 *		@param autoPlayInterval  自動播放間隔時間，默認3秒
 	 *		@param effect            播放效果 'none','scrollx', 'scrolly', 'fade'
-	 *		@param panelWrapper     Slide内容item的容器，默认为Slider容器的firstChild
-	 *		@param navWrapper        Slide导航的容器，默认为Slider容器的secondChild
-	 *		@param navClassOn        navs鼠标移上后的样式，默认为'on'
-	 *		@param slideTime         滑动时延
-	 *		@param width             宽度（srcollx）,如样式中已有，会自动获取，一般无需填写
-	 *		@param height            高度（scrolly）,如样式中已有，会自动获取，一般无需填写
+	 *		@param panelWrapper     Slide內容item的容器，默認為Slider容器的firstChild
+	 *		@param navWrapper        Slide導航的容器，默認為Slider容器的secondChild
+	 *		@param navClassOn        navs滑鼠移上後的樣式，默認為'on'
+	 *		@param slideTime         滑動時延
+	 *		@param width             寬度（srcollx）,如樣式中已有，會自動獲取，一般無需填寫
+	 *		@param height            高度（scrolly）,如樣式中已有，會自動獲取，一般無需填寫
 	 */
 	_Slide = function(conf) {
 		conf = conf || {};	
@@ -318,7 +318,7 @@
 			$D.setStyle(this._container, "position", "relative");
 			$D.setStyle(this._panelWrapper, "position", "relative");
 			var _this = this;
-			var tempData = [$D.getStyle(this._container,"width"),$D.getStyle(this._container,"height")];  //容器的宽度以及高度
+			var tempData = [$D.getStyle(this._container,"width"),$D.getStyle(this._container,"height")];  //容器的寬度以及高度
 			//alert($D.getStyle(this._container,"width"));
 			if(this._effect.indexOf("scrolly") == -1){ 
 				this._panelSize = this._container.offsetWidth;
@@ -442,14 +442,14 @@
 		$D = $.dom;	
 	
 	/**
-	 * Tab切换效果
-	 * @param {json} 配置参数
-	 *		@param {String|HTMLElement} container 包括id号，或则Html Element对象，Slider容
-	 *		@param eventType         'mouseover' or 'click'，默认'mouseover'
+	 * Tab切換效果
+	 * @param {json} 配置參數
+	 *		@param {String|HTMLElement} container 包括id號，或則Html Element物件，Slider容
+	 *		@param eventType         'mouseover' or 'click'，默認'mouseover'
 	 *		@param type           
-	 *		@param panelWrapper      Slide内容item的容器，默认为Slider容器的firstChild
-	 *		@param navWrapper        Slide导航的容器，默认为Slider容器的secondChild
-	 *		@param navClassOn        navs鼠标移上后的样式，默认为'on'
+	 *		@param panelWrapper      Slide內容item的容器，默認為Slider容器的firstChild
+	 *		@param navWrapper        Slide導航的容器，默認為Slider容器的secondChild
+	 *		@param navClassOn        navs滑鼠移上後的樣式，默認為'on'
 	 */
 	_Tab = function(conf) {		
 		this.eventType = conf.eventType || 'mouseover', 
@@ -494,7 +494,7 @@
                 _this.curIndex = i;                    
                 $D.addClass(el, _this._navClassOn);
                 _this._panels[_this.curIndex].style.display = '';
-                try{QZFL.lazyLoad.loadHideImg(_this._panels[_this.curIndex])}catch(e){}//loadLoad隐藏的图片
+                try{QZFL.lazyLoad.loadHideImg(_this._panels[_this.curIndex])}catch(e){}//loadLoad隱藏的圖片
             }})(_this)
         })
 	}

@@ -3,7 +3,7 @@
         <ul id="followGroupSelector">
             <volist name="group_list" id="g">
             <li>
-                <a href="javascript:;" class="right hover" onclick="delGroup({$g.follow_group_id})">删除</a>
+                <a href="javascript:;" class="right hover" onclick="delGroup({$g.follow_group_id})">刪除</a>
                 <a href="javascript:void(0)" class="right hover mr10" onclick="editGroup({$g.follow_group_id})">{:L('PUBLIC_EDIT_GROUP')}</a>
                 <label onclick="editGroup({$g.follow_group_id});">
                 <span id='title_{$g.follow_group_id}' class="cursor">{$g.title}</span></label>
@@ -32,7 +32,7 @@
 </div>
 
 <script type="text/javascript">
-// 扩展关闭弹窗
+// 擴展關閉彈窗
 $(function() {
     var afterClose = function() {
         location.reload();
@@ -40,8 +40,8 @@ $(function() {
     ui.box.init("", afterClose);
 });
 /**
- * 编辑分组显示
- * @param integer gid 分组ID
+ * 編輯分組顯示
+ * @param integer gid 分組ID
  * @return void
  */
 var editGroup = function(gid) {
@@ -49,8 +49,8 @@ var editGroup = function(gid) {
 	$('#edit_'+gid).show();
 };
 /**
- * 保存分组信息
- * @param integer gid 分组ID
+ * 儲存分組資訊
+ * @param integer gid 分組ID
  * @return void
  */
 var saveGroup = function(gid) {
@@ -77,8 +77,8 @@ var saveGroup = function(gid) {
 	cenSaveGroup(gid);
 }
 /**
- * 保存后页面显示
- * @param integer gid 分组ID
+ * 儲存後頁面顯示
+ * @param integer gid 分組ID
  * @return void
  */
 var cenSaveGroup = function(gid) {
@@ -86,8 +86,8 @@ var cenSaveGroup = function(gid) {
 	$('#edit_'+gid).hide();
 }
 /**
- * 创建分组框显示
- * @param string action 创建动作，是创建还是关闭
+ * 創建分組框顯示
+ * @param string action 創建動作，是創建還是關閉
  * @return void
  */
 var createFollowGroupTab = function(action) {
@@ -96,7 +96,7 @@ var createFollowGroupTab = function(action) {
 		$('#createFollowGroup input').css('display','none');
 		$('#createFollowGroup .btn-green-small').css('display','none');
 		$('#createFollowGroup .btn-cancel').css('display','none');
-        // 隐藏弹窗
+        // 隱藏彈窗
         var len = $('#followGroupSelector').find("li").length;
         if(len > 9) {
             $('#open_tab').css('display','none');
@@ -111,7 +111,7 @@ var createFollowGroupTab = function(action) {
 	}
 }
 /**
- * 创建分组操作
+ * 創建分組操作
  * @return void
  */
 var createFollowGroup = function() {
@@ -123,10 +123,10 @@ var createFollowGroup = function() {
 		ui.error(L('PUBLIC_GROUP_NAME_MAX',{'num':10}));
 		return false;
 	}
-    // 创建分组操作
+    // 創建分組操作
 	$.post(U('public/FollowGroup/setGroup'), {title: title}, function(res) {
         if(res.status != 0) {
-            var html = '<li><a href="javascript:;" class="right hover" onclick="delGroup('+res.info+')">删除</a>\
+            var html = '<li><a href="javascript:;" class="right hover" onclick="delGroup('+res.info+')">刪除</a>\
                         <a href="javascript:void(0)" class="right hover mr10" onclick="editGroup('+res.info+')">'+L('PUBLIC_EDIT_GROUPNAME')+'</a>\
                         <label onclick="editGroup('+res.info+');">\
                         <span id="title_'+res.info+'">'+title+'</span></label>\
@@ -142,22 +142,22 @@ var createFollowGroup = function() {
 	}, 'json');
 }
 /**
- * 删除分组操作
- * @param integer gid 分组ID
+ * 刪除分組操作
+ * @param integer gid 分組ID
  * @return void
  */
 var delGroup = function(gid) {
     var title = $('#title_' + gid).text();
-    ui.confirmBox("提示", '确定要删除" ' + title + ' "分组吗？<br />此分组下的人不会被取消关注。', function() {
+    ui.confirmBox("提示", '確定要刪除" ' + title + ' "分組嗎？<br />此分組下的人不會被取消關注。', function() {
         $.post(U('public/FollowGroup/deleteGroup'), {gid:gid}, function(msg) {
             if(msg.status == 1) {
                 ui.box.close();
-                ui.success("删除成功");
+                ui.success("刪除成功");
                 setTimeout(function() {
                     location.href = U('public/Index/following');
                 }, 1500);
             } else {
-                ui.error("删除失败");
+                ui.error("刪除失敗");
             }
             return false;
         }, 'json');

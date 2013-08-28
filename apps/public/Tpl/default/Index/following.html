@@ -10,9 +10,9 @@
 				<!--tab menu-->
                 <div class="feed-nav clearfix">
                 	<div class="my-feed-title">
-                		<h4>我关注的人(共<span id="follow_count" event-node="following_count" event-args="uid={$GLOBALS['ts']['mid']}">{$followingCount|default=0}</span>人)</h4>
+                		<h4>我關注的人(共<span id="follow_count" event-node="following_count" event-args="uid={$GLOBALS['ts']['mid']}">{$followingCount|default=0}</span>人)</h4>
 					    <div class="mod-feed-tab mt10 clearfix" id="mod-feed-tab" <php>if(!isset($_GET['feed_type']) && empty($_GET['feed_key'])){</php><php>}</php> >
-	                        <span class="right"><a class="btn-att-green mr5" href="javascript:;" event-node="addFollowgroup"><i class="ico-add-white"></i>创建分组</a><a class="btn-att-green" href="javascript:;" event-node="editFollowgroup">管理分组</a>
+	                        <span class="right"><a class="btn-att-green mr5" href="javascript:;" event-node="addFollowgroup"><i class="ico-add-white"></i>創建分組</a><a class="btn-att-green" href="javascript:;" event-node="editFollowgroup">管理分組</a>
 						    </span>
 	                        <ul class="inner-feed-nav">
 	                        	<volist name="groupList" id="vo" offset="0" length="$groupNums">
@@ -73,7 +73,7 @@
 						</volist>
 						<div id="page" class="page">{$html}</div>
 					<php>}else{</php>
-                        <div class="loading">你还没有关注任何人</div>
+                        <div class="loading">你還沒有關注任何人</div>
                     <php>}</php>
 					</div>
                 </div>
@@ -86,7 +86,7 @@
 
 <script type="text/javascript" src="__THEME__/js/module.weibo.js"></script>
 <script type="text/javascript">
-// 事件监听
+// 事件監聽
 M.addEventFns({
 	more_follow_group: {
 		load: function() {

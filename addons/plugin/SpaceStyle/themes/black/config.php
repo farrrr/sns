@@ -1,4 +1,4 @@
 <?php
 return array(
-	'name' => '晶莹心情'
+	'name' => '晶瑩心情'
 );

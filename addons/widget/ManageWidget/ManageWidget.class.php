@@ -1,6 +1,6 @@
 <?php 
 /**
- * 用户可管理的应用列表 Widget
+ * 使用者可管理的應用列表 Widget
  * @example {:W('Manage')}
  * @version TS3.0
  */
@@ -9,7 +9,7 @@ class ManageWidget extends Widget{
 	private  static $rand = 1;
 
 	/**
-	 * 渲染应用列表模版
+	 * 渲染應用列表模版
 	 */
 	public function render($data){
 		
@@ -39,7 +39,7 @@ class ManageWidget extends Widget{
 		self::$rand ++;
 
 		unset($var,$data);
-        //输出数据
+        //輸出資料
 		return $content;
 	}
 	

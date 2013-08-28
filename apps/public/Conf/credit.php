@@ -1,7 +1,7 @@
 <?php
-	$creditSet 	 = array();
-	//其中 score=>5 表示默认 积分变化为5,其他扩展类型为0
-	$creditSet[] = array('action'=>'demo','info'=>'public加积分例子(+)','score'=>'5');
-	$creditSet[] = array('action'=>'demo_','info'=>'public减积分例子(-)','score'=>'5');
-	$creditSet[] = array('action'=>'nocredit','info'=>'public积分设置为空的例子(+)','score'=>'0');
-	return $creditSet;
+$creditSet   = array();
+//其中 score=>5 表示默認 積分變化為5,其他擴展類型為0
+$creditSet[] = array('action'=>'demo','info'=>'public加積分例子(+)','score'=>'5');
+$creditSet[] = array('action'=>'demo_','info'=>'public減積分例子(-)','score'=>'5');
+$creditSet[] = array('action'=>'nocredit','info'=>'public積分設定為空的例子(+)','score'=>'0');
+return $creditSet;

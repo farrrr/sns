@@ -1,4 +1,4 @@
 <?php
 return array(
-	'name' => '简约风格'
+	'name' => '簡約風格'
 );

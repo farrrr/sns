@@ -1,7 +1,7 @@
 core.dropnotify = {
 	_init:function(attrs){
 			if(attrs.length == 1){
-				return false; // 意思是执行插件 只是为了加载此文件
+				return false; // 意思是執行插件 只是為了載入此檔案
 			} 
 			this.init(attrs[1],attrs[2]);
 	},
@@ -16,14 +16,14 @@ core.dropnotify = {
 		this.count();
 		return false;
 	},
-	//显示父对象
+	//顯示父物件
 	dispayParentObj:function(){
 		if(this.close == false){
 			 $('#'+this.parentObjId).show();
 			 $('.'+this.dropclass).show();
 		}
 	},
-	//隐藏
+	//隱藏
 	hideParentObj:function(){
 		if("undefined" != typeof(this.parentObjId)){
 			$('#'+this.parentObjId).hide();
@@ -33,7 +33,7 @@ core.dropnotify = {
 			}
 		}
 	},
-	//关闭 不在循环显示
+	//關閉 不在迴圈顯示
 	closeParentObj:function(){
 		this.close = true;
 		this.hideParentObj();
@@ -47,8 +47,8 @@ core.dropnotify = {
                 unread_comment: L('PUBLIC_SYSTEM_CONCENT'),
                 unread_message: L('PUBLIC_SYSTEM_PRIVATE_MAIL'),
                 new_folower_count: L('PUBLIC_SYSTEM_FOLLOWING'),
-                unread_group_atme: '条群聊@提到我',
-                unread_group_comment: '条群组评论'
+                unread_group_atme: '條群聊@提到我',
+                unread_group_comment: '條群組評論'
         };
         var loopCount = '';
 		var getCount = function() {

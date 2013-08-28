@@ -1,20 +1,20 @@
 /**
- * 后台JS操作对象 -
+ * 後臺JS操作物件 -
  * 
- * 后台所有JS操作都集中在此
+ * 後臺所有JS操作都集中在此
  */
 
 var admin = {};
 
 /**
- * 收缩展开某个DOM
+ * 收縮展開某個DOM
  */
 admin.fold = function(id){
   	$('#'+id).slideToggle('fast');
 };
 
 /**
- * 处理ajax返回数据之后的刷新操作
+ * 處理ajax返回資料之後的重新整理操作
  */
 admin.ajaxReload = function(obj,callback){
     if("undefined" == typeof(callback)){
@@ -30,7 +30,7 @@ admin.ajaxReload = function(obj,callback){
     }
 };
 /*
- * 上移对象
+ * 上移物件
  */
 
 admin.moveUp = function(obj,topList)
@@ -51,7 +51,7 @@ admin.moveUp = function(obj,topList)
 }
 
 /*
- * 下移对象
+ * 下移物件
  */
 admin.moveDown = function(obj)
 {
@@ -95,7 +95,7 @@ admin.checkAll = function(o){
         $('tr[overstyle="on"]').removeClass("bg_on");
     }
 };
-//绑定tr上的on属性
+//繫結tr上的on屬性
 admin.bindTrOn = function(){
     $("tr[overstyle='on']").hover(
       function () {
@@ -107,9 +107,9 @@ admin.bindTrOn = function(){
     );
 };
 
-/*日志相关*/
+/*日誌相關*/
 
-//选择某个日志类型
+//選擇某個日誌類型
 admin.selectLog = function(value,def){
     if(!def){
         def ='';
@@ -127,7 +127,7 @@ admin.selectLog = function(value,def){
         $('#selectAfter').html('');
     }
 };
-//清理日志
+//清理日誌
 admin.cleanLogs = function(m){
     if(m!=6 && m!=12){
     	ui.error(L('PUBLIC_TIME_ISNOT'));       
@@ -137,13 +137,13 @@ admin.cleanLogs = function(m){
         },'json');
     }
 };
-//日志归档
+//日誌歸檔
 admin.logsArchive = function(){
     $.post(U('admin/Home/_logsArchive'),{},function(msg){
             admin.ajaxReload(msg);
         },'json') ;
 };
-//删除一条日志
+//刪除一條日誌
 admin.dellog = function(id,table){
 	if(confirm(L('PUBLIC_DELETE_NOTE_TIPS'))){
 		$.post(U('admin/Home/_delLogs'),{id:id,table:table},function(msg){
@@ -164,12 +164,12 @@ admin.delselectLog = function(table){
 		}
 	}
 };
-/* 积分相关 */
-//添加积分类型
+/* 積分相關 */
+//添加積分類型
 admin.addCreditType = function(){
     location.href = U('admin/Config/addCreditType');
 };
-//验证积分类型
+//驗證積分類型
 admin.checkCreditType = function(form){
     if(form.CreditType.value =='' || getLength(form.CreditType.value) < 1){
         ui.error( L('PUBLIC_TYPENOT_ISNULL') );
@@ -185,7 +185,7 @@ admin.checkCreditSet = function(form){
     var uid_chose = $("input[name='uid_chose']:checked").val();
     if(uid_chose == '0'){
         if(form.uids.value==''){
-            ui.error( '用户ID不能为空' );
+            ui.error( '使用者ID不能為空' );
         }
     }
 	//if(form.nums.value=='' || form.nums.value <1){
@@ -195,7 +195,7 @@ admin.checkCreditSet = function(form){
 	}
     var todo = $("input[name='todo']:checked").val();
     if(todo==1 && form.nums.value=='0'){
-        ui.error( '数量不能为0' );
+        ui.error( '數量不能為0' );
         return false;
     }
 	return true;
@@ -212,13 +212,13 @@ admin.delCreditType = function(type){
         },'json');
    }
 };
-//部门子集管理
+//部門子集管理
 admin.selectDepart = function(pid,obj,sid){    
     obj.nextAll().remove();
     if("undefined"==typeof(sid))
     	sid ='';
     if( pid > 0 ){
-        //obj.after('<span>加载中……</span>');    //TODO 修改成图片
+        //obj.after('<span>載入中……</span>');    //TODO 修改成圖片
         $.post(U('admin/Public/selectDepartment'),{pid:pid,sid:sid},function(msg){
             obj.nextAll().remove();
             if(msg.status=="1"){
@@ -228,7 +228,7 @@ admin.selectDepart = function(pid,obj,sid){
     }
 };
 
-//默认生成部门 --已知道子部门集合
+//默認生成部門 --已知道子部門集合
 admin.departDefault = function(ids,domid){
 	if("undefined" == typeof(ids) || ids==''){
 		return false;
@@ -254,7 +254,7 @@ admin.departDefault = function(ids,domid){
 	}
 	_defaultDepart(objVal,obj,0);
 };
-// 添加用户验证信息
+// 添加使用者驗證資訊
 admin.addUserSubmitCheck = function(form) {
     if(getLength(form.password.value) < 1) {
         ui.error(L('PUBLIC_PASSWORD_EMPTY'));
@@ -266,13 +266,13 @@ admin.addUserSubmitCheck = function(form) {
     }
 
     if($('input:[name="user_group[]"]:checked').length <1){
-        ui.error('请选择用户组');
+        ui.error('請選擇使用者組');
         return false;
     }
        
     return true;
 };
-// 检验用户基本信息
+// 檢驗使用者基本資訊
 admin.checkUser = function(form){
     if(getLength(form.email.value) < 1){
         ui.error(L('PUBLIC_EMAIL_EMPTY'));
@@ -287,7 +287,7 @@ admin.checkUser = function(form){
         return false;
     }*/
     if($(form).find('input[name="user_category[]"]').length != 0 && $(form).find('input[name="user_category[]"]:checked').length < 1) {
-        ui.error("请选择用户职业信息");
+        ui.error("請選擇使用者職業資訊");
         return false;
     }
     
@@ -297,15 +297,15 @@ admin.checkUser = function(form){
 admin.selectUserDepart = function(){
 	var oldDepartMent = $('#form_department_id').val();
 	var oldDepartMentName = $('#form_show_user_department').val(); 
-	ui.box.load(U('widget/SelectDepartment/render')+'&departDomId=form_department_id&departId='+oldDepartMent+'+&departName='+oldDepartMentName+'&tpl=public&callback=admin.doSelectUserDepart','部门选择');
+	ui.box.load(U('widget/SelectDepartment/render')+'&departDomId=form_department_id&departId='+oldDepartMent+'+&departName='+oldDepartMentName+'&tpl=public&callback=admin.doSelectUserDepart','部門選擇');
 };
 
-//做完选择
+//做完選擇
 admin.doSelectUserDepart = function(){
 	$('#form_department_id').val($('#tboxDepartMentId').val());
 	$('#form_show_user_department').next().html($('#tboxDepartMentId').prev().html());
 };
-//验证部门
+//驗證部門
 admin.checkDepartment = function(form){
     if(form.title.value=='' || getLength(form.title.value)<1){
         ui.error( L('PUBLIC_DEPARENT_ISNULL') );
@@ -334,11 +334,11 @@ admin.bindCatetree = function(){
     	eval(callfunc);
     });
 };
-//分类相关的修改、删除操作列表
-//删除部门
+//分類相關的修改、刪除操作列表
+//刪除部門
 admin.departmentdel = function(id){
 	var url = U('admin/Department/delDepartment')+'&id='+id;
-	//ui.tbox("load('"+url+"','删除部门')");
+	//ui.tbox("load('"+url+"','刪除部門')");
 	ui.box.load(url,L('PUBLIC_DELETE_DEPARENT'));
 };
 admin.dodeldepart = function(id){
@@ -354,10 +354,10 @@ admin.dodeldepart = function(id){
 		admin.ajaxReload(msg);
 	},'json');
 };
-//修改部门名称
+//修改部門名稱
 admin.departmentedit = function(id){
 	var url = U('admin/Department/editDepartment')+'&id='+id;
-	//ui.tbox("load('"+url+"','修改名称')");
+	//ui.tbox("load('"+url+"','修改名稱')");
 	ui.box.load(url,L('PUBLIC_EDIT_NAME'));
 };
 admin.doeditdepart = function(){
@@ -374,10 +374,10 @@ admin.doeditdepart = function(){
 	},'json');
 	
 };
-//移动部门
+//移動部門
 admin.departmentmove = function(id){
 	var url = U('admin/Department/moveDepartment')+'&id='+id;
-	//ui.tbox("load('"+url+"','移动名称')");
+	//ui.tbox("load('"+url+"','移動名稱')");
 	ui.box.load(url,L('PUBLIC_MOVE_NAME'));
 };
 admin.domovedepart = function(id,oldid){
@@ -398,7 +398,7 @@ admin.domovedepart = function(id,oldid){
 admin.addUserGroup = function(){
      location.href = U('admin/UserGroup/addUsergroup');
 };
-//删除用户组
+//刪除使用者組
 admin.delUserGroup = function(obj,gid){
     if("undefined" == typeof(gid) || gid ==''){
         gid = admin.getChecked();
@@ -436,7 +436,7 @@ admin.checkUserGroup = function(form){
     }
     return true;
 };
-//绑定权限配置页面checkbox时间
+//繫結許可權配置頁面checkbox時間
 admin.bindperm = function(){
     $('.hAll').click(function(){
       var checked = $(this).attr("checked");
@@ -466,7 +466,7 @@ admin.bindperm = function(){
       }
       });
 };
-//删除计划任务
+//刪除計劃任務
 admin.delschedule = function(){
    var id = admin.getChecked();
    if(id==''){
@@ -479,7 +479,7 @@ admin.delschedule = function(){
    	},'json');
    }
 };
-//内容管理用到的JS
+//內容管理用到的JS
 admin.ContentEdit = function(_id,action,title,type){
 	var id = ("undefined"== typeof(_id)|| _id=='') ? admin.getChecked() : _id;
     if(id==''){
@@ -535,7 +535,7 @@ admin.delsystemdata = function(id){
      },'json');
     }
 };
-//删除导航配置
+//刪除導航配置
 admin.delnav = function(id){
     if(confirm( L('PUBLIC_ANSWER_DELETE') )){
     	
@@ -545,7 +545,7 @@ admin.delnav = function(id){
      }
 	
 }
-//验证应用信息
+//驗證應用資訊
 admin.checkAppInfo = function(form){
 	if(form.app_name.value=='' || getLength(form.app_name.value) < 1 ){
 		ui.error( L('PUBLIC_APPNAME_ISNULL') );
@@ -561,14 +561,14 @@ admin.checkAppInfo = function(form){
 	}
 	 return true;
 };
-// 表单信息验证
+// 表單資訊驗證
 admin.checkNavInfo = function(form) {
 	if(form.navi_name.value.replace(/^ +| +$/g,'')==''){
 		ui.error( L('PUBLIC_LEADNAME_ISNULL') );
 		return false;
 	}
 	if(form.app_name.value.replace(/^ +| +$/g,'')==''){
-		ui.error('英文名称不能为空');
+		ui.error('英文名稱不能為空');
 		return false;
 	}
 	if(form.url.value.replace(/^ +| +$/g,'')==''){
@@ -606,7 +606,7 @@ admin.moveAppUp = function(obj,app_id){
 admin.moveAppDown = function(obj,app_id){
 	alert('down');
 };
-//站点配置页面JS
+//站點配置頁面JS
 admin.siteConfigDefault = function(value){
 
 	var html ='<input type="submit" value="'+L('PUBLIC_QUEDING')+'" onclick="return confirm(\''+L('PUBLIC_CLOSE_LOCALHOST_TIPES')+'\')"' 
@@ -684,7 +684,7 @@ admin.addmedal = function(value){
 		$('#dl_medal_desc').hide();
 	}
 };
-// 禁用用户
+// 禁用使用者
 admin.delUser = function(id){
     if("undefined" == typeof(id) || id=='')
         id = admin.getChecked();
@@ -697,7 +697,7 @@ admin.delUser = function(id){
         },'json');
    }
 };
-// 彻底删除用户
+// 徹底刪除使用者
 admin.trueDelUser = function(id){
     if("undefined" == typeof(id) || id=='')
         id = admin.getChecked();
@@ -710,7 +710,7 @@ admin.trueDelUser = function(id){
         },'json');
    }
 };
-// 恢复用户
+// 恢複使用者
 admin.rebackUser = function(id){
      if("undefined" == typeof(id) || id=='')
         id = admin.getChecked();
@@ -724,7 +724,7 @@ admin.rebackUser = function(id){
         },'json');
    }
 };
-//激活/取消激活 用户
+//啟用/取消啟用 使用者
 admin.activeUser = function(id,type){
     if("undefined" == typeof(id) || id=='')
         id = admin.getChecked();
@@ -736,7 +736,7 @@ admin.activeUser = function(id,type){
     },'json');
 };
 
-//激活/取消激活 用户
+//啟用/取消啟用 使用者
 admin.auditUser = function(id,type){
     if("undefined" == typeof(id) || id=='')
         id = admin.getChecked();
@@ -748,14 +748,14 @@ admin.auditUser = function(id,type){
     },'json');
 };
 
-//转移部门
+//轉移部門
 admin.changeUserDepartment = function(){
 	var id = admin.getChecked();
 	if(id ==''){
 		ui.error( L('PUBLIC_PLEASE_SELECT_USER') );return false;
 	}
 	var url = U('admin/User/moveDepartment')+'&uid='+id;
-	//ui.tbox("load('"+url+"','转移部门')");
+	//ui.tbox("load('"+url+"','轉移部門')");
 	ui.box.load(url, L('PUBLIC_MOVE_DEPARTMENT') );
 };
 
@@ -791,20 +791,20 @@ admin.domoveUsergroup = function(){
     },'json');
 };
 
-//转移用户组
+//轉移使用者組
 admin.changeUserGroup = function(){
 	var id = admin.getChecked();
 	if(id ==''){
 		ui.error( L('PUBLIC_PLEASE_SELECT_USER') );return false;
 	}
 	var url = U('admin/User/moveGroup')+'&uid='+id;
-	//ui.tbox("load('"+url+"','转移用户组')");
+	//ui.tbox("load('"+url+"','轉移使用者組')");
 	ui.box.load(url,L('PUBLIC_MOVE_USERGROUP'));
 };
 
-//添加用户
+//添加使用者
 
-//删除资料字段
+//刪除資料欄位
 admin.delProfileField = function(id,t){
    if("undefined" == typeof(id)){
 	   var id = admin.getChecked();
@@ -929,12 +929,12 @@ admin.testEmail = function(){
     var email_sender_email = $('#form_email_sender_email').val();
     var sendto_email = $('#form_email_test').val();
     if ( sendto_email == ''){
-    	ui.error('测试邮件地址未填');
+    	ui.error('測試郵件地址未填');
     	return;
     }
     var eMailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/;
         if(!eMailReg.test(sendto_email)) {
-        ui.error("邮箱格式不正确");
+        ui.error("郵箱格式不正確");
         return false;
     }
     $.post(U('admin/Public/test_email'),
@@ -958,18 +958,18 @@ admin.checkProfile = function(form){
         ui.error( L('PUBLIC_NAME_ISNULL') );return false;
     }
     if(form.field_type.value==''　|| getLength(form.field_type.value) < 1 ){
-        ui.error( '字段类型不能为空' );return false;
+        ui.error( '欄位類型不能為空' );return false;
     }
     return true;
 };
 
-/*** 添加双语内容 ***/
-// 跳转到添加语言页面
+/*** 添加雙語內容 ***/
+// 跳轉到添加語言頁面
 admin.updateLangContent = function(sid) {
     location.href = U('admin/Config/updateLangContent') + '&sid=' + sid;
 };
 
-// 删除语言配置内容
+// 刪除語言配置內容
 admin.deleteLangContent = function(id) {
     id = (id != '') ? id : admin.getChecked().join(',');
     if('undefined' === typeof(id) || id == '') {
@@ -1064,17 +1064,17 @@ admin.appnav = function(obj,name,url){
 
 
 admin.sendEmailList = function(){
-    $('#email_msg').html('发送中……');
+    $('#email_msg').html('發送中……');
     $.post(U('admin/Config/dosendEmail'),{},function(msg){
         $('#email_msg').html(msg);
     });
 };
 
-//后台取消小名片
+//後臺取消小名片
 M.addEventFns({
     face_card:{
         load:function(){
-            //载入小名片js
+            //載入小名片js
             return true;
         },
         mouseenter:function(){
@@ -1090,10 +1090,10 @@ M.addEventFns({
 });
 
 /**
- * 认证通过、驳回
- * @param  integer id  认证ID
- * @param  integer status 认证状态
- * @param  string info 认证资料
+ * 認證通過、駁回
+ * @param  integer id  認證ID
+ * @param  integer status 認證狀態
+ * @param  string info 認證資料
  * @return void
  */
 admin.verify = function(id,status,isgroup,info){
@@ -1103,24 +1103,24 @@ admin.verify = function(id,status,isgroup,info){
     if(id == ''){
         if(status == 1){
             if(isgroup == 6){
-                ui.error('请选择要通过认证的企业');
+                ui.error('請選擇要通過認證的企業');
                 return false;
             }else{
-                ui.error('请选择要通过认证的用户');
+                ui.error('請選擇要通過認證的使用者');
                 return false;
             }
         }else{
             if(isgroup == 6){
-                ui.error('请选择要驳回认证的企业');
+                ui.error('請選擇要駁回認證的企業');
                 return false;
             }else{
-                ui.error('请选择要驳回认证的用户');
+                ui.error('請選擇要駁回認證的使用者');
                 return false;
             }
         }
     }
     if(status == 1){
-        ui.box.load(U('admin/User/editVerifyInfo')+'&id='+id+'&status='+status+'&info='+encodeURI(info),'编辑认证资料');
+        ui.box.load(U('admin/User/editVerifyInfo')+'&id='+id+'&status='+status+'&info='+encodeURI(info),'編輯認證資料');
     }else{
         $.post(U('admin/User/doVerify'),{id:id,status:status},function(msg){
             admin.ajaxReload(msg);
@@ -1129,7 +1129,7 @@ admin.verify = function(id,status,isgroup,info){
 };
 
 /**
- * 添加认证提交验证
+ * 添加認證提交驗證
  * @param {[type]} form [description]
  * @return bool
  */
@@ -1141,7 +1141,7 @@ admin.addVerifySubmitCheck = function(form){
 };
 
 /**
- * 添加认证验证表单
+ * 添加認證驗證表單
  * @param  {[type]} form [description]
  * @return bool
  */
@@ -1151,73 +1151,73 @@ admin.checkAddVerify = function(form){
     var Regx3 = /^[\u4E00-\u9FA5]+$/;
 
     if(getLength(form.uname.value) < 1){
-        ui.error('请选择用户');
+        ui.error('請選擇使用者');
         return false;
     }
     if($(":radio:checked").val() == 6){
         if(getLength(form.company.value) < 1){
-            ui.error('请输入企业名称');
+            ui.error('請輸入企業名稱');
             return false;
         }
         if(getLength(form.realname.value) < 1){
-            ui.error(L('请输入法人姓名'));
+            ui.error(L('請輸入法人姓名'));
             return false;
         }
         if(getLength(form.idcard.value) < 1){
-            ui.error(L('请输入营业证号'));
+            ui.error(L('請輸入營業證號'));
             return false;
         }
         if(getLength(form.phone.value) < 1){
-            ui.error(L('请输入联系方式'));
+            ui.error(L('請輸入聯繫方式'));
             return false;
         }
         if(getLength(form.info.value) < 1){
-            ui.error(L('请输入认证资料'));
+            ui.error(L('請輸入認證資料'));
             return false;
         }
         if(!Regx3.test($.trim(form.realname.value)) || getLength($.trim(form.realname.value))>10){
-            ui.error('请输入正确的法人姓名');
+            ui.error('請輸入正確的法人姓名');
             return false;
         }   
         if(!Regx2.test(form.idcard.value)){
-            ui.error('请输入正确的营业证号格式');
+            ui.error('請輸入正確的營業證號格式');
             return false;
         }
         // if(getLength(form.info.value) > 70){
-        //     ui.error(L('认证资料不能超过140个字符'));
+        //     ui.error(L('認證資料不能超過140個字元'));
         //     return false;
         // }
     }else{     
         if(getLength(form.realname.value) < 1){
-            ui.error(L('请输入真实姓名'));
+            ui.error(L('請輸入真實姓名'));
             return false;
         }
         if(getLength(form.idcard.value) < 1){
-            ui.error(L('请输入身份证号'));
+            ui.error(L('請輸入身份證號'));
             return false;
         }
         if(getLength(form.phone.value) < 1){
-            ui.error(L('请输入手机号码'));
+            ui.error(L('請輸入手機號碼'));
             return false;
         }
         if(getLength(form.info.value) < 1){
-            ui.error(L('请输入认证资料'));
+            ui.error(L('請輸入認證資料'));
             return false;
         }
         if(!Regx3.test($.trim(form.realname.value)) || getLength($.trim(form.realname.value))>10){
-            ui.error('请输入正确的真实姓名');
+            ui.error('請輸入正確的真實姓名');
             return false;
         }   
         if($.trim(form.idcard.value).length !== 18 || !Regx1.test($.trim(form.idcard.value).substr(0,17)) || !Regx2.test($.trim(form.idcard.value).substr(-1,1))){
-            ui.error('请输入正确的身份证号码格式');
+            ui.error('請輸入正確的身份證號碼格式');
             return false;
         }
         if($.trim(form.phone.value).length !== 11 || !Regx1.test($.trim(form.phone.value))){
-            ui.error('请输入正确的手机号码格式');
+            ui.error('請輸入正確的手機號碼格式');
             return false;
         }
         // if(getLength(form.info.value) > 70){
-        //     ui.error(L('认证资料不能超过140个字符'));
+        //     ui.error(L('認證資料不能超過140個字元'));
         //     return false;
         // }
     }  
@@ -1225,21 +1225,21 @@ admin.checkAddVerify = function(form){
 };
 
 /**
- * 后台添加认证单选按钮切换
- * @param  integer value 认证类型
+ * 後臺添加認證單選按鈕切換
+ * @param  integer value 認證類型
  * @return void
  */
 admin.addVerifyConfig = function(value){
     if(value == 6){
         $('#dl_company').show();
         $('#dl_realname dt').html("<font color='red'> * </font>法人姓名：");
-        $('#dl_idcard dt').html("<font color='red'> * </font>营业执照号：");
-        $('#dl_phone dt').html("<font color='red'> * </font>联系方式：");
+        $('#dl_idcard dt').html("<font color='red'> * </font>營業執照號：");
+        $('#dl_phone dt').html("<font color='red'> * </font>聯繫方式：");
     }else{
         $('#dl_company').hide();
-        $('#dl_realname dt').html("<font color='red'> * </font>真实姓名：");
-        $('#dl_idcard dt').html("<font color='red'> * </font>身份证号码：");
-        $('#dl_phone dt').html("<font color='red'> * </font>手机号码：");
+        $('#dl_realname dt').html("<font color='red'> * </font>真實姓名：");
+        $('#dl_idcard dt').html("<font color='red'> * </font>身份證號碼：");
+        $('#dl_phone dt').html("<font color='red'> * </font>手機號碼：");
     }
     $.post(U('admin/User/getVerifyCategory'),{value:value},function(data){
         if(data){
@@ -1252,21 +1252,21 @@ admin.addVerifyConfig = function(value){
 };
 
 /**
- * 后台添加认证单选按钮切换
- * @param  integer value 认证类型
+ * 後臺添加認證單選按鈕切換
+ * @param  integer value 認證類型
  * @return void
  */
 admin.addVerifyConfig = function(value){
     if(value == 6){
         $('#dl_company').show();
         $('#dl_realname dt').html("<font color='red'> * </font>法人姓名：");
-        $('#dl_idcard dt').html("<font color='red'> * </font>营业执照号：");
-        $('#dl_phone dt').html("<font color='red'> * </font>联系方式：");
+        $('#dl_idcard dt').html("<font color='red'> * </font>營業執照號：");
+        $('#dl_phone dt').html("<font color='red'> * </font>聯繫方式：");
     }else{
         $('#dl_company').hide();
-        $('#dl_realname dt').html("<font color='red'> * </font>真实姓名：");
-        $('#dl_idcard dt').html("<font color='red'> * </font>身份证号码：");
-        $('#dl_phone dt').html("<font color='red'> * </font>手机号码：");
+        $('#dl_realname dt').html("<font color='red'> * </font>真實姓名：");
+        $('#dl_idcard dt').html("<font color='red'> * </font>身份證號碼：");
+        $('#dl_phone dt').html("<font color='red'> * </font>手機號碼：");
     }
     $.post(U('admin/User/getVerifyCategory'),{value:value},function(data){
         if(data){
@@ -1289,7 +1289,7 @@ admin.editVerifyConfig = function(value){
 }
 
 /**
- * 后台编辑认证信息提交验证
+ * 後臺編輯認證資訊提交驗證
  * @param  {[type]} form [description]
  * @return bool
  */
@@ -1301,7 +1301,7 @@ admin.editVerifySubmitCheck = function(form){
 };
 
 /**
- * 编辑认证验证表单
+ * 編輯認證驗證表單
  * @param  {[type]} form [description]
  * @return bool
  */
@@ -1312,82 +1312,82 @@ admin.checkEditVerify = function(form){
     
     if($(":radio:checked").val() == 6){
         if(getLength(form.company.value) < 1){
-            ui.error('请输入企业名称');
+            ui.error('請輸入企業名稱');
             return false;
         }
         if(getLength(form.realname.value) < 1){
-            ui.error(L('请输入法人姓名'));
+            ui.error(L('請輸入法人姓名'));
             return false;
         }
         if(getLength(form.idcard.value) < 1){
-            ui.error(L('请输入营业执照号'));
+            ui.error(L('請輸入營業執照號'));
             return false;
         }
         if(getLength(form.phone.value) < 1){
-            ui.error(L('请输入联系方式'));
+            ui.error(L('請輸入聯繫方式'));
             return false;
         }
         if(getLength(form.reason.value) < 1){
-            ui.error(L('请输入认证理由'));
+            ui.error(L('請輸入認證理由'));
             return false;
         }
         if(getLength(form.info.value) < 1){
-            ui.error(L('请输入认证资料'));
+            ui.error(L('請輸入認證資料'));
             return false;
         }
         if(!Regx3.test($.trim(form.realname.value)) || getLength($.trim(form.realname.value))>10){
-            ui.error('请输入正确的法人姓名');
+            ui.error('請輸入正確的法人姓名');
             return false;
         }   
         if(!Regx2.test(form.idcard.value)){
-            ui.error('请输入正确的营业证号格式');
+            ui.error('請輸入正確的營業證號格式');
             return false;
         }
         // if(getLength(form.info.value) > 70){
-        //     ui.error(L('认证资料不能超过140个字符'));
+        //     ui.error(L('認證資料不能超過140個字元'));
         //     return false;
         // }
     }else{     
         if(getLength(form.realname.value) < 1){
-            ui.error(L('请输入真实姓名'));
+            ui.error(L('請輸入真實姓名'));
             return false;
         }
         if(getLength(form.idcard.value) < 1){
-            ui.error(L('请输入身份证号'));
+            ui.error(L('請輸入身份證號'));
             return false;
         }
         if(getLength(form.phone.value) < 1){
-            ui.error(L('请输入手机号码'));
+            ui.error(L('請輸入手機號碼'));
             return false;
         }
         if(getLength(form.reason.value) < 1){
-            ui.error(L('请输入认证理由'));
+            ui.error(L('請輸入認證理由'));
             return false;
         }
         if(getLength(form.info.value) < 1){
-            ui.error(L('请输入认证资料'));
+            ui.error(L('請輸入認證資料'));
             return false;
         }
         if(!Regx3.test($.trim(form.realname.value)) || getLength($.trim(form.realname.value))>10){
-            ui.error('请输入正确的真实姓名');
+            ui.error('請輸入正確的真實姓名');
             return false;
         }   
         if($.trim(form.idcard.value).length !== 18 || !Regx1.test($.trim(form.idcard.value).substr(0,17)) || !Regx2.test($.trim(form.idcard.value).substr(-1,1))){
-            ui.error('请输入正确的身份证号码格式');
+            ui.error('請輸入正確的身份證號碼格式');
             return false;
         }
         if($.trim(form.phone.value).length !== 11 || !Regx1.test($.trim(form.phone.value))){
-            ui.error('请输入正确的手机号码格式');
+            ui.error('請輸入正確的手機號碼格式');
             return false;
         }
         // if(getLength(form.info.value) > 70){
-        //     ui.error(L('认证资料不能超过140个字符'));
+        //     ui.error(L('認證資料不能超過140個字元'));
         //     return false;
         // }
     }  
     return true;
 };
-// 验证CheckBox选中的个数
+// 驗證CheckBox選中的個數
 admin.checkBoxNums = function(obj, nums) {
     var name = $(obj).attr('name');
     var len = $('#dl_' + name.replace(/\[\]/, '')).find('input:checked').length;
@@ -1396,17 +1396,17 @@ admin.checkBoxNums = function(obj, nums) {
 };
 
 /**
- * 设置话题类型
- * @param integer type 要设置的话题类型 1:推荐  2:精华   3:锁定
- * @param integer topic_id  话题ID 
- * @param integer value 话题现有的类型值，改为相反的。0变为1，1变为0
+ * 設定話題類型
+ * @param integer type 要設定的話題類型 1:推薦  2:精華   3:鎖定
+ * @param integer topic_id  話題ID 
+ * @param integer value 話題現有的類型值，改為相反的。0變為1，1變為0
  */
 admin.setTopic = function(type,topic_id,value){
     if(!topic_id){
        var topic_id = admin.getChecked();
     }
     if(topic_id==''){
-        ui.error('请选择话题');return false;
+        ui.error('請選擇話題');return false;
     }
     $.post(U('admin/Content/setTopic'),{topic_id:topic_id,type:type,value:value},function(msg){
             admin.ajaxReload(msg);
@@ -1414,22 +1414,22 @@ admin.setTopic = function(type,topic_id,value){
 };
 
 /**
- * 添加/编辑话题验证
+ * 添加/編輯話題驗證
  * 
  */
 admin.topicCheck = function(form){
     if(getLength(form.topic_name.value) < 1){
-        ui.error('请输入话题名称');
+        ui.error('請輸入話題名稱');
         return false;
     }
     if(getLength(form.note.value) < 1){
-        ui.error('请输入话题注释');
+        ui.error('請輸入話題註釋');
         return false;
     }
     if(getLength(form.domain.value) > 0){
         var Regx2 = /^[A-Za-z0-9]*$/;
         if(!Regx2.test(form.domain.value)){
-            ui.error('请输入正确的话题域名格式');
+            ui.error('請輸入正確的話題域名格式');
             return false;
         }
     }
@@ -1437,13 +1437,13 @@ admin.topicCheck = function(form){
 };
 
 /**
- * 移除官方用户
- * @param integer id 官方用户列表主键ID
+ * 移除官方使用者
+ * @param integer id 官方使用者列表主鍵ID
  * @return void
  */
 admin.removeOfficialUser = function(id)
 {
-    // 获取用户ID
+    // 獲取使用者ID
     if(typeof id === "undefined") {
         id = admin.getChecked();
         id = id.join(',');
@@ -1461,18 +1461,18 @@ admin.removeOfficialUser = function(id)
     }, 'json');
     return false;
 };
-//删除任务
+//刪除任務
 admin.delcustomtask = function (id){
-    // 获取任务ID
+    // 獲取任務ID
     if(typeof id === "undefined") {
         id = admin.getChecked();
         id = id.join(',');
     }
     if ( id == '' ){
-    	ui.error('请选择删除项');
+    	ui.error('請選擇刪除項');
     	return;
     }
-    if ( confirm('删除无法恢复请确认是否删除！') ){
+    if ( confirm('刪除無法恢復請確認是否刪除！') ){
 	    // 提交操作
 	    $.post(U('admin/Task/doDeleteCustomTask'), {id:id}, function(msg) {
 	        if(msg.status == 1) {
@@ -1484,18 +1484,18 @@ admin.delcustomtask = function (id){
 	    }, 'json');
     }
 }
-//删除勋章
+//刪除勳章
 admin.deletemedal = function (id){
-    // 获取勋章ID
+    // 獲取勳章ID
     if(typeof id === "undefined") {
         id = admin.getChecked();
         id = id.join(',');
     }
     if ( id == '' ){
-    	ui.error('请选择删除项');
+    	ui.error('請選擇刪除項');
     	return;
     }
-    if ( confirm('删除无法恢复请确认是否删除！') ){
+    if ( confirm('刪除無法恢復請確認是否刪除！') ){
 	    // 提交操作
 	    $.post(U('admin/Medal/doDeleteMedal'), {id:id}, function(msg) {
 	        if(msg.status == 1) {
@@ -1507,18 +1507,18 @@ admin.deletemedal = function (id){
 	    }, 'json');
     }
 }
-//删除用户勋章
+//刪除使用者勳章
 admin.deleteusermedal = function (id){
-    // 获取用户勋章ID
+    // 獲取使用者勳章ID
     if(typeof id === "undefined") {
         id = admin.getChecked();
         id = id.join(',');
     }
     if ( id == '' ){
-    	ui.error('请选择删除项');
+    	ui.error('請選擇刪除項');
     	return;
     }
-    if ( confirm('删除无法恢复请确认是否删除！') ){
+    if ( confirm('刪除無法恢復請確認是否刪除！') ){
     	 // 提交操作
         $.post(U('admin/Medal/doDeleteUserMedal'), {id:id}, function(msg) {
             if(msg.status == 1) {
@@ -1532,24 +1532,24 @@ admin.deleteusermedal = function (id){
 }
 
 /**
- * 添加认证分类
+ * 添加認證分類
  */
 admin.addVerifyCategory = function(){
-    ui.box.load(U('admin/User/addVerifyCategory'), "添加认证分类");
+    ui.box.load(U('admin/User/addVerifyCategory'), "添加認證分類");
 }
 
 /**
- * 添加认证分类
+ * 添加認證分類
  */
 admin.editVerifyCategory = function(user_verified_category_id){
-    ui.box.load(U('admin/User/editVerifyCategory')+'&user_verified_category_id='+user_verified_category_id, "编辑认证分类");
+    ui.box.load(U('admin/User/editVerifyCategory')+'&user_verified_category_id='+user_verified_category_id, "編輯認證分類");
 }
 
 /**
- * 删除认证分类
+ * 刪除認證分類
  */
 admin.delVerifyCategory = function(user_verified_category_id){
-    if(confirm('确定删除此分类吗？')){
+    if(confirm('確定刪除此分類嗎？')){
         $.post(U('admin/User/delVerifyCategory'), {user_verified_category_id:user_verified_category_id}, function(msg){
               admin.ajaxReload(msg);
         },'json');
@@ -1557,25 +1557,25 @@ admin.delVerifyCategory = function(user_verified_category_id){
 }
 
 /**
- * 注册配置验证
+ * 註冊配置驗證
  */
 admin.checkRegisterConfig = function(){
     var tag_num = $('#form_tag_num').val();
     if(getLength(tag_num) < 1){
-        ui.error('请输入允许设置标签数量');
+        ui.error('請輸入允許設定標籤數量');
         return false;
     }
     if(isNaN(tag_num)){
-        ui.error('允许设置标签数量必须为数字');
+        ui.error('允許設定標籤數量必須為數字');
         return false;
     }
     if(tag_num < 0){
-        ui.error('允许设置标签数量不能小于0');
+        ui.error('允許設定標籤數量不能小於0');
         return false;
     }
     //alert($('#dl_default_user_group input:checked').val());
     if(!$('#dl_default_user_group input:checked').val()){
-        ui.error('请选择默认用户组');
+        ui.error('請選擇默認使用者組');
         return false;
     }
     return true;
@@ -1583,19 +1583,19 @@ admin.checkRegisterConfig = function(){
 }
 
 /**
- * 删除模板操作
+ * 刪除模板操作
  * @param integer id 模板ID
  * @return void
  */
 admin.delTemplate = function(id)
 {
-    // 获取模板ID
+    // 獲取模板ID
     if(typeof id === 'undefined') {
         id = admin.getChecked();
         id = id.join(',');
     }
-    // 异步提交，删除操作
-    if(confirm('是否删除该模板？')) {
+    // 非同步提交，刪除操作
+    if(confirm('是否刪除該模板？')) {
         $.post(U('admin/Content/doDelTemplate'), {id:id}, function(res) {
             if(res.status == 1) {
                 ui.success(res.data);

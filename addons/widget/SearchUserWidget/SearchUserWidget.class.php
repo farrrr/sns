@@ -1,6 +1,6 @@
 <?php
 /**
- * 搜索用户数据
+ * 搜索使用者資料
  * @example W('SearchUser', array('name' => 'selectUser', 'uids' => array(10000,14983),'follow'=>0,'max'=>10,'editable'=>0))
  * @author jason
  * @version TS3.0
@@ -9,21 +9,21 @@ class SearchUserWidget extends Widget{
 	
 	private static $rand = 1;
 	/**
-	 * @param string name 存储uid的input名称
-	 * @param mixed uids 已选择的用户id集合
-	 * @param integer follow 是否只能选择已关注的人（0表示可以选择全部用户，1表示只能选择已关注的人）
-	 * @param integer max 最多可选择的用户个数
-	 * @param integer editable 是否可修改选择的结果，如果为0则不能选择用户，不能删除已经选择的用户
+	 * @param string name 存儲uid的input名稱
+	 * @param mixed uids 已選擇的使用者id集合
+	 * @param integer follow 是否只能選擇已關注的人（0表示可以選擇全部使用者，1表示只能選擇已關注的人）
+	 * @param integer max 最多可選擇的使用者個數
+	 * @param integer editable 是否可修改選擇的結果，如果為0則不能選擇使用者，不能刪除已經選擇的使用者
 	 */
 	public function render($data){
 		$var = array();
 		$var['follow'] = 0;
-		$var['max'] = 0; //最多可以选择用户个数 为0表示不限制
+		$var['max'] = 0; //最多可以選擇使用者個數 為0表示不限制
 		$var['editable'] = 1;
-		$var['noself'] = 1; //默认不包括自己
+		$var['noself'] = 1; //默認不包括自己
 		is_array($data) && $var = array_merge($var,$data);
 		$var['rand'] = self::$rand;
-		//默认参数
+		//默認參數
 		if(isset($var['uids'])){
 			$var['uids'] = $uids = is_array($var['uids']) ? $var['uids'] : explode(',',$var['uids']);
 			foreach($uids as $v){
@@ -36,13 +36,13 @@ class SearchUserWidget extends Widget{
 		self::$rand ++;
 
 		unset($var,$data);
-        //输出数据
+        //輸出資料
 		return $content;
     }
 
     /**
-     * 搜索用户 
-     * @return array 搜索状态及用户列表数据
+     * 搜索使用者 
+     * @return array 搜索狀態及使用者列表資料
      */
     public function search(){
     	$key = t($_REQUEST['key']);
@@ -70,7 +70,7 @@ class SearchUserWidget extends Widget{
     }
     /**
      * 搜索最近@的人
-     * @return array 搜索状态及用户列表数据
+     * @return array 搜索狀態及使用者列表資料
      */
     public function searchAt(){
     	$users = model('UserData')->where("`key`='user_recentat' and uid=".$GLOBALS['ts']['mid'])->getField('value');

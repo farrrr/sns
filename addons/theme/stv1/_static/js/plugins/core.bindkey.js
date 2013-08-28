@@ -1,7 +1,7 @@
-core.bindkey = {	//绑定键盘事件
+core.bindkey = {	//繫結鍵盤事件
 			_init:function(attrs){
 				if(attrs.length == 1){
-					return false; // 意思是执行插件 只是为了加载此文件
+					return false; // 意思是執行插件 只是為了載入此檔案
 				} 
 				if(attrs.length == 5){
 					core.bindkey.init(attrs[1],attrs[2],attrs[3],attrs[4]);
@@ -72,7 +72,7 @@ core.bindkey = {	//绑定键盘事件
 				if(prevNode[0].tagName.toLocaleLowerCase() != this.childName.toLocaleLowerCase()){
 					return false;
 				}
-				//TODO  滚动条
+				//TODO  滾動條
 				this.curNodeSize -=1;
 				curNode.removeClass(this.curClass);
 				prevNode.addClass(this.curClass);
@@ -87,7 +87,7 @@ core.bindkey = {	//绑定键盘事件
 				if(nextNode[0].tagName.toLocaleLowerCase() != this.childName.toLocaleLowerCase()){
 					return false;
 				}
-				//TODO 滚动条
+				//TODO 滾動條
 				this.curNodeSize +=1;
 				curNode.removeClass(this.curClass);
 				nextNode.addClass(this.curClass);

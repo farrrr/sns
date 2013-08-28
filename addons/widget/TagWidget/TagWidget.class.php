@@ -1,6 +1,6 @@
 <?php
 /**
- * 标签选择
+ * 標籤選擇
  * @example W('Tag', array('width'=>'500px', 'appname'=>'support','apptable'=>'support','row_id'=>0,'tpl'=>'show','tag_url'=>'aaa','name'=>'public'))
  * @author zhishisoft
  * @version TS3.0
@@ -8,13 +8,13 @@
 class TagWidget extends Widget{
 
 	/**
-	 * @param string width wigdet显示宽度
-     * @param string appname 资源对应的应用名称
-     * @param string apptable 资源对应的表
-     * @param integer row_id 资源在资源所在表中的主键ID,为0表示该资源为新加资源，需要在资源添加,往sociax_app_tag表添加相关数据
-     * @param string tpl 显示模版，tag/show 默认是tag，如果为show表示只显示标签
-     * @param string tag_url 标签上的链接前缀，为空表示标签没有链接，只针对tpl=show有效
-     * @param string name 输入框的input名称,标签的ID存储的隐藏域名称为 {name}_tags
+	 * @param string width wigdet顯示寬度
+     * @param string appname 資源對應的應用名稱
+     * @param string apptable 資源對應的表
+     * @param integer row_id 資源在資源所在表中的主鍵ID,為0表示該資源為新加資源，需要在資源添加,往sociax_app_tag表添加相關資料
+     * @param string tpl 顯示模版，tag/show 默認是tag，如果為show表示只顯示標籤
+     * @param string tag_url 標簽上的連結字首，為空表示標籤沒有連結，只針對tpl=show有效
+     * @param string name 輸入框的input名稱,標籤的ID存儲的隱藏域名稱為 {name}_tags
 	 */
 	public function render($data)
     {
@@ -26,17 +26,17 @@ class TagWidget extends Widget{
 		$var['tpl'] = 'tag';
         $var['tag_num'] = 10;
 		is_array($data) && $var = array_merge($var,$data);
-		// 清除缓存
+		// 清除快取
 		model('Cache')->rm('temp_'.$var['apptable'].$GLOBALS['ts']['mid']);
 		$var['add_url'] = U('widget/Tag/addTag',array('appname'=>$var['appname'],'apptable'=>$var['apptable'],'row_id'=>$var['row_id']));
 		$var['delete_url'] = U('widget/Tag/deleteTag',array('appname'=>$var['appname'],'apptable'=>$var['apptable'],'row_id'=>$var['row_id']));
-        // 获取标签
+        // 獲取標籤
 		$tags = model('Tag')->setAppName($var['appname'])->setAppTable($var['apptable'])->getAppTags($var['row_id']);
 		$var['tags'] = $tags;
-		// 以选中ID
+		// 以選中ID
 		$var['tags_my'] = implode(',', array_flip($tags));
 
-        // 获取推荐标签
+        // 獲取推薦標籤
         $uid = intval($data['uid']);
         $var['uid'] = $uid;
         $var['selected'] = model('UserCategory')->getRelatedUserInfo($uid);
@@ -55,24 +55,24 @@ class TagWidget extends Widget{
 	}
 
 	/*
-	 * 添加个人标签
+	 * 添加個人標籤
 	 * @access public
 	 * @return void
 	 */
     public function addTag()
     {
-    	// 获取标签内容
+    	// 獲取標籤內容
     	$_POST['name'] = t($_POST['name']);
-    	// 判断是否为空
+    	// 判斷是否為空
     	if(empty($_POST['name'])) {
     		exit(json_encode(array('status'=>0,'info'=>L('PUBLIC_TAG_NOEMPTY'))));
     	}
-    	// 其他相关参数
+    	// 其他相關參數
     	$appName = t($_REQUEST['appname']);
     	$appTable = t($_REQUEST['apptable']);
     	$row_id = intval($_REQUEST['row_id']);
     	$result = model('Tag')->setAppName($appName)->setAppTable($appTable)->addAppTags($row_id, t($_POST['name']));
-		// 返回相关参数
+		// 返回相關參數
 		$return['info'] = model('Tag')->getError();
 		$return['status'] = !empty($result) > 0 ? 1 : 0;
 		$return['data'] = $result;
@@ -80,7 +80,7 @@ class TagWidget extends Widget{
     }
 
 	/*
-	 * 删除个人标签
+	 * 刪除個人標籤
 	 * @access public
 	 * @return void
 	 */
@@ -97,21 +97,21 @@ class TagWidget extends Widget{
     }
 
     /**
-     * 获取标签的ID
+     * 獲取標籤的ID
      * @access public 
      * @return void
      */
     public function getTagId()
     {
-    	// 获取标签名称
+    	// 獲取標簽名稱
     	$name = t($_POST['name']);
-    	// 判断标签是否为空
+    	// 判斷標籤是否為空
     	if(empty($name)) {
     		$res['status'] = 0;
     		$res['info'] = L('PUBLIC_TAG_NOEMPTY');
     		exit(json_encode($res));
     	}
-    	// 其他相关参数
+    	// 其他相關參數
     	$appName = t($_REQUEST['appname']);
     	$appTable = t($_REQUEST['apptable']);
     	// $rowId = intval($_REQUEST['row_id']);
@@ -119,10 +119,10 @@ class TagWidget extends Widget{
 
     	if($tagInfo === false) {
     		$res['status'] = 0;
-    		$res['info'] = '获取标签ID失败';
+    		$res['info'] = '獲取標籤ID失敗';
     	} else {
     		$res['status'] = 1;
-    		$res['info'] = '获取标签ID成功';
+    		$res['info'] = '獲取標籤ID成功';
     		$res['data'] = $tagInfo;
     	}
 

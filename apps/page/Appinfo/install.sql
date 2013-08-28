@@ -31,7 +31,7 @@ CREATE TABLE `ts_diy_canvas` (
 -- ----------------------------
 -- Records of ts_diy_canvas
 -- ----------------------------
-INSERT INTO `ts_diy_canvas` VALUES ('1', '首页', 'index.html', 'PGluY2x1ZGUgZmlsZT0iX19USEVNRV9fL3B1YmxpY19oZWFkZXIiIC8+DQo8ZGl2IHN0eWxlPSJoZWlnaHQ6MTAwcHgiPjwvZGl2Pg0KPGluY2x1ZGUgZmlsZT0iX19USEVNRV9fL2RpeV9oZWFkZXIiIC8+DQo8bGluayBocmVmPSJfX0FQUF9fL1B1YmxpYy9jc3MvZGl5X2FkYXB0YWJsZS5jc3MiIHJlbD0ic3R5bGVzaGVldCIgdHlwZT0idGV4dC9jc3MiIC8+DQo8bGluayBocmVmPSJfX0FQUF9fL1B1YmxpYy9jc3MvaW5kZXguY3NzIiByZWw9InN0eWxlc2hlZXQiIHR5cGU9InRleHQvY3NzIiAvPg0KPGxpbmsgaHJlZj0iX19BUFBfXy9QdWJsaWMvY3NzL3BvcF91cC5jc3MiIHJlbD0ic3R5bGVzaGVldCIgdHlwZT0idGV4dC9jc3MiIC8+DQo8ZGl2IGNsYXNzPSJkaXlfY29udGVudCBiZ19kaXkiPg0KeyRkYXRhfWRkZA0KICAgIDxkaXYgY2xhc3M9IkMiPg0KICAgIDwvZGl2Pg0KDQoNCjwvZGl2Pg0KDQo8aW5jbHVkZSBmaWxlPSJfX1RIRU1FX18vcHVibGljX2Zvb3RlciIgLz4=', '首页');
+INSERT INTO `ts_diy_canvas` VALUES ('1', '首頁', 'index.html', 'PGluY2x1ZGUgZmlsZT0iX19USEVNRV9fL3B1YmxpY19oZWFkZXIiIC8+DQo8ZGl2IHN0eWxlPSJoZWlnaHQ6MTAwcHgiPjwvZGl2Pg0KPGluY2x1ZGUgZmlsZT0iX19USEVNRV9fL2RpeV9oZWFkZXIiIC8+DQo8bGluayBocmVmPSJfX0FQUF9fL1B1YmxpYy9jc3MvZGl5X2FkYXB0YWJsZS5jc3MiIHJlbD0ic3R5bGVzaGVldCIgdHlwZT0idGV4dC9jc3MiIC8+DQo8bGluayBocmVmPSJfX0FQUF9fL1B1YmxpYy9jc3MvaW5kZXguY3NzIiByZWw9InN0eWxlc2hlZXQiIHR5cGU9InRleHQvY3NzIiAvPg0KPGxpbmsgaHJlZj0iX19BUFBfXy9QdWJsaWMvY3NzL3BvcF91cC5jc3MiIHJlbD0ic3R5bGVzaGVldCIgdHlwZT0idGV4dC9jc3MiIC8+DQo8ZGl2IGNsYXNzPSJkaXlfY29udGVudCBiZ19kaXkiPg0KeyRkYXRhfWRkZA0KICAgIDxkaXYgY2xhc3M9IkMiPg0KICAgIDwvZGl2Pg0KDQoNCjwvZGl2Pg0KDQo8aW5jbHVkZSBmaWxlPSJfX1RIRU1FX18vcHVibGljX2Zvb3RlciIgLz4=', '首頁');
 INSERT INTO `ts_diy_canvas` VALUES ('2', 'test', 'test1.html', 'PGluY2x1ZGUgZmlsZT0iX19USEVNRV9fL3B1YmxpY19oZWFkZXIiIC8+DQo8ZGl2IHN0eWxlPSJoZWlnaHQ6MTAwcHgiPjwvZGl2Pg0KPGluY2x1ZGUgZmlsZT0iX19USEVNRV9fL2RpeV9oZWFkZXIiIC8+DQo8bGluayBocmVmPSJfX0FQUF9fL1B1YmxpYy9jc3MvZGl5X2FkYXB0YWJsZS5jc3MiIHJlbD0ic3R5bGVzaGVldCIgdHlwZT0idGV4dC9jc3MiIC8+DQo8bGluayBocmVmPSJfX0FQUF9fL1B1YmxpYy9jc3MvaW5kZXguY3NzIiByZWw9InN0eWxlc2hlZXQiIHR5cGU9InRleHQvY3NzIiAvPg0KPGxpbmsgaHJlZj0iX19BUFBfXy9QdWJsaWMvY3NzL3BvcF91cC5jc3MiIHJlbD0ic3R5bGVzaGVldCIgdHlwZT0idGV4dC9jc3MiIC8+DQo8ZGl2IGNsYXNzPSJkaXlfY29udGVudCBiZ19kaXkiPg0KeyRkYXRhfQ0KICAgIDxkaXYgY2xhc3M9IkMiPg0KICAgIDwvZGl2Pg0KDQoNCjwvZGl2Pg0KDQo8aW5jbHVkZSBmaWxlPSJfX1RIRU1FX18vcHVibGljX2Zvb3RlciIgLz4=', 'sd');
 
 -- ----------------------------
@@ -45,9 +45,9 @@ CREATE TABLE `ts_diy_page` (
   `layout_data` text,
   `widget_data` text,
   `canvas` varchar(255) DEFAULT NULL,
-  `lock` tinyint(1) DEFAULT '0' COMMENT '是否锁定不可以删除',
-  `status` tinyint(1) DEFAULT '1' COMMENT '是否开放用户访问',
-  `guest` tinyint(1) DEFAULT '1' COMMENT '游客是否可以访问',
+  `lock` tinyint(1) DEFAULT '0' COMMENT '是否鎖定不可以刪除',
+  `status` tinyint(1) DEFAULT '1' COMMENT '是否開放使用者訪問',
+  `guest` tinyint(1) DEFAULT '1' COMMENT '遊客是否可以訪問',
   `visit_count` int(11) unsigned DEFAULT '0',
   `uid` int(11) DEFAULT NULL,
   `manager` varchar(255) DEFAULT '',

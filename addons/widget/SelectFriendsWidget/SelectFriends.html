@@ -41,7 +41,7 @@
         });
 
         <php>if($uid){</php>
-        //指定发给某人
+        //指定發給某人
         var uid = "{$uid}";
         if(uid){
         	var image = "{$uid|getUserFace}";
@@ -49,9 +49,9 @@
         	//$(".ui-fs-input").remove();
         	$('.ui-fs-input input').val('');
         	$(".ui-fs-result").html("<a href='javascript:void(0)' ><img width='20' height='20' src='" + image + "' title='" + name + "' alt='' /> "+ name + "</a>");
-        	// 表单已选
+        	// 表單已選
         	$("#ui_fri_ids").val(uid);
-        	// js结果已选
+        	// js結果已選
         	test.resultArr = uid.split(',');
         }   
         <php>}</php>
@@ -61,7 +61,7 @@
         }
     });
 </script>
-<!-- 选择好友组件-->
+<!-- 選擇好友元件-->
 <div id="ui-fs{$id}" class="ui-fs" style="border: 1px solid #bdc7d8;background:#fff">
 	<div class="ui-fs-result clearfix" style="display:none;">
 	</div>
@@ -74,12 +74,12 @@
 	</div>
 	<div class="ui-fs-all" style="display:none">
 		<div class="top">
-			<select id="ui-fs-friendtype{$id}"><!--<option value="-1">与我互粉的人</option>--></select>
+			<select id="ui-fs-friendtype{$id}"><!--<option value="-1">與我互粉的人</option>--></select>
 			<div class="close" title="{:L('close')}"></div>
 		</div>
 		<div class="ui-fs-allinner">
 			<div class="page clearfix">
-				<div class="llight1">还可选<b id="ui_fri_num"><eq name='uid' value=''>10</eq><neq name='uid' value=''>9</neq></b>人 </div><div class="button"><span class="prev">{:L('pre_page')}</span><span class="next">{:L('next_page')}</span></div>
+				<div class="llight1">還可選<b id="ui_fri_num"><eq name='uid' value=''>10</eq><neq name='uid' value=''>9</neq></b>人 </div><div class="button"><span class="prev">{:L('pre_page')}</span><span class="next">{:L('next_page')}</span></div>
 			</div>
 			<div class="list clearfix">
 				{:L('data_loading')}
@@ -87,8 +87,8 @@
 		</div>
 	</div>
 </div>
-<!--选择好友组件 end-->
+<!--選擇好友元件 end-->
 
 <input type="hidden" id="ui_fri_ids{$id}" name="{$name}{$id}"  dataType="LimitB" min="1"  msg="{:L('must_choose')}">
 
-<!-- <input type="hidden" id="{$id}" name="fri_ids{$id}"  dataType="LimitB" min="1"  msg="必须选择用户!"> -->
+<!-- <input type="hidden" id="{$id}" name="fri_ids{$id}"  dataType="LimitB" min="1"  msg="必須選擇使用者!"> -->

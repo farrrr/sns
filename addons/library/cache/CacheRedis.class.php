@@ -12,17 +12,17 @@
 defined('THINK_PATH') or exit();
 
 /**
- * Redis缓存驱动 
- * 要求安装phpredis扩展：https://github.com/nicolasff/phpredis
+ * Redis快取驅動
+ * 要求安裝phpredis擴展：https://github.com/nicolasff/phpredis
  * @category   Extend
  * @package  Extend
  * @subpackage  Driver.Cache
- * @author    尘缘 <130775@qq.com>
+ * @author    塵緣 <130775@qq.com>
  */
 class CacheRedis extends Cache {
-	 /**
-	 * 架构函数
-     * @param array $options 缓存参数
+    /**
+     * 架構函數
+     * @param array $options 快取參數
      * @access public
      */
     public function __construct($options=array()) {
@@ -39,8 +39,8 @@ class CacheRedis extends Cache {
         }
         $this->options =  $options;
         $this->options['expire'] =  isset($options['expire'])?  $options['expire']  :   C('DATA_CACHE_TIME');
-        $this->options['prefix'] =  isset($options['prefix'])?  $options['prefix']  :   C('DATA_CACHE_PREFIX');        
-        $this->options['length'] =  isset($options['length'])?  $options['length']  :   0;        
+        $this->options['prefix'] =  isset($options['prefix'])?  $options['prefix']  :   C('DATA_CACHE_PREFIX');
+        $this->options['length'] =  isset($options['length'])?  $options['length']  :   0;
         $func = $options['persistent'] ? 'pconnect' : 'connect';
         $this->handler  = new Redis;
         $options['timeout'] === false ?
@@ -49,9 +49,9 @@ class CacheRedis extends Cache {
     }
 
     /**
-     * 读取缓存
+     * 讀取快取
      * @access public
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return mixed
      */
     public function get($name) {
@@ -60,11 +60,11 @@ class CacheRedis extends Cache {
     }
 
     /**
-     * 写入缓存
+     * 寫入快取
      * @access public
-     * @param string $name 缓存变量名
-     * @param mixed $value  存储数据
-     * @param integer $expire  有效时间（秒）
+     * @param string $name 快取變數名
+     * @param mixed $value  存儲資料
+     * @param integer $expire  有效時間（秒）
      * @return boolen
      */
     public function set($name, $value, $expire = null) {
@@ -79,16 +79,16 @@ class CacheRedis extends Cache {
             $result = $this->handler->set($name, $value);
         }
         if($result && $this->options['length']>0) {
-            // 记录缓存队列
+            // 記錄快取佇列
             $this->queue($name);
         }
         return $result;
     }
 
     /**
-     * 删除缓存
+     * 刪除快取
      * @access public
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return boolen
      */
     public function rm($name) {
@@ -96,7 +96,7 @@ class CacheRedis extends Cache {
     }
 
     /**
-     * 清除缓存
+     * 清除快取
      * @access public
      * @return boolen
      */

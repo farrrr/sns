@@ -4,7 +4,7 @@
 .account-grid .main-left{width:150px;}
 .account-grid .main-right{margin:0 0 0 150px}
 
-/*个人设置*/
+/*個人設定*/
 .set-section .item-set{margin:15px 20px 0}
 .item-set{color:#999;border:#F2F2F2 solid 1px}
 .item-set .set-fold{cursor:pointer;color:#535353;background:#fbfbfb;height:18px;line-height:18px;padding:15px 20px}
@@ -24,7 +24,7 @@
 .blacklists .btn-grey-white span{font-size:12px;}
 
 
-/*帐号绑定*/
+/*帳號繫結*/
 .ico-sina-big,.ico-qq-big,.ico-qzone-big,.ico-renren-big,.ico-douban-big,.ico-baidu-big,.ico-taobao-big{background:url(image/ico-account.png) no-repeat;width:50px;height:50px;display:inline-block;}
 .ico-sina-big{background-position:0 0;}
 .ico-qzone-big{background-position:0 -70px;}

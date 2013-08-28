@@ -8,20 +8,20 @@
         <div id="aside" class="pad">
           <dl class="nav-left mt10 border-no">
             <dd><a href="{:U('public/Mention')}">@提到我的</a></dd>
-            <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的评论</a></dd>
-            <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">发出的评论</a></dd>
+            <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的評論</a></dd>
+            <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">發出的評論</a></dd>
             <dd class="current"><a href="{:U('public/Message')}">我的私信</a></dd>
-            <dd><a href="{:U('public/Message/notify')}">系统消息</a></dd>
+            <dd><a href="{:U('public/Message/notify')}">系統訊息</a></dd>
           </dl>
         </div>
       </div>
       
       <div id="col7" class="main-right">
         <div class="extend minh person-set">
-          <!--tab菜单-->
+          <!--tab選單-->
           <div class="feed-nav"><div class="set-hd"><h3>{:L('PUBLIC_PRIVATE_MESSAGE')}</h3></div></div>
-          <!--tab菜单/end-->
-          <!--消息回复区-->
+          <!--tab選單/end-->
+          <!--訊息回覆區-->
           <php>if(CheckPermission('core_normal','send_message')){</php>
           <div id="replay" class="replay-section clearfix">
             <div class="hd">
@@ -49,7 +49,7 @@
             </div>
           </div>
           <php>}</php>
-          <!--消息回复列表-->
+          <!--訊息回覆列表-->
           <div class="reply-lists" id="feed_list"></div>
           <p class="moreFoot" id="moreFoot"><a id="load_more_btn" onclick="load_more_message(this)" href="javascript:void(0)"><span class="ico_morefoot"></span>{:L('PUBLIC_MORE')}</a></p>
         </div>
@@ -91,7 +91,7 @@ function doReply()
   if ( replylock == 1 ){
 	  return;
   }
-  $('#replymessage').html('回复中..');
+  $('#replymessage').html('回覆中..');
   var reply_content = $('#reply_content').val();
   var to = "{$message['to'][0]['member_uid']}";
   if('' == reply_content) {

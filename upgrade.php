@@ -1,12 +1,12 @@
 <?php
 /**
- * 1. 核心升级 + 应用升级
- * 2. 夸版本升级 (即: 数据库的夸版本升级)
+ * 1. 核心升級 + 應用升級
+ * 2. 誇版本升級 (即: 資料庫的誇版本升級)
  */
 error_reporting(E_ERROR);
 header('Content-type: text/html; charset=UTF-8');
 
-/*** 增加统计代码 ***/
+/*** 增加統計程式碼 ***/
 
 define('SITE_PATH','');
 $_REQUEST = array_merge($_GET,$_POST);
@@ -21,102 +21,102 @@ $dbconfig['DB_TYPE'] = $config['DB_TYPE'];
 $dbconfig['DB_HOST'] = $config['DB_HOST'];
 $dbconfig['DB_NAME'] = $config['DB_NAME'];
 $dbconfig['DB_USER'] = $config['DB_USER'];
-$dbconfig['DB_PWD']	 = $config['DB_PWD'];
+$dbconfig['DB_PWD']  = $config['DB_PWD'];
 $dbconfig['DB_PORT'] = $config['DB_PORT'];
 $dbconfig['DB_PREFIX'] = $config['DB_PREFIX'];
 $dbconfig['DB_CHARSET'] = $config['DB_CHARSET'];
 
-//实例化数据库
-$db	= new Db($dbconfig);
+//例項化資料庫
+$db = new Db($dbconfig);
 $result = $db->query("SELECT * FROM ts_onlive_site WHERE siteip='".$siteip."';");
 if(!$result) {
-	$add_result = $db->execute('INSERT INTO ts_onlive_site (`sitehost`,`siteip`,`sitedata`,`version`) VALUES ("'.$sitehost.'","'.$siteip.'","", "'.$version.'");');
+    $add_result = $db->execute('INSERT INTO ts_onlive_site (`sitehost`,`siteip`,`sitedata`,`version`) VALUES ("'.$sitehost.'","'.$siteip.'","", "'.$version.'");');
 }
 
 $result = array();
-// 模拟数据
-$result['info'] = 'ThinkSNS V3 预览版于2013年1月21日发布，<a href="http://demo.thinksns.com/t3/">查看详情</a>';
+// 模擬資料
+$result['info'] = 'ThinkSNS V3 預覽版於2013年1月21日釋出，<a href="http://demo.thinksns.com/t3/">檢視詳情</a>';
 
-// 输出结果
+// 輸出結果
 switch(strtolower($_REQUEST['output_format'])) {
-	case 'json':
-		echo json_encode($result);
-		break;
-	case 'php':
-		dump($result);
-		break;
-	default:
-		echo serialize($result);
+case 'json':
+    echo json_encode($result);
+    break;
+case 'php':
+    dump($result);
+    break;
+default:
+    echo serialize($result);
 }
 
 exit();
 
 /**
- * 获取应用的最新版本的信息 (包括"核心")
+ * 獲取應用的最新版本的資訊 (包括"核心")
  *
- * 注意: 本函数不检查版本号的有效性, 请在调用本函数前检查.
+ * 注意: 本函數不檢查版本號的有效性, 請在呼叫本函數前檢查.
  *
- * @param string $app			  应用名
- * @param string $now_version	  应用当前版本的版本号
- * @param string $lastest_version 应用最新版本的版本号
+ * @param string $app             應用名
+ * @param string $now_version     應用當前版本的版本號
+ * @param string $lastest_version 應用最新版本的版本號
  * @return array
  * <code>
  * array(
- *     'error'			        => '0', 	// 无错误
- *     'error_message'	        => '',  	// 无错误信息
- *     'has_update'		        => int, 	// 0: 无更新 1:有更新
- *     'version'				=> string,  // 版本号 [仅核心(Core)时有效]
- *     'current_version_number' => int, 	// 当前版本的版本号
- *     'lastest_version_number' => int, 	// 最新版本的版本号
- *     'download_url'           => string,	// 下载地址
- *     'changelog'				=> text,    // ChangeLog
+ *     'error'                  => '0',     // 無錯誤
+ *     'error_message'          => '',      // 無錯誤資訊
+ *     'has_update'             => int,     // 0: 無更新 1:有更新
+ *     'version'                => string,  // 版本號 [僅核心(Core)時有效]
+ *     'current_version_number' => int,     // 當前版本的版本號
+ *     'lastest_version_number' => int,     // 最新版本的版本號
+ *     'download_url'           => string,  // 下載地址
+ *     'changelog'              => text,    // ChangeLog
  * )
  * </code>
  */
 function getLastestVersionInfo($app, $current_version, $lastest_version)
 {
-	if ($current_version >= $lastest_version)
-		return array(
-				'error'						=> '0',
-				'error_message'				=> '',
-				'has_update'				=> '0',
-				'current_version_number'	=> $current_version,
-				'lastest_version_number'	=> $lastest_version,);
+    if ($current_version >= $lastest_version)
+        return array(
+            'error'                     => '0',
+            'error_message'             => '',
+            'has_update'                => '0',
+            'current_version_number'    => $current_version,
+            'lastest_version_number'    => $lastest_version,);
 
-	global $versions;
-	// 下载地址
-	$var_download_url = $app . '_download_url_' . $lastest_version;
-	global $$var_download_url;
-	$info = array(
-				'error'						=> '0',
-				'error_message'				=> '',
-				'has_update'				=> '1',
-				'current_version_number'	=> $current_version,
-				'lastest_version_number'	=> $lastest_version,
-				'download_url'				=> $$var_download_url);
-	// 版本名称 (核心升级时必须, 如: ThinkSNS 2.1 Build 10992)
-	if ($app == 'core') {
-		$var_core_version = 'core_version_' . $lastest_version;
-		global $$var_core_version;
-		$info['lastest_version']  = $$var_core_version;
-	}
-	// changelog
-	$info['changelog'] = '';
-	foreach ($versions[$app] as $version_no) {
-		if ($current_version >= $version_no)
-			continue ;
+    global $versions;
+    // 下載地址
+    $var_download_url = $app . '_download_url_' . $lastest_version;
+    global $$var_download_url;
+    $info = array(
+        'error'                     => '0',
+        'error_message'             => '',
+        'has_update'                => '1',
+        'current_version_number'    => $current_version,
+        'lastest_version_number'    => $lastest_version,
+        'download_url'              => $$var_download_url);
+    // 版本名稱 (核心升級時必須, 如: ThinkSNS 2.1 Build 10992)
+    if ($app == 'core') {
+        $var_core_version = 'core_version_' . $lastest_version;
+        global $$var_core_version;
+        $info['lastest_version']  = $$var_core_version;
+    }
+    // changelog
+    $info['changelog'] = '';
+    foreach ($versions[$app] as $version_no) {
+        if ($current_version >= $version_no)
+            continue ;
 
-		$var_changelog = $app . '_changelog_' . $version_no;
-		global $$var_changelog;
-		$info['changelog'] .= $$var_changelog;
-	}
-	// 版本列表
-	$info['version_number_list'] = $versions[$app];
+        $var_changelog = $app . '_changelog_' . $version_no;
+        global $$var_changelog;
+        $info['changelog'] .= $$var_changelog;
+    }
+    // 版本列表
+    $info['version_number_list'] = $versions[$app];
 
-	return $info;
+    return $info;
 }
 
-// 浏览器友好的输出
+// 瀏覽器友好的輸出
 function dump($var, $echo=true,$label=null, $strict=true)
 {
     $label = ($label===null) ? '' : rtrim($label) . ' ';
@@ -145,61 +145,61 @@ function dump($var, $echo=true,$label=null, $strict=true)
 
 
 function h($text) {
-	//过滤标签
-	$text	=	nl2br($text);
-	$text	=	htmlspecialchars_decode($text);
-	$text	=	strip_tags($text);
-	$text	=	str_ireplace(array("\r\t","\n\l","\r","\n","\t","\l","'",'&nbsp;','&amp;'),'',$text);
-	$text	=	str_ireplace(array(chr('0001'),chr('0002'),chr('0003'),chr('0004'),chr('0005'),chr('0006'),chr('0007'),chr('0008')),'',$text);
-	$text	=	str_ireplace(array(chr('0009'),chr('0010'),chr('0011'),chr('0012'),chr('0013'),chr('0014'),chr('0015'),chr('0016')),'',$text);
-	$text	=	str_ireplace(array(chr('0017'),chr('0018'),chr('0019'),chr('0020'),chr('0021'),chr('0022'),chr('0023'),chr('0024')),'',$text);
-	$text	=	str_ireplace(array(chr('0025'),chr('0026'),chr('0027'),chr('0028'),chr('0029'),chr('0030'),chr('0031'),chr('0032')),'',$text);
-	return $text;
+    //過濾標籤
+    $text   =   nl2br($text);
+    $text   =   htmlspecialchars_decode($text);
+    $text   =   strip_tags($text);
+    $text   =   str_ireplace(array("\r\t","\n\l","\r","\n","\t","\l","'",'&nbsp;','&amp;'),'',$text);
+    $text   =   str_ireplace(array(chr('0001'),chr('0002'),chr('0003'),chr('0004'),chr('0005'),chr('0006'),chr('0007'),chr('0008')),'',$text);
+    $text   =   str_ireplace(array(chr('0009'),chr('0010'),chr('0011'),chr('0012'),chr('0013'),chr('0014'),chr('0015'),chr('0016')),'',$text);
+    $text   =   str_ireplace(array(chr('0017'),chr('0018'),chr('0019'),chr('0020'),chr('0021'),chr('0022'),chr('0023'),chr('0024')),'',$text);
+    $text   =   str_ireplace(array(chr('0025'),chr('0026'),chr('0027'),chr('0028'),chr('0029'),chr('0030'),chr('0031'),chr('0032')),'',$text);
+    return $text;
 }
 
 /**
  +------------------------------------------------------------------------------
- * ThinkPHP 简洁模式数据库中间层实现类
- * 只支持mysql
+ * ThinkPHP 簡潔模式資料庫中間層實現類
+ * 只支援mysql
  +------------------------------------------------------------------------------
  */
 class Db
 {
 
-    static private $_instance	= null;
-    // 是否显示调试信息 如果启用会在日志文件记录sql语句
-    public $debug				= false;
-    // 是否使用永久连接
+    static private $_instance   = null;
+    // 是否顯示偵錯資訊 如果啟用會在日志檔案記錄sql語句
+    public $debug               = false;
+    // 是否使用永久連線
     protected $pconnect         = false;
-    // 当前SQL指令
-    protected $queryStr			= '';
-    // 最后插入ID
-    protected $lastInsID		= null;
-    // 返回或者影响记录数
-    protected $numRows			= 0;
-    // 返回字段数
-    protected $numCols			= 0;
-    // 事务指令数
-    protected $transTimes		= 0;
-    // 错误信息
-    protected $error			= '';
-    // 当前连接ID
-    protected $linkID			=   null;
-    // 当前查询ID
-    protected $queryID			= null;
-    // 是否已经连接数据库
-    protected $connected		= false;
-    // 数据库连接参数配置
-    protected $config			= '';
-    // SQL 执行时间记录
+    // 當前SQL指令
+    protected $queryStr         = '';
+    // 最後插入ID
+    protected $lastInsID        = null;
+    // 返回或者影響記錄數
+    protected $numRows          = 0;
+    // 返回欄位數
+    protected $numCols          = 0;
+    // 事務指令數
+    protected $transTimes       = 0;
+    // 錯誤資訊
+    protected $error            = '';
+    // 當前連線ID
+    protected $linkID           =   null;
+    // 當前查詢ID
+    protected $queryID          = null;
+    // 是否已經連線資料庫
+    protected $connected        = false;
+    // 資料庫連線參數配置
+    protected $config           = '';
+    // SQL 執行時間記錄
     protected $beginTime;
     /**
      +----------------------------------------------------------
-     * 架构函数
+     * 架構函數
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
-     * @param array $config 数据库配置数组
+     * @param array $config 資料庫配置陣列
      +----------------------------------------------------------
      */
     public function __construct($config=''){
@@ -211,7 +211,7 @@ class Db
 
     /**
      +----------------------------------------------------------
-     * 连接数据库方法
+     * 連線資料庫方法
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -221,7 +221,7 @@ class Db
     public function connect() {
         if(!$this->connected) {
             $config =   $this->config;
-            // 处理不带端口号的socket连接情况
+            // 處理不帶埠號的socket連線情況
             $host = $config['hostname'].($config['hostport']?":{$config['hostport']}":'');
             if($this->pconnect) {
                 $this->linkID = mysql_pconnect( $host, $config['username'], $config['password']);
@@ -233,23 +233,23 @@ class Db
             }
             $dbVersion = mysql_get_server_info($this->linkID);
             if ($dbVersion >= "4.1") {
-                //使用UTF8存取数据库 需要mysql 4.1.0以上支持
+                //使用UTF8存取資料庫 需要mysql 4.1.0以上支援
                 mysql_query("SET NAMES 'UTF8'", $this->linkID);
             }
-            //设置 sql_model
+            //設定 sql_model
             if($dbVersion >'5.0.1'){
                 mysql_query("SET sql_mode=''",$this->linkID);
             }
-            // 标记连接成功
+            // 標記連線成功
             $this->connected    =   true;
-            // 注销数据库连接配置信息
+            // 登出資料庫連線配置資訊
             unset($this->config);
         }
     }
 
     /**
      +----------------------------------------------------------
-     * 释放查询结果
+     * 釋放查詢結果
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -261,8 +261,8 @@ class Db
 
     /**
      +----------------------------------------------------------
-     * 执行查询 主要针对 SELECT, SHOW 等指令
-     * 返回数据集
+     * 執行查詢 主要針對 SELECT, SHOW 等指令
+     * 返回資料集
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -277,7 +277,7 @@ class Db
         $this->connect();
         if ( !$this->linkID ) return false;
         if ( $str != '' ) $this->queryStr = $str;
-        //释放前次的查询结果
+        //釋放前次的查詢結果
         if ( $this->queryID ) {    $this->free();    }
         $this->Q(1);
         $this->queryID = mysql_query($this->queryStr, $this->linkID);
@@ -295,7 +295,7 @@ class Db
 
     /**
      +----------------------------------------------------------
-     * 执行语句 针对 INSERT, UPDATE 以及DELETE
+     * 執行語句 針對 INSERT, UPDATE 以及DELETE
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -310,7 +310,7 @@ class Db
         $this->connect();
         if ( !$this->linkID ) return false;
         if ( $str != '' ) $this->queryStr = $str;
-        //释放前次的查询结果
+        //釋放前次的查詢結果
         if ( $this->queryID ) {    $this->free();    }
         $this->W(1);
         $result =   mysql_query($this->queryStr, $this->linkID) ;
@@ -330,7 +330,7 @@ class Db
 
     /**
      +----------------------------------------------------------
-     * 获得所有的查询数据
+     * 獲得所有的查詢資料
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -344,7 +344,7 @@ class Db
             throw_exception($this->error());
             return false;
         }
-        //返回数据集
+        //返回資料集
         $result = array();
         if($this->numRows >0) {
             while($row = mysql_fetch_assoc($this->queryID)){
@@ -357,7 +357,7 @@ class Db
 
     /**
      +----------------------------------------------------------
-     * 关闭数据库
+     * 關閉資料庫
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -375,8 +375,8 @@ class Db
 
     /**
      +----------------------------------------------------------
-     * 数据库错误信息
-     * 并显示当前的SQL语句
+     * 資料庫錯誤資訊
+     * 並顯示當前的SQL語句
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -386,18 +386,18 @@ class Db
     public function error() {
         $this->error = mysql_error($this->linkID);
         if($this->queryStr!=''){
-            $this->error .= "\n [ SQL语句 ] : ".$this->queryStr;
+            $this->error .= "\n [ SQL語句 ] : ".$this->queryStr;
         }
         return $this->error;
     }
 
     /**
      +----------------------------------------------------------
-     * SQL指令安全过滤
+     * SQL指令安全過濾
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
-     * @param string $str  SQL字符串
+     * @param string $str  SQL字元串
      +----------------------------------------------------------
      * @return string
      +----------------------------------------------------------
@@ -408,70 +408,70 @@ class Db
 
    /**
      +----------------------------------------------------------
-     * 析构方法
+     * 析構方法
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
-     */
+    */
     public function __destruct()
     {
-        // 关闭连接
+        // 關閉連線
         $this->close();
     }
 
     /**
      +----------------------------------------------------------
-     * 取得数据库类实例
+     * 取得資料庫類例項
      +----------------------------------------------------------
      * @static
      * @access public
      +----------------------------------------------------------
-     * @return mixed 返回数据库驱动类
+     * @return mixed 返回資料庫驅動類
      +----------------------------------------------------------
      */
     public static function getInstance($db_config='')
     {
-		if ( self::$_instance==null ){
-			self::$_instance = new Db($db_config);
-		}
-		return self::$_instance;
+        if ( self::$_instance==null ){
+            self::$_instance = new Db($db_config);
+        }
+        return self::$_instance;
     }
 
     /**
      +----------------------------------------------------------
-     * 分析数据库配置信息，支持数组和DSN
+     * 分析資料庫配置資訊，支援陣列和DSN
      +----------------------------------------------------------
      * @access private
      +----------------------------------------------------------
-     * @param mixed $db_config 数据库配置信息
+     * @param mixed $db_config 資料庫配置資訊
      +----------------------------------------------------------
      * @return string
      +----------------------------------------------------------
      */
     private function parseConfig($_db_config='') {
-		// 如果配置为空，读取配置文件设置
-		$db_config = array (
-			'dbms'		=>   $_db_config['DB_TYPE'],
-			'username'	=>   $_db_config['DB_USER'],
-			'password'	=>   $_db_config['DB_PWD'],
-			'hostname'	=>   $_db_config['DB_HOST'],
-			'hostport'	=>   $_db_config['DB_PORT'],
-			'database'	=>   $_db_config['DB_NAME'],
-			'dsn'		=>   $_db_config['DB_DSN'],
-			'params'	=>   $_db_config['DB_PARAMS'],
-		);
+        // 如果配置為空，讀取配置檔案設定
+        $db_config = array (
+            'dbms'      =>   $_db_config['DB_TYPE'],
+            'username'  =>   $_db_config['DB_USER'],
+            'password'  =>   $_db_config['DB_PWD'],
+            'hostname'  =>   $_db_config['DB_HOST'],
+            'hostport'  =>   $_db_config['DB_PORT'],
+            'database'  =>   $_db_config['DB_NAME'],
+            'dsn'       =>   $_db_config['DB_DSN'],
+            'params'    =>   $_db_config['DB_PARAMS'],
+        );
         return $db_config;
     }
 
     /**
      +----------------------------------------------------------
-     * 数据库调试 记录当前SQL
+     * 資料庫偵錯 記錄當前SQL
      +----------------------------------------------------------
      * @access protected
      +----------------------------------------------------------
      */
     protected function debug() {
-        // 记录操作结束时间
+        // 記錄操作結束時間
         if ( $this->debug )    {
             $runtime    =   number_format(microtime(TRUE) - $this->beginTime, 6);
             Log::record(" RunTime:".$runtime."s SQL = ".$this->queryStr,Log::SQL);
@@ -480,7 +480,7 @@ class Db
 
     /**
      +----------------------------------------------------------
-     * 查询次数更新或者查询
+     * 查詢次數更新或者查詢
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -495,14 +495,14 @@ class Db
             return $_times;
         }else{
             $_times++;
-            // 记录开始执行时间
+            // 記錄開始執行時間
             $this->beginTime = microtime(TRUE);
         }
     }
 
     /**
      +----------------------------------------------------------
-     * 写入次数更新或者查询
+     * 寫入次數更新或者查詢
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -517,14 +517,14 @@ class Db
             return $_times;
         }else{
             $_times++;
-            // 记录开始执行时间
+            // 記錄開始執行時間
             $this->beginTime = microtime(TRUE);
         }
     }
 
     /**
      +----------------------------------------------------------
-     * 获取最近一次查询的sql语句
+     * 獲取最近一次查詢的sql語句
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -535,4 +535,4 @@ class Db
         return $this->queryStr;
     }
 
-}//类定义结束
+}//類定義結束

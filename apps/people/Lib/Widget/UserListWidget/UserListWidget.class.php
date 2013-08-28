@@ -1,25 +1,25 @@
 <?php
 /**
- * 用户展示Widget
+ * 使用者展示Widget
  * @author zivss <guolee226@gmail.com>
  * @version TS3.0
  */
 class UserListWidget extends Widget
 {
-	/**
-	 * 模板渲染
-	 * @param array $data 相关数据
-	 * @return string 用户展示列表
-	 */
-	public function render($data) {
-        // 设置模板
+    /**
+     * 模板渲染
+     * @param array $data 相關資料
+     * @return string 使用者展示列表
+     */
+    public function render($data) {
+        // 設定模板
         $template = '';
         if(in_array($data['type'], array('tag', 'area'))) {
             $template = 'filter';
         } else {
             $template = 'user';
         }
-        // 获取一级行业分类
+        // 獲取一級行業分類
         $var['cid'] = intval($data['cid']);
         $var['sex'] = intval($data['sex']);
         $var['area'] = intval($data['area']);
@@ -30,7 +30,7 @@ class UserListWidget extends Widget
         $var['userList'] = D('People', 'people')->getPeople($var, $var['type']);
         // 渲染模版
         $content = $this->renderFile(dirname(__FILE__)."/".$template.".html", $var);
-        // 输出数据
+        // 輸出資料
         return $content;
     }
 }

@@ -5,11 +5,11 @@ var islock = 0;
 function complete( id , obj){
 	$.post(U('public/Task/completeCustom') , {id:id} , function (res){
 		if ( res == 0 ){
-			ui.error('未完成该任务');
+			ui.error('未完成該任務');
 		} else if( res == 2 ){
-			ui.error('不能重复领取');
+			ui.error('不能重複領取');
 		}else if ( res == 3){
-			ui.error('已领完');
+			ui.error('已領完');
 		}else{
 			ui.box.show( res );
 			$('#step_'+id).html('<img src="__APP__/image/ico-perform.png" />');
@@ -36,14 +36,14 @@ function postfeed(id){
           <div class="boxShadow">
           	    <div class="find-type">
 	   	   	   	   <div class="app-title clearfix">
-                       <a href="{:U('public/Medal/index')}" class="right">查看我的勋章</a>  
-                       <h4 class="left"><img src="__APP__/image/ico-app-task.png" />&nbsp;&nbsp;任务</h4>                    
+                       <a href="{:U('public/Medal/index')}" class="right">檢視我的勳章</a>  
+                       <h4 class="left"><img src="__APP__/image/ico-app-task.png" />&nbsp;&nbsp;任務</h4>                    
                        <div class="app-tab-menu clearfix" style="margin:0 0 0 130px;">
                        	   
                            <ul>
-                             <li><a href="{:U('public/Task/index' , array('type'=>2))}">主线任务</a><i class="line"></i></li>
-                             <li><a href="{:U('public/Task/index' , array('type'=>1))}">每日任务</a><i class="line"></i></li>
-                             <li><a href="{:U('public/Task/customIndex')}" class="current">副本任务<span class="triangle"></span></a></li>
+                             <li><a href="{:U('public/Task/index' , array('type'=>2))}">主線任務</a><i class="line"></i></li>
+                             <li><a href="{:U('public/Task/index' , array('type'=>1))}">每日任務</a><i class="line"></i></li>
+                             <li><a href="{:U('public/Task/customIndex')}" class="current">副本任務<span class="triangle"></span></a></li>
                            </ul>
                        </div>
                    </div>
@@ -53,11 +53,11 @@ function postfeed(id){
                     <div class="task-list-title clearfix">
                        <ul>
                            <!--<li class="c0">&nbsp;</li>-->
-                           <li class="c10">任务名称</li>
-                           <li class="c11">条件</li>
-                           <li class="c2 c12">积分奖励</li>
-                           <li class="c3 c13">勋章奖励</li>
-                           <li class="c4">状态</li>
+                           <li class="c10">任務名稱</li>
+                           <li class="c11">條件</li>
+                           <li class="c2 c12">積分獎勵</li>
+                           <li class="c3 c13">勳章獎勵</li>
+                           <li class="c4">狀態</li>
                         </ul>
                     </div>
                     <div class="task-lists">
@@ -75,19 +75,19 @@ function postfeed(id){
                                <span class="f3">{$v['surplus']}</span>
                                <php>}</php>
                                </li>
-                               <li class="c2 c12"><span>经验值<em>+<php>echo $v['reward']->exp;</php></em>点</span><span>财富值<em>+<php>echo $v['reward']->score;</php></em>点</span></li>
-                               <li class="c3 c13"><span><php>if ( $v['reward']->medal->name ){</php><img src="<php>echo getImageUrl($v['reward']->medal->src);</php>" width="50" height="50"/><php>echo $v['reward']->medal->name;}else{echo '无';}</php></span></li>
+                               <li class="c2 c12"><span>經驗值<em>+<php>echo $v['reward']->exp;</php></em>點</span><span>財富值<em>+<php>echo $v['reward']->score;</php></em>點</span></li>
+                               <li class="c3 c13"><span><php>if ( $v['reward']->medal->name ){</php><img src="<php>echo getImageUrl($v['reward']->medal->src);</php>" width="50" height="50"/><php>echo $v['reward']->medal->name;}else{echo '無';}</php></span></li>
                                <li class="c4 c14">
                                <php>if($v['status'] == 'ing'){</php>
 	                               <php>if($v['isfull']){</php>
-	                               			已领完
+	                               			已領完
 	                               <php>}else{</php>
 	                               		<php>if($v['iscomplete']){</php>
 	                               			<span id="step_{$v.id}">
 	                               			<php>if( $v['receive']){</php>
 												<img src="__APP__/image/ico-perform.png" />
 											<php>}else{</php>
-												<a href="javascript:void(0);" onclick="complete({$v['id']},this)" class="btn-att-green">领取奖励</a>
+												<a href="javascript:void(0);" onclick="complete({$v['id']},this)" class="btn-att-green">領取獎勵</a>
 											<php>}</php>
 											</span>
 	                               		<php>}else{</php>
@@ -95,9 +95,9 @@ function postfeed(id){
 	                               		<php>}</php>
 	                               	<php>}</php>
 	                             <php>}else if($v['status'] == 'coming'){</php>
-	                             	即将开始
+	                             	即將開始
 	                             <php>}else{</php>
-	                             	已过期
+	                             	已過期
 	                             <php>}</php>
                                	</li>
                             </ul>

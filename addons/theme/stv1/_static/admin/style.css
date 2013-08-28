@@ -5,7 +5,7 @@
  * Ver: thinksns 2.0
  */
 
-/*头部*/
+/*頭部*/
 .header { height:75px;_height:75px; text-align:left; margin:0 auto; background:#2E4C8C url(images/header_bg.gif) repeat-x 0px bottom; z-index:1; border-bottom:5px solid #1e325c; position:relative }
 .header .logo { position:absolute; top:0px; left:0px; background: url(images/logo.jpg) no-repeat 0px 0px; height:65px; width:200px; }
 .header .logo a { height: 59px; width: 200px; display: block; text-decoration: none; }
@@ -16,7 +16,7 @@
 .header .nav_sub a { color:#fff; }
 .header_line { background-color:#dee4ed; height:9px; padding-left:200px }
 .header_line span { background:#dee4ed url(images/top_line.gif) repeat-x 0 0; height:9px; display:block; overflow:hidden; }
-/*左侧菜单*/
+/*左側選單*/
 .LeftMenu { height: auto; margin-left:5px; text-align:left }
 .MenuList ul, .MenuList li { list-style-type: none; float:left; width:100% }
 .MenuList a { display: block; width: 100%; line-height: 32px; float:left }
@@ -28,7 +28,7 @@
 .treemenu { color: #FFFFFF; background: url(images/ArrOn.png) no-repeat; text-indent: 25px; margin-bottom: 5px; }
 a.actuator:link, a.actuator:visited, a.actuator:hover, a.actuator:active { color: #FFFFFF; margin: 0px; padding: 0px; font-size:14px; font-weight:bold; }
 #switchPoint { cursor: pointer; }
-/*右侧内容*/
+/*右側內容*/
 .so_main { text-align:left; margin:0 10px; }
 .page_tit { font-size:14px; font-weight:bold; color:#1e325c; line-height:40px; }
 /*TAB*/
@@ -42,7 +42,7 @@ a.actuator:link, a.actuator:visited, a.actuator:hover, a.actuator:active { color
 .tit_tab2 a.on { font-weight:bold; color:#333 }
 .ui-sortable { }
 .ui-sortable li { float:left; padding:5px; }
-/*表单样式*/
+/*表單樣式*/
 .form { padding-top:10px; border-top:2px solid #9cb8cc; }
 .form h3 { line-height:30px; font-size:12px; color:#333; border-bottom:1px solid #9cb8cc; }
 .form dl { }
@@ -52,7 +52,7 @@ a.actuator:link, a.actuator:visited, a.actuator:hover, a.actuator:active { color
 .form dd .radio { margin-bottom:5px; }
 .form p { color:#7d7d7d; line-height:20px; margin:0; padding:0 }
 .page_btm { padding:10px 0; border-top:1px solid #9cb8cc;text-align:center }
-/*表单2样式*/
+/*表單2樣式*/
 .form2 { padding-top:10px; border-top:2px solid #9cb8cc; }
 .form2 h3 { line-height:30px; font-size:12px; color:#333; border-bottom:1px solid #9cb8cc; margin:10px 0 }
 .form2 dl { }
@@ -63,7 +63,7 @@ a.actuator:link, a.actuator:visited, a.actuator:hover, a.actuator:active { color
 .form2 label {}
 
 .no_line { border:0 none; }
-/*列表样式*/
+/*列表樣式*/
 .bg_on { background-color:#ECEFF4; }
 .bg_hover { background-color:#F3F3F3; }
 .Toolbar_inbox { background-color:#d2dbea; padding:5px; line-height:26px; border-bottom:1px solid #c8cfda }
@@ -96,7 +96,7 @@ a.actuator:link, a.actuator:visited, a.actuator:hover, a.actuator:active { color
 .ico_btm img { background-position:-24px 0; }
 .ico_top:hover img { background-position:0 0; }
 .ico_btm:hover img { background-position:-35px 0; }
-/*提示信息*/
+/*提示資訊*/
 .html_clew_box { border:3px solid #7ad3ff; color:#1b9103; position:absolute; z-index:999999; background:#fff url(images/html_clew_box.gif) repeat-x 0 0; padding:0 25px 0 68px; ; margin-top:1px; float:left; }
 .clew_error { background-position:0 bottom; color:#f00 }
 .html_clew_box_close { clear:both; display:none }
@@ -106,15 +106,15 @@ a.actuator:link, a.actuator:visited, a.actuator:hover, a.actuator:active { color
 .boxy-content { text-align:left; padding:10px; }
 .boxy-content p{padding:0;margin:10px 0;*margin:7px 0;}
 #input_dismissed { margin:10px 0 10px 0; }
-/*页面弹出层*/
+/*頁面彈出層*/
 .html_pop_box { -moz-border-radius:5px 5px 5px 5px; background:none repeat scroll 0 0 #333333; height:100%; margin:-8px; opacity:0.5; padding:8px; position:absolute; width:100%; z-index:-1; }
-/*选择部门*/
+/*選擇部門*/
 .selection { background-color:#fbfbfb; border:1px solid #CCC;width:400px }
 .selection_left { float:left; width:195px; }
 .selection_left li { padding:8px; color:#666; border-bottom:1px solid #CCC; background-color:#fff }
 .selection_right { margin-left:195px; background-color:#fff; border-left:1px solid #CCCCCC; _width:90%;_height:90%;padding:10px }
 .selection .sort { }
-/*翻页*/
+/*翻頁*/
 .page { text-align: center }
 .page a { PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; COLOR: #333; MARGIN-RIGHT: 2px; PADDING-TOP: 2px; TEXT-DECORATION: none }
 .page a:hover { PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; MARGIN-RIGHT: 2px; PADDING-TOP: 2px }

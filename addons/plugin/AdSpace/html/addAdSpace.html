@@ -43,7 +43,7 @@ a.ico-close-small:hover {
 <form method="post" action="{:Addons::adminUrl($AdSpaceAction)}" enctype="multipart/form-data" autocomplete="off" onsubmit="return checkAdSpaceForm()" model-node='ad_post'>
   <div class="form2">
     <dl class="lineD">
-      <dt><font color="red"> * </font>标题：</dt>
+      <dt><font color="red"> * </font>標題：</dt>
       <dd>
         <input type="text" class="s-txt" name="title" value="{$data.title}" />
       </dd>
@@ -68,20 +68,20 @@ a.ico-close-small:hover {
       </dd>
     </dl>
     <dl class="lineD">
-      <dt>广告类型：</dt>
+      <dt>廣告類型：</dt>
       <dd>
         <php>if($editPage):</php>
           <switch name="data.display_type">
             <case value="1">HTML</case>
-            <case value="2">代码</case>
-            <case value="3">轮播</case>
+            <case value="2">程式碼</case>
+            <case value="3">輪播</case>
           </switch>
           <input type="hidden" name="display_type" value="{$data['display_type']}" />
         <php>else:</php>
           <php>!isset($data['display_type']) && $data['display_type'] = 1;</php>
           <label><input type="radio" onclick="showDisplayType('html')" name="display_type" value="1" <eq name="data.display_type" value="1">checked</eq> />HTML</label>
-          <label><input type="radio" onclick="showDisplayType('code')" name="display_type" value="2" <eq name="data.display_type" value="2">checked</eq> />代码</label>
-          <label><input type="radio" onclick="showDisplayType('pic')" name="display_type" value="3" <eq name="data.display_type" value="3">checked</eq> />轮播</label>
+          <label><input type="radio" onclick="showDisplayType('code')" name="display_type" value="2" <eq name="data.display_type" value="2">checked</eq> />程式碼</label>
+          <label><input type="radio" onclick="showDisplayType('pic')" name="display_type" value="3" <eq name="data.display_type" value="3">checked</eq> />輪播</label>
         <php>endif;</php>
       </dd>
     </dl>
@@ -103,8 +103,8 @@ a.ico-close-small:hover {
         <div class="pic-main left" id="div_pic_list">
           <div>
             <ul>
-              <li>图片地址</li>
-              <li>链接地址</li>
+              <li>圖片地址</li>
+              <li>連結地址</li>
               <li>操作</li>
             </ul>
           </div>
@@ -144,15 +144,15 @@ a.ico-close-small:hover {
       <input type="hidden" name="jumpUrl" value="{:Addons::adminPage('config')}" />
     </eq>
     <div class="page_btm">
-      <input type="submit" value="保存" class="btn_b" event-node="submit_btn"/>
+      <input type="submit" value="儲存" class="btn_b" event-node="submit_btn"/>
     </div>
   </div>
 </form>
 
 <script type="text/javascript">
 /**
- * 异步提交表单
- * @param object form 表单DOM对象
+ * 非同步提交表單
+ * @param object form 表單DOM物件
  * @return void
  */
 var ajaxSubmit = function(form) {
@@ -181,7 +181,7 @@ var ajaxSubmit = function(form) {
 };
 
 /**
- * 处理ajax返回数据之后的刷新操作
+ * 處理ajax返回資料之後的重新整理操作
  */
 var ajaxReload = function(obj,callback){
     if("undefined" == typeof(callback)){
@@ -201,12 +201,12 @@ M.addEventFns({
   submit_btn: {
     click: function(){
       E.sync();
-          // 判断标题数据正确性
+          // 判斷標題資料正確性
       if($.trim($('input[name="title"]').val()) == '') {
-        ui.error('标题不能为空');
+        ui.error('標題不能為空');
         return false;
       }
-      // 验证内容数据正确性
+      // 驗證內容資料正確性
       var displayType = 0;
       if($('input[name="display_type"]').length == 1) {
         displayType = parseInt($('input[name="display_type"]').val());
@@ -220,13 +220,13 @@ M.addEventFns({
       switch(displayType) {
         case 1:
           if($.trim(E.getData()) == '') {
-            ui.error('HTML内容不能为空');
+            ui.error('HTML內容不能為空');
             return false;
           }
           break;
         case 2:
           if($.trim($('textarea[name="code_form"]').val()) == '') {
-            ui.error('代码内容不能为空');
+            ui.error('程式碼內容不能為空');
             return false;
           }
           break;
@@ -244,7 +244,7 @@ M.addEventFns({
             status = false;
           }
           if(!status) {
-            ui.error('轮播内容不能为空');
+            ui.error('輪播內容不能為空');
             return false;
           }
           break;
@@ -256,7 +256,7 @@ M.addEventFns({
       // try{
       //   (function( node ) {
       //     var parent = node.parentNode;
-      //     // 判断node 类型，防止意外循环
+      //     // 判斷node 類型，防止意外迴圈
       //     if ( "FORM" === parent.nodeName ) {
       //       if ( "false" === args.ajax ) {
       //         ( ( "function" !== typeof parent.onsubmit ) || ( false !== parent.onsubmit() ) ) && parent.submit();
@@ -277,9 +277,9 @@ M.addEventFns({
 });
 
 M.addModelFns({
-  ad_post:{  //发布帖子
+  ad_post:{  //釋出帖子
     callback:function(txt){
-      ui.success('发布成功');
+      ui.success('釋出成功');
       setTimeout(function() {
         location.href = txt.data['jumpUrl'];
       }, 500);
@@ -288,8 +288,8 @@ M.addModelFns({
 });
 
 /**
- * 显示类型相关表单内容
- * @param string type 表单类型，html/code/pic
+ * 顯示類型相關表單內容
+ * @param string type 表單類型，html/code/pic
  * @return void
  */
 var showDisplayType = function(type)
@@ -317,7 +317,7 @@ var showDisplayType = function(type)
 
 var clickNum = $('#div_pic_list').children('div').length - 1;
 /**
- * 添加轮循图片输入表单
+ * 添加輪循圖片輸入表單
  * @return void
  */
 var addPic = function()
@@ -325,7 +325,7 @@ var addPic = function()
   var $pic = $('#div_pic_list');
   var max = 5;
   if($pic.children('div').length > max) {
-    alert('最多只能添加'+max+'张图片');
+    alert('最多只能添加'+max+'張圖片');
     return false;
   }
   clickNum++;
@@ -343,8 +343,8 @@ var addPic = function()
   return false;
 };
 /**
- * 删除轮循图片输入表单
- * @param integer divId 表单ID
+ * 刪除輪循圖片輸入表單
+ * @param integer divId 表單ID
  * @return void
  */
 var closePic = function(divId)
@@ -353,9 +353,9 @@ var closePic = function(divId)
   $divPic.remove();
 };
 /**
- * 移动轮循图片输入表单
- * @param integer divId 表单ID
- * @param string type 移动类型，up or down
+ * 移動輪循圖片輸入表單
+ * @param integer divId 表單ID
+ * @param string type 移動類型，up or down
  * @return void
  */
 var movePic = function(divId, type)
@@ -373,8 +373,8 @@ var movePic = function(divId, type)
   return false;
 };
 /**
- * 轮循图片上传图片
- * @param object obj 点击DOM对象
+ * 輪循圖片上傳圖片
+ * @param object obj 點選DOM物件
  * @return void
  */
 var uploadPic = function(obj, divId)
@@ -394,17 +394,17 @@ var uploadPic = function(obj, divId)
   });
 };
 // /**
-//  * 验证表单数据正确性
-//  * @return boolean 数据是否正确
+//  * 驗證表單資料正確性
+//  * @return boolean 資料是否正確
 //  */
 // var checkAdSpaceForm = function()
 // {
-//   // 判断标题数据正确性
+//   // 判斷標題資料正確性
 //   if($.trim($('input[name="title"]').val()) == '') {
-//     ui.error('标题不能为空');
+//     ui.error('標題不能為空');
 //     return false;
 //   }
-//   // 验证内容数据正确性
+//   // 驗證內容資料正確性
 //   var displayType = 0;
 //   if($('input[name="display_type"]').length == 1) {
 //     displayType = parseInt($('input[name="display_type"]').val());
@@ -418,13 +418,13 @@ var uploadPic = function(obj, divId)
 //   switch(displayType) {
 //     case 1:
 //       if($.trim(E.getData()) == '') {
-//         ui.error('HTML内容不能为空');
+//         ui.error('HTML內容不能為空');
 //         return false;
 //       }
 //       break;
 //     case 2:
 //       if($.trim($('textarea[name="code_form"]').val()) == '') {
-//         ui.error('代码内容不能为空');
+//         ui.error('程式碼內容不能為空');
 //         return false;
 //       }
 //       break;
@@ -442,7 +442,7 @@ var uploadPic = function(obj, divId)
 //         status = false;
 //       }
 //       if(!status) {
-//         ui.error('轮播内容不能为空');
+//         ui.error('輪播內容不能為空');
 //         return false;
 //       }
 //       break;

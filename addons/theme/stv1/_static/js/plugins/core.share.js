@@ -5,9 +5,9 @@
  */
 core.share = {
 	_init: function(attrs){
-			return true;			// 纯粹载入JS
+			return true;			// 純粹載入JS
 	},
-	// 发布分享
+	// 釋出分享
 	post_share: function(_this, mini_editor, textarea) {
 		var obj = this;
 		if( this.checkNums(textarea,'post') == false){
@@ -19,7 +19,7 @@ core.share = {
 			ui.error( L('PUBLIC_CENTE_ISNULL') );
 			return false;
 		}
-		// 获取评论checkbox值
+		// 獲取評論checkbox值
 		var comment_input = $(_this.parentModel).find('input');
 
 		if( comment_input.attr('checked') == 'checked' ){
@@ -44,7 +44,7 @@ core.share = {
 		ui.box.close();
 		return false;
 	},
-	// 检验字数方法
+	// 檢驗字數方法
 	checkNums: function(obj, post) {
 		if("undefined" == typeof(obj.parentModel.parentModel.parentModel.childModels['numsLeft'])) {
 			return true;
@@ -54,13 +54,13 @@ core.share = {
 		if(leftNums == initNums && 'undefined' != typeof(post)) {
 			return false;
 		}
-		// 获取剩余字数
+		// 獲取剩餘字數
 		if(leftNums >= 0) {
 			var html = leftNums== initNums ? L('PUBLIC_INPUT_TIPES',{'sum':'<span>'+leftNums+'</span>'}):L('PUBLIC_PLEASE_INPUT_TIPES',{'sum':'<span>'+leftNums+'</span>'});
 			obj.parentModel.parentModel.parentModel.childModels['numsLeft'][0].innerHTML = html;
 			$(obj).removeClass('fb');
 			if(leftNums == initNums && $(obj).find('img').size() == 0) {
-				return false;	//没有输入内容
+				return false;	//沒有輸入內容
 			}
 			return true;
 		} else {

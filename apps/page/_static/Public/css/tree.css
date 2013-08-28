@@ -18,7 +18,7 @@
 .generally{padding:15px;font-size:12px}
 .generally li{padding:5px 0;}
 
-/*  团队左侧内容  */
+/*  團隊左側內容  */
 .group_l{float:left;width:150px;padding-right:10px;text-align:left;}
 .group_pic{text-align:center;padding:5px 0;background-color:#FFF;text-align:center;margin:10px auto;width:130px;}
 .group_pic img{margin:0px auto;width:120px;display:block;}
@@ -33,7 +33,7 @@
 .Stat_info dd{color:#333333;line-height:20px;}
 .Stat_info dd span{color:#666;}
 
-/*  团队中间内容  */
+/*  團隊中間內容  */
 .group_c{float:left;width:585px;text-align:left;}
 .group_info{padding:0 0 15px 15px;}
 .group_info .h1_line{font-size:14px;color:#0b6c9e;line-height:25px;border-bottom:1px solid #CCC;margin-bottom:10px;}
@@ -52,12 +52,12 @@
 .user_list li a{line-height:20px;margin:0px;padding:0px;}
 .user_list li em{color:#999;text-align:center;display:block;line-height:16px;}
 
-/* 团队右侧内容  */
+/* 團隊右側內容  */
 .group_r{float:right;width:220px;text-align:left;}
 .tag{padding:15px;font-size:12px;}
 .tag a{margin-right:5px;}
 
-/*  右侧用户头像列表  */
+/*  右側使用者頭像列表  */
 .pic_list{overflow:hidden;clear:both;width:100%;padding:10px 0;}
 .pic_list li{width:72px;float:left;text-align:center;display:block;background-image:none;height:auto;padding-bottom:10px;}
 .pic_list li span{margin-right:auto;margin-left:auto;}
@@ -65,7 +65,7 @@
 .pic_list li em{color:#666666;text-align:center;display:block;line-height:16px;}
 .more{text-align:right;clear:none;padding-right:5px;line-height:25px;}
 	
-/*  右侧团队列表  */
+/*  右側團佇列表  */
 .group_Rlist{overflow:hidden;clear:both;padding:10px;}
 .group_Rlist li{display:block;clear:both;width:100%;font-size:12px;padding:8px 0;color:#999;}
 .group_Rlist .L{width:124px;}
@@ -79,18 +79,18 @@
 .group_Rlist2 li dd{height:55px;}
 .group_Rlist2 li dd em{color:#999;font-size:12px;white-space:nowrap;}
 	
-/*  创建新团队  */
+/*  創建新團隊  */
 .form{font-size:12px;padding-top:10px;}
 .form h3 strong{color:#000;}
 .form .li{line-height:25px;clear:both;}
 
-/*  团队内容页面右侧内容  */
+/*  團隊內容頁面右側內容  */
 .group_cr{float:left;width:820px;text-align:left;padding-bottom:20px;}
 	
-/*  团队搜索结果  */
+/*  團隊搜索結果  */
 .b_p_line{border:1px solid #ddd;padding:2px;}
 	
-/*  团队文档  */
+/*  團隊文件  */
 .dir_info{padding:0 15px 20px 15px;}
 .dir_info .ico_down{float:left;margin-right:20px;padding-top:35px;}
 .dir_info .info{float:left;width:640px;padding-top:20px;}
@@ -105,7 +105,7 @@
 .option2{background-color:#f5f5f5;text-align:right;font-size:12px;width:100%;margin-top:20px;}
 .option2 span{padding:0 5px;}
 	
-/*成员管理列表样式*/
+/*成員管理列表樣式*/
 .memberlist{overflow:hidden;}
 .memberlist li{clear:both;border-bottom:1px dashed #CCCCCC;padding:10px 0; width:100%;}
 .memberlist li p{line-height:18px;}
@@ -113,12 +113,12 @@
 .copylist dt{background-color:#F2F2F2;border-bottom:1px solid #909090;margin:0;padding:5px 0;line-height:18px;*padding-bottom:0;}
 .copylist dd{border-bottom:1px solid #EEEEEE;clear:both;margin:0;padding:5px 0;line-height:22px;*padding-bottom:0;}
 	
-/*组件管理*/
+/*元件管理*/
 .appManage{overflow:hidden;}
 .appManage dt{clear:both;border-bottom:1px dashed #CCCCCC;padding:5px 0; width:100%;color:#999;}
 .appManage dd{clear:both;border-bottom:1px dashed #CCCCCC;padding:5px 0; width:100%;line-height:22px;}
 	
-/*评论详细页面*/
+/*評論詳細頁面*/
 .forum_detail{padding:0 15px 20px 0px;}
 .forum_detail h1{font-size:14px;color:#0b6c9e;line-height:45px;}
 .forum_detail p{margin-bottom:15px;color:#686868;font-size:14px;line-height:180%}
@@ -141,20 +141,20 @@
 .quote .quote_box{margin:0px 3px 10px 10px;font-size:14px;line-height:22px;}
 .quote .quote_box .time{color:#666;font-size:12px;}
 
-/*博客列表样式*/
+/*部落格列表樣式*/
 .blog_inde_cont{line-height:22px;overflow:hidden;text-align:left;width:660px;float:left; }
 .blog_inde_cont .list_dl{margin:0 15px 10px 15px;}
 .blog_inde_cont .list_dl dd{font-size:12px;color:#666;line-height:160%;}
 .blog_inde_cont .list_dl dd .img{border:1px solid #DDDDDD;float:right;margin:0 0 0 10px;padding:2px;}
 .blog_inde_cont .list_dl dt{padding:10px 0;font-weight:bold;color:#069}
 	
-/*博客详细页面*/
+/*部落格詳細頁面*/
 .blog_detail{margin:0 15px 15px 15px;}
 .blog_detail h1{font-size:18px;line-height:180%;}
 .blog_lable{color:#666666;font-size:12px;line-height:22px;padding-top:10px;}
 .syzxye{width:99%;}
 	
-/*博客列表右侧样式*/
+/*部落格列表右側樣式*/
 .content_blog_right{width:148px;background-color:#f8f8f8;border:1px solid #ddd;float:right;}
 .blog_ass, .blog_pige, .blog_label, .blog_stat{font-size:12px;padding:10px;text-align:left;width:128px;}
 .blog_ass dt,.blog_pige dt,.blog_label dt,.blog_stat dt{padding-bottom:10px;font-weight:bold;}
@@ -164,7 +164,7 @@
 .blog_pige dd a,.blog_pige dd a:visited,.blog_stat dd a,.blog_stat dd a:visited{padding-right:5px;}
 .blog_pic{padding:10px;width:128px;}
 	
-/*博客列表右侧样式*/
+/*部落格列表右側樣式*/
 .cate_file_sort{width:100%;font-size:12px;}
 .cate_file_sort ul li{white-space:nowrap;padding-left:18px;}
 .cate_file_sort ul li.con{}
@@ -176,14 +176,14 @@
 .file_sort_left{float:left;width:180px;height:400px;overflow:auto;border:1px #999 solid;background-color:#FFF;padding-top:5px;padding-right:0px;padding-bottom:0px;padding-left:10px;}
 .file_sort_right{float:right;width:580px;height:405px;overflow:hidden;border:1px #999 solid;background-color:#FFF;}
 	
-/*wiki样式*/
+/*wiki樣式*/
 .wiki_C_C{ text-align:left;margin-left:15px;}
 .wiki_com{border:1px solid #ddd;font-size:12px;}
 .wiki_com_t{background-color:#f5f5f5;height:25px;line-height:25px;font-size:12px;font-weight:bold;text-indent:10px;}
 .wiki_com textarea{border:0;width:98.5%;overflow:auto;height:63px;padding-top:10px;padding-left:10px;}
 .wiki_com .in_put{margin:10px 15px;width:60%;margin-left:0;}
 	
-/*wiki详细页面*/
+/*wiki詳細頁面*/
 .wiki_cont_main{padding:10px;}
 .useraction{margin-left:300px;}
 .wiki_cont{overflow:hidden;text-align:left;padding-left:15px;}
@@ -196,26 +196,26 @@
 /* viki_pop */
 .viki_pop{width:293px;padding:0 20px;}
 	
-/*评论*/
+/*評論*/
 .comment_list{overflow:hidden;}
 .list_cont{width:700px;}
 .C_cont{}
 
-/*全部群组样式*/
+/*全部群組樣式*/
 .search{clear:both;margin:0px 15px;padding:0px;}
 .search li{clear:both; height:80px;height:160px;border-bottom:1px solid #DDDDDD;}
 .search li .cl{padding-top:20px;}
 .search li h3{font-size:14px;font-weight:bold;line-height:25px;}
 .search li p{line-height:24px;margin:0px;padding:0px;font-size:12px;color:#333;}
 
-/*团队列表样式*/
+/*團佇列表樣式*/
 .pager{margin-top:10px;text-align:right;padding-right:10px;}
 .pager img{vertical-align:middle;padding-bottom:5px;}
 .a_cl a,.a_cl a:visited{color:#666;text-decoration:none;}
 .a_cl a:hover{color:#333;text-decoration:underline;}
 .pager input,.pager select{border:1px solid #ddd;padding:4px;}
 
-/*团队上传样式*/
+/*團隊上傳樣式*/
 .insty{}
 .insty select{padding:3px;border:1px solid #ddd;margin-right:5px;margin-bottom:5px;}
 #category select{margin-right:3px;}

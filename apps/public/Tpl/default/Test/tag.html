@@ -1,26 +1,26 @@
 <include file="__THEME__/public_header" />
 <div style="margin:50px">
 	
-	给support添加tag,supportId
+	給support添加tag,supportId
 	{:W('Tag', array('width'=>'500px', 'appname'=>'support','apptable'=>'support','row_id'=>1))}
 	<br/>
-	显示标签,有链接地址
+	顯示標籤,有連結地址
 	{:W('Tag', array('width'=>'500px', 'appname'=>'support','apptable'=>'support','row_id'=>1,'tpl'=>'show','tag_url'=>'aaa'))}
 	<br/>
-	显示标签,没有链接地址
+	顯示標籤,沒有連結地址
 	{:W('Tag', array('width'=>'500px', 'appname'=>'support','apptable'=>'support','row_id'=>1,'tpl'=>'show'))}
 </div>
 <div>
 	<pre>
-		调用：W('Tag', array('width'=>'500px', 'appname'=>'support','apptable'=>'support','row_id'=>0,'tpl'=>'show','tag_url'=>'aaa','name'=>'public'))
-		参数说明：
-		width 		wigdet显示宽度
-		appname		资源对应的应用名称
-		apptable 	资源对应的表
-		row_id 		资源在资源所在表中的主键ID,为0表示该资源为新加资源，需要在资源添加,往sociax_app_tag表添加相关数据
-		tpl			显示模版，tag/show 默认是tag，如果为show表示只显示标签
-		tag_url		标签上的链接前缀，为空表示标签没有链接，只针对tpl=show有效
-		name 		输入框的input名称,标签的ID存储的隐藏域名称为 {name}_tags
+		呼叫：W('Tag', array('width'=>'500px', 'appname'=>'support','apptable'=>'support','row_id'=>0,'tpl'=>'show','tag_url'=>'aaa','name'=>'public'))
+		參數說明：
+		width 		wigdet顯示寬度
+		appname		資源對應的應用名稱
+		apptable 	資源對應的表
+		row_id 		資源在資源所在表中的主鍵ID,為0表示該資源為新加資源，需要在資源添加,往sociax_app_tag表添加相關資料
+		tpl			顯示模版，tag/show 默認是tag，如果為show表示只顯示標籤
+		tag_url		標簽上的連結字首，為空表示標籤沒有連結，只針對tpl=show有效
+		name 		輸入框的input名稱,標籤的ID存儲的隱藏域名稱為 {name}_tags
 	</pre>
 </div>
 <include file="__THEME__/public_footer" />

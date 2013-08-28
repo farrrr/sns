@@ -27,19 +27,19 @@
        </dd>
    </dl>
 <dl class="info clearfix">
-   <!-- 认证信息 start -->
+   <!-- 認證資訊 start -->
   <php>if($verifyInfo){</php>
-    <dd class="tag"><span>认证：</span>
+    <dd class="tag"><span>認證：</span>
      <div class="tag-inner">{$verifyInfo}</div>
     </dd>   
   <php>}</php>
-  <!-- 认证信息  end -->
+  <!-- 認證資訊  end -->
   <php>if(CheckPermission('core_normal','read_data')){</php>
 	  <neq name='user_tag' value=''>
        <dd class="tag"><span>{:L('PUBLIC_TAG')}：</span> <div class="tag-inner">{$user_tag}</div></dd>
     </neq>
    		<neq name='userInfo.intro' value=''>
-        <dd class="tag"><span>简介：</span>
+        <dd class="tag"><span>簡介：</span>
          <div class="tag-inner">{$userInfo['intro']|getShort=60,'...'}</div>
         </dd>   
     </neq>

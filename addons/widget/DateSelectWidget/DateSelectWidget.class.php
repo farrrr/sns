@@ -1,7 +1,7 @@
 <?php
 /**
- * 日期选择
- * @example 调用方法：W('DateSelect',array('name'=>'dateSelect','class'=>'s-txt','id'=>'dateSelectId','value'=>'','dtype'=>'full'))
+ * 日期選擇
+ * @example 呼叫方法：W('DateSelect',array('name'=>'dateSelect','class'=>'s-txt','id'=>'dateSelectId','value'=>'','dtype'=>'full'))
  * @author  jason <yangjs17@yeah.net> 
  * @version TS3.0
  */
@@ -10,11 +10,11 @@ class DateSelectWidget extends Widget {
 	private static $rand = 1;
 
 	/**
-	 * @param string name 组件input的名称
-	 * @param string class 组件input的样式
-	 * @param integer id 组件input的ID
-	 * @param string value 默认的值
-	 * @param string dtype 时间类型
+	 * @param string name 元件input的名稱
+	 * @param string class 元件input的樣式
+	 * @param integer id 元件input的ID
+	 * @param string value 默認的值
+	 * @param string dtype 時間類型
 	 */
 	public function render($data) {
 		$var = array();

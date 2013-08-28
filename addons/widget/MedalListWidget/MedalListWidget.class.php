@@ -1,6 +1,6 @@
 <?php
 /**
- * 勋章列表前台展示
+ * 勳章列表前臺展示
  * @author Stream
  *
  */
@@ -18,7 +18,7 @@ class MedalListWidget extends Widget{
 		}
 		$medalids = getSubByKey( $medals , 'id' );
 		$map['medal_id'] = array( 'in' , $medalids );
-		//加入缓存 如果勋章数目有变化的话 重新获取在缓存
+		//加入快取 如果勳章數目有變化的話 重新獲取在快取
 		$key = 'medal_user_'.$map['uid'].'_'.count( $medalids );
 		$usermedal = model( 'Cache' )->get( $key );
 		if ( !$usermedal ){

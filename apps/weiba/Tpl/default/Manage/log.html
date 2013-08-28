@@ -15,8 +15,8 @@
                  <div class="mod-feed-tab">
                     <ul class="inner-feed-nav">
                         <li <eq name="on" value="all">class="current"</eq>><a href="{:U('weiba/Manage/log',array('weiba_id'=>$weiba_id))}">全部</a></li>
-                        <li <eq name="on" value="setting">class="current"</eq>><a href="{:U('weiba/Manage/log',array('weiba_id'=>$weiba_id,'type'=>'setting'))}">基本信息管理</a></li>
-                        <li <eq name="on" value="member">class="current"</eq>><a href="{:U('weiba/Manage/log',array('weiba_id'=>$weiba_id,'type'=>'member'))}">成员管理</a></li>
+                        <li <eq name="on" value="setting">class="current"</eq>><a href="{:U('weiba/Manage/log',array('weiba_id'=>$weiba_id,'type'=>'setting'))}">基本資訊管理</a></li>
+                        <li <eq name="on" value="member">class="current"</eq>><a href="{:U('weiba/Manage/log',array('weiba_id'=>$weiba_id,'type'=>'member'))}">成員管理</a></li>
                         <li <eq name="on" value="notify">class="current"</eq>><a href="{:U('weiba/Manage/log',array('weiba_id'=>$weiba_id,'type'=>'notify'))}">公告管理</a></li>
                         <li <eq name="on" value="posts">class="current"</eq>><a href="{:U('weiba/Manage/log',array('weiba_id'=>$weiba_id,'type'=>'posts'))}">帖子管理</a></li>
                     </ul>
@@ -57,7 +57,7 @@ M.addModelFns({
   }
 });
 
-// 认证用户组用户筛选
+// 認證使用者組使用者篩選
 M.addEventFns({
   authenticate: {
     click: function() {
@@ -65,11 +65,11 @@ M.addEventFns({
       var url = U('club/Index/index');
       if(checked) {
         url += '&cid=' + $('#user_category_id').val() + '&authenticate=1';
-        // 刷新页面，显示数据
+        // 重新整理頁面，顯示資料
         window.location.href = url;
       } else {
         url += '&cid=' + $('#user_category_id').val() + '&authenticate=0';
-        // 刷新页面，显示数据
+        // 重新整理頁面，顯示資料
         window.location.href = url;
       }
     }

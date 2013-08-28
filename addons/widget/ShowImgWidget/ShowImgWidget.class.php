@@ -1,6 +1,6 @@
 <?php
 /**
- * 图片轮播JS
+ * 圖片輪播JS
  * @example {:W('showImg')}
  * @author jason
  * @version TS3.0
@@ -10,9 +10,9 @@ class ShowImgWidget extends Widget{
 	private static $rand = 0;
 
 	/**
-	 * @param string width 图片宽度
-	 * @param string height 图片高度
-	 * @param string tpl 要渲染的页面
+	 * @param string width 圖片寬度
+	 * @param string height 圖片高度
+	 * @param string tpl 要渲染的頁面
 	 */
 	public function render($data){
 		$var = array();
@@ -30,7 +30,7 @@ class ShowImgWidget extends Widget{
 		unset($var,$data);
 
 		self::$rand ++;
-        //输出数据
+        //輸出資料
 		return $content;
     }
 }

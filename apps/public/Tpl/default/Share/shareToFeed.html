@@ -1,5 +1,5 @@
 <php>if(CheckPermission('core_normal','feed_post')){</php>
-		<!-- 发布微博/微博 -->
+		<!-- 釋出微博/微博 -->
 		<div class="send_weibo diy-send-weibo" model-node="send_weibo">
 			<div class="title clearfix">
 				<div model-node="numsLeft" class="right num">{:L('PUBLIC_INPUT_CHARACTER_LIMIT',array('num'=>'<span>'.$initNums.'</span>'))}</div>
@@ -16,7 +16,7 @@
 				</div>
 				<div class="action clearfix" model-node='send_action'>
 					<div class="kind">
-					<div class="right release"><!--<span class="synchro">同步<i class="arrow-line-down"></i></span>-->{:Addons::hook('weibo_syn_middle_publish')}<a class="btn-grey-white" event-node='{$post_event}' event-args='type={$type}&app_name={$app_name}&topicHtml={$initHTML}&source_url={$source_url}' href="javascript:;"><span>发布</span></a></div>
+					<div class="right release"><!--<span class="synchro">同步<i class="arrow-line-down"></i></span>-->{:Addons::hook('weibo_syn_middle_publish')}<a class="btn-grey-white" event-node='{$post_event}' event-args='type={$type}&app_name={$app_name}&topicHtml={$initHTML}&source_url={$source_url}' href="javascript:;"><span>釋出</span></a></div>
 					<div class="acts">
 
 						<eq name="actions.face" value="true">
@@ -33,7 +33,7 @@
 
 					    <eq name="actions.image" value="true">
 					    <php>if(in_array('image',$weibo_type)):</php>
-					    <a href="javascript:void(0);" class="image-block"><i class="image" ></i>图片
+					    <a href="javascript:void(0);" class="image-block"><i class="image" ></i>圖片
 					    <form style='display:inline;padding:0;margin:0;border:0;outline:none;' >
 					    <input type="file" name="attach" inputname='attach' onchange="core.plugInit('uploadFile',this,'','image')" urlquery='attach_type=feed_image&upload_type=image&thumb=1&width=100&height=100&cut=1' hidefocus="true">
 					    </form>
@@ -45,7 +45,7 @@
 					    <eq name="actions.video" value="true">
 					    <php>if(in_array('video',$weibo_type)):</php>
 					    <input type="hidden" id="postvideourl" value="" />
-					    <a event-node="insert_video" rel="{$post_event}" class="video-block" href="javascript:;"><i class="video"></i>视频</a>
+					    <a event-node="insert_video" rel="{$post_event}" class="video-block" href="javascript:;"><i class="video"></i>視訊</a>
 					    <php>endif;</php>
 					    </eq>
 
@@ -61,7 +61,7 @@
 					    
 					    <eq name="actions.topic" value="true">
 						<php>if(in_array('topic',$weibo_type)):</php>
-					    <a event-node="insert_topic" class="topic-block" href="javascript:;"><i class="topic"></i>话题</a>
+					    <a event-node="insert_topic" class="topic-block" href="javascript:;"><i class="topic"></i>話題</a>
 						<php>endif;</php>
 						</eq>
 
@@ -78,7 +78,7 @@
 			            <div uploadcontent="image" class="input-content attach-file">
 			            	<ul class="image-list">
 			            		<volist name="attachInfo" id="vo">
-				            		<li><a href="javascript:void(0)" class="pic"><img width="100" height="100" src="{$vo.attach_url}"></a><a onclick="core.uploadFile.removeAttachId(this,'image',{$vo.attach_id})" href="javascript:void(0)" class="name">删除</a>
+				            		<li><a href="javascript:void(0)" class="pic"><img width="100" height="100" src="{$vo.attach_url}"></a><a onclick="core.uploadFile.removeAttachId(this,'image',{$vo.attach_id})" href="javascript:void(0)" class="name">刪除</a>
 				            		</li>
 			            		</volist>
 			            	</ul>

@@ -5,7 +5,7 @@ build time: ${build.time}
 */
 /**
  * UIBase.Align
- * @author: 承玉<yiminghe@gmail.com>, 乔花<qiaohua@taobao.com>
+ * @author: 承玉<yiminghe@gmail.com>, 喬花<qiaohua@taobao.com>
  */
 KISSY.add('uibase/align', function(S, DOM) {
 
@@ -29,15 +29,15 @@ KISSY.add('uibase/align', function(S, DOM) {
         align: {
             /*
              value:{
-             node: null,         // 参考元素, falsy 值为可视区域, 'trigger' 为触发元素, 其他为指定元素
-             points: [AlignExt.CC, AlignExt.CC], // ['tr', 'tl'] 表示 overlay 的 tl 与参考节点的 tr 对齐
-             offset: [0, 0]      // 有效值为 [n, m]
+             node: null,         // 參考元素, falsy 值為可視區域, 'trigger' 為觸發元素, 其他為指定元素
+             points: [AlignExt.CC, AlignExt.CC], // ['tr', 'tl'] 表示 overlay 的 tl 與參考節點的 tr 對齊
+             offset: [0, 0]      // 有效值為 [n, m]
              }*/
         }
     };
 
     /**
-     * 获取 node 上的 align 对齐点 相对于页面的坐标
+     * 獲取 node 上的 align 對齊點 相對於頁面的座標
      * @param node
      * @param align
      */
@@ -86,9 +86,9 @@ KISSY.add('uibase/align', function(S, DOM) {
         },
 
         /**
-         * 对齐 Overlay 到 node 的 points 点, 偏移 offset 处
-         * @param {Element=} node 参照元素, 可取配置选项中的设置, 也可是一元素
-         * @param {Array.<string>} points 对齐方式
+         * 對齊 Overlay 到 node 的 points 點, 偏移 offset 處
+         * @param {Element=} node 參照元素, 可取配置選項中的設定, 也可是一元素
+         * @param {Array.<string>} points 對齊方式
          * @param {Array.<number>} offset 偏移
          */
         align: function(node, points, offset) {
@@ -96,7 +96,7 @@ KISSY.add('uibase/align', function(S, DOM) {
                 xy,
                 diff,
                 p1,
-                //如果没有view，就是不区分mvc
+                //如果沒有view，就是不區分mvc
                 el = (self.get("view") || self).get('el'),
                 p2;
 
@@ -119,7 +119,7 @@ KISSY.add('uibase/align', function(S, DOM) {
         },
 
         /**
-         * 居中显示到可视区域, 一次性居中
+         * 居中顯示到可視區域, 一次性居中
          */
         center: function(node) {
             this.set('align', {
@@ -160,7 +160,7 @@ KISSY.add('uibase/base', function (S, Base) {
     }
 
     /**
-     * 模拟多继承
+     * 模擬多繼承
      * init attr using constructors ATTRS meta info
      */
     function initHierarchy(host, config) {
@@ -169,7 +169,7 @@ KISSY.add('uibase/base', function (S, Base) {
 
         while (c) {
 
-            // 从 markup 生成相应的属性项
+            // 從 markup 生成相應的屬性項
             if (config &&
                 config[SRC_NODE] &&
                 c.HTML_PARSER) {
@@ -195,14 +195,14 @@ KISSY.add('uibase/base', function (S, Base) {
         // define
         while (c) {
 
-            // 收集扩展类
+            // 收集擴展類
             t = [];
             if ((exts = c.__ks_exts)) {
                 for (var i = 0; i < exts.length; i++) {
                     ext = exts[i];
                     if (ext) {
                         if (extMethod != "constructor") {
-                            //只调用真正自己构造器原型的定义，继承原型链上的不要管
+                            //只呼叫真正自己構造器原型的定義，繼承原型鏈上的不要管
                             if (ext.prototype.hasOwnProperty(extMethod)) {
                                 ext = ext.prototype[extMethod];
                             } else {
@@ -214,9 +214,9 @@ KISSY.add('uibase/base', function (S, Base) {
                 }
             }
 
-            // 收集主类
-            // 只调用真正自己构造器原型的定义，继承原型链上的不要管 !important
-            //所以不用自己在 renderUI 中调用 superclass.renderUI 了，UIBase 构造器自动搜寻
+            // 收集主類
+            // 只呼叫真正自己構造器原型的定義，繼承原型鏈上的不要管 !important
+            //所以不用自己在 renderUI 中呼叫 superclass.renderUI 了，UIBase 構造器自動搜尋
             if (c.prototype.hasOwnProperty(mainMethod) && (main = c.prototype[mainMethod])) {
                 t.push(main);
             }
@@ -229,16 +229,16 @@ KISSY.add('uibase/base', function (S, Base) {
             c = c.superclass && c.superclass.constructor;
         }
 
-        // 初始化函数
-        // 顺序：父类的所有扩展类函数 -> 父类对应函数 -> 子类的所有扩展函数 -> 子类对应函数
+        // 初始化函數
+        // 順序：父類的所有擴展類函數 -> 父類對應函數 -> 子類的所有擴展函數 -> 子類對應函數
         for (i = extChains.length - 1; i >= 0; i--) {
             extChains[i] && extChains[i].call(host);
         }
     }
 
     /**
-     * 销毁组件
-     * 顺序：子类扩展 destructor -> 子类 destructor -> 父类扩展 destructor -> 父类 destructor
+     * 銷燬元件
+     * 順序：子類擴展 destructor -> 子類 destructor -> 父類擴展 destructor -> 父類 destructor
      */
     function destroyHierarchy(host) {
         var c = host.constructor,
@@ -263,20 +263,20 @@ KISSY.add('uibase/base', function (S, Base) {
     function applyParser(srcNode, parser) {
         var host = this, p, v;
 
-        // 从 parser 中，默默设置属性，不触发事件
+        // 從 parser 中，默默設定屬性，不觸發事件
         for (p in parser) {
             if (parser.hasOwnProperty(p)) {
                 v = parser[p];
 
-                // 函数
+                // 函數
                 if (S.isFunction(v)) {
                     host.__set(p, v.call(host, srcNode));
                 }
-                // 单选选择器
+                // 單選選擇器
                 else if (S['isString'](v)) {
                     host.__set(p, srcNode.one(v));
                 }
-                // 多选选择器
+                // 多選選擇器
                 else if (S.isArray(v) && v[0]) {
                     host.__set(p, srcNode.all(v[0]))
                 }
@@ -296,7 +296,7 @@ KISSY.add('uibase/base', function (S, Base) {
                     return Node.one(v);
             }
         },
-        //是否已经渲染过
+        //是否已經渲染過
         rendered:{value:false}
     };
 
@@ -322,13 +322,13 @@ KISSY.add('uibase/base', function (S, Base) {
         },
 
         /**
-         * 根据属性添加 DOM 节点
+         * 根據屬性添加 DOM 節點
          */
         _renderUI: noop,
         renderUI: noop,
 
         /**
-         * 根据属性变化设置 UI
+         * 根據屬性變化設定 UI
          */
         _bindUI: function() {
             var self = this,
@@ -339,7 +339,7 @@ KISSY.add('uibase/base', function (S, Base) {
                 if (attrs.hasOwnProperty(attr)) {
                     m = UI_SET + capitalFirst(attr);
                     if (self[m]) {
-                        // 自动绑定事件到对应函数
+                        // 自動繫結事件到對應函數
                         (function(attr, m) {
                             self.on('after' + capitalFirst(attr) + 'Change', function(ev) {
                                 self[m](ev.newVal, ev);
@@ -352,7 +352,7 @@ KISSY.add('uibase/base', function (S, Base) {
         bindUI: noop,
 
         /**
-         * 根据当前（初始化）状态来设置 UI
+         * 根據當前（初始化）狀態來設定 UI
          */
         _syncUI: function() {
             var self = this,
@@ -360,7 +360,7 @@ KISSY.add('uibase/base', function (S, Base) {
             for (var a in attrs) {
                 if (attrs.hasOwnProperty(a)) {
                     var m = UI_SET + capitalFirst(a);
-                    //存在方法，并且用户设置了初始值或者存在默认值，就同步状态
+                    //存在方法，並且使用者設定了初始值或者存在預設值，就同步狀態
                     if (self[m] && self.get(a) !== undefined) {
                         self[m](self.get(a));
                     }
@@ -377,11 +377,11 @@ KISSY.add('uibase/base', function (S, Base) {
     });
 
     /**
-     * 根据基类以及扩展类得到新类
-     * @param {function} base 基类
-     * @param exts 扩展类
-     * @param {Object} px 原型 mix 对象
-     * @param {Object} sx 静态 mix 对象
+     * 根據基類以及擴展類得到新類
+     * @param {function} base 基類
+     * @param exts 擴展類
+     * @param {Object} px 原型 mix 物件
+     * @param {Object} sx 靜態 mix 物件
      */
     UIBase.create = function(base, exts, px, sx) {
         if (S.isArray(base)) {
@@ -408,16 +408,16 @@ KISSY.add('uibase/base', function (S, Base) {
 
             S.each(exts, function(ext) {
                 if (!ext)return;
-                // 合并 ATTRS/HTML_PARSER 到主类
+                // 合併 ATTRS/HTML_PARSER 到主類
                 S.each([ATTRS, HTML_PARSER], function(K) {
                     if (ext[K]) {
                         C[K] = C[K] || {};
-                        // 不覆盖主类上的定义
+                        // 不覆蓋主類上的定義
                         deepMix(C[K], ext[K]);
                     }
                 });
 
-                // 合并功能代码到主类，不覆盖
+                // 合併功能程式碼到主類，不覆蓋
                 S.augment(C, ext, false);
             });
         }
@@ -427,7 +427,7 @@ KISSY.add('uibase/base', function (S, Base) {
     function deepMix(r, s) {
         if (!s) return r;
         for (var p in s) {
-            // 如果属性是对象，接着递归进行
+            // 如果屬性是物件，接著遞迴進行
             if (S['isObject'](s[p]) && S['isObject'](r[p])) {
                 deepMix(r[p], s[p]);
             } else if (!(p in r)) {
@@ -467,7 +467,7 @@ KISSY.add('uibase/box', function(S) {
             view:true
         },
         elAttrs:{
-            //其他属性
+            //其他屬性
             view:true
         },
         elOrder:{},
@@ -510,20 +510,20 @@ KISSY.add('uibase/boxrender', function(S, Node) {
             // 容器的 class
         },
         elStyle:{
-            //容器的行内样式
+            //容器的行內樣式
         },
         width: {
-            // 宽度
+            // 寬度
         },
         height: {
             // 高度
         },
         elTagName:{
-            //生成标签名字
+            //生成標簽名字
             value:"div"
         },
         elAttrs:{
-            //其他属性
+            //其他屬性
         },
         elOrder:{
             //插入容器位置
@@ -645,7 +645,7 @@ KISSY.add("uibase/close", function(S) {
     }
 
     Close.ATTRS = {
-        closable: {             // 是否需要关闭按钮
+        closable: {             // 是否需要關閉按鈕
             value: true,
             view:true
         }
@@ -677,7 +677,7 @@ KISSY.add("uibase/closerender", function(S) {
     }
 
     Close.ATTRS = {
-        closable: {             // 是否需要关闭按钮
+        closable: {             // 是否需要關閉按鈕
             value: true
         },
         closeBtn:{}
@@ -732,7 +732,7 @@ KISSY.add("uibase/closerender", function(S) {
 
 });/**
  * constrain extension for kissy
- * @author: 承玉<yiminghe@gmail.com>, 乔花<qiaohua@taobao.com>
+ * @author: 承玉<yiminghe@gmail.com>, 喬花<qiaohua@taobao.com>
  */
 KISSY.add("uibase/constrain", function(S, DOM) {
     var Node = S.require("node/node");
@@ -745,13 +745,13 @@ KISSY.add("uibase/constrain", function(S, DOM) {
         constrain:{
             //不限制
             //true:viewport限制
-            //node:限制在节点范围
+            //node:限制在節點範圍
             value:false
         }
     };
 
     /**
-     * 获取受限区域的宽高, 位置
+     * 獲取受限區域的寬高, 位置
      * @return {Object | undefined} {left: 0, top: 0, maxLeft: 100, maxTop: 100}
      */
     function _getConstrainRegion(constrain) {
@@ -766,7 +766,7 @@ KISSY.add("uibase/constrain", function(S, DOM) {
                 maxTop: ret.top + constrain[0].offsetHeight - el[0].offsetHeight
             });
         }
-        // 没有指定 constrain, 表示受限于可视区域
+        // 沒有指定 constrain, 表示受限於可視區域
         else {
             //不要使用 viewportWidth()
             //The innerWidth attribute, on getting,
@@ -830,7 +830,7 @@ KISSY.add("uibase/constrain", function(S, DOM) {
 }, {
     requires:["dom","node"]
 });/**
- * 里层包裹层定义，适合mask以及shim
+ * 裡層包裹層定義，適合mask以及shim
  * @author:yiminghe@gmail.com
  */
 KISSY.add("uibase/contentbox", function(S) {
@@ -839,7 +839,7 @@ KISSY.add("uibase/contentbox", function(S) {
     }
 
     ContentBox.ATTRS = {
-        //层内容
+        //層內容
         content:{
             view:true
         },
@@ -865,7 +865,7 @@ KISSY.add("uibase/contentbox", function(S) {
 
     return ContentBox;
 });/**
- * 里层包裹层定义，适合mask以及shim
+ * 裡層包裹層定義，適合mask以及shim
  * @author:yiminghe@gmail.com
  */
 KISSY.add("uibase/contentboxrender", function(S, Node, BoxRender) {
@@ -874,12 +874,12 @@ KISSY.add("uibase/contentboxrender", function(S, Node, BoxRender) {
     }
 
     ContentBox.ATTRS = {
-        //内容容器节点
+        //內容容器節點
         contentEl:{},
         contentElAttrs:{},
         contentElStyle:{},
         contentTagName:{value:"div"},
-        //层内容
+        //層內容
         content:{}
     };
 
@@ -1094,7 +1094,7 @@ KISSY.add("uibase/mask", function(S) {
 KISSY.add("uibase/maskrender", function(S) {
 
     /**
-     * 多 position 共享一个遮罩
+     * 多 position 共享一個遮罩
      */
     var mask,
         num = 0;
@@ -1148,7 +1148,7 @@ KISSY.add("uibase/maskrender", function(S) {
 
     return Mask;
 }, {requires:["ua"]});/**
- * position and visible extension，可定位的隐藏层
+ * position and visible extension，可定位的隱藏層
  * @author: 承玉<yiminghe@gmail.com>
  */
 KISSY.add("uibase/position", function(S, DOM, Event) {
@@ -1163,30 +1163,30 @@ KISSY.add("uibase/position", function(S, DOM, Event) {
     Position.ATTRS = {
         x: {
             view:true,
-            // 水平方向绝对位置
+            // 水平方向絕對位置
             valueFn:function() {
-                //初始化 xy，结果调用了 set("x") 里面又调用了 get("x")
-                //这时还没有渲染，尚没有 view，必须判断
+                //初始化 xy，結果呼叫了 set("x") 裡面又呼叫了 get("x")
+                //這時還沒有渲染，尚沒有 view，必須判斷
                 return this.get("view") && this.get("view").get("x");
             }
         },
         y: {
             view:true,
-            // 垂直方向绝对位置
-            // 水平方向绝对位置
+            // 垂直方向絕對位置
+            // 水平方向絕對位置
             valueFn:function() {
                 return this.get("view") && this.get("view").get("y");
             }
         },
         xy: {
-            // 相对 page 定位, 有效值为 [n, m], 为 null 时, 选 align 设置
+            // 相對 page 定位, 有效值為 [n, m], 為 null 時, 選 align 設定
             setter: function(v) {
 
                 var self = this,
                     xy = S.makeArray(v);
 
                 /*
-                 属性内分发特别注意：
+                 屬性內分發特別注意：
                  xy -> x,y
 
                  */
@@ -1197,7 +1197,7 @@ KISSY.add("uibase/position", function(S, DOM, Event) {
                 return v;
             },
             /**
-             * xy 纯中转作用
+             * xy 純中轉作用
              */
             getter:function() {
                 return [this.get("x"),this.get("y")];
@@ -1219,7 +1219,7 @@ KISSY.add("uibase/position", function(S, DOM, Event) {
             self.fire(isVisible ? "show" : "hide");
         },
         /**
-         * 显示/隐藏时绑定的事件
+         * 顯示/隱藏時繫結的事件
          */
         _bindKey: function() {
             Event.on(doc, KEYDOWN, this._esc, this);
@@ -1233,7 +1233,7 @@ KISSY.add("uibase/position", function(S, DOM, Event) {
             if (e.keyCode === 27) this.hide();
         },
         /**
-         * 移动到绝对位置上, move(x, y) or move(x) or move([x, y])
+         * 移動到絕對位置上, move(x, y) or move(x) or move([x, y])
          * @param {number|Array.<number>} x
          * @param {number=} y
          */
@@ -1247,7 +1247,7 @@ KISSY.add("uibase/position", function(S, DOM, Event) {
         },
 
         /**
-         * 显示 Overlay
+         * 顯示 Overlay
          */
         show: function() {
             this.render();
@@ -1255,7 +1255,7 @@ KISSY.add("uibase/position", function(S, DOM, Event) {
         },
 
         /**
-         * 隐藏
+         * 隱藏
          */
         hide: function() {
             this.set("visible", false);
@@ -1267,7 +1267,7 @@ KISSY.add("uibase/position", function(S, DOM, Event) {
 }, {
     requires:["dom","event"]
 });/**
- * position and visible extension，可定位的隐藏层
+ * position and visible extension，可定位的隱藏層
  * @author: 承玉<yiminghe@gmail.com>
  */
 KISSY.add("uibase/positionrender", function() {
@@ -1277,13 +1277,13 @@ KISSY.add("uibase/positionrender", function() {
 
     Position.ATTRS = {
         x: {
-            // 水平方向绝对位置
+            // 水平方向絕對位置
             valueFn:function() {
                 return this.get("el") && this.get("el").offset().left;
             }
         },
         y: {
-            // 垂直方向绝对位置
+            // 垂直方向絕對位置
             valueFn:function() {
                 return this.get("el") && this.get("el").offset().top;
             }

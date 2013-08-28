@@ -11,7 +11,7 @@
 
 defined('THINK_PATH') or exit();
 /**
- * 文件类型缓存类
+ * 檔案類型快取類
  * @category   Think
  * @package  Think
  * @subpackage  Driver.Cache
@@ -20,7 +20,7 @@ defined('THINK_PATH') or exit();
 class CacheFile extends Cache {
 
     /**
-     * 架构函数
+     * 架構函數
      * @access public
      */
     public function __construct($options=array()) {
@@ -36,7 +36,7 @@ class CacheFile extends Cache {
     }
 
     /**
-     * 初始化检查
+     * 初始化檢查
      * @access private
      * @return boolen
      */
@@ -45,7 +45,7 @@ class CacheFile extends Cache {
         $dir_perms = $stat['mode'] & 0007777; // Get the permission bits.
         $file_perms = $dir_perms & 0000777; // Remove execute bits for files.
 
-        // // 创建项目缓存目录
+        // // 創建項目快取目錄
         // if (!is_dir($this->options['temp'])) {
         //     if (!  mkdir($this->options['temp']))
         //         return false;
@@ -54,60 +54,60 @@ class CacheFile extends Cache {
     }
 
     /**
-     * 取得变量的存储文件名
+     * 取得變數的存儲檔名
      * @access private
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return string
      */
     private function filename($name) {
-        $name	=	md5($name);
+        $name   =   md5($name);
         if(C('DATA_CACHE_SUBDIR')) {
-            // 使用子目录
+            // 使用子目錄
             $dir   ='';
             for($i=0;$i<C('DATA_PATH_LEVEL');$i++) {
-                $dir	.=	$name{$i}.'/';
+                $dir    .=  $name{$i}.'/';
             }
             if(!is_dir($this->options['temp'].$dir)) {
                 mkdir($this->options['temp'].$dir,0777,true);
             }
-            $filename	=	$dir.$this->options['prefix'].$name.'.php';
+            $filename   =   $dir.$this->options['prefix'].$name.'.php';
         }else{
-            $filename	=	$this->options['prefix'].$name.'.php';
+            $filename   =   $this->options['prefix'].$name.'.php';
         }
         return $this->options['temp'].$filename;
     }
 
     /**
-     * 读取缓存
+     * 讀取快取
      * @access public
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return mixed
      */
     public function get($name) {
         $filename   =   $this->filename($name);
         if (!is_file($filename)) {
-           return false;
+            return false;
         }
         N('cache_read',1);
         $content    =   file_get_contents($filename);
         if( false !== $content) {
             $expire  =  (int)substr($content,8, 12);
             if($expire != 0 && time() > filemtime($filename) + $expire) {
-                //缓存过期删除缓存文件
+                //快取過期刪除快取檔案
                 unlink($filename);
                 return false;
             }
-            if(C('DATA_CACHE_CHECK')) {//开启数据校验
+            if(C('DATA_CACHE_CHECK')) {//開啟資料校驗
                 $check  =  substr($content,20, 32);
                 $content   =  substr($content,52, -3);
-                if($check != md5($content)) {//校验错误
+                if($check != md5($content)) {//校驗錯誤
                     return false;
                 }
             }else {
-            	$content   =  substr($content,20, -3);
+                $content   =  substr($content,20, -3);
             }
             if(C('DATA_CACHE_COMPRESS') && function_exists('gzcompress')) {
-                //启用数据压缩
+                //啟用資料壓縮
                 $content   =   gzuncompress($content);
             }
             $content    =   unserialize($content);
@@ -119,47 +119,47 @@ class CacheFile extends Cache {
     }
 
     /**
-     * 写入缓存
+     * 寫入快取
      * @access public
-     * @param string $name 缓存变量名
-     * @param mixed $value  存储数据
-     * @param int $expire  有效时间 0为永久
+     * @param string $name 快取變數名
+     * @param mixed $value  存儲資料
+     * @param int $expire  有效時間 0為永久
      * @return boolen
      */
     public function set($name,$value,$expire=null) {
         N('cache_write',1);
         if(is_null($expire)) {
             $expire =  $this->options['expire'];
-        }
-        $filename   =   $this->filename($name);
-        $data   =   serialize($value);
-        if( C('DATA_CACHE_COMPRESS') && function_exists('gzcompress')) {
-            //数据压缩
-            $data   =   gzcompress($data,3);
-        }
-        if(C('DATA_CACHE_CHECK')) {//开启数据校验
-            $check  =  md5($data);
-        }else {
-            $check  =  '';
-        }
-        $data    = "<?php\n//".sprintf('%012d',$expire).$check.$data."\n?>";
-        $result  =   file_put_contents($filename,$data);
-        if($result) {
-            if($this->options['length']>0) {
-                // 记录缓存队列
-                $this->queue($name);
-            }
-            clearstatcache();
-            return true;
-        }else {
-            return false;
-        }
+    }
+    $filename   =   $this->filename($name);
+    $data   =   serialize($value);
+    if( C('DATA_CACHE_COMPRESS') && function_exists('gzcompress')) {
+        //資料壓縮
+        $data   =   gzcompress($data,3);
+    }
+    if(C('DATA_CACHE_CHECK')) {//開啟資料校驗
+        $check  =  md5($data);
+    }else {
+        $check  =  '';
+    }
+    $data    = "<?php\n//".sprintf('%012d',$expire).$check.$data."\n?>";
+    $result  =   file_put_contents($filename,$data);
+    if($result) {
+        if($this->options['length']>0) {
+            // 記錄快取佇列
+            $this->queue($name);
+    }
+    clearstatcache();
+    return true;
+    }else {
+        return false;
+    }
     }
 
     /**
-     * 删除缓存
+     * 刪除快取
      * @access public
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return boolen
      */
     public function rm($name) {
@@ -168,9 +168,9 @@ class CacheFile extends Cache {
     }
 
     /**
-     * 清除缓存
+     * 清除快取
      * @access public
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return boolen
      */
     public function clear() {
@@ -180,9 +180,9 @@ class CacheFile extends Cache {
                 $check = is_dir( $file );
                 if ( !$check )
                     unlink( $path . $file );
-            }
-            closedir( $dir );
-            return true;
-        }
     }
-}
+    closedir( $dir );
+    return true;
+    }
+    }
+    }

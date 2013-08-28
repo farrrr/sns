@@ -23,21 +23,21 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
             value:"ks-dd-"
         },
         /**
-         * mousedown 后 buffer 触发时间  timeThred
+         * mousedown 後 buffer 觸發時間  timeThred
          */
         bufferTime: { value: 200 },
 
         /**
-         * 当前激活的拖动对象，在同一时间只有一个值，所以不是数组
+         * 當前啟用的拖動物件，在同一時間只有一個值，所以不是陣列
          */
         activeDrag: {},
 
         /**
-         *当前激活的drop对象，在同一时间只有一个值
+         *當前啟用的drop物件，在同一時間只有一個值
          */
         activeDrop:{},
         /**
-         * 所有注册的可被防止对象，统一管理
+         * 所有註冊的可被防止物件，統一管理
          */
         drops:{
             value:[]
@@ -45,10 +45,10 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
     };
 
     /*
-     负责拖动涉及的全局事件：
-     1.全局统一的鼠标移动监控
-     2.全局统一的鼠标弹起监控，用来通知当前拖动对象停止
-     3.为了跨越 iframe 而统一在底下的遮罩层
+     負責拖動涉及的全局事件：
+     1.全局統一的滑鼠移動監控
+     2.全局統一的滑鼠彈起監控，用來通知當前拖動物件停止
+     3.為了跨越 iframe 而統一在底下的遮罩層
      */
     S.extend(DDM, Base, {
 
@@ -69,18 +69,18 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
         },
 
         /*
-         全局鼠标移动事件通知当前拖动对象正在移动
-         注意：chrome8: click 时 mousedown-mousemove-mouseup-click 也会触发 mousemove
+         全局滑鼠移動事件通知當前拖動物件正在移動
+         注意：chrome8: click 時 mousedown-mousemove-mouseup-click 也會觸發 mousemove
          */
         _move: function(ev) {
             var activeDrag = this.get('activeDrag');
             //S.log("move");
             if (!activeDrag) return;
-            //防止 ie 选择到字
+            //防止 ie 選擇到字
             ev.preventDefault();
             activeDrag._move(ev);
             /**
-             * 获得当前的激活drop
+             * 獲得當前的啟用drop
              */
             this._notifyDropsMove(ev);
         },
@@ -100,14 +100,14 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
                     return;
                 var a;
                 if (mode == "point") {
-                    //取鼠标所在的 drop 区域
+                    //取滑鼠所在的 drop 區域
                     if (inNodeByPointer(node, activeDrag.mousePos)) {
                         activeDrop = drop;
                         return false;
                     }
 
                 } else if (mode == "intersect") {
-                    //取一个和activeDrag交集最大的drop区域
+                    //取一個和activeDrag交集最大的drop區域
                     a = area(intersect(dragRegion, region(node)));
                     if (a > vArea) {
                         vArea = a;
@@ -115,7 +115,7 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
                     }
 
                 } else if (mode == "strict") {
-                    //drag 全部在 drop 里面
+                    //drag 全部在 drop 裡面
                     a = area(intersect(dragRegion, region(node)));
                     if (a == dragArea) {
                         activeDrop = drop;
@@ -157,19 +157,19 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
         },
 
         /**
-         * 当前拖动对象通知全局：我要开始啦
-         * 全局设置当前拖动对象，
-         * 还要根据配置进行 buffer 处理
+         * 當前拖動物件通知全局：我要開始啦
+         * 全局設定當前拖動物件，
+         * 還要根據配置進行 buffer 處理
          * @param drag
          */
         _start: function(drag) {
             var self = this,
                 bufferTime = self.get("bufferTime") || 0;
 
-            //事件先要注册好，防止点击，导致 mouseup 时还没注册事件
+            //事件先要註冊好，防止點選，導致 mouseup 時還沒註冊事件
             self._registerEvent();
 
-            //是否中央管理，强制限制拖放延迟
+            //是否中央管理，強制限制拖放延遲
             if (bufferTime) {
                 self._bufferTimer = setTimeout(function() {
                     self._bufferStart(drag);
@@ -183,7 +183,7 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
             var self = this;
             self.set('activeDrag', drag);
 
-            //真正开始移动了才激活垫片
+            //真正開始移動了才啟用墊片
             if (drag.get("shim"))
                 self._activeShim();
 
@@ -192,7 +192,7 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
         },
 
         /**
-         * 全局通知当前拖动对象：你结束拖动了！
+         * 全局通知當前拖動物件：你結束拖動了！
          * @param ev
          */
         _end: function(ev) {
@@ -210,18 +210,18 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
             if (!activeDrag) return;
             activeDrag._end(ev);
             activeDrag.get("dragNode").removeClass(this.get("prefixCls") + "dragging");
-            //处理 drop，看看到底是否有 drop 命中
+            //處理 drop，看看到底是否有 drop 命中
             this._deactivateDrops(ev);
             self.set("activeDrag", null);
             self.set("activeDrop", null);
         },
 
         /**
-         * 垫片只需创建一次
+         * 墊片只需創建一次
          */
         _activeShim: function() {
             var self = this,doc = document;
-            //创造垫片，防止进入iframe，外面document监听不到 mousedown/up/move
+            //創造墊片，防止進入iframe，外面document監聽不到 mousedown/up/move
             self._shim = new Node("<div " +
                 "style='" +
                 //red for debug
@@ -232,7 +232,7 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
                 "top:0;" +
                 "cursor:move;" +
                 "z-index:" +
-                //覆盖iframe上面即可
+                //覆蓋iframe上面即可
                 SHIM_ZINDEX
                 + ";" +
                 "'></div>").appendTo(doc.body);
@@ -251,7 +251,7 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
         },
 
         /**
-         * 开始时注册全局监听事件
+         * 開始時註冊全局監聽事件
          */
         _registerEvent: function() {
             var self = this;
@@ -260,7 +260,7 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
         },
 
         /**
-         * 结束时需要取消掉，防止平时无谓的监听
+         * 結束時需要取消掉，防止平時無謂的監聽
          */
         _unregisterEvent: function() {
             var self = this;
@@ -352,7 +352,7 @@ KISSY.add('dd/ddm', function(S, DOM, Event, N, Base) {
 KISSY.add('dd/draggable', function(S, UA, Node, Base, DDM) {
 
     /*
-     拖放纯功能类
+     拖放純功能類
      */
     function Draggable() {
         Draggable.superclass.constructor.apply(this, arguments);
@@ -365,7 +365,7 @@ KISSY.add('dd/draggable', function(S, UA, Node, Base, DDM) {
 
     Draggable.ATTRS = {
         /**
-         * 拖放节点，可能指向 proxy node
+         * 拖放節點，可能指向 proxy node
          */
         node: {
             setter:function(v) {
@@ -373,7 +373,7 @@ KISSY.add('dd/draggable', function(S, UA, Node, Base, DDM) {
             }
         },
         /*
-         真实的节点
+         真實的節點
          */
         dragNode:{},
 
@@ -385,7 +385,7 @@ KISSY.add('dd/draggable', function(S, UA, Node, Base, DDM) {
         },
 
         /**
-         * handler 数组，注意暂时必须在 node 里面
+         * handler 陣列，注意暫時必須在 node 裡面
          */
         handlers:{
             value:[]
@@ -422,7 +422,7 @@ KISSY.add('dd/draggable', function(S, UA, Node, Base, DDM) {
             for (var i = 0; i < handlers.length; i++) {
                 var hl = handlers[i];
                 hl = S.one(hl);
-                //ie 不能在其内开始选择区域
+                //ie 不能在其內開始選擇區域
                 hl.unselectable();
                 if (self.get("cursor")) {
                     hl.css('cursor', 'move');
@@ -452,16 +452,16 @@ KISSY.add('dd/draggable', function(S, UA, Node, Base, DDM) {
                 var hl = handlers[i];
                 if (hl.contains(t)
                     ||
-                    //子区域内点击也可以启动
+                    //子區域內點選也可以啟動
                     hl[0] == t[0]) return true;
             }
             return false;
         },
 
         /**
-         * 鼠标按下时，查看触发源是否是属于 handler 集合，
-         * 保存当前状态
-         * 通知全局管理器开始作用
+         * 滑鼠按下時，檢視觸發源是否是屬於 handler 集合，
+         * 儲存當前狀態
+         * 通知全局管理器開始作用
          * @param ev
          */
         _handleMouseDown: function(ev) {
@@ -469,10 +469,10 @@ KISSY.add('dd/draggable', function(S, UA, Node, Base, DDM) {
                 t = new Node(ev.target);
 
             if (!self._check(t)) return;
-            //chrome 阻止了 flash 点击？？
-            //不组织的话chrome会选择
+            //chrome 阻止了 flash 點選？？
+            //不組織的話chrome會選擇
             //if (!UA.webkit) {
-            //firefox 默认会拖动对象地址
+            //firefox 默認會拖動物件地址
             ev.preventDefault();
             //}
             self._prepare(ev);
@@ -554,7 +554,7 @@ KISSY.add("dd/droppable", function(S, Node, Base, DDM) {
 
     Droppable.ATTRS = {
         /**
-         * 放节点
+         * 放節點
          */
         node: {
             setter:function(v) {
@@ -570,7 +570,7 @@ KISSY.add("dd/droppable", function(S, Node, Base, DDM) {
 
     S.extend(Droppable, Base, {
         /**
-         * 用于被 droppable-delegate override
+         * 用於被 droppable-delegate override
          * @param {KISSY.EventObject} ev
          */
         getNodeFromTarget:function(ev) {
@@ -612,7 +612,7 @@ KISSY.add("dd/droppable", function(S, Node, Base, DDM) {
             }, ev);
             if (this != oldDrop) {
                 activeDrag.get("node").addClass(DDM.get("prefixCls") + "drag-over");
-                //第一次先触发 dropenter,dragenter
+                //第一次先觸發 dropenter,dragenter
                 activeDrag.fire("dragenter", evt);
                 this.fire("dropenter", evt);
                 DDM.fire("dragenter", evt);
@@ -643,8 +643,8 @@ KISSY.add("dd/proxy", function(S) {
     Proxy.ATTRS = {
         node:{
             /*
-             如何生成替代节点
-             @return {KISSY.Node} 替代节点
+             如何生成替代節點
+             @return {KISSY.Node} 替代節點
              */
             value:function(drag) {
                 var n = S.one(drag.get("node")[0].cloneNode(true));
@@ -654,7 +654,7 @@ KISSY.add("dd/proxy", function(S) {
         },
         destroyOnEnd:{
             /**
-             * 是否每次都生成新节点/拖放完毕是否销毁当前代理节点
+             * 是否每次都生成新節點/拖放完畢是否銷燬當前代理節點
              */
             value:false
         }
@@ -721,7 +721,7 @@ KISSY.add("dd/draggable-delegate", function(S, DDM, Draggable, DOM) {
         },
 
         /**
-         * 得到适合 handler，从这里开始启动拖放，对于 handlers 选择器字符串数组
+         * 得到適合 handler，從這裡開始啟動拖放，對於 handlers 選擇器字元串陣列
          * @param target
          */
         _getHandler:function(target) {
@@ -741,7 +741,7 @@ KISSY.add("dd/draggable-delegate", function(S, DDM, Draggable, DOM) {
         },
 
         /**
-         * 找到真正应该移动的节点，对应 selector 属性选择器字符串
+         * 找到真正應該移動的節點，對應 selector 屬性選擇器字元串
          * @param h
          */
         _getNode:function(h) {
@@ -755,7 +755,7 @@ KISSY.add("dd/draggable-delegate", function(S, DDM, Draggable, DOM) {
         },
 
         /**
-         * 父容器监听 mousedown，找到合适的拖动 handlers 以及拖动节点
+         * 父容器監聽 mousedown，找到合適的拖動 handlers 以及拖動節點
          *
          * @param ev
          */
@@ -775,7 +775,7 @@ KISSY.add("dd/draggable-delegate", function(S, DDM, Draggable, DOM) {
     {
         ATTRS:{
             /**
-             * 用于委托的父容器
+             * 用於委託的父容器
              */
             container:{
                 setter:function(v) {
@@ -784,14 +784,14 @@ KISSY.add("dd/draggable-delegate", function(S, DDM, Draggable, DOM) {
             },
 
             /**
-             * 实际拖放的节点选择器，一般用 tag.cls
+             * 實際拖放的節點選擇器，一般用 tag.cls
              */
             selector:{
             }
 
         /**
-         * 继承来的 handlers : 拖放句柄选择器数组，一般用 [ tag.cls ]
-         * 不设则为 [ selector ]
+         * 繼承來的 handlers : 拖放控制代碼選擇器陣列，一般用 [ tag.cls ]
+         * 不設則為 [ selector ]
          *
          * handlers:{
          *  value:[]
@@ -815,7 +815,7 @@ KISSY.add("dd/droppable-delegate", function(S, DDM, Droppable, DOM, Node) {
     S.extend(DroppableDelegate, Droppable, {
 
         /**
-         * 根据鼠标位置得到真正的可放目标，暂时不考虑 mode，只考虑鼠标
+         * 根據滑鼠位置得到真正的可放目標，暫時不考慮 mode，只考慮滑鼠
          * @param ev
          */
         getNodeFromTarget:function(ev) {
@@ -865,18 +865,18 @@ KISSY.add("dd/droppable-delegate", function(S, DDM, Droppable, DOM, Node) {
                 || (lastNode && lastNode[0] !== node[0])
                 ) {
                 /**
-                 * 两个可 drop 节点相邻，先通知上次的离开
+                 * 兩個可 drop 節點相鄰，先通知上次的離開
                  */
                 if (lastNode) {
                     this.set("node", lastNode);
                     DroppableDelegate.superclass._handleOut.call(this);
                 }
                 /**
-                 * 再通知这次的进入
+                 * 再通知這次的進入
                  */
                 this.set("node", node);
                 activeDrag.get("node").addClass(DDM.get("prefixCls") + "drag-over");
-                //第一次先触发 dropenter,dragenter
+                //第一次先觸發 dropenter,dragenter
                 activeDrag.fire("dragenter", evt);
                 this.fire("dropenter", evt);
                 DDM.fire("dragenter", evt);
@@ -893,19 +893,19 @@ KISSY.add("dd/droppable-delegate", function(S, DDM, Droppable, DOM, Node) {
     {
         ATTRS:{
             /**
-             * 上一个成为放目标的节点
+             * 上一個成為放目標的節點
              */
             lastNode:{
             }
             ,
             /**
-             * 放目标节点选择器
+             * 放目標節點選擇器
              */
             selector:{
             }
             ,
             /**
-             * 放目标所在区域
+             * 放目標所在區域
              */
             container:{
                 setter:function(v) {
@@ -1003,7 +1003,7 @@ KISSY.add("dd/scroll", function(S, Base, Node, DOM) {
                 diff = self.get("diff"),
                 event,
                 /*
-                 目前相对 container 的便宜，container 为 window 时，相对于 viewport
+                 目前相對 container 的便宜，container 為 window 時，相對於 viewport
                  */
                 dxy,
                 timer = null;
@@ -1070,12 +1070,12 @@ KISSY.add("dd/scroll", function(S, Base, Node, DOM) {
 
                     self.setScroll(node, scroll);
                     timer = setTimeout(arguments.callee, 100);
-                    // 不希望更新相对值，特别对于相对 window 时，相对值如果不真正拖放触发的 drag，是不变的，
-                    // 不会因为程序 scroll 而改变相对值
+                    // 不希望更新相對值，特別對於相對 window 時，相對值如果不真正拖放觸發的 drag，是不變的，
+                    // 不會因為程式 scroll 而改變相對值
                     event.fake = true;
                     if (isWin(node)) {
-                        // 当使 window 自动滚动时，也要使得拖放物体相对文档位置随 scroll 改变
-                        // 而相对 node 容器时，只需 node 容器滚动，拖动物体相对文档位置不需要改变
+                        // 當使 window 自動滾動時，也要使得拖放物體相對文件位置隨 scroll 改變
+                        // 而相對 node 容器時，只需 node 容器滾動，拖動物體相對文件位置不需要改變
                         scroll = self.getScroll(node);
                         event.left += scroll.left - origin.left;
                         event.top += scroll.top - origin.top;

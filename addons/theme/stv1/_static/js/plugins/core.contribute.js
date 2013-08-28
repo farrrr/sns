@@ -1,14 +1,14 @@
 /**
  * 投稿操作Js插件
  * @example
- * 工厂模式调用：core.plugInit('contribute', $(this))；其中$(this)为可编辑域对象
+ * 工廠模式呼叫：core.plugInit('contribute', $(this))；其中$(this)為可編輯域物件
  * @author zivss <guolee226@gmail.com>
  * @version TS3.0
  */
 core.contribute = {
 	/**
-	 * 给工厂调用的借口
-	 * @param object attrs 配置数据对象
+	 * 給工廠呼叫的藉口
+	 * @param object attrs 配置資料物件
 	 * @return void
 	 * @private
 	 */
@@ -25,8 +25,8 @@ core.contribute = {
 	},
 	/**
 	 * 插件初始化
-	 * @param object textarea 可编辑域对象
-	 * @param object clickObj 点击对象
+	 * @param object textarea 可編輯域物件
+	 * @param object clickObj 點選物件
 	 * @return void
 	 */
 	init: function(textarea, clickObj)
@@ -37,9 +37,9 @@ core.contribute = {
 		if($('#contribute').val() != '') {
 			this.cData = $('#contribute').val().split(',');
 		}
-		// 插入浮动框
+		// 插入浮動框
 		this.insertTemplates();
-		// 设置值
+		// 設定值
 		var _this = this;
 		$('.check_category').live('click', function() {
 			_this.cData = [];
@@ -47,7 +47,7 @@ core.contribute = {
 				_this.cData.push(this.value);
 			});
 		});
-		// 点击窗口消失
+		// 點選視窗消失
 		$('body').bind('click', function(event) {
 			var obj = "undefined" != typeof(event.srcElement) ? event.srcElement : event.target;
 			if($(obj).parents('div[id="contribute_templates"]').get(0) == undefined){
@@ -56,7 +56,7 @@ core.contribute = {
 		});
 	},
 	/**
-	 * 投稿浮动窗口模板
+	 * 投稿浮動視窗模板
 	 * @return void
 	 */
 	insertTemplates: function()
@@ -69,9 +69,9 @@ core.contribute = {
 							 <div class="wrap-layer">\
 							 <div class="arrow arrow-t"></div>\
 							 <div class="talkPop_box">\
-							 <div class="close hd"><a title="关闭" href="javascript:;" onclick="core.contribute.closeBox()" class="ico-close">&nbsp;</a><span>选择频道</span></div>\
+							 <div class="close hd"><a title="關閉" href="javascript:;" onclick="core.contribute.closeBox()" class="ico-close">&nbsp;</a><span>選擇頻道</span></div>\
 							 <div class="contribute_box"><ul class="clearfix">';
-					// 获取选中值
+					// 獲取選中值
 					var cData = $('#contribute').val().split(',');
 					for(var i = 0; i < msg.data.length; i++) {
 						var checkVal = '';
@@ -82,20 +82,20 @@ core.contribute = {
 						}
 						html += '<li><input class="check_category" id="ck'+msg.data[i].channel_category_id+'" type="checkbox" '+checkVal+' value="'+msg.data[i].channel_category_id+'" /><label for="ck'+msg.data[i].channel_category_id+'">'+msg.data[i].title+'</label></li>';
 					}
-					html +=	'</ul><a class="btn-green-small right" onclick="core.contribute.clickBtn()"><span>确定</span></a></div></div></div></div>';
+					html +=	'</ul><a class="btn-green-small right" onclick="core.contribute.clickBtn()"><span>確定</span></a></div></div></div></div>';
 					$('body').append(html);
 
 					var pos = $(_this.clickObj).offset();
 					$('#contribute_templates').css({top:(pos.top+5)+"px",left:(pos.left-5)+"px","z-index":1001});
 				} else {
-					ui.error('获取数据失败');
+					ui.error('獲取資料失敗');
 					return false;
 				}
 			}, 'json');
 		}
 	},
 	/**
-	 * 点击保存按钮后操作
+	 * 點選儲存按鈕後操作
 	 * @return void
 	 */
 	clickBtn: function()
@@ -117,7 +117,7 @@ core.contribute = {
 		return false;
 	},
 	/**
-	 * 关闭窗口
+	 * 關閉視窗
 	 * @return void
 	 */
 	closeBox: function()
@@ -128,8 +128,8 @@ core.contribute = {
 		return false;
 	},
 	/**
-	 * 窗口是否存在
-	 * @return boolean 是否存在窗口
+	 * 視窗是否存在
+	 * @return boolean 是否存在視窗
 	 */
 	isExistBox: function()
 	{
@@ -137,7 +137,7 @@ core.contribute = {
 		return result;
 	},
 	/**
-	 * 重置投稿信息
+	 * 重置投稿資訊
 	 * @return void
 	 */
 	resetBtn: function()

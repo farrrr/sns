@@ -1,4 +1,4 @@
-<!-- 编辑器样式文件 -->
+<!-- 編輯器樣式檔案 -->
 <link href="__PUBLIC__/ts2/js/editor/editor/theme/base-min.css" rel="stylesheet"/>
 <!--[if lt IE 8]><!-->
 <link href="__PUBLIC__/ts2/js/editor/editor/theme/cool/editor-pkg-sprite-min.css" rel="stylesheet"/>
@@ -8,13 +8,13 @@
 <!--<![endif]-->
 
 <?php
-// 读取附件大小的配置
+// 讀取附件大小的配置
 $_editor_system_default = model('Xdata')->lget('attach');
-$_editor_size_limit = empty($_editor_system_default['attach_max_size']) ? 2 : $_editor_system_default['attach_max_size']; // 默认2M
+$_editor_size_limit = empty($_editor_system_default['attach_max_size']) ? 2 : $_editor_system_default['attach_max_size']; // 默認2M
 $_editor_size_limit = floatval($_editor_size_limit) * 1000; // K
 ?>
 
-<!-- 引入编辑器相关的JS文件 -->
+<!-- 引入編輯器相關的JS檔案 -->
 <script src="__PUBLIC__/ts2/js/editor/kissy-min.js?t=20120401"></script>
 <script src="__PUBLIC__/ts2/js/editor/uibase-min.js?t=20120401"></script>
 <script src="__PUBLIC__/ts2/js/editor/dd-min.js?t=20120401"></script>
@@ -34,7 +34,7 @@ function _loadEditor(textareaId) {
     KISSY.use('editor', function() {
         var KE = KISSY.Editor;
         var EDITER_UPLOAD = "<php> echo U('home/Attach/kissy');</php>";
-        //编辑器内弹窗 z-index 底限，防止互相覆盖
+        //編輯器內彈窗 z-index 底限，防止互相覆蓋
         KE.Config.baseZIndex = 999999;
         var cfg = {
             attachForm:true,

@@ -2,7 +2,7 @@
 <link href="__APP__/medal.css" rel="stylesheet" type="text/css" />
 <script>
 function showdetail(id,type){
-	ui.box.load("{:U('public/Medal/showdetail')}",'勋章详情',null,{id:id,type:type});
+	ui.box.load("{:U('public/Medal/showdetail')}",'勳章詳情',null,{id:id,type:type});
 }
 </script>
 <div id="page-wrap">
@@ -10,13 +10,13 @@ function showdetail(id,type){
           <div class="boxShadow">
             <div class="find-type">
 	   	   	   <div class="app-title clearfix">
-                       <a href="{:U('public/Task/index')}" class="right">去做任务</a>
-                       <h4 class="left"><img src="__APP__/image/ico-app-medal.png" />&nbsp;&nbsp;勋章馆</h4>                       
+                       <a href="{:U('public/Task/index')}" class="right">去做任務</a>
+                       <h4 class="left"><img src="__APP__/image/ico-app-medal.png" />&nbsp;&nbsp;勳章館</h4>                       
                        <div class="app-tab-menu clearfix" style="margin:0 0 0 130px;">
                            
                            <ul>
-                             <li><a href="{:U('public/Medal/index' , array('type'=>2,'uid'=>$uid))}" <php>if($type==2){</php>class="current"<php>}</php>>全部勋章<eq name="type" value="2"><span class="triangle"></span></eq></a><i class="line"></i></li>
-                             <li><a href="{:U('public/Medal/index' , array('type'=>1,'uid'=>$uid))}" <php>if($type==1){</php>class="current"<php>}</php>><php>if($isme){</php>我<php>}else{</php>TA<php>}</php>的勋章<eq name="type" value="1"><span class="triangle"></span></eq></a></li>
+                             <li><a href="{:U('public/Medal/index' , array('type'=>2,'uid'=>$uid))}" <php>if($type==2){</php>class="current"<php>}</php>>全部勳章<eq name="type" value="2"><span class="triangle"></span></eq></a><i class="line"></i></li>
+                             <li><a href="{:U('public/Medal/index' , array('type'=>1,'uid'=>$uid))}" <php>if($type==1){</php>class="current"<php>}</php>><php>if($isme){</php>我<php>}else{</php>TA<php>}</php>的勳章<eq name="type" value="1"><span class="triangle"></span></eq></a></li>
                            </ul>
                        </div>
             </div>
@@ -26,13 +26,13 @@ function showdetail(id,type){
                 <div class="medal-user clearfix">
                     <dl>
                         <dt><a href="{$spaceurl}"><img src="{$face}" width="50" height="50"/></a></dt>
-                        <dd><p class="name"><a href="{$spaceurl}">{$uname}</a>的勋章</p><p><php>if($isme){</php>我<php>}else{</php>TA<php>}</php>已获得{$count}枚勋章</p></dd>
+                        <dd><p class="name"><a href="{$spaceurl}">{$uname}</a>的勳章</p><p><php>if($isme){</php>我<php>}else{</php>TA<php>}</php>已獲得{$count}枚勳章</p></dd>
                     </dl>
                 </div>
                 <php>}</php>
                  <div class="medal-content">
                     <div class="medal-title clearfix">
-                        <h3>全部勋章<span class="f9">（共{$count}枚）</span></h3>
+                        <h3>全部勳章<span class="f9">（共{$count}枚）</span></h3>
                     </div>
                     <div class="medal-list clearfix">
                         <ul>

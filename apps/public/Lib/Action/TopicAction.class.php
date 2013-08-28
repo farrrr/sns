@@ -1,7 +1,7 @@
-<?php 
+<?php
 class TopicAction extends Action{
 
-	// 专题页
+    // 專題頁
     public function index()
     {
         //echo $_GET['domain'];exit;
@@ -12,21 +12,21 @@ class TopicAction extends Action{
         }else{
             $data['search_key'] = $this->__getSearchKey();
         }
-        // 专题信息
-        if (false == $data['topics'] = model('FeedTopic')->getTopic($data['search_key'])) {          
+        // 專題資訊
+        if (false == $data['topics'] = model('FeedTopic')->getTopic($data['search_key'])) {
             if (null == $data['search_key']) {
-                $this->error('此话题不存在');
+                $this->error('此話題不存在');
             }
             $data['topics']['name'] = t($data['search_key']);
         }
         if($data['topics']['lock']==1){
-            $this->error('该话题已被屏蔽');
+            $this->error('該話題已被遮蔽');
         }
         if($data['topics']['pic']){
             $pic = D('attach')->where('attach_id='.$data['topics']['pic'])->find();
             //$data['topics']['pic'] = UPLOAD_URL.'/'.$pic['save_path'].$pic['save_name'];
             $pic_url = $pic['save_path'].$pic['save_name'];
-            $data['topics']['pic'] = getImageUrl($pic_url); 
+            $data['topics']['pic'] = getImageUrl($pic_url);
         }
         $data['topic'] = $data['search_key'] ? $data['search_key'] : html_entity_decode($data['topics']['name'], ENT_QUOTES);
         $data['topic_id'] = $data['topics']['topic_id'] ? $data['topics']['topic_id'] : model('FeedTopic')->getTopicId($data['search_key']);
@@ -40,11 +40,11 @@ class TopicAction extends Action{
         $replace['topicDes'] = $data['topics']['des'];
         if($lastTopic = D('feed_data')->where('feed_id='.D('feed_topic_link')->where('topic_id='.$data['topic_id'])->order('feed_topic_id desc')->limit(1)->getField('feed_id'))->getField('feed_content')){
             $replace['lastTopic'] = $lastTopic;
-        } 
+        }
         $replaces = array_keys($replace);
-         foreach($replaces as &$v){
+        foreach($replaces as &$v){
             $v = "{".$v."}";
-         }
+        }
         $seo['title'] = str_replace($replaces,$replace,$seo['title']);
         $seo['keywords'] = str_replace($replaces,$replace,$seo['keywords']);
         $seo['des'] = str_replace($replaces,$replace,$seo['des']);
@@ -57,7 +57,7 @@ class TopicAction extends Action{
     private function __getSearchKey()
     {
         $key = '';
-        // 为使搜索条件在分页时也有效，将搜索条件记录到SESSION中
+        // 為使搜索條件在分頁時也有效，將搜索條件記錄到SESSION中
         if(isset($_REQUEST ['k']) && !empty($_REQUEST['k'])) {
             if(t($_GET ['k'])) {
                 $key = html_entity_decode(urldecode($_GET['k']), ENT_QUOTES);
@@ -65,7 +65,7 @@ class TopicAction extends Action{
                 $key = $_POST['k'];
             }
             $key = t($key);
-            // 关键字不能超过200个字符
+            // 關鍵字不能超過200個字元
             if (mb_strlen ( $key, 'UTF8' ) > 200)
                 $key = mb_substr ( $key, 0, 200, 'UTF8' );
             $_SESSION ['home_user_search_key'] = serialize ( $key );
@@ -76,8 +76,8 @@ class TopicAction extends Action{
         } else {
             //unset($_SESSION['home_user_search_key']);
         }
-		$key = str_replace(array('%','\'','"','<','>'),'',$key);
+        $key = str_replace(array('%','\'','"','<','>'),'',$key);
         return trim ( $key );
     }
-	
+
 }

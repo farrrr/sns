@@ -19,12 +19,12 @@ $(function(){
 })
 
 function keepfixed(id){
-    //获得浏览器的窗口对象
+    //獲得瀏覽器的視窗物件
     var $window = jQuery(window);
-    //获得#topcontrol这个div的x轴坐标
-    //获得#topcontrol这个div的y轴坐标
+    //獲得#topcontrol這個div的x軸座標
+    //獲得#topcontrol這個div的y軸座標
     var controly = $window.scrollTop();
-    //随着滑动块的滑动#topcontrol这个div跟随着滑动
+    //隨著滑動塊的滑動#topcontrol這個div跟隨著滑動
     $('#'+id).css({
         right: '120px',
         top: controly + 'px'

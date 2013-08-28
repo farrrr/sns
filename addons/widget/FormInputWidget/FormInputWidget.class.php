@@ -1,23 +1,23 @@
 <?php
 /**
- * 表单输入框 Widget
+ * 表單輸入框 Widget
  * @example {:W('FormInput', array('type' =>'checkbox', 'name'=>'asd', 'default_value'=>'fefds', 'value' =>1564))}
  * @version TS3.0
  * $param array $data:
  * array(
- *     'type' => 输入框类型
- *     'name' => 输入框字段名
- *     'default_value' => 输入框默认值或者选项
- *     'value' => 用户保存的值
+ *     'type' => 輸入框類型
+ *     'name' => 輸入框欄位名
+ *     'default_value' => 輸入框預設值或者選項
+ *     'value' => 使用者儲存的值
  * )
  */
 class FormInputWidget extends Widget
 {
 	/**
-	 * @param string type 输入框类型
-	 * @param string name 输入框字段名
-	 * @param mixed default_value 输入框默认值或者选项
-	 * @param mixed value 用户保存的值
+	 * @param string type 輸入框類型
+	 * @param string name 輸入框欄位名
+	 * @param mixed default_value 輸入框預設值或者選項
+	 * @param mixed value 使用者儲存的值
 	 */
 	public function render($data)
 	{
@@ -42,7 +42,7 @@ class FormInputWidget extends Widget
 
 		unset($var,$data);
 
-		//输出数据
+		//輸出資料
 		return $content;
     }
 }

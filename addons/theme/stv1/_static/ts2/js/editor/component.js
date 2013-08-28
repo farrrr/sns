@@ -16,10 +16,10 @@ KISSY.add("component/modelcontrol", function(S, UIBase) {
 
     /**
      * 不使用 valueFn
-     * 只有 render 时需要找到默认，其他时候不需要，防止莫名其妙初始化
+     * 只有 render 時需要找到默認，其他時候不需要，防止莫名其妙初始化
      */
     function getDefaultView() {
-        // 逐层找默认渲染器
+        // 逐層找默認渲染器
         var c = this.constructor,DefaultRender;
         while (c && !DefaultRender) {
             DefaultRender = c['DefaultRender'];
@@ -27,15 +27,15 @@ KISSY.add("component/modelcontrol", function(S, UIBase) {
         }
         if (DefaultRender) {
             /**
-             * 将渲染层初始化所需要的属性，直接构造器设置过去
+             * 將渲染層初始化所需要的屬性，直接構造器設定過去
              */
             var attrs = this.__attrs,cfg = {};
             for (var attrName in attrs) {
                 if (attrs.hasOwnProperty(attrName)) {
                     var attrCfg = attrs[attrName];
                     if (attrCfg.view
-                        //如果用户没设，不要帮他设 undefined
-                        //attribute get 判断是 name in attrs
+                        //如果使用者沒設，不要幫他設 undefined
+                        //attribute get 判斷是 name in attrs
                         && this.__attrVals[attrName] !== undefined) {
                         cfg[attrName] = this.__attrVals[attrName];
                     }
@@ -51,8 +51,8 @@ KISSY.add("component/modelcontrol", function(S, UIBase) {
         renderUI:function() {
             var self = this;
             /**
-             * 将 view 的属性转发过去
-             * 用户一般实际上只需在一个地点设置
+             * 將 view 的屬性轉發過去
+             * 使用者一般實際上只需在一個地點設定
              */
             var attrs = self.__attrs;
             for (var attrName in attrs) {
@@ -219,21 +219,21 @@ KISSY.add("component/modelcontrol", function(S, UIBase) {
 
     }, {
         ATTRS:{
-            //子组件
+            //子元件
             children:{
                 value:[],
                 setter:function(v) {
                     var self = this;
-                    //自动给儿子组件加入父亲链
+                    //自動給兒子元件加入父親鏈
                     S.each(v, function(c) {
                         c.set("parent", self);
                     });
                 }
             },
 
-            //转交给渲染层
-            //note1 : 兼容性考虑
-            //note2 : 调用者可以完全不需要接触渲染层
+            //轉交給渲染層
+            //note1 : 相容性考慮
+            //note2 : 呼叫者可以完全不需要接觸渲染層
             srcNode:{
                 view:true
             },
@@ -242,10 +242,10 @@ KISSY.add("component/modelcontrol", function(S, UIBase) {
                 view:true
             },
 
-            //父组件
+            //父元件
             parent:{},
 
-            //渲染层
+            //渲染層
             view:{},
 
             //是否禁用
@@ -271,7 +271,7 @@ KISSY.add("component/render", function(S, UIBase) {
 
     }, {
         ATTRS:{
-            //从 maskup 中渲染
+            //從 maskup 中渲染
             srcNode:{},
             prefixCls:{
                 value:""

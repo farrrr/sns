@@ -6,7 +6,7 @@ var frameSortAble = new Array();
 
 $(function(){
     /**
-     * 顶部排版bar的布局设定
+     * 頂部排版bar的佈局設定
      */
     var iebrws = document.all;
     var cssfixedsupport = !iebrws || iebrws && document.compatMode == "CSS1Compat" && window.XMLHttpRequest;
@@ -40,13 +40,13 @@ $(function(){
     $('#diy_layout_list').remove();
     frameTemplate['placeholder'] = frameLayoutList.children('#placeholder');
     /**
-     * 将页面上的布局渲染成js数组
+     * 將頁面上的佈局渲染成js陣列
      */
     $('.addFrame').each(function(){
         var rel = $(this).attr('rel');
         frameTemplate[rel] = frameLayoutList.children('.diy_' + rel);
         /**
-         * 页面加载的时候对页面进行样式渲染
+         * 頁面載入的時候對頁面進行樣式渲染
          */
         frameSortAble.push('.diy_' + rel + '_L');
         frameSortAble.push('.diy_' + rel + '_R');
@@ -55,13 +55,13 @@ $(function(){
         
         $('.diy_' + rel).each(function(){
             $(this).prepend('<div class="bg_diy_tit">\
-			<a href="javascript:void(0)" onClick="deleteDiy(\'' + $(this).attr('id') + '\')" class="ico_diydel R mt5 mr5" title="删除" >删除</a> 布局框架\
+			<a href="javascript:void(0)" onClick="deleteDiy(\'' + $(this).attr('id') + '\')" class="ico_diydel R mt5 mr5" title="刪除" >刪除</a> 佈局框架\
 			</div>');
         });
         $('.diy_' + rel).addClass('bg_eee');
     });
     /**
-     * 将页面已有的布局组件添加进入数组
+     * 將頁面已有的佈局元件添加進入陣列
      */
     $('#tempDiyData').children().each(function(){
         var initDiyId = $(this).attr('id');
@@ -80,11 +80,11 @@ $(function(){
         $(this).addClass('line_E');
         $(this).children().each(function(){
             var tempId = $(this).attr('id'), widget = $(this).attr('rel');
-            $(this).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onClick="updateDiyModel(\'' + tempId + '\',\'' + widget + '\')" class="ico_diyedit" title="设置">设置</a> <a href="javascript:void(0)" class="ico_diydel" onClick="deleteDiy(\'' + tempId + '\')" title="删除">删除</a></div></div>');
+            $(this).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onClick="updateDiyModel(\'' + tempId + '\',\'' + widget + '\')" class="ico_diyedit" title="設定">設定</a> <a href="javascript:void(0)" class="ico_diydel" onClick="deleteDiy(\'' + tempId + '\')" title="刪除">刪除</a></div></div>');
         });
     });
     /**
-     * 顶部切换
+     * 頂部切換
      */
     $('#diy_nav').children().each(function(){
         $(this).click(function(){
@@ -317,13 +317,13 @@ function jsonEncode(aaa){
 }
 
 function keepfixed(){
-    //获得浏览器的窗口对象
+    //獲得瀏覽器的視窗物件
     var $window = jQuery(window);
-    //获得#topcontrol这个div的x轴坐标
+    //獲得#topcontrol這個div的x軸座標
     var controlx = $window.scrollLeft();
-    //获得#topcontrol这个div的y轴坐标
+    //獲得#topcontrol這個div的y軸座標
     var controly = $window.scrollTop();
-    //随着滑动块的滑动#topcontrol这个div跟随着滑动
+    //隨著滑動塊的滑動#topcontrol這個div跟隨著滑動
     $('#diy_adaptable').css({
         left: controlx + 'px',
         top: controly + 'px'
@@ -331,12 +331,12 @@ function keepfixed(){
 }
 
 /**
- * 删除布局以及模块
+ * 刪除佈局以及模組
  */
 function deleteDiy(id){
     var tempId = id.split('-');
     if (tempId.length == 1) {
-        if (window.confirm('是否删除布局？布局内模块将同时删除') == true) {
+        if (window.confirm('是否刪除佈局？佈局內模組將同時刪除') == true) {
 			 var result = removeArray(tempId[0], frameArray);
             if (result) {
                 frameArray = result;
@@ -346,7 +346,7 @@ function deleteDiy(id){
         
     }
     else {
-		if (window.confirm('是否删除模块') == true) {
+		if (window.confirm('是否刪除模組') == true) {
 			var result;
 			if (frameArray[tempId[0]][tempId[1]].length == 1) {
 				result = removeArray(tempId[1], frameArray[tempId[0]]);
@@ -369,12 +369,12 @@ function deleteDiy(id){
 }
 
 /**
- * 修改模块
+ * 修改模組
  */
 function updateDiyModel(id, namespace){
     var tempId = id.split('-'), index = tempId[2], parentId = tempId[0], needClass = tempId[1],sign = $('#'+id).attr('sign');
-	$.tbox.popup(SITE_URL + "/index.php?app=page&mod=Diy&sign="+sign+"&act=getPopUp&gid=false&tagName=" + namespace + "&index=" + (index - 1) + "&parentId=" + parentId + "&needClass=" + needClass + "&id=" + parentId + "-" + needClass + "-" + index, "添加自定义模块");
-    var button = '<p><input class="btn_sea mr10" id="savemodel"  name="" type="button" value="确定" /><input class="btn_sea mr10" name="" id="preview_button" type="button" value="预览"/></p>';
+	$.tbox.popup(SITE_URL + "/index.php?app=page&mod=Diy&sign="+sign+"&act=getPopUp&gid=false&tagName=" + namespace + "&index=" + (index - 1) + "&parentId=" + parentId + "&needClass=" + needClass + "&id=" + parentId + "-" + needClass + "-" + index, "添加自定義模組");
+    var button = '<p><input class="btn_sea mr10" id="savemodel"  name="" type="button" value="確定" /><input class="btn_sea mr10" name="" id="preview_button" type="button" value="預覽"/></p>';
     $('#tbox .tb_button_list').show().html(button);
     $('#preview_button').click(function(){
         preview();
@@ -388,9 +388,9 @@ function updateDiyModel(id, namespace){
 }
 
 /*
- *  方法:Array.remove(dx) 通过遍历,重构数组
- *  功能:删除数组元素.
- *  参数:dx删除元素的下标.
+ *  方法:Array.remove(dx) 通過遍歷,重構陣列
+ *  功能:刪除陣列元素.
+ *  參數:dx刪除元素的下標.
  */
 function removeArray(dx, data){
     var array = data;

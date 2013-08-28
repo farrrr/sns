@@ -37,7 +37,7 @@
         <input type="hidden" name="sendType[{$vo['node']}][type]" value="{$vo['node']}">
         <label><input type='checkbox' name="sendType[{$vo['node']}][send_email]"  value='1' <eq name='vo.send_email' value='1'>checked='checked'</eq>>{:L('PUBLIC_SNED_EMAIL')}</label> 
         <label><input type='checkbox' name="sendType[{$vo['node']}][send_message]" value='1' <eq name='vo.send_message' value='1'>checked='checked'</eq>>{:L('PUBLIC_SEND_SYSTEM_MESSAGE')}</label></td> 
-        <td><a href="{:U('admin/Config/notifytpl',array('node'=>$vo['node'],'tabHash'=>'notifytpl','redirectTabHash'=>$_REQUEST['tabHash'],'type'=>$type))}">{:L('PUBLIC_EDIT_TPL')}</a>&nbsp;&nbsp;&nbsp;<a href="{:U('admin/Config/delNotifyNode',array('node'=>$vo['node']))}">删除</a></td>
+        <td><a href="{:U('admin/Config/notifytpl',array('node'=>$vo['node'],'tabHash'=>'notifytpl','redirectTabHash'=>$_REQUEST['tabHash'],'type'=>$type))}">{:L('PUBLIC_EDIT_TPL')}</a>&nbsp;&nbsp;&nbsp;<a href="{:U('admin/Config/delNotifyNode',array('node'=>$vo['node']))}">刪除</a></td>
     </tr>  
     </volist>
   </table>

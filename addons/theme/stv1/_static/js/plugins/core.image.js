@@ -1,16 +1,16 @@
-//追加核心图片选择对象 临时放在这里 
+//追加核心圖片選擇物件 臨時放在這裡 
 core.image ={
-		//给工厂调用的接口
+		//給工廠呼叫的介面
 		_init:function(attrs){
 			if(attrs.length == 3){
 				core.image.init(attrs[1],attrs[2]);
 			}else{
-				return false;	//只是未了加载文件
+				return false;	//只是未了載入檔案
 			}
 		},
 		init:function(img,type){
 			var n = img.getAttribute('step');
-			// 保存图片大小数据
+			// 儲存圖片大小資料
 			if (!this.data('width') && !$(this).data('height')) {
 				this.data('width', img.width);
 				this.data('height', img.height);
@@ -25,7 +25,7 @@ core.image ={
 			};
 			img.setAttribute('step', n);
 
-			// IE浏览器使用滤镜旋转
+			// IE瀏覽器使用濾鏡旋轉
 			if(document.all) {
 				if(this.data('height')>this.data('maxWidth') && (n==1 || n==3) ){
 					if(!this.data('zoomheight')){
@@ -41,7 +41,7 @@ core.image ={
 				}
 				
 				img.style.filter = 'progid:DXImageTransform.Microsoft.BasicImage(rotation='+ n +')';
-				// IE8高度设置
+				// IE8高度設定
 				if ($.browser.version == 8) {
 					switch(n){
 						case 0:
@@ -62,7 +62,7 @@ core.image ={
 							break;
 					};
 				};
-			// 对现代浏览器写入HTML5的元素进行旋转： canvas
+			// 對現代瀏覽器寫入HTML5的元素進行旋轉： canvas
 			}else{
 				var c = this.next('canvas')[0];
 				if(this.next('canvas').length == 0){

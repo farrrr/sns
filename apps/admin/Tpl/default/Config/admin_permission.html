@@ -1,8 +1,8 @@
 <include file="__THEME__/admin_header" />
 <div id="container" class="so_main">
   <div class="page_tit">{$applist.$appname}{:L('PUBLIC_SETTING_ADMIN')}</div>
-<!-- START APP 选择-->
-<!-- START APP 选择-->
+<!-- START APP 選擇-->
+<!-- START APP 選擇-->
 
    <!-- START TAB框 -->
   <php>if(!empty($pageTab)):</php>
@@ -34,7 +34,7 @@
   <input type="hidden" name="modulename" value="{$modulename}" />
   <php>$moduleRule = $ruleList[$modulename]['rule'] </php>
 <table class="tab_popedom" width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed ">
-  <!-- 用户组基本权限 -->
+  <!-- 使用者組基本許可權 -->
   <tr>
     <th style="width:30px">{:L('PUBLIC_SELECT')}</th>
     <th style="width:80px">{:L('PUBLIC_USER_GROUP')}</th>
@@ -62,7 +62,7 @@
       </tr>
 </volist>
 
-  <!-- 应用下自定义用户组基本权限 -->
+  <!-- 應用下自定義使用者組基本許可權 -->
   <volist id="groupvo" name="appgroup">
   <php> $gkey = $key;</php>
     <tr>

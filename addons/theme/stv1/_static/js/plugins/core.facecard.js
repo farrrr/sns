@@ -2,7 +2,7 @@
  * 小名片JS模型
  */
 core.facecard ={
-		//给工厂调用的接口
+		//給工廠呼叫的介面
 		_init:function(attrs){
 			this.init();
 		},
@@ -25,18 +25,18 @@ core.facecard ={
 			$(obj).attr('show','yes');
 			var _this = this;
 			var _show = function(){
-				//设置默认框的位置
+				//設定默認框的位置
 				if($(obj).attr('show') != 'yes'){
 					return false;
 				}
 				_this.setCss(obj);
 				if("undefined" != typeof(_this.user_info[uid]) || _this.user_info[uid] == ''){
 					_this.face_box.find('.name-card').html(_this.user_info[uid]);
-					_this.setCss(obj); //重设高宽
+					_this.setCss(obj); //重設高寬
 				}else{
 					$.post(U('public/Index/showFaceCard'),{uid:uid},function(msg){
 						_this.face_box.find('.name-card').html(msg);
-						_this.setCss(obj); //重设高宽
+						_this.setCss(obj); //重設高寬
 						_this.user_info[uid] = msg;
 					});
 				}
@@ -56,16 +56,16 @@ core.facecard ={
 				delete this.user_info[uid];
 			}
 		},
-		setCss:function(obj){	//计算位置
+		setCss:function(obj){	//計算位置
 			
 			var p =$(obj).offset();
 			var bh = $('body').height();
 			var ww = $(window).width();
 			var scrollHeight = $(window).scrollTop();
-			var fw = this.face_box.width(); //可以设定 小名片的宽度
-			var fh = this.face_box.height(); //可以设定 小名片的高度
+			var fw = this.face_box.width(); //可以設定 小名片的寬度
+			var fh = this.face_box.height(); //可以設定 小名片的高度
 			
-//			var left = p.left+$(obj).width()+5; //默认当前的left
+//			var left = p.left+$(obj).width()+5; //默認當前的left
 //			var top = p.top - 20;
 //			var className = 'arrow-l';	
 			var top = p.top - fh - 5;
@@ -80,7 +80,7 @@ core.facecard ={
 			}
 			if(p.top - scrollHeight < 40+fh){
 				//向下
-				//重设left
+				//重設left
 				top = p.top + $(obj).height() + 5;
 				left = p.left - 15;
 				className = 'arrow-t';
@@ -111,7 +111,7 @@ core.facecard ={
 			});
 		},
 		hide:function(){
-			//隐藏弹窗，清空人信息
+			//隱藏彈窗，清空人資訊
 			var _this = this;
 			var hidden = function(){
 				if(_this.boxOn || $(_this.obj).attr('show') == 'yes'){
@@ -123,7 +123,7 @@ core.facecard ={
 			};
 			setTimeout(hidden,250);
 		},
-		dohide:function(){//强制隐藏
+		dohide:function(){//強制隱藏
 			var _this = this;
 			_this.face_box.hide();
 			$(_this.obj).attr('show','no');

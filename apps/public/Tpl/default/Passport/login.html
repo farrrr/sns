@@ -17,7 +17,7 @@
                              <div>
                                  <input id="account_input" name="login_email" type="text" class="s-txt1" autocomplete="off" />
                                  <div class="txt-list on-changes" style="z-index:999">
-                                   <p>请选择或继续输入...</p>
+                                   <p>請選擇或繼續輸入...</p>
                                    <ul>
                                       <li email="" rel="show"></li>
                                       <volist name="emailSuffix" id="vo">
@@ -38,10 +38,10 @@
                             <php>endif;</php>
                           </div>
                         </li>
-                        <li class="actionBtn"><a href="javascript:;" onclick="$('#ajax_login_form').submit();" class="btn-login">登录</a></li>
+                        <li class="actionBtn"><a href="javascript:;" onclick="$('#ajax_login_form').submit();" class="btn-login">登入</a></li>
                         <li class="s-row1">
                           <php>if($register_type == 'open'):</php>
-                          <a onclick="javascript:window.open('{:U('public/Register')}','_self')">注册帐号</a>
+                          <a onclick="javascript:window.open('{:U('public/Register')}','_self')">註冊帳號</a>
                           <php>endif;</php>
                         </li>
                         <li class="s-row1">
@@ -54,7 +54,7 @@
                 <div id="js_login_input" style="display:none" class="error-box"></div>
                 <php>if(Addons::requireHooks('login_input_footer') && Addons::hook('login_input_footer')):</php>
                 <div class="login-ft" style="">
-                    <span>其它帐号登录：</span>{:Addons::hook('login_input_footer')}
+                    <span>其它帳號登入：</span>{:Addons::hook('login_input_footer')}
                 </div>
                 <php>endif;</php>
           </div>         

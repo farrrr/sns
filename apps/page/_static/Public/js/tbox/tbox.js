@@ -42,7 +42,7 @@
 			  <div class="tb_body"> \
 				<div class="tb_header" style="display:none;"> \
 				  <div class="tb_close"><a href="javascript:void(0)">x</a></div> \
-				  <div class="tb_title">标题</div> \
+				  <div class="tb_title">標題</div> \
 				</div> \
 				<div id="tb_content" class="tb_content"></div> \
 				 <div class="tb_button_list" id="tb_content_list" style="display:none;"></div>\
@@ -85,7 +85,7 @@
 		$('#tbox .tb_button_list').hide();
 	}
 
-	//向tbox中填充数据
+	//向tbox中填充資料
 	$.tbox.reveal = function(data,title,hasbutton,fun) {
 		$('#tbox .tb_content').empty().html(data).show()
 		if(title!='') {
@@ -106,7 +106,7 @@
 		}
 	}
 	
-	//执行关闭
+	//執行關閉
 	$.tbox.close = function() {
 		$("select").each(function(i,n){
 			$(this).show();						 
@@ -185,13 +185,13 @@
 	  var button;
 	  switch(type){
 		  case 1:
-			  button = '<p><input class="mr10" id="tb_button_yes" name="" type="button" value="确定" /></p>'
+			  button = '<p><input class="mr10" id="tb_button_yes" name="" type="button" value="確定" /></p>'
 			  break;
 		  case 2:
-			  button = '<p><input class="mr10" id="tb_button_no" name="" type="button" value="确定" /></p>'
+			  button = '<p><input class="mr10" id="tb_button_no" name="" type="button" value="確定" /></p>'
 			  break;
 		  case 3:
-			  button = '<p><input class="mr10" id="tb_button_ok"  name="" type="button" value="确定" /><input class="mr10" name="" id="tb_button_no" type="button" value="取消"/></p>'
+			  button = '<p><input class="mr10" id="tb_button_ok"  name="" type="button" value="確定" /><input class="mr10" name="" id="tb_button_no" type="button" value="取消"/></p>'
 			  break;
 	  }
 			

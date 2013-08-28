@@ -1,4 +1,4 @@
 <?php
 return array(
-	'name' => '随心埃菲尔'
+	'name' => '隨心埃菲爾'
 );

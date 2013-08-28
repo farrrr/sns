@@ -1,16 +1,16 @@
 <dl class="form-set form-contact">
   <dd>
-    <div class="form-tt"><font color="red"> * </font>认证资料：</div>
+    <div class="form-tt"><font color="red"> * </font>認證資料：</div>
     <div class="form-row">
         <textarea rows="4" cols="50" name="info" id="info">{$info}</textarea>
     </div>
   </dd>
-  <!-- <dt>认证资料：<textarea rows="4" cols="50" name="info" id="info">{$info}</textarea></dt> -->
+  <!-- <dt>認證資料：<textarea rows="4" cols="50" name="info" id="info">{$info}</textarea></dt> -->
   <input type="hidden" name="vid" value="{$id}" id="vid">
   <input type="hidden" name="status" value="{$status}" id="status">
   <dd style="text-align:center;margin:15px 0 0 ">
 
-        <input type="button" class="btn_b" onclick="doEditVerifyInfo()" value="确定" />
+        <input type="button" class="btn_b" onclick="doEditVerifyInfo()" value="確定" />
 
         <input type="button" class="btn_w ml10" onclick="cancel()" value="取消" />
   </dd>
@@ -18,11 +18,11 @@
 </dl>
 
 <script type="text/javascript">
-// 通过认证
+// 通過認證
 function doEditVerifyInfo() {
 	var info = $('#info').val();
     if(getLength(info) < 1){
-        ui.error("认证资料内容不能为空");
+        ui.error("認證資料內容不能為空");
         return false;
     }
     var id = $('#vid').val();
@@ -31,7 +31,7 @@ function doEditVerifyInfo() {
             admin.ajaxReload(msg);
         },'json');
 };
-// 关闭弹窗
+// 關閉彈窗
 function cancel() {
 	ui.box.close();
 }

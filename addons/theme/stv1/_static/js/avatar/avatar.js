@@ -1,5 +1,5 @@
 /*
- * 头像上传
+ * 頭像上傳
  *
  * @param object args:
  * {
@@ -9,15 +9,15 @@
  *
  */
 var avatar = function( args ) {
-		// 上传表单
+		// 上傳表單
 	var uploadForm = args.uploadForm,
 		uploadBtn = args.uploadBtn,
 		loading = args.loading,
 
-		// 浏览头像
+		// 瀏覽頭像
 		scanImg = args.scanImg,
 
-		// 设置表单
+		// 設定表單
 	    settingForm = args.settingForm,
 	    picUrl = args.picUrl,
 	    picWidth = args.picWidth,
@@ -27,7 +27,7 @@ var avatar = function( args ) {
 	    resetBtn = args.resetBtn,
 	    saveTip = args.saveTip || "Sure to save photo?",
 
-		// 数据
+		// 資料
 	    selectEnd = args.selectEnd,
 
 		up_pic_width = 200,
@@ -37,7 +37,7 @@ var avatar = function( args ) {
 
 		tmpDate = new Date(),
 
-		// 调用jQuery 插件所需
+		// 呼叫jQuery 插件所需
 		$area,
 		$area_img,
 		$preview_img,
@@ -71,9 +71,9 @@ var avatar = function( args ) {
 		    });
         };
 
-	// 头像上传 [选择图片后自动上传]
+	// 頭像上傳 [選擇圖片後自動上傳]
 	uploadBtn.onchange = function() {
-		//文件类型检验
+		//檔案類型檢驗
 		var checkFile=function(){
 			var filename = $(uploadBtn).val();
 			var pos = filename.lastIndexOf(".");  
@@ -94,14 +94,14 @@ var avatar = function( args ) {
 
 	    uploadBtn.style.display = "none";
 	    loading.style.display = "block";
-		// 异步提交头像
+		// 非同步提交頭像
 		
 		//M.getJS( THEME_URL + "/js/jquery.form.js?"+SYS_VERSION, function() {
             var options = {
                 success: function( txt ) {
                 	txt = eval("(" + txt + ")");
                 	if ( 1 == txt.status ) {
-                		// 头像切割
+                		// 頭像切割
                 		M.getCSS( THEME_URL + "/js/imgareaselect/css/imgareaselect-default.css" );
                 		M.getJS( THEME_URL + "/js/imgareaselect/jquery.imgareaselect.min.js", function() {
 				            set_UP_W_H(txt.data["picwidth"],txt.data["picheight"]);
@@ -117,17 +117,17 @@ var avatar = function( args ) {
 				            imgrs = $area_img.imgAreaSelect({ 
 		                        x1: 0, 
 		                        y1: 0,
-		                        x2: 200, //初始矩形宽
+		                        x2: 200, //初始矩形寬
 		                        y2: 200, //初始矩形高
 		                        handles: true,
 		                        onInit: previewFn,
 		                        onSelectChange: previewFn,
 		                        onSelectEnd: onSelectEnd,
-		                        aspectRatio: '1:1',	//头像长宽比
+		                        aspectRatio: '1:1',	//頭像長寬比
 		                        instance: true,
 		                        parent: $area
 		                    });
-				            // 隐藏上传表单，显示设置表单
+				            // 隱藏上傳表單，顯示設定表單
 						    uploadForm.style.display = "none";
 						    settingForm.style.display = "block";
                 		});
@@ -146,7 +146,7 @@ var avatar = function( args ) {
 		return false;
 	};
 
-	// 头像保存 [点击]
+	// 頭像儲存 [點選]
 	saveBtn.onclick = function() {
 		var args = M.getEventArgs(this);
 
@@ -156,7 +156,7 @@ var avatar = function( args ) {
 		// M.getJS( THEME_URL + "/js/jquery.form.js", function() {
 	        var options = {
                 success: function( txt ) {
-                	//fuck 迅雷. 居然自动在程序返回值中加html代码
+                	//fuck 迅雷. 居然自動在程式返回值中加html程式碼
                 	txt = strip_tags(txt);
 				    txt = eval("(" + txt + ")");
 				    if ( 1 == txt.status ) {
@@ -181,7 +181,7 @@ var avatar = function( args ) {
 				        ui.error( txt.info );
 				    }
 				    avatar_success();
-		            // 显示上传表单，隐藏设置表单
+		            // 顯示上傳表單，隱藏設定表單
 				    settingForm.style.display = "none";
 				    uploadForm.style.display = "block";
                 }
@@ -191,9 +191,9 @@ var avatar = function( args ) {
 		return false;
 	};
 
-	// 头像重置 [点击]
+	// 頭像重置 [點選]
 	resetBtn.onclick = function() {
-        // 显示上传表单，隐藏设置表单
+        // 顯示上傳表單，隱藏設定表單
         uploadBtn.value = '';
         $(uploadBtn).val('');
 	    settingForm.style.display = "none";

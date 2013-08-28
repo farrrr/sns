@@ -1,15 +1,15 @@
 <?php 
 /** 
- * 备注 Widget
+ * 備註 Widget
  * @example W('Remark',array('uid'=>1000,'remark'=>'TS3.0','showonly'=>0))
  * @version TS3.0
  */
 class RemarkWidget extends Widget{
 	private  static $rand = 1;
 	/**
-	 * @param integer uid 目标用户的UID
-	 * @param string remark 用户已经被设置的备注名称
-	 * @param integer showonly 是否只显示已有的备注
+	 * @param integer uid 目標使用者的UID
+	 * @param string remark 使用者已經被設定的備註名稱
+	 * @param integer showonly 是否只顯示已有的備註
 	 */
 	public function render($data){
 		
@@ -27,13 +27,13 @@ class RemarkWidget extends Widget{
 		self::$rand ++;
 
 		unset($var,$data);
-        //输出数据
+        //輸出資料
 		return $content;
 	}
 	
 	/**
-	 * 渲染备注编辑弹框
-	 * @return string 修改后的备注内容
+	 * 渲染備註編輯彈框
+	 * @return string 修改後的備註內容
 	 */
 	public function edit(){
 		$var = $_REQUEST;

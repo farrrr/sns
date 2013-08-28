@@ -1,4 +1,4 @@
 <?php
 return array(
-	'name' => '蓝色积极'
+	'name' => '藍色積極'
 );

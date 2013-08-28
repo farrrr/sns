@@ -1,16 +1,16 @@
 <include file="../Public/_header" />
 <div class="so_main">
-  <!-- 备份选项 -->
+  <!-- 備份選項 -->
   <div id="begin_backup" style="display:none;">
-    <div class="page_tit">备份选项 [ <a href="javascript:void(0);" onclick="$('#begin_backup').slideUp();">隐藏</a> ]</div>
+    <div class="page_tit">備份選項 [ <a href="javascript:void(0);" onclick="$('#begin_backup').slideUp();">隱藏</a> ]</div>
     
     <div class="form2">
     <form method="post" action="{:U('admin/Tool/doBackUp')}">
     <dl class="lineD">
-      <dt>选项: </dt>
+      <dt>選項: </dt>
       <dd>
-        <input name="backup_type" type="radio" value="all" checked onclick="$('#backup_size').removeClass('lineD');$('#backup_table').slideUp();">全部备份<br/>
-        <input name="backup_type" type="radio" value="custom" onclick="$('#backup_size').addClass('lineD');$('#backup_table').slideDown();">选择备份
+        <input name="backup_type" type="radio" value="all" checked onclick="$('#backup_size').removeClass('lineD');$('#backup_table').slideUp();">全部備份<br/>
+        <input name="backup_type" type="radio" value="custom" onclick="$('#backup_size').addClass('lineD');$('#backup_table').slideDown();">選擇備份
       </dd>
     </dl>
     <dl class="" id="backup_size">
@@ -20,7 +20,7 @@
       </dd>
     </dl>
     <dl class="" id="backup_table" style="display:none">
-        <dt>数据库表: </dt>
+        <dt>資料庫表: </dt>
         <dd>
         <volist name="table" id="vo">
             <input type="checkbox" name="backup_table[]" value="{$vo.Name}">{$vo.Name} ( {$vo['Data_length']|admin_formatsize} )<br/>
@@ -28,16 +28,16 @@
         </dd>
     </dl>
     <div class="page_btm">
-      <input type="submit" class="btn_b" value="确定" />
+      <input type="submit" class="btn_b" value="確定" />
     </div>
     </form>
   </div>
   </div>
   
-  <div class="page_tit">数据备份</div>
+  <div class="page_tit">資料備份</div>
   <div class="Toolbar_inbox">
-    <a href="javascript:void(0);" class="btn_a" onclick="$('#begin_backup').slideDown();"><span>开始备份</span></a>
-    <a href="javascript:void(0);" class="btn_a" onclick="delsql();"><span>删除备份</span></a>
+    <a href="javascript:void(0);" class="btn_a" onclick="$('#begin_backup').slideDown();"><span>開始備份</span></a>
+    <a href="javascript:void(0);" class="btn_a" onclick="delsql();"><span>刪除備份</span></a>
   </div>
   
   <div class="list">
@@ -47,9 +47,9 @@
         <input type="checkbox" id="checkbox_handle" onclick="checkAll(this)" value="0">
         <label for="checkbox"></label>
     </th>
-    <th class="line_l">文件名(data/database/...)</th>
-    <th class="line_l">备份时间</th>
-    <th class="line_l">文件大小</th>
+    <th class="line_l">檔名(data/database/...)</th>
+    <th class="line_l">備份時間</th>
+    <th class="line_l">檔案大小</th>
     <th class="line_l">操作</th>
   </tr>
   <volist id="vo" name="log">
@@ -60,7 +60,7 @@
         <td>{$vo.addtime}</td>
         <td>{$vo.filesize}</td>
         <td>
-          <a href="{:U('admin/Tool/doDownload', array('filename'=>$vo['filename']))}">下载</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);" onclick="importsql('{$vo['filename']}');">导入</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);" onclick="delsql('{$filename}');">删除</a>
+          <a href="{:U('admin/Tool/doDownload', array('filename'=>$vo['filename']))}">下載</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);" onclick="importsql('{$vo['filename']}');">匯入</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);" onclick="delsql('{$filename}');">刪除</a>
         </td>
       </tr>
   </volist>
@@ -68,8 +68,8 @@
 
   </div>
   <div class="Toolbar_inbox">
-    <a href="javascript:void(0);" class="btn_a" onclick="$('#begin_backup').slideDown();"><span>开始备份</span></a>
-    <a href="javascript:void(0);" class="btn_a" onclick="delsql();"><span>删除备份</span></a>
+    <a href="javascript:void(0);" class="btn_a" onclick="$('#begin_backup').slideDown();"><span>開始備份</span></a>
+    <a href="javascript:void(0);" class="btn_a" onclick="delsql();"><span>刪除備份</span></a>
   </div>
 </div>
 
@@ -92,7 +92,7 @@
         }
     }
 
-    //获取已选择用户的ID数组
+    //獲取已選擇使用者的ID陣列
     function getChecked() {
         var gids = new Array();
         $.each($('input:checked'), function(i, n){
@@ -101,38 +101,38 @@
         return gids;
     }
 
-    //删除备份文件
+    //刪除備份檔案
     function delsql(bid) {
         var bid = bid ? bid : getChecked();
         bid = bid.toString();
         if(bid == 'all' || bid =="all,0"){
-            ui.error("请选择要删除的备份文件");
+            ui.error("請選擇要刪除的備份檔案");
         	return false;
         }
-        if(confirm('删除后无法恢复，确定删除？')){
-            //提交删除
+        if(confirm('刪除後無法恢復，確定刪除？')){
+            //提交刪除
             $.post("{:U('admin/Tool/doDeleteBackUp')}", {selected:bid}, function(res){
                 if(res == '1') {
                     bid = bid.split(',');
                     $.each(bid, function(i,n){
                         $('#backup_'+n).remove();
                     });
-                    ui.success('删除成功');
+                    ui.success('刪除成功');
                 }else {
-                    ui.error('删除失败');
+                    ui.error('刪除失敗');
                 }
             });
         }
     }
     
     function importsql( filename ){
-    	if(!confirm('导入后数据库数据将被完全覆盖，确定导入？'))
+    	if(!confirm('匯入後資料庫資料將被完全覆蓋，確定匯入？'))
         	return false;
 
     	window.location.href = "{:U('admin/Tool/import')}&filename=" + filename;
     }
 
-  //鼠标移动表格效果
+  //滑鼠移動表格效果
     $(document).ready(function(){
         $("tr[overstyle='on']").hover(
           function () {

@@ -15,7 +15,7 @@
 		        <p><label><input type="checkbox" class="checkbox" name="shareFeed" value="1">{:L('PUBLIC_SHARETO_STREAM')}</label><p>     
 		    </eq>
 		    <php>if($feedtype == 'repost' && $cancomment == 1):</php> 
-		    <p><label><input type="checkbox" class="checkbox" name="comment" value="1">同时评论给原文作者&nbsp;{$user_info.space_link_no}</label></p>
+		    <p><label><input type="checkbox" class="checkbox" name="comment" value="1">同時評論給原文作者&nbsp;{$user_info.space_link_no}</label></p>
 		    <php>endif;</php>    
 		</div>
 	</div>
@@ -24,7 +24,7 @@
 
 var initNums = '{$initNums}';
 var replylock = 0;
-//回复评论
+//回複評論
 function replycomment(){
 	if ( replylock == 1 ){
 		return;
@@ -47,7 +47,7 @@ function replycomment(){
 		flashTextarea(document.getElementById('mini_editor_textarea'));
 		return;
 	}
-	$('#replycomment').html('回复中..');
+	$('#replycomment').html('回覆中..');
 	$.post(U('widget/Comment/addcomment'),{
 		app_name:appname,
 		table_name:table,
@@ -66,7 +66,7 @@ function replycomment(){
 				ui.box.close();
 				ui.success( L('PUBLIC_CENTSUCCESS') );
 			}
-			$('#replycomment').html('<span>回复</span>');
+			$('#replycomment').html('<span>回覆</span>');
 		});
 	replylock = 1;
 }

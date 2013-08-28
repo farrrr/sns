@@ -1,15 +1,15 @@
 <?php
 /**
- * 颜色板Widget
+ * 顏色板Widget
  * @author zivss <guolee226@gmail.com>
  * @version TS3.0
  */
 class ColorWidget extends Widget {
 	/**
-	 * 渲染颜色板页面
+	 * 渲染顏色板頁面
 	 * @example
 	 * 
-	 * @return string 颜色板HTML相关信息
+	 * @return string 顏色板HTML相關資訊
 	 */
 	public function render ($data) {
 		$var['tpl'] = 'simple';

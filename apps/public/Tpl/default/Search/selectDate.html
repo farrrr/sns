@@ -7,15 +7,15 @@
 	<input type="hidden" name="feed_type" value="{$feed_type}" id="k"/>
 	<div class="pop-message">
 		<table class="pop table-pop">
-    <tbody><tr><td class="textR" style="width:150px;">开始时间：</td><td>{:W('DateSelect',array('name'=>'Stime','class'=>'s-txt','id'=>'Stime','value'=>'','dtype'=>'full'))}</td></tr>
-	<tr><td class="textR" style="width:150px;">结束时间：</td><td>{:W('DateSelect',array('name'=>'Etime','class'=>'s-txt','id'=>'Etime','value'=>'','dtype'=>'full'))}</td></tr>
-	<td></td><td><a class="btn-green-small" href="javascript:void(0)" onclick="$('#Search').submit();return false;"><span>确定</span></a>
+    <tbody><tr><td class="textR" style="width:150px;">開始時間：</td><td>{:W('DateSelect',array('name'=>'Stime','class'=>'s-txt','id'=>'Stime','value'=>'','dtype'=>'full'))}</td></tr>
+	<tr><td class="textR" style="width:150px;">結束時間：</td><td>{:W('DateSelect',array('name'=>'Etime','class'=>'s-txt','id'=>'Etime','value'=>'','dtype'=>'full'))}</td></tr>
+	<td></td><td><a class="btn-green-small" href="javascript:void(0)" onclick="$('#Search').submit();return false;"><span>確定</span></a>
 	<a class="btn-cancel ml10" onclick="cancel()" href="javascript:;"><span>取消</span></a></td></tr></tbody>
 	   </table>
     </div>
 </form>
 <script>
-// 关闭弹窗
+// 關閉彈窗
 function cancel() {
 	ui.box.close();
 }
@@ -24,11 +24,11 @@ var checkTime =function(){
 	var Stime = $('#Stime').val();
 	var Etime = $('#Etime').val();
 	if(Stime == ""){
-		ui.error("开始时间不能为空");
+		ui.error("開始時間不能為空");
 		return false;
 	}
 	if(Etime == ""){
-		ui.error("结束时间不能为空");
+		ui.error("結束時間不能為空");
 		return false;
 	}
 	var new_Stime = Stime.replace(/:/g,'-');
@@ -43,7 +43,7 @@ var checkTime =function(){
 	var Edatum = new Date(Date.UTC(arr[0],arr[1]-1,arr[2],arr[3]-8,arr[4],arr[5]));
 	var EtimeStamp = Edatum.getTime()/1000;
 	if(StimeStamp > EtimeStamp){
-		ui.error("结束时间不得早于开始时间");
+		ui.error("結束時間不得早於開始時間");
 		return false;
 	}
 	return true;

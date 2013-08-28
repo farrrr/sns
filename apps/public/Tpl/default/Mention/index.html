@@ -5,9 +5,9 @@ function addDigg(feed_id){
        if(res==1){
 	       var num = $('#digg'+feed_id).attr('rel');
     	   num++;
-    	   $('#digg'+feed_id).html('已赞('+num+')');
+    	   $('#digg'+feed_id).html('已贊('+num+')');
 	   }else {
-	       ui.error('操作失败，如没有登录请先登录再操作');
+	       ui.error('操作失敗，如沒有登入請先登入再操作');
        }
    });
 }
@@ -15,18 +15,18 @@ function addDigg(feed_id){
 <div id="page-wrap">
   <div id="main-wrap">
     <div id="st-index-grid">
-      <!--左边 -->
+      <!--左邊 -->
       <include file="__THEME__/public_left" />
       <div id="col8" class="content-bg clearfix boxShadow" style="width:auto">
         <div id="col4" class="main-left">
-          <!--tab菜单-->
+          <!--tab選單-->
           <div id="aside" class="pad">
             <dl class="nav-left mt10 border-no">
               <dd class="current"><a href="{:U('public/Mention')}">@提到我的</a></dd>
-              <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的评论</a></dd>
-              <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">发出的评论</a></dd>
+              <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的評論</a></dd>
+              <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">發出的評論</a></dd>
               <dd><a href="{:U('public/Message')}">我的私信</a></dd>
-              <dd><a href="{:U('public/Message/notify')}">系统消息</a></dd>
+              <dd><a href="{:U('public/Message/notify')}">系統訊息</a></dd>
             </dl>
           </div>
         </div>
@@ -69,7 +69,7 @@ function addDigg(feed_id){
               <dd class="content">
                 <p class="hd">
                 <php>if($vo['source_table'] == 'comment'):</php>
-                <!-- 评论模板开始 -->
+                <!-- 評論模板開始 -->
                   <php>if($vo['sourceInfo']['app'] != 'public'):</php>
                   <space uid="vo.comment_user_info.uid">{uname}</space>：<span class="f12 ico-bar-top">{$vo.source_type}</span>{$vo.source_content}
                   <dl class="comment">
@@ -83,7 +83,7 @@ function addDigg(feed_id){
                     <php>if($vo['is_audit']):</php>
                     {$vo.source_content}
                     <php>else:</php>
-                    内容正在审核
+                    內容正在稽覈
                     <php>endif;</php>
 
                     <dl class="comment">
@@ -92,24 +92,24 @@ function addDigg(feed_id){
                       <php>if($vo['sourceInfo']['is_audit']):</php>
                         <dd>{$vo.sourceInfo.source_body|format=true}</dd>
                       <php>else:</php>
-                        <dd>内容正在审核</dd>
+                        <dd>內容正在稽覈</dd>
                       <php>endif;</php>
                       <p class="info">
                         <span class="right">
-                          <a href="{:U('public/Profile/feed',array('uid'=>$vo['sourceInfo']['uid'],'feed_id'=>$vo['sourceInfo']['feed_id']))}">原文转发<neq name="vo.sourceInfo.repost_count" value="0">({$vo.sourceInfo.repost_count})</neq></a><i class="vline">|</i>
-                          <a href="{:U('public/Profile/feed',array('uid'=>$vo['sourceInfo']['uid'],'feed_id'=>$vo['sourceInfo']['feed_id']))}">原文评论<neq name="vo.sourceInfo.comment_count" value="0">({$vo.sourceInfo.comment_count})</neq></a>
+                          <a href="{:U('public/Profile/feed',array('uid'=>$vo['sourceInfo']['uid'],'feed_id'=>$vo['sourceInfo']['feed_id']))}">原文轉發<neq name="vo.sourceInfo.repost_count" value="0">({$vo.sourceInfo.repost_count})</neq></a><i class="vline">|</i>
+                          <a href="{:U('public/Profile/feed',array('uid'=>$vo['sourceInfo']['uid'],'feed_id'=>$vo['sourceInfo']['feed_id']))}">原文評論<neq name="vo.sourceInfo.comment_count" value="0">({$vo.sourceInfo.comment_count})</neq></a>
                         </span>
-                        <span><a href="{:U('public/Profile/feed',array('uid'=>$vo['sourceInfo']['uid'],'feed_id'=>$vo['sourceInfo']['feed_id']))}" date="{$vo.sourceInfo.publish_time}" class="date">{$vo.sourceInfo.publish_time|friendlyDate}</a><span>来自网站</span></span>
+                        <span><a href="{:U('public/Profile/feed',array('uid'=>$vo['sourceInfo']['uid'],'feed_id'=>$vo['sourceInfo']['feed_id']))}" date="{$vo.sourceInfo.publish_time}" class="date">{$vo.sourceInfo.publish_time|friendlyDate}</a><span>來自網站</span></span>
                       </p>
                     </dl>
                   <php>endif;</php>
-                <!-- 评论模板结束 -->
+                <!-- 評論模板結束 -->
                 <php>else:</php>
                 <space uid="vo.uid">{uname}</space>：<span class="f12 ico-bar-top">{$vo.source_type}</span>
                 <php>if($vo['is_audit']){</php>
                   {$vo.source_body|format=true}
                 <php>}else{</php>
-                  内容正在审核
+                  內容正在稽覈
                 <php>}</php>
                 <php>endif;</php>
                 </p>
@@ -118,16 +118,16 @@ function addDigg(feed_id){
                   <span class="right">
 	<php>if(CheckPermission('vtask_admin','vtask_recommend')):</php>
 	<em class="hover">
-	   <a href="javascript:void(0);" onclick="addToVtask({$vo.feed_id});">添加到事务</a>
+	   <a href="javascript:void(0);" onclick="addToVtask({$vo.feed_id});">添加到事務</a>
 	   <i class="vline">|</i>	
 	   </em>
 	<php>endif;</php>
 	<php>if($vo['source_table'] == 'feed'):</php>
 	<span id='digg{$vo.feed_id}' rel='{$vo.digg_count}'>
 	<php>if(!isset($diggArr[$vo['feed_id']])) { </php>
-	   <a href="javascript:void(0)" onclick="addDigg({$vo.feed_id})" >赞<if condition='!empty($vo[digg_count])'>({$vo.digg_count})</if></a>
+	   <a href="javascript:void(0)" onclick="addDigg({$vo.feed_id})" >贊<if condition='!empty($vo[digg_count])'>({$vo.digg_count})</if></a>
 	<php> } else { </php>
-	   已赞<if condition='!empty($vo[digg_count])'>({$vo.digg_count})</if>
+	   已贊<if condition='!empty($vo[digg_count])'>({$vo.digg_count})</if>
 	<php> } </php></span>
 	<i class="vline">|</i>	
 	<php>endif;</php>		
@@ -158,7 +158,7 @@ function addDigg(feed_id){
                     <php>endif;</php>
 
                   </span>
-                  <span><a class="date" date="{$vo.ctime}" href="{$vo.source_url}">{$vo.ctime|friendlyDate}</a><span>来自网站</span></span>
+                  <span><a class="date" date="{$vo.ctime}" href="{$vo.source_url}">{$vo.ctime|friendlyDate}</a><span>來自網站</span></span>
                   
                   <php>if($vo['uid'] != $mid && $vo['source_table'] != 'comment'):</php>
                   <php>if(CheckPermission('core_normal','feed_report')):</php>
@@ -190,7 +190,7 @@ function addDigg(feed_id){
 <script type="text/javascript" src="__THEME__/js/core.weibo.js"></script>
 <script type="text/javascript">
 /**
- * 时间更新效果
+ * 時間更新效果
  * return void
  */
 $(document).ready(function() {

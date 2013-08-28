@@ -1,4 +1,4 @@
-// 分类展示模型
+// 分類展示模型
 core.category = {	
 	_init: function(attrs) {
 		return false;
@@ -10,7 +10,7 @@ core.category = {
 		this.method_name = method;
 		this.callback = '';
 	},
-	//点击选择分类
+	//點選選擇分類
 	loadSelect:function(obj,model,app,method,id,inputname,callback){
 		
 		var url = U('widget/Category/selectBox')+'&model_name='+model+'&app_name='+app+'&method='+method+'&id='+id;
@@ -21,13 +21,13 @@ core.category = {
 
 		this.callback = callback;
 
-		ui.box.load(url,'选择分类');
+		ui.box.load(url,'選擇分類');
 	},
-	//选择分类弹窗里面确定
+	//選擇分類彈窗裡面確定
 	select:function(){
 		var _this = this;
 		if(typeof(this.curId) === 'undefined') {
-			ui.error('请选择分类');
+			ui.error('請選擇分類');
 			return false;
 		}
 		$.get(U('widget/Category/getCatePath')+'&model_name='+this.model_name+'&app_name='+this.app_name+'&method='+this.method_name,
@@ -47,7 +47,7 @@ core.category = {
 		});
 
 	},
-	//分类选择弹窗里面修改值
+	//分類選擇彈窗裡面修改值
 	changeCate:function(obj){
 		this.curId = $(obj).val();
 		var _this = this;

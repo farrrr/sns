@@ -11,10 +11,10 @@
 <script>
 var newRemark = '';
 var fid = '{$uid}';
-//保存备注
+//儲存備註
 function  saveRemark(){
 	var remark = '';
-	// if($('#remark').val() !='' && $('#remark').val() !='设置备注'){
+	// if($('#remark').val() !='' && $('#remark').val() !='設定備註'){
 		remark = $('#remark').val();
 		if(getLength(remark) > 10 ){
 			ui.error(L('PUBLIC_REMARK_CHARACTER_LIMIT'));
@@ -25,7 +25,7 @@ function  saveRemark(){
 				ui.box.close();
 				ui.error( L('PUBLIC_PRMARK_EDIT_ERROR') );
 			}else{
-				var remark = msg.data;//存储进去的remark
+				var remark = msg.data;//存儲進去的remark
 				if(remark==''){
 					$('.remark_'+fid).html( L('PUBLIC_SET_PRMARK') );
 					$('.remark_'+fid).attr('remark','');

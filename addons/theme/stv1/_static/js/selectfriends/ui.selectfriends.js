@@ -1,9 +1,9 @@
 /**
  * @fileoverview Giant Interective Group, Inc. Javascript Library v#version.
- * 该Javascript UI库是基于jQuery的扩展。
+ * 該Javascript UI庫是基於jQuery的擴展。
  * <pre>
  * Copyright (C) 2004-2009 Giant Interective Group, Inc. All rights reserved.
- * 版权所有 2004-2009 上海巨人网络科技有限公司
+ * 版權所有 2004-2009 上海巨人網路科技有限公司
  * </pre>
  *
  * @version #version, #date
@@ -16,44 +16,44 @@ if(typeof giant.ui === 'undefined')
         giant.ui = {};
 (function($) {
         /**
-	 * 创建一个新的好友选择器控件。
-	 * 支持多选和单选两种模式，在单选模式下有回调函数
-	 * @class giant.ui.friendsuggest。Giant UI 的friendsuggest控件。
+	 * 創建一個新的好友選擇器控制項。
+	 * 支援多選和單選兩種模式，在單選模式下有回撥函數
+	 * @class giant.ui.friendsuggest。Giant UI 的friendsuggest控制項。
 	 * @example 
 	 * <pre>
      *  &lt;div id=&quot;ui-fs&quot; class=&quot;ui-fs&quot;&gt;
      *      &lt;div class=&quot;ui-fs-result clearfix&quot;&gt;
      *      &lt;/div&gt;
      *      &lt;div class=&quot;ui-fs-input&quot;&gt;
-     *       &lt;input type=&quot;text&quot; value=&quot;输入好友姓名(支持全拼输入)&quot; maxlength=&quot;$this.opts.ajaxGetCountUrl&quot; /&gt;
-     *          &lt;a class=&quot;ui-fs-icon&quot; href=&quot;javascript:void(0)&quot; title=&quot;查看所有好友&quot;&gt;查看所有好友&lt;/a&gt;
+     *       &lt;input type=&quot;text&quot; value=&quot;輸入好友姓名(支援全拼輸入)&quot; maxlength=&quot;$this.opts.ajaxGetCountUrl&quot; /&gt;
+     *          &lt;a class=&quot;ui-fs-icon&quot; href=&quot;javascript:void(0)&quot; title=&quot;檢視所有好友&quot;&gt;檢視所有好友&lt;/a&gt;
      *    &lt;/div&gt;
      *    &lt;div class=&quot;ui-fs-list&quot;&gt;
-     *        数据加载中....
+     *        資料載入中....
      *    &lt;/div&gt;
      *      &lt;div class=&quot;ui-fs-all&quot;&gt;
      *        &lt;div class=&quot;top&quot;&gt;
      *            &lt;select id=&quot;ui-fs-friendtype&quot;&gt;&lt;option value=&quot;-1&quot;&gt;所有好友&lt;/option&gt;&lt;/select&gt;
-     *             &lt;div class=&quot;close&quot; title=&quot;关闭&quot;&gt;关闭&lt;/div&gt;
+     *             &lt;div class=&quot;close&quot; title=&quot;關閉&quot;&gt;關閉&lt;/div&gt;
      *       &lt;/div&gt;
      *       &lt;div class=&quot;ui-fs-allinner&quot;&gt;
      *           &lt;div class=&quot;page clearfix&quot;&gt;
-     *                &lt;div class=&quot;llight1&quot;&gt;还有&lt;b&gt;$this.opts.ajaxGetCountUrl&lt;/b&gt;人可选&lt;/div&gt;&lt;div class=&quot;button&quot;&gt;&lt;span class=&quot;prev&quot;&gt;上一页&lt;/span&gt;&lt;span class=&quot;next&quot;&gt;下一页&lt;/span&gt;&lt;/div&gt;
+     *                &lt;div class=&quot;llight1&quot;&gt;還有&lt;b&gt;$this.opts.ajaxGetCountUrl&lt;/b&gt;人可選&lt;/div&gt;&lt;div class=&quot;button&quot;&gt;&lt;span class=&quot;prev&quot;&gt;上一頁&lt;/span&gt;&lt;span class=&quot;next&quot;&gt;下一頁&lt;/span&gt;&lt;/div&gt;
      *             &lt;/div&gt;
      *            &lt;div class=&quot;list clearfix&quot;&gt;
-     *                 数据加载中...
+     *                 資料載入中...
      *           &lt;/div&gt;
      *        &lt;/div&gt;
      *   &lt;/div&gt;
      *  &lt;/div&gt;
-     * //多选模式--默认
+     * //多選模式--默認
      *  var test = new giant.ui.friendsuggest();
-     * //单选模式--
+     * //單選模式--
      *   var test2 = new giant.ui.friendsuggest({
      *      totalSelectNum:1,
      *      selectType:"single",
      *      selectCallBack:function(fUid, name, image) {
-     *          alert("您选择的好友ID为"+fUid);
+     *          alert("您選擇的好友ID為"+fUid);
      *          this.setDropDownListHide();
      *          this.setAllFriendHide();
      *      }
@@ -70,8 +70,8 @@ if(typeof giant.ui === 'undefined')
                 if(no_edit) var fri_ids = $("#ui_fri_ids").val();
                 //alert(fri_ids);
                 if(fri_ids) this.resultArr = fri_ids.split(",");
-                this.isAllFriendShow = false;   //是否已经显示所有好友
-                this.isDropDownListShow = false; //下拉选项是否已显示
+                this.isAllFriendShow = false;   //是否已經顯示所有好友
+                this.isDropDownListShow = false; //下拉選項是否已顯示
                 this.activeIndex = 0;
                 //this.typeId = -1;
                 this._init();
@@ -110,7 +110,7 @@ if(typeof giant.ui === 'undefined')
                 },
                 _clickBind:function() {
                         var $this = this;
-                        //右侧查看所有小图标
+                        //右側檢視所有小圖示
                         $($this.opts.btnAll).bind("click", function() {
                                 if (!$this.isAllFriendShow) {
                                         $this._formartAllFriend();
@@ -119,23 +119,23 @@ if(typeof giant.ui === 'undefined')
                                 }
 
                         });
-                        //查看所有中的关闭按钮
+                        //檢視所有中的關閉按鈕
                         $($this.opts.btnCloseAllFriend).bind("click", function() {
                                 $this.setAllFriendHide();
                         });
-                        //点击添加好友
+                        //點選添加好友
                         $($this.opts.allFriendListContainer).find("a").live("click", function() {
                                 $this.addUser($(this).attr("name"), $(this).text(), $(this).find("img").attr("src"));
                                 $( '.ui-fs-result ' ).css( 'display','block' );
                         });
-                        //点击删除好友
+                        //點選刪除好友
                         $($this.opts.resultContainer).find("span").live("click", function() {
                                 $this.deleteUser($(this).parents("a"));
                                 if( $this.resultArr == "" ){
                                         $( '.ui-fs-result ' ).css( 'display','none' );
                                 }
                         });
-                        //下一页
+                        //下一頁
                         $($this.opts.btnNextPage).bind("click", function() {
                                 if ($this.currentPage < $this.totalPage) {
                                         $this.currentPage++;
@@ -149,7 +149,7 @@ if(typeof giant.ui === 'undefined')
                                         }
                                 }
                         });
-                        //上一页
+                        //上一頁
                         $($this.opts.btnPrevPage).bind("click", function() {
                                 if ($this.currentPage > 1) {
                                         $this.currentPage--;
@@ -209,24 +209,24 @@ if(typeof giant.ui === 'undefined')
                                                         });
                                                 },"normal");
                                         }
-                                        else {       //输入为空
+                                        else {       //輸入為空
                                                 $($this.opts.dropDownListContainer).html($this.opts.inputDefaultTip);
                                         }
                                 }
                                 if ($this.isDropDownListShow) {
                                         var totalCount = $($this.opts.dropDownListContainer).find("a").size();
                                         if (totalCount > 0) {
-                                                //down 键
+                                                //down 鍵
                                                 if (event.keyCode == "40") {
                                                         if ($this.activeIndex < totalCount - 1) $this.activeIndex++;
                                                         else  $this.activeIndex = 0;
                                                 }
-                                                //up 键
+                                                //up 鍵
                                                 else if (event.keyCode == "38") {
                                                         if ($this.activeIndex > 0)  $this.activeIndex--;
                                                         else  $this.activeIndex = totalCount - 1;
                                                 }
-                                                //回车键  加入
+                                                //回車鍵  加入
                                                 else if (event.keyCode == "13") {
                                                         var $obj = $($this.opts.dropDownListContainer).find("a.active");
                                                         $this.addUser($obj.attr("name"), $obj.text(), $obj.find("img").attr("src"));
@@ -242,7 +242,7 @@ if(typeof giant.ui === 'undefined')
                         var $this = this;
                         $this.setAllFriendShow();
                         $this._getData($this._getPar(), $($this.opts.allFriendListContainer), null, "all");
-                        //上一页下一页判断
+                        //上一頁下一頁判斷
                         if ($this.currentPage == 1) {
                                 $($this.opts.btnPrevPage).addClass("disable");
                         }
@@ -308,7 +308,7 @@ if(typeof giant.ui === 'undefined')
                                 success:function(msg) {
                         				var $ui_fri_num = $("#ui_fri_num");
                                 		var fnum = parseInt($ui_fri_num.html());
-                                        //改变总好友数
+                                        //改變總好友數
                                 		$ui_fri_num.html((fnum < 10)?fnum:'10');
                                         $this.opts.totalSelectNum = (fnum < 10)?fnum:'10';
                                         //end
@@ -331,10 +331,10 @@ if(typeof giant.ui === 'undefined')
                         return data;
                 },
                 /**
-         * 添加用户
+         * 添加使用者
          * @param{Number} fUid 好友的id
          * @name {String} name 好友的名字
-         * @image{String} name 图片路径
+         * @image{String} name 圖片路徑
          * */
                 addUser:function(fUid, name, image) {
                         var $this = this;
@@ -342,11 +342,11 @@ if(typeof giant.ui === 'undefined')
                         	ui.error( L('PUBLIC_CEND_MAX') );
                         	return ;
                         }
-                        //如果当前用户不存在
+                        //如果當前使用者不存在
                         if ($this.opts.selectType == "multiple") {
                                 if ($.inArray(fUid, $this.resultArr) == -1) {
                                         $this.resultArr.push(fUid);
-                                        $($this.opts.resultContainer).append("<a href='javascript:void(0)' name='" + fUid + "'><img width='20' height='20' src='" + image + "' title='" + fUid + "' alt='' />" + name + "<span title='移除该好友'></span></a>");
+                                        $($this.opts.resultContainer).append("<a href='javascript:void(0)' name='" + fUid + "'><img width='20' height='20' src='" + image + "' title='" + fUid + "' alt='' />" + name + "<span title='移除該好友'></span></a>");
 //                                        $($this.opts.frinedNumberContainer).text($this.opts.totalSelectNum- $this.resultArr.length);
                                         var nowTotalSelectNum = '10';
                                         $($this.opts.frinedNumberContainer).text(nowTotalSelectNum - $this.resultArr.length);
@@ -354,14 +354,14 @@ if(typeof giant.ui === 'undefined')
                                         var ggid = $this.opts.resultContainer;
                                         var gg_type = ggid.split(" ");
                                         var ggg_type = gg_type[0].substring(6,gg_type[0].length);
-                                        $("#ui_fri_ids"+ggg_type).val($this.resultArr);//fantasy添加，贮存好友id
+                                        $("#ui_fri_ids"+ggg_type).val($this.resultArr);//fantasy添加，貯存好友id
                                 } else {
                                         var i = 0;
                                         var $obj = $($this.opts.resultContainer).find("[name='" + fUid + "']");
                                         $obj.css("background-color", "#fff");
-                                        //变色
+                                        //變色
                                         var interval = setInterval(function() {
-                                                //IE和FF颜色输出不一样
+                                                //IE和FF顏色輸出不一樣
                                                 if ($obj.css("background-color") == "#ffffff" || $obj.css("background-color") == "rgb(255, 255, 255)") {
                                                         $obj.css("background-color", "#6699cc");
                                                         $obj.css("color", "#fff");
@@ -395,10 +395,10 @@ if(typeof giant.ui === 'undefined')
                         var gg_type = ggid.split(" ");
                         var ggg_type = gg_type[0].substring(6,gg_type[0].length);
 
-                        $("#ui_fri_ids"+ggg_type).val($this.resultArr);//fantasy添加，贮存好友id
+                        $("#ui_fri_ids"+ggg_type).val($this.resultArr);//fantasy添加，貯存好友id
                 },
                 /**
-         * 显示好友提示下拉层
+         * 顯示好友提示下拉層
          * */
                 setDropDownListShow:function() {
                         this.isDropDownListShow = true;
@@ -406,7 +406,7 @@ if(typeof giant.ui === 'undefined')
                         $(this.opts.dropDownListContainer).show();
                 },
                 /**
-         * 隐藏好友提示下拉层
+         * 隱藏好友提示下拉層
          * */
                 setDropDownListHide:function() {
                         this.isDropDownListShow = false;
@@ -416,7 +416,7 @@ if(typeof giant.ui === 'undefined')
                         //$(this.opts.dropDownListContainer).html("");
                 },
                 /**
-         * 显示所有好友选择框
+         * 顯示所有好友選擇框
          * */
                 setAllFriendShow:function() {
                         this.isAllFriendShow = true;
@@ -425,7 +425,7 @@ if(typeof giant.ui === 'undefined')
                         $(this.opts.btnAll).addClass("active");
                 },
                 /**
-         * 隐藏所有好友选择框
+         * 隱藏所有好友選擇框
          * */
                 setAllFriendHide:function() {
                         this.isAllFriendShow = false;
@@ -433,19 +433,19 @@ if(typeof giant.ui === 'undefined')
                         $(this.opts.btnAll).removeClass("active");
                 },
                 /**
-         * 获取选中的好友结果集
-         * @return {Array} 返回存放选中的好友id的数组
+         * 獲取選中的好友結果集
+         * @return {Array} 返回存放選中的好友id的陣列
          * */
                 getResult:function() {
                         return this.resultArr;
                 }
         }
         /**
-     * 默认参数
+     * 默認參數
      * <pre>
-     * totalSelectNum 多选模式下，最多选取人数，默认为$this.opts.ajaxGetCountUrl
-     * selectType 选择模式，默认为多选"multiple",若为单选，则用single
-     * selectCallBack 单选模式下，选中之后的回调函数。 
+     * totalSelectNum 多選模式下，最多選取人數，默認為$this.opts.ajaxGetCountUrl
+     * selectType 選擇模式，默認為多選"multiple",若為單選，則用single
+     * selectCallBack 單選模式下，選中之後的回撥函數。 
      * </pre>
      * */
         giant.ui.friendsuggest.defaults = {

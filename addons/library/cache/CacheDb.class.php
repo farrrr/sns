@@ -11,7 +11,7 @@
 
 defined('THINK_PATH') or exit();
 /**
- * 数据库方式缓存驱动
+ * 資料庫方式快取驅動
  *    CREATE TABLE think_cache (
  *      cachekey varchar(255) NOT NULL,
  *      expire int(11) NOT NULL,
@@ -27,8 +27,8 @@ defined('THINK_PATH') or exit();
 class CacheDb extends Cache {
 
     /**
-     * 架构函数
-     * @param array $options 缓存参数
+     * 架構函數
+     * @param array $options 快取參數
      * @access public
      */
     public function __construct($options=array()) {
@@ -37,18 +37,18 @@ class CacheDb extends Cache {
                 'table'     =>  C('DATA_CACHE_TABLE'),
             );
         }
-        $this->options  =   $options;   
+        $this->options  =   $options;
         $this->options['prefix']    =   isset($options['prefix'])?  $options['prefix']  :   C('DATA_CACHE_PREFIX');
-        $this->options['length']    =   isset($options['length'])?  $options['length']  :   0;        
+        $this->options['length']    =   isset($options['length'])?  $options['length']  :   0;
         $this->options['expire']    =   isset($options['expire'])?  $options['expire']  :   C('DATA_CACHE_TIME');
         import('Db');
         $this->handler   = DB::getInstance();
     }
 
     /**
-     * 读取缓存
+     * 讀取快取
      * @access public
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return mixed
      */
     public function get($name) {
@@ -57,14 +57,14 @@ class CacheDb extends Cache {
         $result     =  $this->handler->query('SELECT `data`,`datacrc` FROM `'.$this->options['table'].'` WHERE `cachekey`=\''.$name.'\' AND (`expire` =0 OR `expire`>'.time().') LIMIT 0,1');
         if(false !== $result ) {
             $result   =  $result[0];
-            if(C('DATA_CACHE_CHECK')) {//开启数据校验
-                if($result['datacrc'] != md5($result['data'])) {//校验错误
+            if(C('DATA_CACHE_CHECK')) {//開啟資料校驗
+                if($result['datacrc'] != md5($result['data'])) {//校驗錯誤
                     return false;
                 }
             }
             $content   =  $result['data'];
             if(C('DATA_CACHE_COMPRESS') && function_exists('gzcompress')) {
-                //启用数据压缩
+                //啟用資料壓縮
                 $content   =   gzuncompress($content);
             }
             $content    =   unserialize($content);
@@ -76,11 +76,11 @@ class CacheDb extends Cache {
     }
 
     /**
-     * 写入缓存
+     * 寫入快取
      * @access public
-     * @param string $name 缓存变量名
-     * @param mixed $value  存储数据
-     * @param integer $expire  有效时间（秒）
+     * @param string $name 快取變數名
+     * @param mixed $value  存儲資料
+     * @param integer $expire  有效時間（秒）
      * @return boolen
      */
     public function set($name, $value,$expire=null) {
@@ -88,41 +88,41 @@ class CacheDb extends Cache {
         $name   =  $this->options['prefix'].addslashes($name);
         N('cache_write',1);
         if( C('DATA_CACHE_COMPRESS') && function_exists('gzcompress')) {
-            //数据压缩
+            //資料壓縮
             $data   =   gzcompress($data,3);
-        }
-        if(C('DATA_CACHE_CHECK')) {//开启数据校验
-            $crc  =  md5($data);
-        }else {
-            $crc  =  '';
-        }
-        if(is_null($expire)) {
-            $expire  =  $this->options['expire'];
-        }
-        $expire	    =   ($expire==0)?0: (time()+$expire) ;//缓存有效期为0表示永久缓存
-        $result     =   $this->handler->query('select `cachekey` from `'.$this->options['table'].'` where `cachekey`=\''.$name.'\' limit 0,1');
-        if(!empty($result) ) {
-        	//更新记录
-            $result  =  $this->handler->execute('UPDATE '.$this->options['table'].' SET data=\''.$data.'\' ,datacrc=\''.$crc.'\',expire='.$expire.' WHERE `cachekey`=\''.$name.'\'');
-        }else {
-        	//新增记录
-             $result  =  $this->handler->execute('INSERT INTO '.$this->options['table'].' (`cachekey`,`data`,`datacrc`,`expire`) VALUES (\''.$name.'\',\''.$data.'\',\''.$crc.'\','.$expire.')');
-        }
-        if($result) {
-            if($this->options['length']>0) {
-                // 记录缓存队列
-                $this->queue($name);
-            }
-            return true;
-        }else {
-            return false;
-        }
+    }
+    if(C('DATA_CACHE_CHECK')) {//開啟資料校驗
+        $crc  =  md5($data);
+    }else {
+        $crc  =  '';
+    }
+    if(is_null($expire)) {
+        $expire  =  $this->options['expire'];
+    }
+    $expire     =   ($expire==0)?0: (time()+$expire) ;//快取有效期為0表示永久快取
+    $result     =   $this->handler->query('select `cachekey` from `'.$this->options['table'].'` where `cachekey`=\''.$name.'\' limit 0,1');
+    if(!empty($result) ) {
+        //更新記錄
+        $result  =  $this->handler->execute('UPDATE '.$this->options['table'].' SET data=\''.$data.'\' ,datacrc=\''.$crc.'\',expire='.$expire.' WHERE `cachekey`=\''.$name.'\'');
+    }else {
+        //新增記錄
+        $result  =  $this->handler->execute('INSERT INTO '.$this->options['table'].' (`cachekey`,`data`,`datacrc`,`expire`) VALUES (\''.$name.'\',\''.$data.'\',\''.$crc.'\','.$expire.')');
+    }
+    if($result) {
+        if($this->options['length']>0) {
+            // 記錄快取佇列
+            $this->queue($name);
+    }
+    return true;
+    }else {
+        return false;
+    }
     }
 
     /**
-     * 删除缓存
+     * 刪除快取
      * @access public
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return boolen
      */
     public function rm($name) {
@@ -131,7 +131,7 @@ class CacheDb extends Cache {
     }
 
     /**
-     * 清除缓存
+     * 清除快取
      * @access public
      * @return boolen
      */
@@ -139,4 +139,4 @@ class CacheDb extends Cache {
         return $this->handler->execute('TRUNCATE TABLE `'.$this->options['table'].'`');
     }
 
-}
+    }

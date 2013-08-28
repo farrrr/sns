@@ -1,6 +1,6 @@
 <?php
 /**
- * ThinkPHP系统基类
+ * ThinkPHP系統基類
  * @author    liu21st <liu21st@gmail.com>
  * @version   $Id$
  */
@@ -9,10 +9,10 @@ class Think
     private static $_instance = array();
 
     /**
-     * 自动变量设置
+     * 自動變數設定
      * @access public
-     * @param $name 属性名称
-     * @param $value  属性值
+     * @param $name 屬性名稱
+     * @param $value  屬性值
      */
     public function __set($name ,$value) {
         if(property_exists($this,$name))
@@ -20,9 +20,9 @@ class Think
     }
 
     /**
-     * 自动变量获取
+     * 自動變數獲取
      * @access public
-     * @param $name 属性名称
+     * @param $name 屬性名稱
      * @return mixed
      */
     public function __get($name) {
@@ -30,26 +30,26 @@ class Think
     }
 
     /**
-     * 系统自动加载ThinkPHP类库
-     * 并且支持配置自动加载路径
-     * @param string $classname 对象类名
+     * 系統自動載入ThinkPHP類庫
+     * 並且支援配置自動載入路徑
+     * @param string $classname 物件類名
      * @return void
      */
     public static function autoload($classname) {
-        // 检查是否存在别名定义
+        // 檢查是否存在別名定義
         if(tsload($classname)) return ;
-        // 自动加载当前项目的Actioon类和Model类
+        // 自動載入當前項目的Actioon類和Model類
         if(substr($classname,-5)=="Model") {
             tsload(APP_MODEL_PATH.'/'.$classname.'.class.php');
         }elseif(substr($classname,-6)=="Action"){
             tsload(APP_ACTION_PATH.'/'.$classname.'.class.php');
         }else {
-            // 根据自动加载路径设置进行尝试搜索
+            // 根據自動載入路徑設定進行嘗試搜索
             if(tsconfig('APP_AUTOLOAD_PATH')) {
                 $paths  =   explode(',',tsconfig('APP_AUTOLOAD_PATH'));
                 foreach ($paths as $path){
                     if(tsload($path.'/'.$classname.'.class.php'))
-                        // 如果加载类成功则返回
+                        // 如果載入類成功則返回
                         return ;
                 }
             }
@@ -58,13 +58,13 @@ class Think
     }
 
     /**
-     * 取得对象实例 支持调用类的静态方法
-     * @param string $class 对象类名
-     * @param string $method 类的静态方法名
+     * 取得物件例項 支援呼叫類的靜態方法
+     * @param string $class 物件類名
+     * @param string $method 類的靜態方法名
      * @return object
      */
     static public function instance($class,$method='') {
-        $identify   =   $class.$method; 
+        $identify   =   $class.$method;
         if(!isset(self::$_instance[$identify])) {
             if(class_exists($class)){
                 $o = new $class();
@@ -79,5 +79,5 @@ class Think
         return self::$_instance[$identify];
     }
 
-}//类定义结束
+}//類定義結束
 ?>

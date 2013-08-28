@@ -1,4 +1,4 @@
-<div class="profession-title">请选择您的职业信息，每个人最多可选择<em>3</em>个身份，已选择<em id="selected_nums">{$nums}</em>个</div>
+<div class="profession-title">請選擇您的職業資訊，每個人最多可選擇<em>3</em>個身份，已選擇<em id="selected_nums">{$nums}</em>個</div>
 <div class="profession-type">
 <volist name="categoryTree" id="vo">
 	<dl>
@@ -15,7 +15,7 @@
 	</dl>
 </volist>
 <dl id="selected_category" <?php if(empty($selected)):?>style="display:none;"<?php endif;?>>
-	<dt>已选择：</dt>
+	<dt>已選擇：</dt>
 	<dd>
 		<volist name="selected" id="vo">
 			<a href="javascript:;" onclick="deleteUserCategory(this, {$vo['user_category_id']})" class="current btn-cancel"><span>{$vo.title}<i class="ico-close1"></i></span></a>
@@ -27,7 +27,7 @@
 </div>
 
 <script type="text/javascript">
-// 添加用户与身份的关联信息
+// 添加使用者與身份的關聯資訊
 var addUserCategory = function(obj, cid, title) {
 	if(!$(obj).hasClass('on')) {
 		var categoryIds = $('#user_category_ids').val();
@@ -35,7 +35,7 @@ var addUserCategory = function(obj, cid, title) {
 		if(categoryIds != '') {
 			categoryArray = categoryIds.split(',');
 			if(categoryArray.length == 3) {
-				ui.error('每个人最多只能选择3个身份');
+				ui.error('每個人最多只能選擇3個身份');
 				return false;
 			}
 		}
@@ -49,7 +49,7 @@ var addUserCategory = function(obj, cid, title) {
 		setSelectedNums();
 	}
 };
-// 删除用户与身份的关联信息
+// 刪除使用者與身份的關聯資訊
 var deleteUserCategory = function(obj, cid) {
 	$('#user_category_' + cid).removeClass('current on');
 	var categoryIds = $('#user_category_ids').val();
@@ -70,7 +70,7 @@ var deleteUserCategory = function(obj, cid) {
 	$(obj).remove();
 	setSelectedNums();
 };
-// 设置选中身份数目
+// 設定選中身份數目
 var setSelectedNums = function() {
 	var len = $('#selected_category').find('a').length;
 	$('#selected_nums').html(len);

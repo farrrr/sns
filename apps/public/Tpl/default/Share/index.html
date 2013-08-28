@@ -1,4 +1,4 @@
-	<!-- 分享弹出窗 -->
+	<!-- 分享彈出窗 -->
 	<div model-node='share_model' class="pop-share">
 	<div class="mod-tab-menu" >
     <span class="left">{:L('PUBLIC_SHARETO')}：</span>
@@ -15,7 +15,7 @@
 	</div>
       <div class="forward-content">
         <php>if($oldInfo['is_del'] == 1):</php>
-        内容已被删除
+        內容已被刪除
         <php>else:</php>
       	<a href='{$oldInfo.source_user_info.space_url}' target='_blank'>{$oldInfo.source_user_info.uname}</a>
       	<p>
@@ -38,7 +38,7 @@
         <div class="input" model-node='share_input' event-args='to=people' style="position:static">
         </eq>
         <div id='share_message'>
-        		<div class="fw mb5">选择好友</div>
+        		<div class="fw mb5">選擇好友</div>
           	 	<div class="clearfix">{:W('SearchUser',array('max'=>1))}</div>
       		<div model-node='share_comment_box' class="mb5">
 			<div class="pt10 fw fold"  model-node='add_comment'>{:L('PUBLIC_ADD_COMMENT')}<i class="arrow-open ml10"></i></div>

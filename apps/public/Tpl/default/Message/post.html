@@ -18,18 +18,18 @@
 </div>
 
 <script type="text/javascript">
-// 重新监听事件
+// 重新監聽事件
 M(document.getElementById('post_message'));
 shortcut('ctrl+return', doPostMessage , {target:'post_message'});
 /**
- * 按钮状态
- * @param string type 状态类型，2种
+ * 按鈕狀態
+ * @param string type 狀態類型，2種
  * @return void
  */
 var butstate = function(type){
 	if(type == 'open') {
 		$('#postbut').removeAttr('disabled');
-		$('#postbut').val("发送");
+		$('#postbut').val("發送");
 	}
 	if(type == 'close') {
 		$('#postbut').attr('disabled','true');
@@ -37,46 +37,46 @@ var butstate = function(type){
 	}
 };
 /**
- * 发送私信操作
+ * 發送私信操作
  * @return void
  */
 function doPostMessage() {
-	// 发送私信的用户
+	// 發送私信的使用者
     var message_to = $('#search_uids').val();
     if("undefined" == typeof(message_to)) {
-        ui.error("收信人不能为空");
+        ui.error("收信人不能為空");
         return false;
     }
-    // 限制发送用户的个数
+    // 限制發送使用者的個數
     if(message_to.split(",").length > 12){
-    	// ui.error('私信最多只能同时发送给10个人')
+    	// ui.error('私信最多只能同時發送給10個人')
     	return false;
     }
     
     var message_title = $('#message_title').val();
     var message_content = $('#message_content').val();
-    // 验证发送信息正确性
+    // 驗證發送資訊正確性
     if(message_to == "") {
-    	ui.error("收信人不能为空");
+    	ui.error("收信人不能為空");
     	//butstate('open');
     	return false;
     }
     if(message_title == "") {
-    	ui.error("标题不可为空");
+    	ui.error("標題不可為空");
     	//butstate('open');
     	return false;
     }
     if(message_content == "") {
-    	ui.error("内容不可为空");
+    	ui.error("內容不可為空");
     	//butstate('open');
     	return false;
     }
-    // 发送按钮状态
+    // 發送按鈕狀態
     butstate('close');
-    // 发送私信链接
+    // 發送私信連結
     $.post("{:U('public/Message/doPost')}", {to:message_to, title:message_title, content:message_content}, function(res) {
         if(res.status == 1){
-            ui.success("发送成功");
+            ui.success("發送成功");
             ui.box.close();
         } else {
             ui.error(res.data);

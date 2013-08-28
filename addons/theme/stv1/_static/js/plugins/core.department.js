@@ -3,18 +3,18 @@
 
  */
 core.department ={
-		//给工厂调用的接口
+		//給工廠呼叫的介面
 		_init:function(attrs){
 			if(attrs.length == 7){
-				//必须要定义一个选择框的对象ID和回调函数名称
+				//必須要定義一個選擇框的物件ID和回撥函數名稱
 				core.department.init(attrs[1],attrs[2],attrs[3],attrs[4],attrs[5],attrs[6]);
-				this.departmentHash = new Array();// 数据缓存
+				this.departmentHash = new Array();// 資料快取
 				this.curId = 0;
 				this.curText = '';
 			}else if(attrs.length==6){
-				//必须要定义一个选择框的对象ID和回调函数名称
+				//必須要定義一個選擇框的物件ID和回撥函數名稱
 				core.department.init(attrs[1],attrs[2],attrs[3],attrs[4],attrs[5]);
-				this.departmentHash = new Array();// 数据缓存
+				this.departmentHash = new Array();// 資料快取
 				this.curId = 0;
 				this.curText = '';
 			}else{
@@ -30,21 +30,21 @@ core.department ={
 			}
 			this.selectid = selectid;	
 
-			this.callback = callback;		// 选中之后的回调函数
+			this.callback = callback;		// 選中之後的回撥函數
 			
-			this.mod	  = mod;			// 显示模型
+			this.mod	  = mod;			// 顯示模型
 
 			this.sid 	  = sid;
 
 			this.nosid	  = nosid; 
 			
-			//绑定x
+			//繫結x
 			this.bindSelected(0);	
 			
 		},
 		bindSelected:function(pid){
 
-			if(this.mod == 'select'){//下拉选择框
+			if(this.mod == 'select'){//下拉選擇框
 				$('#'+this.selectid).find('select').change(function(){
 					core.department.selectDepart(pid,this,this.value,$(this).find('option:selected').text());
 				});
@@ -92,7 +92,7 @@ core.department ={
 				return false;
 			}
 
-			if(this.mod == 'select'){//下拉的显示方式
+			if(this.mod == 'select'){//下拉的顯示方式
 				var html = '<select style="height:200px" size="1000" name="select_'+sid+'" pid="'+sid+'">';
 	    		for(var i in data){
 	    			  html += '<option value='+i+' >'+data[i]+'</option>';

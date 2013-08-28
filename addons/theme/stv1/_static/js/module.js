@@ -1,25 +1,25 @@
 /****************************************************
  * 												    *		
- * 			Sociax HTML 标签关联模型  			*
+ * 			Sociax HTML 標籤關聯模型  			*
  *                                                  *
  ****************************************************/
 
 /**
- * HTML 标签关联模型
- * @model-node 模型节点的标签属性标记
- * @event-node 模型下事件节点的标签属性标记
- * @author _慢节奏
+ * HTML 標籤關聯模型
+ * @model-node 模型節點的標籤屬性標記
+ * @event-node 模型下事件節點的標籤屬性標記
+ * @author _慢節奏
  */
 (function(window) {
 
 var document = window.document;
 
 /**
- * 激活模型
+ * 啟用模型
  * 
- * @param node 元素节点
- * @param node 父模型节点，若为空则将node 作为父模型节点
- * @param fns  挂载到标签上的事件方法，格式说明如下：
+ * @param node 元素節點
+ * @param node 父模型節點，若為空則將node 作為父模型節點
+ * @param fns  掛載到標簽上的事件方法，格式說明如下：
  * {
  *     model: {
  *         method1 : {
@@ -52,15 +52,15 @@ var document = window.document;
 var module = function( node, fns ) {
     module.addFns(fns);
 	if ( node ) {
-		// 预清除，防止重复模型化引起的双重缓存
+		// 預清除，防止重複模型化引起的雙重快取
 		module.nodes.init( node );
 	}
 };
 
 /**
- * 保存事件的方法
+ * 儲存事件的方法
  * 
- * @param fns  挂载到标签上的事件方法，格式说明同module 函数的fns 参数
+ * @param fns  掛載到標簽上的事件方法，格式說明同module 函數的fns 參數
  */
 module.addFns = function( fns ) {
 	if ( !fns ) return module;
@@ -74,9 +74,9 @@ module.addFns = function( fns ) {
 };
 
 /**
- * 保存模型事件的方法
+ * 儲存模型事件的方法
  * 
- * @param fns  挂载到模型上的事件方法，格式说明如下：
+ * @param fns  掛載到模型上的事件方法，格式說明如下：
  * {
  *     method1 : {
  *         click     : function(){},
@@ -101,9 +101,9 @@ module.addModelFns = function( fns ) {
 };
 
 /**
- * 保存模型下事件节点的方法
+ * 儲存模型下事件節點的方法
  * 
- * @param fns  挂载到模型上的事件方法，属性说明同module.addModelFns 的fns 参数
+ * @param fns  掛載到模型上的事件方法，屬性說明同module.addModelFns 的fns 參數
  */
 module.addEventFns = function( fns ) {
 	if ( "object" != typeof fns ) return module;
@@ -115,28 +115,28 @@ module.addEventFns = function( fns ) {
 };
 
 /**
- * 获取节点的参数
+ * 獲取節點的參數
  *
- * @param node 模型/事件节点
+ * @param node 模型/事件節點
  */
 module.getArgs = function( node ) {
 	return node.getAttribute( "model-node" ) ? module.getModelArgs( node ) : module.getEventArgs( node );
 };
 
 /**
- * 设置节点的参数
+ * 設定節點的參數
  *
- * @param node 模型/事件节点
- * @param uri URI 格式的参数
+ * @param node 模型/事件節點
+ * @param uri URI 格式的參數
  */
 module.setArgs = function( node, uri ) {
 	return node.getAttribute( "model-node" ) ? module.setModelArgs( node, uri ) : module.setEventArgs( node, uri );
 };
 
 /**
- * 获取模型节点的参数
+ * 獲取模型節點的參數
  *
- * @param node 模型节点
+ * @param node 模型節點
  */
 module.getModelArgs = function( node, uri ) {
     node.args || ( node.args = module.URI2Obj( node.getAttribute( "model-args" ) ) );
@@ -144,9 +144,9 @@ module.getModelArgs = function( node, uri ) {
 };
 
 /**
- * 设置模型节点的参数
+ * 設定模型節點的參數
  *
- * @param node 模型节点
+ * @param node 模型節點
  */
 module.setModelArgs = function( node, uri ) {
     node.args = undefined;
@@ -155,9 +155,9 @@ module.setModelArgs = function( node, uri ) {
 };
 
 /**
- * 获取事件节点的参数
+ * 獲取事件節點的參數
  *
- * @param node 事件节点
+ * @param node 事件節點
  */
 module.getEventArgs = function( node ) {
     node.args || ( node.args = module.URI2Obj( node.getAttribute( "event-args" ) ) );
@@ -165,9 +165,9 @@ module.getEventArgs = function( node ) {
 };
 
 /**
- * 设置事件节点的参数
+ * 設定事件節點的參數
  *
- * @param node 事件节点
+ * @param node 事件節點
  */
 module.setEventArgs = function( node, uri ) {
     node.args = undefined;
@@ -176,9 +176,9 @@ module.setEventArgs = function( node, uri ) {
 };
 
 /**
- * 将uri转换为对象格式
+ * 將uri轉換為物件格式
  *
- * @param uri URI 格式的数据
+ * @param uri URI 格式的資料
  */
 module.URI2Obj = function( uri ) {
 	if ( ! uri ) return {};
@@ -198,27 +198,27 @@ module.URI2Obj = function( uri ) {
 };
 
 /**
- * 获取全局内指定的模型节点
+ * 獲取全局內指定的模型節點
  *
- * @param name 模型节点的命名
+ * @param name 模型節點的命名
  */
 module.getModels = function( name ) {
 	return module.nodes.models[name];
 };
 
 /**
- * 获取全局内指定的事件节点
+ * 獲取全局內指定的事件節點
  *
- * @param name 事件节点的命名
+ * @param name 事件節點的命名
  */
 module.getEvents = function( name ) {
 	return module.nodes.events[name];
 }
 
 /**
- * 删除节点上的监听
+ * 刪除節點上的監聽
  *
- * @param object node 节点对象
+ * @param object node 節點物件
  */
 module.removeListener = function( node ) {
 	module.nodes.removeListener( node );
@@ -226,10 +226,10 @@ module.removeListener = function( node ) {
 };
 
 /**
- * 为节点添加监听
+ * 為節點添加監聽
  *
- * @param object node 节点对象
- * @param object events 监听的事件
+ * @param object node 節點物件
+ * @param object events 監聽的事件
  * {
  *     click     : function(){},
  *     mouseover : function(){},
@@ -258,26 +258,26 @@ module.getNextEvent = function( node, siblingName ) {
 };
 
 /**
- * 模型化节点对象
+ * 模型化節點物件
  * 
  * @property function init 初始化模型
- * @property function _init 逐级扫描指定节点下的各级子元素的模型结构，并缓存模型和事件的DOM对象
- * @property function clear 清楚元素节点的子模型节点和子事件节点合集对象
+ * @property function _init 逐級掃描指定節點下的各級子元素的模型結構，並快取模型和事件的DOM物件
+ * @property function clear 清楚元素節點的子模型節點和子事件節點合集物件
  * @property function getParentModel
- * @property function addListener 为模型和事件节点附加事件方法
- * @property object _onload 自定义onload 事件
- * @property object _onload.execute 执行onload 事件队列
- * @property object _onload.queue onload 事件队列
- * @property object models 罗列并缓存模型节点
- * @property object events 罗列并缓存事件节点
- * @property object models.fns 存放模型节点的事件方法
- * @property object events.fns 存放事件节点的事件方法
+ * @property function addListener 為模型和事件節點附加事件方法
+ * @property object _onload 自定義onload 事件
+ * @property object _onload.execute 執行onload 事件佇列
+ * @property object _onload.queue onload 事件佇列
+ * @property object models 羅列並快取模型節點
+ * @property object events 羅列並快取事件節點
+ * @property object models.fns 存放模型節點的事件方法
+ * @property object events.fns 存放事件節點的事件方法
  */
 module.nodes = {
 	init: function( node ) {
 		// 初始化模型
 		this._init( node );
-		// 执行onload 事件
+		// 執行onload 事件
 		this._onload.execute();
 		return this;
 	},
@@ -388,33 +388,33 @@ module.nodes = {
             	switch ( event ) {
             		case "load":
             			node[event] = events[event];
-                        // 添加到队列
+                        // 添加到佇列
                         this._onload.queue.push( node );
            			    break;
             		case "callback":
             			node[event] = events[event];
             			break;
            			case "mouseenter": case "mouseleave":
-           				// 兼容非IE
+           				// 相容非IE
            				if ( document.addEventListener ) {
            					var refer = {mouseenter: "mouseover", mouseleave: "mouseout"};
            					node["on" + refer[event]] = (function( event, fn ){
            						return function( e ) {
-	           						// 上一响应mouseover/mouseout 事件的元素
+	           						// 上一響應mouseover/mouseout 事件的元素
 	           						var parent = e.relatedTarget;
-	           						// 假如存在这个元素并且这个元素不等于目标元素
+	           						// 假如存在這個元素並且這個元素不等於目標元素
 									while( parent && parent != this ){
 										try {
-											//上一响应的元素开始往上寻找目标元素
+											//上一響應的元素開始往上尋找目標元素
 											parent = parent.parentNode;
 										} catch( e ) {
 											break;
 										}
 							 
 									}
-									// 假如找不到，表明当前事件触发点不在目标元素内
+									// 假如找不到，表明當前事件觸發點不在目標元素內
 									if ( parent != this ) {
-										//运行目标方法，否则不运行
+										//運行目標方法，否則不運行
 										node[event] = fn;
 										node[event]();
 									}
@@ -446,7 +446,7 @@ module.nodes = {
 				this.queue[i]["load"] = undefined;	
 				
 			}
-			// 重置队列
+			// 重置佇列
 			this.queue = [];
 		},
 		queue: []
@@ -471,25 +471,25 @@ module.nodes = {
 };
 
 /**
- * 加载CSS 文件
+ * 載入CSS 檔案
  *
- * @param string url CSS 文件URL
+ * @param string url CSS 檔案URL
  */
 module.getCSS = (function() {
 	var temp = [];
-	//返回内部包函数,供外部调用并可以更改temp的值
+	//返回內部包函數,供外部呼叫並可以更改temp的值
 	return function( url ){
 		var	head = module.nodes.getHead(),
 			flag = 0,
 			link,
 			i = temp.length - 1;
-		// 第二次调用的时候就不=0了
+		// 第二次呼叫的時候就不=0了
 		for ( ; i >= 0; i -- ) {
 			flag = ( temp[i] == url ) ? 1 : 0;
 		}
 
 		if ( flag == 0 ) {
-			// 未载入过
+			// 未載入過
 		    link  = document.createElement( "link" );
 			link.setAttribute( "rel", "stylesheet" );
 			link.setAttribute( "type", "text/css" );
@@ -501,38 +501,38 @@ module.getCSS = (function() {
 })();
 
 /**
- * 加载js 文件
+ * 載入js 檔案
  *
- * @param string url js 文件URL
- * @param function fn 执行函数
+ * @param string url js 檔案URL
+ * @param function fn 執行函數
  */
 module.getJS = (function() {
 	var temp = [];
-	//返回内部包函数,供外部调用并可以更改temp的值
+	//返回內部包函數,供外部呼叫並可以更改temp的值
 	return function( url, fn ){
-		// 第二次调用的时候就不=0了
+		// 第二次呼叫的時候就不=0了
 		var	head,
 			script,
 			onload,
 			flag = 0,
 			i = temp.length - 1;
-		// 第二次调用的时候就不=0了
+		// 第二次呼叫的時候就不=0了
 		for ( ; i >= 0; i -- ) {
 			flag = ( temp[i] == url ) ? 1 : 0;
 		}
 
 		if ( flag == 0 ) {
-			// 未载入过
-			// 记录url
+			// 未載入過
+			// 記錄url
 			temp.push( url );
-			// 载入
+			// 載入
 			head = module.nodes.getHead();
 			script = document.createElement( "script" );
 			script.setAttribute( "src", url );
 
 			if ( "function" == typeof fn ) {
 				script.onload = script.onreadystatechange = function() {
-					// FF 下没有readyState 值，IE 有readyState 值，需加以判断
+					// FF 下沒有readyState 值，IE 有readyState 值，需加以判斷
 					if( ! this.readyState || "loaded" == this.readyState || "complete" == this.readyState ) {
 						this.onload = this.onreadystatechange = null;
 
@@ -558,7 +558,7 @@ module.getJS = (function() {
 /**
  * Execute functions when the DOM is ready 
  *
- * @param function fn 格式的数据
+ * @param function fn 格式的資料
  */
 module.ready = function( fn ) {
 	if ( "function" !== typeof fn ) {

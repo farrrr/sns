@@ -1,18 +1,18 @@
 <include file="../Public/_header" />
 <div class="so_main">
-  <div class="page_tit">积分配置</div>
+  <div class="page_tit">積分配置</div>
   <div class="tit_tab">
     <ul>
-    <li><a href="{:U('admin/Global/credit')}" class="on">积分规则</a></li>
-    <li><a href="{:U('admin/Global/creditType')}">积分类型</a></li>
-    <li><a href="{:U('admin/Global/creditUser')}">设置用户积分</a></li>
-    <li><a href="{:U('admin/Global/creditLevel')}">积分等级</a></li>
+    <li><a href="{:U('admin/Global/credit')}" class="on">積分規則</a></li>
+    <li><a href="{:U('admin/Global/creditType')}">積分類型</a></li>
+    <li><a href="{:U('admin/Global/creditUser')}">設定使用者積分</a></li>
+    <li><a href="{:U('admin/Global/creditLevel')}">積分等級</a></li>
     </ul>
   </div>
   <div class="Toolbar_inbox">
   	<div class="page right">{$html}</div>
-	<a href="{:U('admin/Global/addCredit')}" class="btn_a"><span>添加规则</span></a>
-	<a href="javascript:void(0);" class="btn_a" onclick="deleteCredit();"><span>删除规则</span></a>
+	<a href="{:U('admin/Global/addCredit')}" class="btn_a"><span>添加規則</span></a>
+	<a href="javascript:void(0);" class="btn_a" onclick="deleteCredit();"><span>刪除規則</span></a>
   </div>
   
   <div class="list">
@@ -23,9 +23,9 @@
     	<label for="checkbox"></label>
 	</th>
     <th class="line_l">ID</th>
-    <th class="line_l">名称</th>
-    <th class="line_l">别名</th>
-    <th class="line_l">类型</th>
+    <th class="line_l">名稱</th>
+    <th class="line_l">別名</th>
+    <th class="line_l">類型</th>
     <volist name="creditType" id="ct">    	
     	<th class="line_l">{$ct.alias}</th>
     </volist>
@@ -42,8 +42,8 @@
             <td>{$vo[$ct['name']]}</td>
         </volist>
 	    <td>
-			<a href="{:U('admin/Global/editCredit', array('cid'=>$vo['id']))}">编辑</a> 
-	    	<a href="javascript:void(0);" onclick="deleteCredit({$vo['id']});">删除</a>
+			<a href="{:U('admin/Global/editCredit', array('cid'=>$vo['id']))}">編輯</a> 
+	    	<a href="javascript:void(0);" onclick="deleteCredit({$vo['id']});">刪除</a>
 		</td>
 	  </tr>
   </volist>
@@ -52,13 +52,13 @@
   </div>
   <div class="Toolbar_inbox">
 	<div class="page right">{$html}</div>
-	<a href="javascript:void(0);" class="btn_a" onclick="window.open('{:U("admin/Global/addCredit")}','_self');"><span>添加规则</span></a>
-	<a href="javascript:void(0);" class="btn_a" onclick="deleteCredit();"><span>删除规则</span></a>
+	<a href="javascript:void(0);" class="btn_a" onclick="window.open('{:U("admin/Global/addCredit")}','_self');"><span>添加規則</span></a>
+	<a href="javascript:void(0);" class="btn_a" onclick="deleteCredit();"><span>刪除規則</span></a>
   </div>
 </div>
 
 <script>
-	//鼠标移动表格效果
+	//滑鼠移動表格效果
 	$(document).ready(function(){
 		$("tr[overstyle='on']").hover(
 		  function () {
@@ -88,7 +88,7 @@
 		}
 	}
 	
-	//获取已选择的ID数组
+	//獲取已選擇的ID陣列
 	function getChecked() {
 		var ids = new Array();
 		$.each($('table input:checked'), function(i, n){
@@ -107,21 +107,21 @@
 	        ids    = ids.toString();
 	    }
 	    if(ids=='') {
-	        ui.error('请先选择一个规则');
+	        ui.error('請先選擇一個規則');
 	        return ;
 	    }
-		if(ids == '' || !confirm('删除成功后将无法恢复，确认继续？')) return false;
+		if(ids == '' || !confirm('刪除成功後將無法恢復，確認繼續？')) return false;
 		
 		$.post("{:U('admin/Global/doDeleteCredit')}", {ids:ids}, function(res){
 			if(res == '1') {
-				ui.success('删除成功');
+				ui.success('刪除成功');
 				setTimeout("location.href = location.href",1000);
 				ids = ids.split(',');
 				for(i = 0; i < ids.length; i++) {
 					$('#credit_'+ids[i]).remove();
 				}
 			}else {
-				ui.error('删除失败');
+				ui.error('刪除失敗');
 			}
 		});
 	}

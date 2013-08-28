@@ -1,103 +1,103 @@
 <?php
 /**
- * 支持、反对模型 - 数据对象模型
+ * 支援、反對模型 - 資料物件模型
  * @author zivss <guolee226@gmail.com>
  * @version TS3.0
  */
 class TipsModel extends Model {
 
-	protected $tableName = 'tips';
-	protected $fields = array('id', 'source_id', 'source_table', 'uid', 'type', 'ctime', 'ip');
+    protected $tableName = 'tips';
+    protected $fields = array('id', 'source_id', 'source_table', 'uid', 'type', 'ctime', 'ip');
 
-	private $ip;		// 存储客户端IP
+    private $ip;        // 存儲客戶端IP
 
-	/**
-	 * 初始化数据，获取客户端用户的IP地址
-	 * @return void
-	 */
-	protected function _initialize() {
-		$this->ip = get_client_ip();
-	}
+    /**
+     * 初始化資料，獲取客戶端使用者的IP地址
+     * @return void
+     */
+    protected function _initialize() {
+        $this->ip = get_client_ip();
+    }
 
-	/**
-	 * 增加对资源的操作信息数据
-	 * @param integer $sid 资源ID
-	 * @param string $stable 资源表
-	 * @param integer $uid 操作人UID，默认为登录用户
-	 * @param integer $type 类型：0（支持）、1（反对）
-	 * @return integer 返回操作状态，0（添加失败）、1（添加成功）、2（已经添加）
-	 */
-	public function doSourceExec($sid, $stable, $uid, $type) {
-		$isExist = $this->whetherExec($sid, $stable, $uid, $type);
-		if($isExist) {
-			$data['source_id'] = $sid;
-			$data['source_table'] = $stable;
-			$data['uid'] = $uid;
-			$data['type'] = $type;
-			$data['ctime'] = time();
-			$data['ip'] = $this->ip;
+    /**
+     * 增加對資源的操作資訊資料
+     * @param integer $sid 資源ID
+     * @param string $stable 資源表
+     * @param integer $uid 操作人UID，默認為登入使用者
+     * @param integer $type 類型：0（支援）、1（反對）
+     * @return integer 返回操作狀態，0（添加失敗）、1（添加成功）、2（已經添加）
+     */
+    public function doSourceExec($sid, $stable, $uid, $type) {
+        $isExist = $this->whetherExec($sid, $stable, $uid, $type);
+        if($isExist) {
+            $data['source_id'] = $sid;
+            $data['source_table'] = $stable;
+            $data['uid'] = $uid;
+            $data['type'] = $type;
+            $data['ctime'] = time();
+            $data['ip'] = $this->ip;
 
-			$res = $this->data($data)->add();
-			$res = ($res === false) ? 0 : 1;
-			return $res;
-		} else {
-			return 2;
-		}
-	}
+            $res = $this->data($data)->add();
+            $res = ($res === false) ? 0 : 1;
+            return $res;
+        } else {
+            return 2;
+        }
+    }
 
-	/**
-	 * 删除指定的资源信息数据
-	 * @param integer $sid 资源ID
-	 * @param string $stable 资源表
-	 * @return boolean 是否删除成功
-	 */
-	public function delSourceExec($sid, $stable) {
-		$map['source_id'] = $sid;
-		$map['source_table'] = $stable;
-		$res = $this->where($map)->delete();
-		$res = ($res === false) ? false : true;
-		return $res;
-	}
+    /**
+     * 刪除指定的資源資訊資料
+     * @param integer $sid 資源ID
+     * @param string $stable 資源表
+     * @return boolean 是否刪除成功
+     */
+    public function delSourceExec($sid, $stable) {
+        $map['source_id'] = $sid;
+        $map['source_table'] = $stable;
+        $res = $this->where($map)->delete();
+        $res = ($res === false) ? false : true;
+        return $res;
+    }
 
-	/**
-	 * 获取指定资源的信息数据
-	 * @param integer $sid 资源ID
-	 * @param string $stable 资源表
-	 * @param integer $type 类型
-	 * @return integer 返回相应的资源统计数目
-	 */
-	public function getSourceExec($sid, $stable, $type) {
-		$map['source_id'] = $sid;
-		$map['source_table'] = $stable;
-		$map['type'] = $type;
-		$count = $this->where($map)->count();
-		return $count;
-	}
+    /**
+     * 獲取指定資源的資訊資料
+     * @param integer $sid 資源ID
+     * @param string $stable 資源表
+     * @param integer $type 類型
+     * @return integer 返回相應的資源統計數目
+     */
+    public function getSourceExec($sid, $stable, $type) {
+        $map['source_id'] = $sid;
+        $map['source_table'] = $stable;
+        $map['type'] = $type;
+        $count = $this->where($map)->count();
+        return $count;
+    }
 
-	/**
-	 * 判断是否能进行操作
-	 * 每个用户对每条资源只能进行一次支持或者反对操作。
-	 * 如果uid=0或者uid<1(游客)，则每个IP只能对每条资源进行一次支持或者反对操作
-	 * @param integer $sid 资源ID
-	 * @param string $stable 资源表
-	 * @param integer $uid 操作用户UID
-	 * @param integer $type 类型
-	 * @return boolean 判断该用户是否操作过
-	 */
-	public function whetherExec($sid, $stable, $uid, $type) {
-		$map['source_id'] = $sid;
-		$map['source_table'] = $stable;
-		$map['type'] = $type;
+    /**
+     * 判斷是否能進行操作
+     * 每個使用者對每條資源只能進行一次支援或者反對操作。
+     * 如果uid=0或者uid<1(遊客)，則每個IP只能對每條資源進行一次支援或者反對操作
+     * @param integer $sid 資源ID
+     * @param string $stable 資源表
+     * @param integer $uid 操作使用者UID
+     * @param integer $type 類型
+     * @return boolean 判斷該使用者是否操作過
+     */
+    public function whetherExec($sid, $stable, $uid, $type) {
+        $map['source_id'] = $sid;
+        $map['source_table'] = $stable;
+        $map['type'] = $type;
 
-		if($uid < 1) {
-			$map['ip'] = $this->ip;
-		} else {
-			$map['uid'] = $uid;
-		}
+        if($uid < 1) {
+            $map['ip'] = $this->ip;
+        } else {
+            $map['uid'] = $uid;
+        }
 
-		$count = $this->where($map)->count();
-		$res = ($count > 0) ? false : true;
+        $count = $this->where($map)->count();
+        $res = ($count > 0) ? false : true;
 
-		return $res;
-	}
+        return $res;
+    }
 }

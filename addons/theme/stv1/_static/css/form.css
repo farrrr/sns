@@ -19,15 +19,15 @@ textarea{resize:none}
 .btn-green span, .btn-green-big span, .btn-red-big span, .btn-gray span, .btn-red span, .btn-disable span{display:inline-block;height:16px;line-height:16px;padding:5px 0;font-size:14px;}
 .btn-red-big, .btn-gray, .btn-red, .btn-search, .btn-blue, .btn-blue-big, .btn-disable, .btn{border-radius:2px 2px 2px 2px;cursor:pointer;overflow:visible;display:inline-block;vertical-align:middle;white-space:nowrap}*/
 
-/*带下拉菜单的按钮*/
-.dropdown-toggle{padding:7px;height:16px;display:inline-block;border-left:#94b48e solid 1px;*display:inline;*float:left;/* IE6,7使用display: inline-block;的不兼容性问题 */}
+/*帶下拉選單的按鈕*/
+.dropdown-toggle{padding:7px;height:16px;display:inline-block;border-left:#94b48e solid 1px;*display:inline;*float:left;/* IE6,7使用display: inline-block;的不相容性問題 */}
 .btn-green .ico-more{border-color:#fff transparent transparent}
 .btn-green .ico-add{background-position:0 -73px}
 .btn-gray .ico-more{border-color:#999 transparent transparent}
-.btn-red-big .dropdown-toggle{padding:5px;height:16px;display:inline-block;border-left:#ba4f41 solid 1px;*display:inline;*float:left;/* IE6,7使用display: inline-block;的不兼容性问题 */}
+.btn-red-big .dropdown-toggle{padding:5px;height:16px;display:inline-block;border-left:#ba4f41 solid 1px;*display:inline;*float:left;/* IE6,7使用display: inline-block;的不相容性問題 */}
 .btn-red .ico-more{border-color:#fff transparent transparent}
 
-/*绿色按钮*/
+/*綠色按鈕*/
 /*.btn-green{height:28px;background: #9EC97F;border-color:#94b48e;border-style: solid;border-width:1px;color: #fff;
 transition: background .2s ease-in;
 -moz-transition: background .2s ease-in;
@@ -40,7 +40,7 @@ transition: background .2s ease-in;
 .btn-green-big:hover{background:#3A8C00;border:#29691D solid 1px}
 .btn-green-big span{color:#fff;padding: 10px 20px;margin-top:3px\0;}*/
 
-/*红色按钮*/
+/*紅色按鈕*/
 
 *+html .btn-red span{margin:0;padding:7px 10px 5px}/*for Ie7*/
 .btn-red span{color:#fff;padding:3px 10px;padding:5px 10px 4px\9;/*for Ie6,Ie7,Ie8*/}
@@ -99,7 +99,7 @@ transition: background .2s ease-in;
 .btn-error span{color: #dd4b39;}/*for Ie7*/
 .btn-error{cursor:default;text-align:left;*display:table-cell;color: #dd4b39}
 
-/*灰色按钮*/
+/*灰色按鈕*/
 .btn-gray:link, .btn-gray:visited{color:#535353}
 .btn-gray span{font-size:12px;padding:3px 10px;padding:5px 10px 4px\9;/*for Ie6,Ie7,Ie8*/_margin:0}
 *+html .btn-gray span{margin:0;padding:7px 10px 5px}/*for Ie7*/
@@ -130,7 +130,7 @@ transition: background .2s ease-in;
 	border: 1px solid #c6c6c6
 }
 
-/*蓝色按钮*/
+/*藍色按鈕*/
 .btn-blue:link, .btn-blue:visited{color:#fff}
 .btn-blue span{display: inline-block;color:#fff;height: 16px;line-height: 16px;padding: 6px 20px;margin-top:2px\0;/*for Ie8*/_margin:0;/*for Ie6*/_padding:8px 17px 4px;}
 *+html .btn-blue span{padding:7px 17px 5px}/*for Ie7*/
@@ -207,7 +207,7 @@ transition: background .2s ease-in;
 	filter: progid:dximagetransform.microsoft.gradient(enabled=false)
 }
 
-/*disable按钮*/
+/*disable按鈕*/
 .btn-disable{height:28px;background: #2EA900;border-color:#519428 #438818 #357D09;border-style: solid;border-width: 1px;color: #fff;font-size:14px;width:70px;text-align:center;transition: background .2s ease-in;
 -moz-transition: background .2s ease-in;
 -o-transition: background .2s ease-in;

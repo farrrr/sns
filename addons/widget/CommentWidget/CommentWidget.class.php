@@ -1,6 +1,6 @@
 <?php
 /**
-  * 评论发布/显示框
+  * 評論釋出/顯示框
   * @example W('Comment',array('tpl'=>'detail','row_id'=>72,'order'=>'DESC','app_uid'=>'14983','cancomment'=>1,'cancomment_old'=>0,'showlist'=>1,'canrepost'=>1))
   * @author jason <yangjs17@yeah.net>
   * @version TS3.0
@@ -11,30 +11,30 @@ class CommentWidget extends Widget {
 	/**
 	 *
 	 * @param
-	 *        	string tpl 显示模版 默认为comment，一般使用detail表示详细资源页面的评论
+	 *        	string tpl 顯示模版 默認為comment，一般使用detail表示詳細資源頁面的評論
 	 * @param
-	 *        	integer row_id 评论对象所在的表的ID
+	 *        	integer row_id 評論物件所在的表的ID
 	 * @param
-	 *        	string order 评论的排序，默认为ASC 表示从早到晚,应用中一般是DESC
+	 *        	string order 評論的排序，默認為ASC 表示從早到晚,應用中一般是DESC
 	 * @param
-	 *        	integer app_uid 评论的对象的作者ID
+	 *        	integer app_uid 評論的物件的作者ID
 	 * @param
-	 *        	integer cancomment 是否可以评论 默认为1,由应用中判断好权限之后传入给wigdet
+	 *        	integer cancomment 是否可以評論 默認為1,由應用中判斷好許可權之後傳入給wigdet
 	 * @param
-	 *        	integer cancomment_old 是否可以评论给原作者 默认为1,应用开发时统一使用0
+	 *        	integer cancomment_old 是否可以評論給原作者 默認為1,應用開發時統一使用0
 	 * @param
-	 *        	integer showlist 是否显示评论列表 默认为1
+	 *        	integer showlist 是否顯示評論列表 默認為1
 	 * @param
-	 *        	integer canrepost 是否允许转发 默认为1,应用开发的时候根据应用需求设置1、0
+	 *        	integer canrepost 是否允許轉發 默認為1,應用開發的時候根據應用需求設定1、0
 	 */
 	public function render($data) {
 		$var = array ();
-		// 默认配置数据
-		$var ['cancomment'] = 1; // 是否可以评论
-		$var ['canrepost'] = 1; // 是否允许转发
-		$var ['cancomment_old'] = 1; // 是否可以评论给原作者
-		$var ['showlist'] = 1; // 默认显示原评论列表
-		$var ['tpl'] = 'Comment'; // 显示模板
+		// 默認配置資料
+		$var ['cancomment'] = 1; // 是否可以評論
+		$var ['canrepost'] = 1; // 是否允許轉發
+		$var ['cancomment_old'] = 1; // 是否可以評論給原作者
+		$var ['showlist'] = 1; // 默認顯示原評論列表
+		$var ['tpl'] = 'Comment'; // 顯示模板
 		$var ['app_name'] = 'public';
 		$var ['table'] = 'feed';
 		$var ['limit'] = 10;
@@ -69,25 +69,25 @@ class CommentWidget extends Widget {
 					return $var ['isAjax'] == 1 ? json_encode ( $return ) : $return ['data'];
 				}
 			}
-			// 获取资源类型
+			// 獲取資源類型
 			$sourceInfo = model ( 'Feed' )->get ( $var ['row_id'] );
 			$var ['feedtype'] = $sourceInfo ['type'];
-			// 获取源资源作者用户信息
+			// 獲取源資源作者使用者資訊
 			$appRowData = model('Feed')->get(intval($rowData['app_row_id']));
 			$var['user_info'] = $appRowData['user_info'];
 		}
-		if ($var ['showlist'] == 1) { // 默认只取出前10条
+		if ($var ['showlist'] == 1) { // 默認只取出前10條
 			$map = array ();
 			$map ['app'] = t ( $var ['app_name'] );
 			$map ['table'] = t ( $var ['table'] );
-			$map ['row_id'] = intval ( $var ['row_id'] ); // 必须存在
+			$map ['row_id'] = intval ( $var ['row_id'] ); // 必須存在
 			if (! empty ( $map ['row_id'] )) {
-				// 分页形式数据
+				// 分頁形式資料
 				$var ['list'] = model ( 'Comment' )->getCommentList ( $map, 'comment_id ' . t($var ['order']), intval($var ['limit']) );
 			}
 		} // 渲染模版
 
-		// 转发权限判断
+		// 轉發許可權判斷
 		$weiboSet = model ( 'Xdata' )->get ( 'admin_Config:feed' );
 		if (! CheckPermission ( 'core_normal', 'feed_share' ) || ! in_array ( 'repost', $weiboSet ['weibo_premission'] )) {
 			$var ['canrepost'] = 0;
@@ -96,7 +96,7 @@ class CommentWidget extends Widget {
 		self::$rand ++;
 		$ajax = $var ['isAjax'];
 		unset ( $var, $data );
-		// 输出数据
+		// 輸出資料
 		$return = array (
 				'status' => 1,
 				'data' => $content
@@ -106,7 +106,7 @@ class CommentWidget extends Widget {
 	}
 
 	/**
-	 * 获取评论列表
+	 * 獲取評論列表
 	 *
 	 * @return array
 	 */
@@ -114,9 +114,9 @@ class CommentWidget extends Widget {
 		$map = array ();
 		$map ['app'] = t ( $_POST ['app_name'] );
 		$map ['table'] = t ( $_POST ['table'] );
-		$map ['row_id'] = intval ( $_POST ['row_id'] ); // 必须存在
+		$map ['row_id'] = intval ( $_POST ['row_id'] ); // 必須存在
 		if (! empty ( $map ['row_id'] )) {
-			// 分页形式数据
+			// 分頁形式資料
 			$var ['limit'] = 10;
 			$var ['order'] = 'DESC';
 			$var ['cancomment'] = $_POST ['cancomment'];
@@ -131,27 +131,27 @@ class CommentWidget extends Widget {
 	}
 
 	/**
-	 * 添加评论的操作
+	 * 添加評論的操作
 	 *
-	 * @return array 评论添加状态和提示信息
+	 * @return array 評論添加狀態和提示資訊
 	 */
 	public function addcomment() {
-		// 返回结果集默认值
+		// 返回結果集預設值
 		$return = array (
 				'status' => 0,
 				'data' => L ( 'PUBLIC_CONCENT_IS_ERROR' )
 		);
-		// 获取接收数据
+		// 獲取接收資料
 		$data = $_POST;
-		// 安全过滤
+		// 安全過濾
 		foreach ( $data as $key => $val ) {
 			$data [$key] = t ( $data [$key] );
 		}
-		// 评论所属与评论内容
+		// 評論所屬與評論內容
 		$data ['app'] = $data ['app_name'];
 		$data ['table'] = $data ['table_name'];
 		$data ['content'] = h ( $data ['content'] );
-		// 判断资源是否被删除
+		// 判斷資源是否被刪除
 		$dao = M ( $data ['table'] );
 		$idField = $dao->getPk ();
 		$map [$idField] = $data ['row_id'];
@@ -159,10 +159,10 @@ class CommentWidget extends Widget {
 
 		if (! $sourceInfo) {
 			$return ['status'] = 0;
-			$return ['data'] = '内容已被删除，评论失败';
+			$return ['data'] = '內容已被刪除，評論失敗';
 			exit ( json_encode ( $return ) );
 		}
-		//兼容旧方法
+		//相容舊方法
 		if(empty($data['app_detail_summary'])){
 			$source = model ( 'Source' )->getSourceInfo ( $data ['table'], $data ['row_id'], false, $data ['app'] );
 			$data['app_detail_summary'] = $source['source_body'];
@@ -171,7 +171,7 @@ class CommentWidget extends Widget {
 		}else{
 			$data['app_detail_summary'] = $data ['app_detail_summary'] . '<a class="ico-details" href="' . $data['app_detail_url'] . '"></a>';
 		}
-		// 添加评论操作
+		// 添加評論操作
 		$data ['comment_id'] = model ( 'Comment' )->addComment ( $data );
 		if ($data ['comment_id']) {
 			$return ['status'] = 1;
@@ -181,17 +181,17 @@ class CommentWidget extends Widget {
 			if ($data ['app'] == 'weiba')
 				$this->_upateToweiba ( $data );
 
-			// 去掉回复用户@
+			// 去掉回複使用者@
 			$lessUids = array ();
 			if (! empty ( $data ['to_uid'] )) {
 				$lessUids [] = $data ['to_uid'];
 			}
 
-			if ($_POST ['ifShareFeed'] == 1) {  // 转发到我的微博
-				//解锁内容发布
+			if ($_POST ['ifShareFeed'] == 1) {  // 轉發到我的微博
+				//解鎖內容釋出
 				//unlockSubmit();
 				$this->_updateToweibo ( $data, $sourceInfo, $lessUids );
-			} else if ($data ['comment_old'] != 0) {  // 是否评论给原来作者
+			} else if ($data ['comment_old'] != 0) {  // 是否評論給原來作者
 				//unlockSubmit();
 				$this->_updateToComment ( $data, $sourceInfo, $lessUids );
 			}
@@ -201,7 +201,7 @@ class CommentWidget extends Widget {
 	}
 
 	/**
-	 * 删除评论
+	 * 刪除評論
 	 *
 	 * @return bool true or false
 	 */
@@ -211,19 +211,19 @@ class CommentWidget extends Widget {
 		// }
 		$comment_id = intval ( $_POST ['comment_id'] );
 		$comment = model ( 'Comment' )->getCommentInfo ( $comment_id );
-		// 不存在时
+		// 不存在時
 		if (! $comment) {
 			return false;
 		}
-		// 非作者时
+		// 非作者時
 		if ($comment ['uid'] != $this->mid) {
-			// 没有管理权限不可以删除
+			// 沒有管理許可權不可以刪除
 			if (! CheckPermission ( 'core_admin', 'comment_del' )) {
 				return false;
 			}
-			// 是作者时
+			// 是作者時
 		} else {
-			// 没有前台权限不可以删除
+			// 沒有前臺許可權不可以刪除
 			if (! CheckPermission ( 'core_normal', 'comment_del' )) {
 				return false;
 			}
@@ -236,11 +236,11 @@ class CommentWidget extends Widget {
 	}
 
 	/**
-	 * 渲染评论页面 在addcomment方法中调用
+	 * 渲染評論頁面 在addcomment方法中呼叫
 	 */
 	public function parseComment($data) {
 		$data ['userInfo'] = model ( 'User' )->getUserInfo ( $GLOBALS ['ts'] ['uid'] );
-		// 获取用户组信息
+		// 獲取使用者組資訊
 		$data ['userInfo'] ['groupData'] = model ( 'UserGroupLink' )->getUserGroupData ( $GLOBALS ['ts'] ['uid'] );
 		$data ['content'] = preg_html ( $data ['content'] );
 		$data ['content'] = parse_html ( $data ['content'] );
@@ -275,12 +275,12 @@ class CommentWidget extends Widget {
 		}
 	}
 
-	// 转发到我的微博
+	// 轉發到我的微博
 	function _updateToweibo($data, $sourceInfo, $lessUids) {
 		$commentInfo = model ( 'Source' )->getSourceInfo ( $data ['table'], $data ['row_id'], false, $data ['app'] );
 		$oldInfo = isset ( $commentInfo ['sourceInfo'] ) ? $commentInfo ['sourceInfo'] : $commentInfo;
 
-		// 根据评论的对象获取原来的内容
+		// 根據評論的物件獲取原來的內容
 		$arr = array (
 				'post',
 				'postimage',
@@ -305,7 +305,7 @@ class CommentWidget extends Widget {
 		$s ['comment'] = $data ['comment_old'];
 		$s ['comment_touid'] = $data ['app_uid'];
 
-		// 如果为原创微博，不给原创用户发送@信息
+		// 如果為原創微博，不給原創使用者發送@資訊
 		if ($sourceInfo ['type'] == 'post' && empty ( $data ['to_uid'] )) {
 			$lessUids [] = $this->mid;
 		}
@@ -313,11 +313,11 @@ class CommentWidget extends Widget {
 		model ( 'Credit' )->setUserCredit ( $this->mid, 'forwarded_weibo' );
 	}
 
-	// 评论给原来作者
+	// 評論給原來作者
 	function _updateToComment($data, $sourceInfo, $lessUids) {
 		$commentInfo = model ( 'Source' )->getSourceInfo ( $data ['app_row_table'], $data ['app_row_id'], false, $data ['app'] );
 		$oldInfo = isset ( $commentInfo ['sourceInfo'] ) ? $commentInfo ['sourceInfo'] : $commentInfo;
-		// 发表评论
+		// 發表評論
 		$c ['app'] = $data ['app'];
 		$c ['table'] = 'feed'; // 2013/3/27
 		$c ['app_uid'] = ! empty ( $oldInfo ['source_user_info'] ['uid'] ) ? $oldInfo ['source_user_info'] ['uid'] : $oldInfo ['uid'];

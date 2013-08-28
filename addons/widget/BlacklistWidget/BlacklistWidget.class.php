@@ -1,14 +1,14 @@
 <?php
 /**
- * 黑名单 widget
+ * 黑名單 widget
  * @example {:W('Blacklist',array('tpl'=>'btn', 'fid'=>10001))}
  * @author Jason
  */
 class BlacklistWidget extends Widget {
 	
     /**
-     * @param  integer tpl 模板名称(分list和btn)
-     * @param integer fid 目标用户ID(tpl=btn时必须)
+     * @param  integer tpl 模板名稱(分list和btn)
+     * @param integer fid 目標使用者ID(tpl=btn時必須)
      */
 	public function render($data) {
 		
@@ -34,9 +34,9 @@ class BlacklistWidget extends Widget {
 	}
 	
 	/**
-	 * 渲染按钮模板
-	 * @param  integer tpl 模板名称
-	 * @param integer fid 目标用户ID
+	 * 渲染按鈕模板
+	 * @param  integer tpl 模板名稱
+	 * @param integer fid 目標使用者ID
 	 */
 	private function btn($var){
 		
@@ -49,11 +49,11 @@ class BlacklistWidget extends Widget {
 	}
 	
 	/**
-	 * 加入黑名单
-	 * @return array 加入黑名单状态和提示
+	 * 加入黑名單
+	 * @return array 加入黑名單狀態和提示
 	 */
 	public function addUser(){
-		$r = array('data'=>'请选择用户','status'=>'0');
+		$r = array('data'=>'請選擇使用者','status'=>'0');
 		if(!empty($_POST['fid'])){
 			if($res = model('UserBlacklist')->addUser($GLOBALS['ts']['mid'],t($_POST['fid']))){
 				$finfo = model('User')->getUserInfo($_POST['fid']);
@@ -67,8 +67,8 @@ class BlacklistWidget extends Widget {
 	}
 	
 	/**
-	 * 移出黑名单
-	 * @return  array 移出黑名单状态和提示
+	 * 移出黑名單
+	 * @return  array 移出黑名單狀態和提示
 	 */
 	public function removeUser(){
 		$r = array('data'=>L('PUBLIC_USER_ID_ISNULL'),'status'=>'0');

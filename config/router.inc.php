@@ -1,7 +1,7 @@
 <?php
 return array(
 	/**
-	 * 路由的key必须写全称. 比如: 使用'wap/Index/index', 而非'wap'.
+	 * 路由的key必須寫全稱. 比如: 使用'wap/Index/index', 而非'wap'.
 	 */
 	'router' => array(
 		// 基本
@@ -48,7 +48,7 @@ return array(
 		'public/Account/bind'  		=>  SITE_URL.'/setting/bind',
 		'public/Account/tag'  		=>  SITE_URL.'/setting/tag',
 		
-		//频道
+		//頻道
  		'channel/Index/index'  		=>  SITE_URL.'/channel',
  		
  		//找人
@@ -69,7 +69,7 @@ return array(
 		'weiba/Manage/notify'  		=>  SITE_URL.'/weiba/[weiba_id]/manage/notify',
 		'weiba/Manage/log'  		=>  SITE_URL.'/weiba/[weiba_id]/manage/log',
 
-		// 日志
+		// 日誌
 		'blog/Index/index'			=>	SITE_URL.'/app/blog',
 		'blog/Index/news'			=>	SITE_URL.'/app/blog/lastest',
 		'blog/Index/followsblog'	=>	SITE_URL.'/app/blog/following',
@@ -80,7 +80,7 @@ return array(
 		'blog/Index/edit'			=>	SITE_URL.'/app/blog/edit/[id]',
 		'blog/Index/admin'			=>	SITE_URL.'/app/blog/manage',
 
-		// 相册
+		// 相簿
 		'photo/Index/index'			=>	SITE_URL.'/app/photo',
 		'photo/Index/all_albums'	=>	SITE_URL.'/app/photo/all_albums',
 		'photo/Index/all_photos'	=>	SITE_URL.'/app/photo/all_photos',
@@ -93,7 +93,7 @@ return array(
 		'photo/Manage/album_edit'	=>	SITE_URL.'/app/photo/edit/[id]',
 		'photo/Manage/album_order'	=>	SITE_URL.'/app/photo/order/[id]',
 
-		// 活动
+		// 活動
 		'event/Index/index'			=>	SITE_URL.'/app/event',
 		'event/Index/personal'		=>	SITE_URL.'/app/event/events',
 		'event/Index/addEvent'		=>	SITE_URL.'/app/event/post',
@@ -108,13 +108,13 @@ return array(
 		'vote/Index/addPoll'		=>	SITE_URL.'/app/vote/post',
 		'vote/Index/pollDetail'		=>	SITE_URL.'/app/vote/detail/[id]',
 
-		// 礼物
+		// 禮物
 		'gift/Index/index'			=>	SITE_URL.'/app/gift',
 		'gift/Index/receivebox'		=>	SITE_URL.'/app/gift/receive',
 		'gift/Index/sendbox'		=>	SITE_URL.'/app/gift/send',
 		'gift/Index/personal'		=>	SITE_URL.'/app/gift/[uid]',
 
-		// 招贴版
+		// 招貼版
 		'poster/Index/index'		=>	SITE_URL.'/app/poster',
 		'poster/Index/personal'		=>	SITE_URL.'/app/poster/posters',
 		'poster/Index/addPosterSort'=>	SITE_URL.'/app/poster/post',
@@ -122,7 +122,7 @@ return array(
 		'poster/Index/editPoster'	=>	SITE_URL.'/app/poster/edit/[id]',
 		'poster/Index/posterDetail'	=>	SITE_URL.'/app/poster/detail/[id]',
 		
-		// 群组
+		// 群組
 		'group/Index/index'			=>	SITE_URL.'/app/group',
 		'group/Index/newIndex'		=>	SITE_URL.'/app/group/index',
 		'group/Index/post'			=>	SITE_URL.'/app/group/my_post',

@@ -28,8 +28,8 @@
 				</span></td>
 				<td>
 					<h4><a href="{:U('public/Profile/index','uid='.$vo['uid'])}" target="_blank">{$vo['uname']}</a></h4>
-					<!-- 前两篇博文 -->
-					<p class="cl06 lh18" style="clear: both;">粉丝数：{$vo['followercount']}</p>
+					<!-- 前兩篇博文 -->
+					<p class="cl06 lh18" style="clear: both;">粉絲數：{$vo['followercount']}</p>
 				</td>
 				<td style="text-align:center;">{:W('FollowBtn', array('fid'=>$vo['uid'], 'uname'=>$vo['uname'], 'follow_state'=>$vo['follow']))}</td>
 			  </tr>

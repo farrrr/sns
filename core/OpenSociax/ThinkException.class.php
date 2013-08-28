@@ -12,7 +12,7 @@
 
 /**
  +------------------------------------------------------------------------------
- * ThinkPHP系统异常基类
+ * ThinkPHP系統異常基類
  +------------------------------------------------------------------------------
  * @category   Think
  * @package  Think
@@ -22,11 +22,11 @@
  +------------------------------------------------------------------------------
  */
 class ThinkException extends Exception
-{//类定义开始
+{//類定義開始
 
     /**
      +----------------------------------------------------------
-     * 异常类型
+     * 異常類型
      +----------------------------------------------------------
      * @var string
      * @access private
@@ -34,16 +34,16 @@ class ThinkException extends Exception
      */
     private $type;
 
-    // 是否存在多余调试信息
+    // 是否存在多餘偵錯資訊
     private $extra;
 
     /**
      +----------------------------------------------------------
-     * 架构函数
+     * 架構函數
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
-     * @param string $message  异常信息
+     * @param string $message  異常資訊
      +----------------------------------------------------------
      */
     public function __construct($message,$code=0,$extra=false)
@@ -55,9 +55,9 @@ class ThinkException extends Exception
 
     /**
      +----------------------------------------------------------
-     * 异常输出 所有异常处理类均通过__toString方法输出错误
-     * 每次异常都会写入系统日志
-     * 该方法可以被子类重载
+     * 異常輸出 所有異常處理類均通過__toString方法輸出錯誤
+     * 每次異常都會寫入系統日誌
+     * 該方法可以被子類過載
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -68,7 +68,7 @@ class ThinkException extends Exception
     {
         $trace = $this->getTrace();
         if($this->extra)
-            // 通过throw_exception抛出的异常要去掉多余的调试信息
+            // 通過throw_exception拋出的異常要去掉多餘的偵錯資訊
             array_shift($trace);
         $this->class = $trace[0]['class'];
         $this->function = $trace[0]['function'];
@@ -97,11 +97,11 @@ class ThinkException extends Exception
         $error['line']      = $this->line;
         $error['trace']     = $traceInfo;
 
-        //记录系统日志
+        //記錄系統日誌
         Log::Write('('.$this->type.') '.$this->message);
 
         return $error ;
     }
 
-}//类定义结束
+}//類定義結束
 ?>

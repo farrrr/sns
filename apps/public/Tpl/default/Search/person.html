@@ -24,7 +24,7 @@
 			<p class="area"><if condition="$vo['sex'] eq 1"><i class="ico-male"></i><else /><i class="ico-female"></i></if>&nbsp;{$vo['location']}</p>
 			<p class="action">{:L('PUBLIC_FOLLOWING')}：<a href="{:U('public/Profile/following', array('uid'=>$vo['uid']))}">{$vo['usercount']['following_count']|default=0}</a><i class="vline">|</i>{:L('PUBLIC_FOLLOWERS')}：<a href="{:U('public/Profile/follower', array('uid'=>$vo['uid']))}">{$vo['usercount']['follower_count']|default=0}</a><i class="vline">|</i>{:L('PUBLIC_WEIBO')}：<a href="{$vo['space_url']}">{$vo['usercount']['weibo_count']|default=0}</a></p>
 			<php>if($vo['intro']){</php>
-			<p class="info">个人简介：{$vo['intro']}</p>
+			<p class="info">個人簡介：{$vo['intro']}</p>
 			<php>}</php>
 			<php>if($vo['userTag']){</php>
 			<p class="tags">{:L('PUBLIC_TAG')}：<volist name="vo['userTag']" id="u_t_v"><a href="{:U('public/Search/index',array('t'=>3,'a'=>'public','k'=>$u_t_v))}"><span class="contents u_tag">{$u_t_v}</a></span>&nbsp;&nbsp;&nbsp;</volist></p>
@@ -36,10 +36,10 @@
 	<div class='page'>{$searchResult.html}</div>
 	</neq>
 	<else />
-	<div class="note">暂时没有相关用户</div>
+	<div class="note">暫時沒有相關使用者</div>
 	</neq>
 	<php>}else{</php>
-		<div class="note">抱歉，搜索关键字不能为空</div>
+		<div class="note">抱歉，搜索關鍵字不能為空</div>
 	<php>}</php>
 	</div>
 </div>

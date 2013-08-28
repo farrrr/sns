@@ -31,10 +31,10 @@
 	args.id = id
 
 	$.jqplot(args.id,args.obj, {
-		title: args.title,                          //图表表头标题
+		title: args.title,                          //圖表表頭標題
 		axes: {
-			xaxis: { min: args['x'][0], max: args['x'][1]},       				//准确控制x轴最大值及最小值
-			yaxis: { min: args['y'][0], max: args['y'][1], numberTicks: args['y'].numberTicks},     //准确控制y轴最大值及最小值,间隔个数
+			xaxis: { min: args['x'][0], max: args['x'][1]},       				//準確控制x軸最大值及最小值
+			yaxis: { min: args['y'][0], max: args['y'][1], numberTicks: args['y'].numberTicks},     //準確控制y軸最大值及最小值,間隔個數
 			xaxis: {
 				ticks:args.ticks,
 				renderer: $.jqplot.CategoryAxisRenderer

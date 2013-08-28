@@ -13,7 +13,7 @@ class DiyWidget extends Widget{
 	 */
 	public function render($data){
 		
-		$var['id'] = 1; //自定义diy的位置
+		$var['id'] = 1; //自定義diy的位置
 		
 		!empty($data) && $var = array_merge($var,$data);
 

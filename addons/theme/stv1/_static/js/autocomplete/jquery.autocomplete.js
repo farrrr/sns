@@ -165,7 +165,7 @@ $.Autocompleter = function(input, options) {
 		if (!config.mouseDownOnSelect) {
 			hideResults();
 		}
-	}).click(function() {   //关闭点击查询事件
+	}).click(function() {   //關閉點選查詢事件
 		// show select when clicking in a focused field
 //		if ( hasFocus++ > 1 && !select.visible() ) {
 //			onChange(0, true);
@@ -330,7 +330,7 @@ $.Autocompleter = function(input, options) {
 			select.display(data, q);
 			autoFill(q, data[0].value);
 			select.show();
-			if( data.length==1 ){  //如果只有一个结果，则自动填充
+			if( data.length==1 ){  //如果只有一個結果，則自動填充
 				selectCurrent();
 			}			
 		} else {

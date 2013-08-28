@@ -1,8 +1,8 @@
-//追加核心widget选择 临时放在这里 
+//追加核心widget選擇 臨時放在這裡 
 core.widget = {
-		//给工厂调用的接口
+		//給工廠呼叫的介面
 		_init:function(attrs){
-			return false;	//只是未了加载文件
+			return false;	//只是未了載入檔案
 		},
 		//移除
 		removeWidget:function(obj,args,pobj){
@@ -29,7 +29,7 @@ core.widget = {
 				ui.error(data.info);
 			}else{
 				ui.success(data.info);
-				//todo 以后优化成局部刷新
+				//todo 以後優化成局部重新整理
 				setTimeout("location.href = location.href",1000);	
 			}
 		},
@@ -40,7 +40,7 @@ core.widget = {
 					ui.error(data.info);
 				}else{
 					ui.success(data.info);
-					//todo 以后优化成局部刷新
+					//todo 以後優化成局部重新整理
 					setTimeout("location.href = location.href",1000);	
 				}
 			},'json');
@@ -58,7 +58,7 @@ core.widget = {
 		dosort:function(args,obj){
 			var id = args.diyId;
 			M(obj);
-			var child = obj.childModels['widget_box']; 	//重新获取子节点
+			var child = obj.childModels['widget_box']; 	//重新獲取子節點
 			var targets = new Array();
 			for(var i in child){
 				var a = M.getModelArgs(child[i]);

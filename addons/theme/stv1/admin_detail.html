@@ -83,12 +83,12 @@
   	$keyName = $pageKeyData['key_name'][$key] ? $pageKeyData['key_name'][$key] :$pk; 
   	$keyType = $pageKeyData['key_type'][$key] ? $pageKeyData['key_type'][$key] :'text';
   	
-  	if($keyType != 'hidden'):/*非隐藏域*/ 
+  	if($keyType != 'hidden'):/*非隱藏域*/ 
   	</php>
     <dl class="lineD">
       <dt>{$keyName}：</dt>
       <dd>
-    <php>endif; /*非隐藏域*/ </php>  
+    <php>endif; /*非隱藏域*/ </php>  
       	<php>if($keyType == 'text'):</php>
       	<input name="{$pk}" id="form_{$pk}" type="text" value="{$defaultS}" <neq name='event' value=''> onfocus = "{$event}"</neq>  class='s-txt' style='width:200px'>
       	<php>endif;</php>
@@ -120,7 +120,7 @@
       	
       	
       	<php>
-      	/* checkBox 默认值是以","隔开的字符串,表示可以选多个  */
+      	/* checkBox 預設值是以","隔開的字元串,表示可以選多個  */
       	if($keyType == 'checkbox'):
       		$defaultS = !is_array($defaultS) ? explode(',',trim($defaultS,',')) : $defaultS;
       		foreach($opt[$pk] as $sk=>$sv):
@@ -156,14 +156,14 @@
         <p>{$pageKeyData['key_tishi'][$key]}</p>
         <php> }</php>
        
-    <php>if($keyType != 'hidden'): /*非隐藏域*/</php> 
+    <php>if($keyType != 'hidden'): /*非隱藏域*/</php> 
     </dl>
-    <php>endif; /*隐藏域*/ </php>
+    <php>endif; /*隱藏域*/ </php>
 	</volist>
     
     
     <div class="page_btm">
-      <input type="submit" class="btn_b" value="确定" />
+      <input type="submit" class="btn_b" value="確定" />
     </div>
   	</div>
   	</form>

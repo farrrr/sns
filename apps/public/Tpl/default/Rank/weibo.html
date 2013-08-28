@@ -13,10 +13,10 @@
                                <a class="current" href="{:U('public/Rank/weibo')}">微博排行榜<span class="triangle"></span></a><i class="line"></i>  
                              </li>
                              <li>
-                               <a href="{:U('public/Rank/topic')}">话题排行榜</a><i class="line"></i>  
+                               <a href="{:U('public/Rank/topic')}">話題排行榜</a><i class="line"></i>  
                              </li>
                              <li>
-                               <a href="{:U('public/Rank/index','type=2')}">用户排行榜</a><i class="line"></i>  
+                               <a href="{:U('public/Rank/index','type=2')}">使用者排行榜</a><i class="line"></i>  
                              </li>
                              <li>
                                 <a href="{:U('public/Rank/index')}">好友排行榜</a></i>  
@@ -30,7 +30,7 @@
               <div id="col3" class="st-index-right">
                   <div class="right-wrap">
                       <div class="rank-box1 rank-box2">
-                          <h3>热门话题榜</h3>
+                          <h3>熱門話題榜</h3>
                           <ul>
                              <volist name="tlright" id="v">
                              <li>
@@ -41,7 +41,7 @@
                           </ul>
                       </div>
                       <div class="rank-box1 rank-box2">
-                          <h3>粉丝排行榜</h3>
+                          <h3>粉絲排行榜</h3>
                           <ul>
                           <volist name="flright" id="v">
                              <li>
@@ -58,9 +58,9 @@
                      <div class="feed-nav">
                          <div class="tab-menu">
                             <ul>
-                               <li <php>if(!$order){</php>class="current"<php>}</php>><span><a href="{:U('public/Rank/weibo')}" >最多评论</a></span></li>
-                               <li <php>if($order==2){</php>class="current"<php>}</php>><span><a href="{:U('public/Rank/weibo',array('order'=>2))}" >最多转发</a></span></li>
-                               <li <php>if($order==3){</php>class="current"<php>}</php>><span><a href="{:U('public/Rank/weibo',array('order'=>3))}" >最多赞</a></span></li>
+                               <li <php>if(!$order){</php>class="current"<php>}</php>><span><a href="{:U('public/Rank/weibo')}" >最多評論</a></span></li>
+                               <li <php>if($order==2){</php>class="current"<php>}</php>><span><a href="{:U('public/Rank/weibo',array('order'=>2))}" >最多轉發</a></span></li>
+                               <li <php>if($order==3){</php>class="current"<php>}</php>><span><a href="{:U('public/Rank/weibo',array('order'=>3))}" >最多贊</a></span></li>
                             </ul>
                           </div>
                       </div>
@@ -75,9 +75,9 @@ function addDigg(feed_id){
        if(res==1){
 	       var num = $('#digg'+feed_id).attr('rel');
     	   num++;
-    	   $('#digg'+feed_id).html('已赞('+num+')');
+    	   $('#digg'+feed_id).html('已贊('+num+')');
 	   }else {
-	       ui.error('操作失败，如没有登录请先登录再操作');
+	       ui.error('操作失敗，如沒有登入請先登入再操作');
        }
        digglock = 0;
    });
@@ -109,9 +109,9 @@ function addDigg(feed_id){
 	<span class="right">
 	<span id='digg{$vl.feed_id}' rel='{$vl.digg_count}'>
 	<php>if(!isset($diggArr[$vl['feed_id']])) { </php>
-	   <a href="javascript:void(0)" onclick="addDigg({$vl.feed_id})" >赞<if condition='!empty($vl[digg_count])'>({$vl.digg_count})</if></a>
+	   <a href="javascript:void(0)" onclick="addDigg({$vl.feed_id})" >贊<if condition='!empty($vl[digg_count])'>({$vl.digg_count})</if></a>
 	<php> } else { </php>
-	   已赞<if condition='!empty($vl[digg_count])'>({$vl.digg_count})</if>
+	   已贊<if condition='!empty($vl[digg_count])'>({$vl.digg_count})</if>
 	<php> } </php></span>
 	<i class="vline">|</i>
 	<php>if(in_array('repost',$weibo_premission)):</php>
@@ -145,7 +145,7 @@ function addDigg(feed_id){
 	
 	<em class="hover">
 	<eq name='vl.actions.delete' value='true'>
-	<!-- 做普通删除权限 和 管理删除权限 判断 & 只有微博可以被删除  -->
+	<!-- 做普通刪除許可權 和 管理刪除許可權 判斷 & 只有微博可以被刪除  -->
 	<php>if(($vl['user_info']['uid'] == $GLOBALS['ts']['mid'] && CheckPermission('core_normal','feed_del')) || CheckPermission('core_admin','feed_del')){</php>
 		<a href="javascript:void(0)" event-node ='delFeed' event-args='feed_id={$vl.feed_id}&uid={$vl.user_info.uid}'>{:L('PUBLIC_STREAM_DELETE')}</a>
 	<php>}</php>

@@ -1,5 +1,5 @@
 /*
-瑞意日期选择框 rcalendar 2.0
+瑞意日期選擇框 rcalendar 2.0
 create by rain, Nov 7, 2008
 update by rain, Nov 14, 2008
 copyright @ rainic.com
@@ -19,13 +19,13 @@ var rmonth;
 var rhour;
 var rminute;
 var rsecond;
-var robj_date; //根据文本域的值建立的Date对象
+var robj_date; //根據文字域的值建立的Date物件
 var rnow;
 var rc_browser;
 var rtext_date;
 var rmode;
 var rcalendar_function;
-function rcalendar(text, mode, retfunction) { //文本域对象, 模式(dateonly,full), 选择日期后的事件函数(函数是新时间的Date对象)
+function rcalendar(text, mode, retfunction) { //文字域物件, 模式(dateonly,full), 選擇日期後的事件函數(函數是新時間的Date物件)
 	rc_browser = new function () {
 		var matchs;
 		if (matchs = navigator.userAgent.match(/MSIE (\d+(?:\.\d+){0,})/)) {
@@ -60,7 +60,7 @@ function rcalendar(text, mode, retfunction) { //文本域对象, 模式(dateonly
 	rmode = mode;
 	rcalendar_function = retfunction;
 	
-	try { //获取文本域中的日期
+	try { //獲取文字域中的日期
 		var ymdhis = rtext_date.value.split(/[^\d]+/);
 		ymdhis[0] = parseInt(ymdhis[0]);
 		ymdhis[1] = parseInt(ymdhis[1].replace(/^0(\d)/, '$1'));
@@ -77,11 +77,11 @@ function rcalendar(text, mode, retfunction) { //文本域对象, 模式(dateonly
 		robj_date = new Date(rnow.getTime());
 	}
 	
-	if (!div_rcalendar) { //如果不存在，则初始化创建它
-		//设置颜色选择框的样式 BEGIN
+	if (!div_rcalendar) { //如果不存在，則初始化創建它
+		//設定顏色選擇框的樣式 BEGIN
 		var css = "";
 		if (document.compatMode == "BackCompat" && navigator.userAgent.indexOf("MSIE") != -1) {
-			css += "#rcalendar {width:200px; height:200px; background:#FFFFFF; font-size:12px; font-family:宋体; border:1px solid #CCCCCC; padding:4px; overflow:hidden;}";
+			css += "#rcalendar {width:200px; height:200px; background:#FFFFFF; font-size:12px; font-family:宋體; border:1px solid #CCCCCC; padding:4px; overflow:hidden;}";
 			css += "#rcalendar_ym {width:216px; height:14px; overflow:hidden; margin-bottom:4px;}";
 			css += "#rcalendar_y {width:50px; float:left; font-weight:bold; color:#777777; padding-left:2px;}";
 			css += "#rcalendar_m {width:50px; float:left; font-weight:bold; color:#777777;}";
@@ -107,7 +107,7 @@ function rcalendar(text, mode, retfunction) { //文本域对象, 模式(dateonly
 			css += ".rsecond {padding:3px 7px 3px 7px; background:#fff; color:#2b2b2b; height:18px; overflow:hidden; float:left; cursor:pointer;}";
 		}
 		else {//173  17  190
-			css += "#rcalendar {width:216px; background:#FFFFFF; font-size:12px; font-family:宋体; border:1px solid #ccc; overflow:hidden;}";
+			css += "#rcalendar {width:216px; background:#FFFFFF; font-size:12px; font-family:宋體; border:1px solid #ccc; overflow:hidden;}";
 			css += "#rcalendar_ym {width:217px; height:16px;line-height:16px;padding:5px 0; overflow:hidden;background:#F2F2F2}";
 			css += "#rcalendar_y {float:left;  color:#535353;}";
 			css += "#ryear {font-size:18px; padding:0 5px 0 10px;font-weight:700;}";
@@ -144,7 +144,7 @@ function rcalendar(text, mode, retfunction) { //文本域对象, 模式(dateonly
 			style.textContent = css;
 			document.getElementsByTagName("HEAD").item(0).appendChild(style);
 		}
-		//设置颜色选择框的样式 END		
+		//設定顏色選擇框的樣式 END		
 		
 		div_rcalendar = document.createElement("div");
 		div_rcalendar.setAttribute("id", "rcalendar");
@@ -180,7 +180,7 @@ function rcalendar(text, mode, retfunction) { //文本域对象, 模式(dateonly
 		str += '	<span id="rhour" onmouseover="this.style.background=\'#DD4B39\';" onmouseout="this.style.background=\'#E9E9E9\';" onclick="rselect_hours(this)"></span>:<span id="rminute" onmouseover="this.style.background=\'#DD4B39\';" onmouseout="this.style.background=\'#E9E9E9\';" onclick="rselect_minutes(this)"></span>:<span id="rsecond" onmouseover="this.style.background=\'#DD4B39\';" onmouseout="this.style.background=\'#E9E9E9\';" onclick="rselect_seconds(this)"></span>';
 		str += '  </div>';
 		str += '  <div id="rbtns">';
-		str += '    <span style="padding:0px 6px 0px 6px; color:#36C; cursor:pointer;" onmouseover="this.style.background=\'\';" onmouseout="this.style.background=\'\';" onclick="rokclick()">确定</span><span style="padding:0px 6px 0px 6px; color:#36C; cursor:pointer;" onmouseover="this.style.background=\'\';" onmouseout="this.style.background=\'\';" onclick="rtext_date.value=\'\';rcalendar_close();">清空</span>';
+		str += '    <span style="padding:0px 6px 0px 6px; color:#36C; cursor:pointer;" onmouseover="this.style.background=\'\';" onmouseout="this.style.background=\'\';" onclick="rokclick()">確定</span><span style="padding:0px 6px 0px 6px; color:#36C; cursor:pointer;" onmouseover="this.style.background=\'\';" onmouseout="this.style.background=\'\';" onclick="rtext_date.value=\'\';rcalendar_close();">清空</span>';
 		str += '  </div>';
 		str += '</div>';
   		div_rcalendar.innerHTML = str;
@@ -236,7 +236,7 @@ function rcalendar(text, mode, retfunction) { //文本域对象, 模式(dateonly
 	else
 		document.getElementById("rtime").style.visibility = "hidden";
 	
-	//填写年和月
+	//填寫年和月
 	ryear.innerHTML = robj_date.getFullYear();
 	rmonth.innerHTML = robj_date.getMonth() + 1 < 10 ? '0' + (robj_date.getMonth() + 1) : robj_date.getMonth() + 1;
 	rhour.innerHTML = robj_date.getHours() < 10 ? '0' + robj_date.getHours() : robj_date.getHours();
@@ -244,9 +244,9 @@ function rcalendar(text, mode, retfunction) { //文本域对象, 模式(dateonly
 	rsecond.innerHTML = robj_date.getSeconds() < 10 ? '0' + robj_date.getSeconds() : robj_date.getSeconds();
 	
 	rfill_ryears();
-	rfill_rdates(); //输出日期表
+	rfill_rdates(); //輸出日期表
 	
-	//定位并显示rcalendar
+	//定位並顯示rcalendar
 	var left_top = rget_offset_left_top(rtext_date);
 	div_rcalendar.style.left = left_top[0] + "px";
 	div_rcalendar.style.top = (left_top[1] + rtext_date.offsetHeight + 1) + "px";
@@ -274,15 +274,15 @@ function rfill_rmonths() {
 function rfill_rdates() {
 	var y = parseInt(ryear.innerHTML);
 	var m = parseInt(rmonth.innerHTML.replace(/^0(\d)/, '$1'));
-	var first_day_of_month = new Date(y, m - 1, 1); //当月第一天
+	var first_day_of_month = new Date(y, m - 1, 1); //當月第一天
 	var date_b = new Date(y, m - 1, 1);
 	var w = date_b.getDay();
-	date_b.setDate(1 - w); //计算应该开始的日期
+	date_b.setDate(1 - w); //計算應該開始的日期
 	
-	var last_day_of_month = new Date(y, m, 0); //当月最后一天
+	var last_day_of_month = new Date(y, m, 0); //當月最後一天
 	var date_e = new Date(y, m, 0);
 	w = date_e.getDay();
-	date_e.setDate(date_e.getDate() + 6 - w); //计算应该结束的日期
+	date_e.setDate(date_e.getDate() + 6 - w); //計算應該結束的日期
 	
 	str = "";
 	for (var d = date_b; d.getTime() <= date_e.getTime(); d.setDate(d.getDate() + 1)) {

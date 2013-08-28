@@ -102,9 +102,9 @@ function search_tags()
 search_tags();
 
 /*
-*  方法:Array.remove(dx) 通过遍历,重构数组
-*  功能:删除数组元素.
-*  参数:dx删除元素的下标.
+*  方法:Array.remove(dx) 通過遍歷,重構陣列
+*  功能:刪除陣列元素.
+*  參數:dx刪除元素的下標.
 */
 Array.prototype.remove=function(dx)
 {
@@ -118,11 +118,11 @@ Array.prototype.remove=function(dx)
     }
     this.length-=1
 }
-//已激活用户ID
+//已啟用使用者ID
 var hasSelectedTagId = new Array();
-//未激活用户工号
+//未啟用使用者工號
 var hasSelectedNotRegTagId = new Array();
-//已选用户组ID
+//已選使用者組ID
 //var hasSelectedGroupId = new Array();
 
 var hasSelectedTagIds    = new Array();
@@ -140,10 +140,10 @@ var hasSelectedTagIds    = new Array();
 	}
 	</php>
 
-//选择列处理数据
+//選擇列處理資料
 function tag_search_doselected(data){
 	if( $.inArray( data.tag_id , hasSelectedTagId ) != -1 ){
-		tag_search_ShowTip( '标签'+ subStr(data.name, 15) +'已经存在！' );
+		tag_search_ShowTip( '標籤'+ subStr(data.name, 15) +'已經存在！' );
 		$("#ts_tag_search_handle").val('');
 		return false;
 	}else{
@@ -159,7 +159,7 @@ function addTag()
 	var data   = '';
 	if (!name) {
 		$("#ts_tag_search_handle").focus();
-		tag_search_ShowTip('请输入标签');
+		tag_search_ShowTip('請輸入標籤');
 		doaddTag = 0
 		return false;
 	}
@@ -197,7 +197,7 @@ function addTag()
 			*/
 		},'json');
 	} else {
-		//自动搜索并添加标签 目前已经禁用此功能
+		//自動搜索並添加標籤 目前已經禁用此功能
 		return false;
 		$.post(tag_url, {name:name}, function(data){
 			doaddTag = 0
@@ -215,7 +215,7 @@ function addTag()
 	return false;
 }
 
-//重组数据
+//重組資料
 function tag_search_recombine(){
 	hasSelectedTagId = new Array();
 	$.merge( hasSelectedTagId , hasSelectedTagIds );
@@ -223,7 +223,7 @@ function tag_search_recombine(){
 	$("#ts_tag_search_value").val(hasSelectedTagId);
 }
 
-//向列表中添加项
+//向列表中添加項
 function appendTagHtml(data){
 	var html = '';
 	html += ' <li id="tag_'+data.tag_id+'" class="btn-cancel">\
@@ -233,7 +233,7 @@ function appendTagHtml(data){
 	$('#selected_tag_list').find('ul').append( html );
 }
 
-//删除某个已选项
+//刪除某個已選項
 function deleteTag(tag_id)
 {
 	if(tag_id){
@@ -267,7 +267,7 @@ function _deleteTag(tag_id)
 	});	
 }
 
-//搜索信息提示
+//搜索資訊提示
 function tag_search_ShowTip(html){
 	ui.error(html);
 }

@@ -1,11 +1,11 @@
 
 /**
- * 举报组件JS
+ * 舉報元件JS
  * @author jason
  * @version TS3.0
  */
 core.denouce = {
-		//给工厂调用的接口
+		//給工廠呼叫的介面
 		_init: function(attrs)
 		{
 			if(attrs.length == 4) {
@@ -14,7 +14,7 @@ core.denouce = {
 				return false;
 			}
 		},
-		//aid 资源ID，资源类型 目前都是feed,fuid被举报的用户ID
+		//aid 資源ID，資源類型 目前都是feed,fuid被舉報的使用者ID
 		init: function(aid, type, fuid)
 		{
 			$.post(U('widget/Denouce/isDenounce'), {aid:aid, type:type}, function(msg) {
@@ -25,7 +25,7 @@ core.denouce = {
 				}
 			}, 'json');
 		},
-		// 提交举报
+		// 提交舉報
 		post:function()
 		{
 			var uid = $('#denouce_uid').val();

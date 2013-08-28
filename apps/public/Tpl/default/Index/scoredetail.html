@@ -5,25 +5,25 @@
           <div class="boxShadow">
 	   	   	<div id="col" class="extend clearfix">
                 <div class="level-title">
-                    <h3>T3等级计算规则</h3>
-                    <p class="f14">微博等级是根据用户在站内的经验值确定的，用户可以通过做任务，发表微博，转发微博等行为积累经验值，从而提高等级。等级越高，将可以解锁更高级的任务和享有更多的特权。</p>
-                    <p class="fw">微博等级与等级图标，经验值对应表</p>
+                    <h3>T3等級計算規則</h3>
+                    <p class="f14">微博等級是根據使用者在站內的經驗值確定的，使用者可以通過做任務，發表微博，轉發微博等行為積累經驗值，從而提高等級。等級越高，將可以解鎖更高階的任務和享有更多的特權。</p>
+                    <p class="fw">微博等級與等級圖示，經驗值對應表</p>
                 </div>
                  <div class="level-content">
                      <table>
                          <tbody>
                              <tr>
-                                <th width="150">等级</th>
-                                <th width="150">等级名称</th>
-                                <th width="150">等级图标</th>
-                                <th width="150">经验值</th>
+                                <th width="150">等級</th>
+                                <th width="150">等級名稱</th>
+                                <th width="150">等級圖示</th>
+                                <th width="150">經驗值</th>
                              </tr>
                              <volist name="list" id="v">
                              <tr>
                                 <td width="150">{$v.level}</td>
                                 <td width="150">{$v.name}</td>
                                 <td width="150"><span class="ico-level{$v.level}"></span></td>
-                                <td width="150">{$v.start} - {$v.end}点</td>
+                                <td width="150">{$v.start} - {$v.end}點</td>
                              </tr>
                             </volist>
                          </tbody>

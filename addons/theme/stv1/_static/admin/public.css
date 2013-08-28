@@ -11,14 +11,14 @@ img { border:none }
 ol, ul, li{ list-style:none }
 em { color:#999; font-family: Tahoma, Verdana, helvetica; font-size: 10px; font-style: normal; white-space: nowrap; }
 
-/* 连接 */
+/* 連線 */
 a { color:#005fab; text-decoration:none }
 a:link { color:#3b5999; text-decoration:none }
 a:visited { color:#3b5999; text-decoration:none }
 a:hover { color:#3b5999; text-decoration:underline }
 a:active { color:#3b5999 }
 
-/* 字体颜色 */
+/* 字型顏色 */
 .cWhite, .cWhite:visited, a.cWhite { color:#fff }
 .cYellow, .cYellow:visited { color:#ff0 }
 .cGray, .cGray:visited, a.cGray { color:#333 }
@@ -31,13 +31,13 @@ a:active { color:#3b5999 }
 .fn { font-weight: normal; }
 .fI { font-style:italic }
 .fu, .fu a { text-decoration: underline; }
-/* 字体大小 */
+/* 字型大小 */
 .f12px { font-size:12px }
 .f14px { font-size:14px }
 .f16px { font-size:16px }
 .f18px { font-size:18px }
 
-/*其它样式*/
+/*其它樣式*/
 .alR { text-align:right }
 .alL { text-align:left }
 .alC { text-align:center }

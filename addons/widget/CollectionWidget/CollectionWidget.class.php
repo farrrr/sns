@@ -8,10 +8,10 @@
 class CollectionWidget extends Widget {
 	
     /**
-     * @param integer sid 资源ID
-     * @param string stable 资源所在的表
-     * @param string sapp 资源所在的应用
-     * @param string tpl 渲染的模板，可分为simple(有统计数) 和 btn(无统计数)
+     * @param integer sid 資源ID
+     * @param string stable 資源所在的表
+     * @param string sapp 資源所在的應用
+     * @param string tpl 渲染的模板，可分為simple(有統計數) 和 btn(無統計數)
      */
 	public function render($data) {
 		
@@ -29,8 +29,8 @@ class CollectionWidget extends Widget {
 	}	
 
     /**
-	 * 添加收藏记录
-	 * @return array 收藏状态和成功提示
+	 * 添加收藏記錄
+	 * @return array 收藏狀態和成功提示
 	 */
 	public function addColl(){
 		$return  = array('status'=>0,'data'=>L('PUBLIC_FAVORITE_FAIL'));
@@ -42,13 +42,13 @@ class CollectionWidget extends Widget {
 		$data['source_id'] 	= intval($_POST['sid']);
 		$data['source_app'] = t($_POST['sapp']);
 
-		// 验证资源是否已经被删除
+		// 驗證資源是否已經被刪除
 		$key = $data['source_table_name'].'_id';
 		$map[$key] = $data['source_id'];
 		$map['is_del'] = 0;
 		$isExist = model(ucfirst($data['source_table_name']))->where($map)->count();
 		if(empty($isExist)) {
-			$return = array('status'=>0, 'data'=>'内容已被删除，收藏失败');
+			$return = array('status'=>0, 'data'=>'內容已被刪除，收藏失敗');
 			exit(json_encode($return));
 		}
 				
@@ -63,7 +63,7 @@ class CollectionWidget extends Widget {
 	
 	/**
 	 * 取消收藏
-	 * @return array 成功取消的状态及错误提示
+	 * @return array 成功取消的狀態及錯誤提示
 	 */
 	public function delColl(){
 		$return  = array('status'=>0,'data'=>L('PUBLIC_EDLFAVORITE_ERROR'));

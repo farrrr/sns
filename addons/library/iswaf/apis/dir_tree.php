@@ -2,7 +2,7 @@
 class plus_dir_tree extends iswaf {
     public static $fileinfo = array(),$list_rulers = array(), $tree=array(), $rootdir='', $dircount=0, $filecount=0, $read=false;
     private static $dircount_now=0, $filecount_now=0;
-    function dir_tree($dir,$listfile = 0, $limit=100,$list_rulers=array()) {     
+    function dir_tree($dir,$listfile = 0, $limit=100,$list_rulers=array()) {
         $dir = $dir.'/';
         $dir = str_replace('//','/',$dir);
         self::$rootdir=$dir;
@@ -10,7 +10,7 @@ class plus_dir_tree extends iswaf {
         self::$list_rulers = $list_rulers;
         self::limittree($dir,$listfile,$limit,$rulers);
     }
-    
+
     function limittree($dir, $listfile=1, $limit=100){
         $dir = $dir.'/';
         $dir = str_replace('//','/',$dir);
@@ -42,8 +42,8 @@ class plus_dir_tree extends iswaf {
             }
         }
     }
-    
-    
+
+
     function markfile($file){
         self::create_file(iswaf_database.'markfile.txt',$file);
     }
@@ -52,7 +52,7 @@ class plus_dir_tree extends iswaf {
         $content = self::readfile(iswaf_database.'markfile.txt');
         return $content;
     }
-    
+
     function filecount($dir){
         $dir = $dir.'/';
         $dir = str_replace('//','/',$dir);
@@ -65,12 +65,12 @@ class plus_dir_tree extends iswaf {
             }
         }
     }
-    
+
     function list_functions($file) {
         $functions = $rulers = array();
         $tmp = self::readfile($file);
         if(empty(self::$list_rulers)) {
-        
+
             $rulers[] = '/\b([\[\]\'"\w\_\.]+)\s*\(/is';
             $rulers[] = '/\b([\w\_]+)\s*[\'"].*[\'|"].*\;/is';
             $rulers[] = '/(\$[\[\]\'"\w\_\.]+)\(/is';

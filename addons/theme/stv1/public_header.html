@@ -2,7 +2,7 @@
 <div id="body_page" name='body_page'>
     <div id="body-bg">
     <div id="header" name="header">
-    	{* 未登录时 *}
+    	{* 未登入時 *}
     	<nosession name="mid">
 		<div class="header-wrap">
         	<div class="head-bd">
@@ -18,7 +18,7 @@
 		</div>
 		</nosession>
 
-		{* 登录后 *}
+		{* 登入後 *}
 		<session name="mid">
         <div class="header-wrap">
         	<div class="head-bd">
@@ -44,13 +44,13 @@
                           </li>                           
                         </volist>
                         <li style="*z-index:100;">
-                        <a href="###" class="app">应用</a>
+                        <a href="###" class="app">應用</a>
                         <div model-node="drop_menu_list" class="dropmenu" style="width:370px;left:-50px;display:none;z-index:100;">
                             <ul class="acc-list app-list clearfix">
                                 <volist name="site_nav_apps" id="li">
                                 <li><a href="{:U($li['app_name'])}"><img src="<php>echo empty($li['icon_url_large']) ? APPS_URL.'/'.$li['app_name'].'/Appinfo/icon_app_large.png':$li['icon_url_large'];</php>" width="50" height="50" />{$li.app_alias|getShort=4}</a></li>
                                 </volist>
-                                <li><a href="{:U('public/App/addapp')}"><img src="__THEME__/image/more.png" width="50" height="50" />更多应用</a></li>
+                                <li><a href="{:U('public/App/addapp')}"><img src="__THEME__/image/more.png" width="50" height="50" />更多應用</a></li>
                             </ul>
                         </div>
                         </li>
@@ -60,7 +60,7 @@
                  <eq name='user.is_init' value='0'>
                   <div class="person">
                     <ul>
-                        <li model-node="person" class="dorp-right"><a href="javascript:void(0);" class="app name" style="cursor:default">欢迎，{$user['uname']}</a></li>
+                        <li model-node="person" class="dorp-right"><a href="javascript:void(0);" class="app name" style="cursor:default">歡迎，{$user['uname']}</a></li>
                         <li class="dorp-right"><a href="{:U('public/Passport/logout')}" class="app name">退出</a></li>
                     </ul>
                   </div>
@@ -73,7 +73,7 @@
                         <input type="hidden" name="t" value="2"/>
                         <input type="hidden" name="a" value="public"/>
                         <dl>
-                            <dt class="clearfix"><input id="search_input" class="s-txt left"  type="text" value="搜微博 / 昵称 / 标签" onfocus="this.value=''" onblur="setTimeout(function(){ $('#search-box').remove();} , 200);if(this.value=='') this.value='搜微博 / 昵称 / 标签';" event-node="searchKey" name='k'  autocomplete="off"><a href="javascript:void(0)" class="ico-search left" onclick="if(getLength($('#search_input').val()) && $('#search_input').val()!=='搜微博 / 昵称 / 标签'){ $('#search_feed').submit(); return false;}"></a>
+                            <dt class="clearfix"><input id="search_input" class="s-txt left"  type="text" value="搜微博 / 昵稱 / 標籤" onfocus="this.value=''" onblur="setTimeout(function(){ $('#search-box').remove();} , 200);if(this.value=='') this.value='搜微博 / 昵稱 / 標籤';" event-node="searchKey" name='k'  autocomplete="off"><a href="javascript:void(0)" class="ico-search left" onclick="if(getLength($('#search_input').val()) && $('#search_input').val()!=='搜微博 / 昵稱 / 標籤'){ $('#search_feed').submit(); return false;}"></a>
                             </dt>
                         </dl>
                     </form>
@@ -97,11 +97,11 @@
                                 </ul>
                                 <dl class="acc-list W-message" >
                                     <dd><a  href="{:U('public/Mention/index')}">@提到我的</a></dd>
-                                    <dd><a  href="{:U('public/Comment/index', array('type'=>'receive'))}">收到的评论</a></dd>
-                                    <dd><a  href="{:U('public/Comment/index', array('type'=>'send'))}">发出的评论</a></dd>
+                                    <dd><a  href="{:U('public/Comment/index', array('type'=>'receive'))}">收到的評論</a></dd>
+                                    <dd><a  href="{:U('public/Comment/index', array('type'=>'send'))}">發出的評論</a></dd>
                                     <dd><a  href="{:U('public/Message/index')}">我的私信</a></dd>
-                                    <dd><a  href="{:U('public/Message/notify')}">系统消息</a></dd>
-                                    <!-- 消息菜单钩子 -->
+                                    <dd><a  href="{:U('public/Message/notify')}">系統訊息</a></dd>
+                                    <!-- 訊息選單鉤子 -->
                                     {:Addons::hook('header_message_dropmenu')}
                                 <php>if(CheckPermission('core_normal','send_message')){</php>
                                 <dd class="border"><a event-node="postMsg" href="javascript:void(0)" onclick="ui.sendmessage()">{:L('PUBLIC_SEND_PRIVATE_MESSAGE')}&raquo;</a></dd>
@@ -115,15 +115,15 @@
                                 <dd><a href="{:U('public/Account/index')}">{:L('PUBLIC_SETTING')}</a></dd>
                                 
                                 <php>if(CheckTaskSwitch()):</php>
-                                <dd><a href="{:U('public/Task/index')}">任务中心</a></dd>
-                                <dd><a href="{:U('public/Medal/index')}">勋章馆</a></dd>
+                                <dd><a href="{:U('public/Task/index')}">任務中心</a></dd>
+                                <dd><a href="{:U('public/Medal/index')}">勳章館</a></dd>
                                 <php>endif;</php>
                                 
                                 <dd><a href="{:U('public/Rank/weibo')}">排行榜</a></dd>
                                 <php>if(isInvite() && CheckPermission('core_normal','invite_user')):</php>
                                 <dd><a href="{:U('public/Invite/invite')}">{:L('PUBLIC_INVITE_COLLEAGUE')}</a></dd>
                                 <php>endif;</php>
-                                <!-- 个人设置菜单钩子 -->
+                                <!-- 個人設定選單鉤子 -->
                                 {:Addons::hook('header_account_dropmenu')}
                                 <php>if(CheckPermission('core_admin','admin_login')){</php>
                                 <dd><a href="{:U('admin')}">{:L('PUBLIC_SYSTEM_MANAGEMENT')}</a></dd>
@@ -207,21 +207,21 @@
 		</session>
     </div>
 <php>
-//出现注册提示的页面
+//出現註冊提示的頁面
 $show_register_tips = array('public/Profile','public/Topic','weiba/Index');
 if(!$mid && in_array(APP_NAME.'/'.MODULE_NAME,$show_register_tips)){
 </php>
 <php>$registerConf = model('Xdata')->get('admin_Config:register');</php>
-<!--未登录前-->
+<!--未登入前-->
 <div class="login-no-bg">
   <div class="login-no-box boxShadow clearfix">       
     <div class="login-reg right">
         <php>if($registerConf['register_type'] == 'open'){</php>
-        <a href="{:U('public/Register/index')}" class="btn-reg">立即注册</a>
+        <a href="{:U('public/Register/index')}" class="btn-reg">立即註冊</a>
         <php>}</php>
-        <span>已有帐号？<a href="javascript:quickLogin()">立即登录</a></span>
+        <span>已有帳號？<a href="javascript:quickLogin()">立即登入</a></span>
     </div>
-    <p class="left"><span>欢迎来到{$site.site_name}</span>赶紧注册与朋友们分享快乐点滴吧！</p>
+    <p class="left"><span>歡迎來到{$site.site_name}</span>趕緊註冊與朋友們分享快樂點滴吧！</p>
   </div>
 </div>
 <php>}</php>

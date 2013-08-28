@@ -1,12 +1,12 @@
 <script type="text/javascript" src="__PUBLIC__/js/ajaxupload.3.6.js?v={$core.site.update_v}"></script>
 <?php
-// 读取附件大小的配置
+// 讀取附件大小的配置
 $_editor_system_default = model('Xdata')->get('admin_Config:attach');
-$_editor_size_limit = empty($_editor_system_default['attach_max_size']) ? 2 : $_editor_system_default['attach_max_size']; // 默认2M
+$_editor_size_limit = empty($_editor_system_default['attach_max_size']) ? 2 : $_editor_system_default['attach_max_size']; // 默認2M
 $_editor_size_limit = floatval($_editor_size_limit) * 1024; // K
 
 
-//参数处理.防篡改
+//參數處理.防篡改
 $token = jiami("$allow_exts||".intval($need_review)."||$fid");
 $size  = jiami($allow_size);
 $exts  = jiami($allow_exts);
@@ -23,7 +23,7 @@ $num   = jiami($limit);
         var myajaxUpload<php> echo $end;</php> = new AjaxUpload(button,{
             action: '__ROOT__/index.php?app=public&mod=Attach&act=ajaxUpload&type={$type}&token={$token}&exts={$exts}&size={$size}&limit={$num}',
             name: 'myfiles',
-			text: '上传文件',
+			text: '上傳檔案',
             onSubmit : function(file, ext){
                 this.disable();
                 process.val('{$l_loading}');
@@ -32,24 +32,24 @@ $num   = jiami($limit);
                 //alert(response);
                 process.val('{$l_success}');
                 this.enable();
-                //处理上传后的过程
+                //處理上傳後的過程
                 var responseData	=	eval('('+response+')');
                 //alert(response);
                 //alert(responseData.status);
-                //上传失败
+                //上傳失敗
                 if(responseData.status==false){
-                    //弹出错误信息
+                    //彈出錯誤資訊
                     alert(responseData.info);
-                    //上传成功
+                    //上傳成功
                 }else{
-                    //执行callback
+                    //執行callback
                 	if(limit !=0 && now_PageCount >= limit-1){
 						$('#ajax_upload_attach_button<php> echo $end;</php>').attr('disabled','disabled');
 						$('#ajax_upload_attach_button<php> echo $end;</php>').attr('class','btn_sea_h');
 					}
     				
 					if(limit != 0 && now_PageCount > limit-1){
-						alert("只允许上传"+limit+"个附件！");
+						alert("只允許上傳"+limit+"個附件！");
 						return ;
 					}
 					
@@ -87,9 +87,9 @@ $num   = jiami($limit);
 	}
 
 <if condition="$callback eq 'attach_upload_success'">
-	//执行默认的callback方法
+	//執行默認的callback方法
 	function attach_upload_success(info){
-		var attachInfo = '<input class="attach'+info.attach_id+'"  type="hidden" name="attach[]" value="'+info.attach_id+'"/>'+'<p class="attach'+info.attach_id+'" style="height:20px; line-height:22px;overflow:hidden"><a class="attach'+info.attach_id+'" href="javascript:void(0)"  onclick="ui.confirm(this,'+"'确定删除'"+')" callback="deleteAttach('+info.attach_id+')">[ 删除 ]</a>&nbsp;<span class="attach'+info.attach_id+'"> '+info.name+'</span></p>';
+		var attachInfo = '<input class="attach'+info.attach_id+'"  type="hidden" name="attach[]" value="'+info.attach_id+'"/>'+'<p class="attach'+info.attach_id+'" style="height:20px; line-height:22px;overflow:hidden"><a class="attach'+info.attach_id+'" href="javascript:void(0)"  onclick="ui.confirm(this,'+"'確定刪除'"+')" callback="deleteAttach('+info.attach_id+')">[ 刪除 ]</a>&nbsp;<span class="attach'+info.attach_id+'"> '+info.name+'</span></p>';
 		$('#attach_upload_data<php> echo $end;</php>').append(attachInfo);
 	}
 </if>
@@ -99,7 +99,7 @@ $num   = jiami($limit);
     <volist id="vo" name="editdata">
       <input type="hidden" value="{$vo.attach_id}" name="attach[]" class="attach{$vo.attach_id}"/>
       <p class="attach{$vo.attach_id}" style="height:20px; line-height:22px; overflow:hidden"> 
-      <a onclick="deleteAttach({$vo.attach_id})" href="javascript:void(0)" class="attach{$vo.attach_id}">[ 删除 ]</a> 
+      <a onclick="deleteAttach({$vo.attach_id})" href="javascript:void(0)" class="attach{$vo.attach_id}">[ 刪除 ]</a> 
       <span class="attach{$vo.id}">{$vo.name}</span> </p>
     </volist>
   </div>
@@ -113,9 +113,9 @@ $num   = jiami($limit);
 	<img src="__APP__/images/doubt_Icon.gif" onmouseover="$('#ajax_attach_help').show()" onmouseout="$('#ajax_attach_help').hide()" />
 	<div class="clewbox" id="ajax_attach_help" style="display:none;">
 		<div class="clewbox_bg">
-			可以上传: {$allow_exts} 类型文件 
-			<php>if($limit>0){</php>，可上传{$limit}个<php>}</php> 
-			，每个不超过{$_editor_size_limit}K。</div>
+			可以上傳: {$allow_exts} 類型檔案 
+			<php>if($limit>0){</php>，可上傳{$limit}個<php>}</php> 
+			，每個不超過{$_editor_size_limit}K。</div>
 			<div class="clewbox_bg_b"></div>
 		</div>
 	</div>

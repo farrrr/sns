@@ -1,4 +1,4 @@
-<div class="pro-content"><div class="profession-title">请选择您的职业信息，每个人最多可选择<em>3</em>个身份，已选择<em id="selected_nums">{$nums}</em>个</div>
+<div class="pro-content"><div class="profession-title">請選擇您的職業資訊，每個人最多可選擇<em>3</em>個身份，已選擇<em id="selected_nums">{$nums}</em>個</div>
 <div class="profession-type" id="user_category_list">
 <volist name="categoryTree" id="vo">
 	<dl>
@@ -14,7 +14,7 @@
 	</dl>
 </volist>
 <!-- <dl id="selected_category" <?php if(empty($selected)):?>style="display:none;"<?php endif;?>>
-	<dt>已选择：</dt>
+	<dt>已選擇：</dt>
 	<dd>
 		<volist name="selected" id="vo">
 			<a href="javascript:;" onclick="deleteUserCategory(this, {$vo['user_category_id']})" class="current btn-cancel"><span>{$vo.title}<i class="ico-close1"></i></span></a>
@@ -28,14 +28,14 @@
 </div>
 <script type="text/javascript">
 var checkUserCategory = function(obj){
-	// 选中处理
+	// 選中處理
 	if($(obj).hasClass('current')) {
 		$(obj).removeClass('current');
 	} else {
 		$(obj).addClass('current');
 	}
 
-	// 数据处理
+	// 資料處理
 	var data = new Array();
 	$('#user_category_ids').val('');
 	$('#user_category_list').find('a').each(function() {
@@ -43,7 +43,7 @@ var checkUserCategory = function(obj){
 			if(data.length < 3){
 				data.push($(this).attr('rel'));
 			}else{
-				ui.error('每个人最多只能选择3个身份');
+				ui.error('每個人最多只能選擇3個身份');
 				$(obj).removeClass('current');
 				return false;
 			}
@@ -56,9 +56,9 @@ var checkUserCategory = function(obj){
 };
 // 初始化操作
 // $(function() {
-// 	$('#user_category_ids').val('');		//9.5注释掉
+// 	$('#user_category_ids').val('');		//9.5註釋掉
 // });
-// 添加用户与身份的关联信息
+// 添加使用者與身份的關聯資訊
 var addUserCategory = function(obj, cid, title) {
 	var className = $(obj).attr('class');
 	if(className != 'on') {
@@ -67,7 +67,7 @@ var addUserCategory = function(obj, cid, title) {
 		if(categoryIds != '') {
 			categoryArray = categoryIds.split(',');
 			if(categoryArray.length == 3) {
-				ui.error('每个人最多只能选择3个身份');
+				ui.error('每個人最多只能選擇3個身份');
 				return false;
 			}
 		}
@@ -81,7 +81,7 @@ var addUserCategory = function(obj, cid, title) {
 		setSelectedNums();
 	}
 };
-// 删除用户与身份的关联信息
+// 刪除使用者與身份的關聯資訊
 var deleteUserCategory = function(obj, cid) {
 	$('#user_category_' + cid).removeClass('current');
 	var categoryIds = $('#user_category_ids').val();
@@ -102,7 +102,7 @@ var deleteUserCategory = function(obj, cid) {
 	$(obj).remove();
 	setSelectedNums();
 };
-// 设置选中身份数目
+// 設定選中身份數目
 var setSelectedNums = function() {
 	var len = $('#selected_category').find('a').length;
 	$('#selected_nums').html();

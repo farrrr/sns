@@ -1,10 +1,10 @@
 <dl class="pop-area">
-  <dt>名称：<input type="text" id="title" value="{$area['title']}" class="s-txt" style="width:245px"></dt>
+  <dt>名稱：<input type="text" id="title" value="{$area['title']}" class="s-txt" style="width:245px"></dt>
   <dd style="text-align:center;margin:15px 0 0 ">
       <php>if (isset($area)) {</php>
-      <input type="button" class="btn_b" onclick="editArea()" value="确定" />
+      <input type="button" class="btn_b" onclick="editArea()" value="確定" />
       <php>}else {</php>
-      <input type="button" class="btn_b" onclick="addArea()" value="确定" />
+      <input type="button" class="btn_b" onclick="addArea()" value="確定" />
       <php>}</php>
       <input type="button" class="btn_w ml10" onclick="cancel()" value="取消" />
   </dd>
@@ -12,20 +12,20 @@
 </dl>
 <script type="text/javascript">
 
-//添加地区
+//添加地區
 function addArea() {
 	var title = $('#title').val();
 	var pid   = "{$pid}";
 	
 	if(title=='') {
-		ui.error('请输入名称');
+		ui.error('請輸入名稱');
 		return ;
 	}
 
 	//提交修改
 	$.post("{:U('admin/Config/doAddArea')}", {title:title,pid:pid}, function(res){
 	    if (res == '0') {
-	        ui.error('保存失败');
+	        ui.error('儲存失敗');
         }else {
         	var url = "{:U('admin/Tool/area')}";
             var html = '';
@@ -33,9 +33,9 @@ function addArea() {
             html += '<td><input type="checkbox" name="checkbox" id="checkbox2" onclick="checkon(this)" value="'+res+'"></td>';
             html += '<td>'+res+'</td>';
             html += '<td><div style="float:left"><a href="'+url+'&pid='+res+'">'+title+'</a></div></td>';
-            html += '<td><a href="javascript:void(0);" onclick="edit('+res+');">编辑</a> ';
-            html += '<a href="'+U('admin/Config/area')+'&pid='+res+'">下级管理</a> ';
-            html += '<a href="javascript:void(0);" onclick="del('+res+');">删除</a> ';
+            html += '<td><a href="javascript:void(0);" onclick="edit('+res+');">編輯</a> ';
+            html += '<a href="'+U('admin/Config/area')+'&pid='+res+'">下級管理</a> ';
+            html += '<a href="javascript:void(0);" onclick="del('+res+');">刪除</a> ';
             html += '</tr>';
             $('#area_list').append(html);
             ui.success('添加成功');
@@ -44,30 +44,30 @@ function addArea() {
 	});
 }
 
-//编辑地区
+//編輯地區
 function editArea() {
 	var title	= $('#title').val();
 	var area_id	= "{$area['area_id']}";
 	
 	if(title=='') {
-        ui.error('请输入名称');
+        ui.error('請輸入名稱');
         return ;
     }
 	
-	//判断名称是否有变化
+	//判斷名稱是否有變化
 	if(title == "{$area['title']}") {
-		ui.error('名称无变化，未提交修改');
+		ui.error('名稱無變化，未提交修改');
 		ui.box.close();
 		return false;
 	}
 
-	//判断是否有重名
+	//判斷是否有重名
 	$.post("{:U('admin/Config/doEditArea')}", {area_id:area_id, title:title}, function(res){
 		if (res == '0') {
-            ui.error('保存失败');
+            ui.error('儲存失敗');
         }else {
         	$('#area_title_'+area_id).html(title);
-            ui.success('保存成功');
+            ui.success('儲存成功');
             ui.box.close();
         }
 	});

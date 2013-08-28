@@ -1,20 +1,20 @@
 /**
- * 微吧后台JS操作对象 -
+ * 微吧後臺JS操作物件 -
  * 
- * 微吧后台所有JS操作都集中在此
+ * 微吧後臺所有JS操作都集中在此
  */
 
 var admin = {};
 
 /**
- * 收缩展开某个DOM
+ * 收縮展開某個DOM
  */
 admin.fold = function(id){
   	$('#'+id).slideToggle('fast');
 };
 
 /**
- * 处理ajax返回数据之后的刷新操作
+ * 處理ajax返回資料之後的重新整理操作
  */
 admin.ajaxReload = function(obj,callback){
     if("undefined" == typeof(callback)){
@@ -57,7 +57,7 @@ admin.checkAll = function(o){
         $('tr[overstyle="on"]').removeClass("bg_on");
     }
 };
-//绑定tr上的on属性
+//繫結tr上的on屬性
 admin.bindTrOn = function(){
     $("tr[overstyle='on']").hover(
       function () {
@@ -82,24 +82,24 @@ admin.upload = function(type,obj){
 
 admin.checkAddWeiba = function(form){
 	if(getLength(form.weiba_name.value) < 1){
-		ui.error('请输入微吧名称');
+		ui.error('請輸入微吧名稱');
 		return false;
 	}
 	if(getLength(form.logo.value) < 1){
-		ui.error('请上传logo');
+		ui.error('請上傳logo');
 		return false;
 	}
 	if(getLength($('#form_intro').val()) < 1){
-		ui.error('请输入微吧简介');
+		ui.error('請輸入微吧簡介');
 		return false;
 	}
     return true;	
 };
 
 /**
- * 设置微吧推荐状态
+ * 設定微吧推薦狀態
  * @param integer weiba_id 微吧ID
- * @param integer type 当前微吧的推荐状态
+ * @param integer type 當前微吧的推薦狀態
  * @return void
  */
 admin.recommend = function(weiba_id, type){
@@ -116,9 +116,9 @@ admin.recommend = function(weiba_id, type){
 admin.delWeiba = function(weiba_id){
     if("undefined" == typeof(weiba_id) || weiba_id=='') weiba_id = admin.getChecked();
     if(weiba_id==''){
-        ui.error('请选择要解散的微吧');return false;
+        ui.error('請選擇要解散的微吧');return false;
     }  
-    if(confirm('确定要解散此微吧吗？')){
+    if(confirm('確定要解散此微吧嗎？')){
         $.post(U('weiba/Admin/delWeiba'),{weiba_id:weiba_id},function(msg){
             admin.ajaxReload(msg);
         },'json');
@@ -126,11 +126,11 @@ admin.delWeiba = function(weiba_id){
 };
 
 /**
- * 设置帖子状态
+ * 設定帖子狀態
  * @param integer post_id 帖子ID
- * @param integer type 要设置的帖子类型 1:推荐，2:精华，3:置顶
- * @param integer curValue 当前状态值
- * @param integer topValue 置顶值，仅置顶用到
+ * @param integer type 要設定的帖子類型 1:推薦，2:精華，3:置頂
+ * @param integer curValue 當前狀態值
+ * @param integer topValue 置頂值，僅置頂用到
  * @return void
  */
 admin.setPost = function(post_id, type, curValue, topValue){
@@ -141,30 +141,30 @@ admin.setPost = function(post_id, type, curValue, topValue){
 };
 
 /**
- * 编辑帖子表单验证
+ * 編輯帖子表單驗證
  * @return void
  */
 admin.checkEditPost = function(form){
     if(getLength(form.title.value) < 1){
-        ui.error('帖子标题不能为空');
+        ui.error('帖子標題不能為空');
         return false;
     }
     if(getLength(form.content.value) < 1){
-        ui.error('帖子内容不能为空');
+        ui.error('帖子內容不能為空');
         return false;
     }
     return true;
 };
 
 /**
- * 删除帖子至回收站
+ * 刪除帖子至回收站
  * @param integer post_id 帖子ID
  * @return void
  */
 admin.delPost = function(post_id){
     if("undefined" == typeof(post_id) || post_id=='') post_id = admin.getChecked();
     if(post_id==''){
-        ui.error('请选择要删除的帖子');return false;
+        ui.error('請選擇要刪除的帖子');return false;
     }  
     $.post(U('weiba/Admin/delPost'),{post_id:post_id},function(msg){
         admin.ajaxReload(msg);
@@ -172,14 +172,14 @@ admin.delPost = function(post_id){
 };
 
 /**
- * 调整帖子评论楼层
+ * 調整帖子評論樓層
  * @param integer post_id 帖子ID
  * @return void
  */
 admin.doStorey = function(post_id){
     if("undefined" == typeof(post_id) || post_id=='') post_id = admin.getChecked();
     if(post_id==''){
-        ui.error('请选择要调整回复楼层的帖子');return false;
+        ui.error('請選擇要調整回覆樓層的帖子');return false;
     }  
     $.post(U('weiba/Admin/doStorey'),{post_id:post_id},function(msg){
         if(msg==1){
@@ -189,14 +189,14 @@ admin.doStorey = function(post_id){
 };
 
 /**
- * 还原已删除的帖子
+ * 還原已刪除的帖子
  * @param mixed post_id 帖子ID
  * @return void
  */
 admin.recoverPost = function(post_id){
     if("undefined" == typeof(post_id) || post_id=='') post_id = admin.getChecked();
     if(post_id==''){
-        ui.error('请选择要还原的帖子');return false;
+        ui.error('請選擇要還原的帖子');return false;
     }
     $.post(U('weiba/Admin/recoverPost'),{post_id:post_id},function(msg){
             admin.ajaxReload(msg);
@@ -204,16 +204,16 @@ admin.recoverPost = function(post_id){
 };
 
 /**
- * 删除帖子至回收站
+ * 刪除帖子至回收站
  * @param integer post_id 帖子ID
  * @return void
  */
 admin.deletePost = function(post_id){
     if("undefined" == typeof(post_id) || post_id=='') post_id = admin.getChecked();
     if(post_id==''){
-        ui.error('请选择要删除的帖子');return false;
+        ui.error('請選擇要刪除的帖子');return false;
     }  
-    if(confirm('删除后不可恢复，确定要删除帖子吗')){
+    if(confirm('刪除後不可恢復，確定要刪除帖子嗎')){
         $.post(U('weiba/Admin/deletePost'),{post_id:post_id},function(msg){
             admin.ajaxReload(msg);
         },'json');
@@ -221,7 +221,7 @@ admin.deletePost = function(post_id){
 };
 
 /**
- * 吧主审核
+ * 吧主稽覈
  */
 admin.doAudit = function(weiba_id, uid, value){
     $.post(U('weiba/Manage/verify'),{weiba_id:weiba_id,uid:uid,value:value},function(msg){

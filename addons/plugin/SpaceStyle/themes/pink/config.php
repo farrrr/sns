@@ -1,4 +1,4 @@
 <?php
 return array(
-	'name' => '魅力绚紫'
+	'name' => '魅力絢紫'
 );

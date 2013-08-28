@@ -1,15 +1,15 @@
 <?php
 /**
- * 选择好友Widget
+ * 選擇好友Widget
  */
 class SelectFriendsWidget extends Widget{
 
 	/**
-	 * 选择好友Widget
+	 * 選擇好友Widget
 	 * 
-	 * $data的参数:
+	 * $data的參數:
 	 * array(
-	 * 	'name'(可选)	=> '表单的name', // 默认为"fri_ids"
+	 * 	'name'(可選)	=> '表單的name', // 默認為"fri_ids"
 	 * )
 	 * 
 	 * @see Widget::render()

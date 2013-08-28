@@ -38,17 +38,17 @@
   					<option value='date' <eq name='keyType' value='date'> selected="selected"</eq>>{:L('PUBLIC_DATE')}</option>
   					<option value='textarea' <eq name='keyType' value='textarea'> selected="selected"</eq>>{:L('PUBLIC_TEXTAREA')}</option>
             <option value='editor' <eq name='keyType' value='editor'> selected="selected"</eq>>
-             编辑器:editor</option>
+             編輯器:editor</option>
   					<option value='word' <eq name='keyType' value='word'> selected="selected"</eq>>{:L('PUBLIC_WORD')}</option>
   					<option value='hidden' <eq name='keyType' value='hidden'> selected="selected"</eq>>{:L('PUBLIC_INPUT_HIDDEN')}</option>
             <option value='image' <eq name='keyType' value='image'> selected="selected"</eq>>{:L('PUBLIC_IMAGE_FILES')}</option>
   					<option value='file' <eq name='keyType' value='file'> selected="selected"</eq>>{:L('PUBLIC_INPUT_FILE')}</option>
             <option value='department' <eq name='keyType' value='department'> selected="selected"</eq>>{:L('PUBLIC_DEPARENT_FILES')}</option>
             <option value='user' <eq name='keyType' value='user'> selected="selected"</eq>>{:L('PUBLIC_USER_FILSE')}</option>
-            <option value='oneUser' <eq name='keyType' value='oneUser'> selected="selected"</eq>>单用户选择:selectOneUser</option>
+            <option value='oneUser' <eq name='keyType' value='oneUser'> selected="selected"</eq>>單使用者選擇:selectOneUser</option>
             <option value='stringText'<eq name='keyType' value='stringText'> selected="selected"</eq>>{:L('PUBLIC_MODSAVE_FILES')}</option>
             <option value='color'<eq name='keyType' value='color'> selected="selected"</eq>>色彩框：color</option>
-            <option value='define'<eq name='keyType' value='define'> selected="selected"</eq>>自定义</option>
+            <option value='define'<eq name='keyType' value='define'> selected="selected"</eq>>自定義</option>
   				</select></td>
   				<td><input type='text' name='key_default[]' value='{$pageKeyData['key_default'][$key]}' class="s-txt"></td>
   				<td><input type='text' name='key_tishi[]' value='{$pageKeyData['key_tishi'][$key]}' class="s-txt"></td>
@@ -102,12 +102,12 @@
   	$event = $pageKeyData['key_javascript'][$key];
   	$keyName = $pageKeyData['key_name'][$key] ? $pageKeyData['key_name'][$key] :$pk; 
   	$keyType = $pageKeyData['key_type'][$key] ? $pageKeyData['key_type'][$key] :'text';
-  	if($keyType != 'hidden'):/*非隐藏域*/ 
+  	if($keyType != 'hidden'):/*非隱藏域*/ 
   	</php>
     <dl class="lineD" id='dl_{$pk}'>
       <dt><php>if(in_array($pk,$notEmpty)){</php><font color="red"> * </font><php>}</php>{$keyName}：</dt>
       <dd>
-    <php>endif; /*非隐藏域*/ </php>  
+    <php>endif; /*非隱藏域*/ </php>  
       	<php>if($keyType == 'text'):</php>
       	<input name="{$pk}" id="form_{$pk}" type="text" value="{$defaultS|t}" <neq name='event' value='' > onfocus = "{$event}"</neq> class="s-txt" style='width:200px'>
       	<php>endif;</php>
@@ -145,7 +145,7 @@
       	
       	
       	<php>
-      	/* checkBox 默认值是以","隔开的字符串,表示可以选多个  */
+      	/* checkBox 預設值是以","隔開的字元串,表示可以選多個  */
       	if($keyType == 'checkbox'):
       		$defaultS = !is_array($defaultS) ? explode(',',trim($defaultS,',')) : $defaultS;
       		foreach($opt[$pk] as $sk=>$sv):
@@ -155,7 +155,7 @@
       	
       	
       		<php>
-      	/* 日期插件 支持一行多个*/
+      	/* 日期插件 支援一行多個*/
       	if($keyType == 'date'):
       	if(is_array($_pk)){
        		foreach($_pk as $v=>$vv){
@@ -207,7 +207,7 @@
         <php>endif;</php>
       	
       	<php>if($keyType == 'image'):</php>
-      	<!--  上传插件 -->
+      	<!--  上傳插件 -->
 	
       	<div>
       	<!-- <FORM style='display:inline;padding:0;margin:0;border:0'>  -->
@@ -232,10 +232,10 @@
         <p>{$pageKeyData['key_tishi'][$key]}</p>
         <php> }</php>
        
-    <php>if($keyType != 'hidden'): /*非隐藏域*/</php> 
+    <php>if($keyType != 'hidden'): /*非隱藏域*/</php> 
     </dd>
     </dl>
-    <php>endif; /*隐藏域*/ </php>
+    <php>endif; /*隱藏域*/ </php>
 	</volist>
     
     

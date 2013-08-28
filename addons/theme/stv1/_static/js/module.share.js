@@ -21,7 +21,7 @@
 				core.plugInit('face',this,textarea,_faceDiv);
 			}	
 		},
-		post_share:{//发布分享
+		post_share:{//釋出分享
 			click:function(){
 				var _this = this;
 				var weibo_post_box = this.parentModel.parentModel.childModels['weibo_post_box'][0];
@@ -30,7 +30,7 @@
 				core.share.post_share(_this,mini_editor,textarea);
 			},
 			load:function(){
-				core.plugInit('share');//载入分享js
+				core.plugInit('share');//載入分享js
 			}
 		},
 		share_menu:{
@@ -54,7 +54,7 @@
 			  	if("undefined" == typeof(this.share) || this.share == false){
 			  		this.share = true	
 			  	}else{
-			  		return false; //避免重复提交
+			  		return false; //避免重複提交
 			  	}
 				var _this = this;
 				var mini_editor = this.parentModel.childModels['share_comment_box'][0].childModels['share_message'][0].childModels['weibo_post_box'][0].childModels['mini_editor'][0];
@@ -69,7 +69,7 @@
 					return false;
 				}
 				
-				//验证字数有没有超过
+				//驗證字數有沒有超過
 				var _checkNums = function(obj){
 					var str = obj.value;
 

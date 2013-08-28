@@ -4,20 +4,20 @@
 	<em class="day">DAYS</em>
 	<em class="num" id="con_num_day">{$con_num}</em>
 <php>if($ischeck){</php>
-<em id="checkin" class="btn-sign-h">已签到</em>
+<em id="checkin" class="btn-sign-h">已簽到</em>
 <php>}else{</php>
-<em href="javascript:void(0)" id="checkin" onclick="checkin()" class="btn-sign">签到</em>
+<em href="javascript:void(0)" id="checkin" onclick="checkin()" class="btn-sign">簽到</em>
 <php>}</php>
    <div class="sign-wrap" style="display:none" id="checkdetail">
       <i class="arrow-y"></i>
       <div class="sign-box">
-	    <h3 id="checkinfo"><php>if($ischeck){</php>签到成功<php>}else{</php>未签到<php>}</php></h3>
-	    <div class="sign-info"><p>已连续签到<font id="con_num">{$con_num}</font>天，累计签到<font id="total_num">{$total_num}</font>天</p></div>
+	    <h3 id="checkinfo"><php>if($ischeck){</php>簽到成功<php>}else{</php>未簽到<php>}</php></h3>
+	    <div class="sign-info"><p>已連續簽到<font id="con_num">{$con_num}</font>天，累計簽到<font id="total_num">{$total_num}</font>天</p></div>
       </div>
    </div>
 </div>
 <div class="clearfix mb20 pb20 border-b">
-	<a href="{:U('public/Task/index')}" class="btn-task left" target="_blank"><span>做任务</span></a>
+	<a href="{:U('public/Task/index')}" class="btn-task left" target="_blank"><span>做任務</span></a>
 	<a href="{:U('public/Rank/index')}" class="btn-account right" target="_blank"><span>比排名</span></a>
 </div>
 
@@ -48,11 +48,11 @@ $(function (){
 	<php>}</php>
 });
 function checkin(){
-	$('#checkin').text('已签到');
+	$('#checkin').text('已簽到');
 	$('#checkin').attr('onclick' , '');
 	$('#checkin').attr('class' , 'btn-sign-h');
 	$('#checkdiv').attr('class' , 'sign-in-h' )
-	$('#checkinfo').text('签到成功');
+	$('#checkinfo').text('簽到成功');
 	var totalnum = {$total_num} + 1;
 	$.post(U('widget/CheckIn/check_in') , {} , function (res){
 		if ( res ){

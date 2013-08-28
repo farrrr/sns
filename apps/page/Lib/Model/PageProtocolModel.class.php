@@ -1,27 +1,27 @@
 <?php
 /**
-     * ***ProtocolModel 
-     * 提供给TS核心调用的协议类
-     *
-     */
+ * ***ProtocolModel
+ * 提供給TS核心呼叫的協議類
+ *
+ */
 class PageProtocolModel extends Model {
-	// 假删除用户数据
-	function deleteUserAppData($uidArr) {
-	}
-	// 恢复假删除的用户数据
-	function rebackUserAppData($uidArr) {
-	}
-	// 彻底删除用户数据
-	function trueDeleteUserAppData($uidArr) {
-		if (empty ( $uidArr ))
-			return false;
-		
-		$map ['uid'] = array (
-				'in',
-				$uidArr
-		);
+    // 假刪除使用者資料
+    function deleteUserAppData($uidArr) {
+    }
+    // 恢復假刪除的使用者資料
+    function rebackUserAppData($uidArr) {
+    }
+    // 徹底刪除使用者資料
+    function trueDeleteUserAppData($uidArr) {
+        if (empty ( $uidArr ))
+            return false;
 
-		M('diy_page')->where($map)->delete();
-		M('diy_widget')->where($map)->delete();
-	}
+        $map ['uid'] = array (
+            'in',
+            $uidArr
+        );
+
+        M('diy_page')->where($map)->delete();
+        M('diy_widget')->where($map)->delete();
+    }
 }

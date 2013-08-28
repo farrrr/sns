@@ -15,9 +15,9 @@
 .rank-lists .name .face{margin:0 10px 0 0;width:30px;display:inline-block;}
 .rank-box .rank-lists.current{background:#eee;}
 .rank-forward{width:960px;padding:60px 0;text-align:center;}
-.btn-forward-rank, .btn-forward-rank:hover{background:#414448;color:#fff;display:inline-block;font-family:"微软雅黑";font-size:16px;height:46px;text-align:center;width:240px;line-height:46px;}
+.btn-forward-rank, .btn-forward-rank:hover{background:#414448;color:#fff;display:inline-block;font-family:"微軟雅黑";font-size:16px;height:46px;text-align:center;width:240px;line-height:46px;}
 
-/*图标*/
+/*圖示*/
 .ico-comment{background-position:-219px -66px;width:16px;height:16px;vertical-align:-6px;*vertical-align:-3px}
 .ico-forward{background-position:-219px 0;width:16px;height:16px;vertical-align:-5px;*vertical-align:-3px}
 .ico-favorites{background-position:-219px -33px;width:16px;height:16px;vertical-align:-4px;*vertical-align:-2px}

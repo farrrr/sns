@@ -3,7 +3,7 @@
 <script>
 function gorank(action,type,obj,num){
 	var current = $('div[rel="'+type+'div"][current="1"]');
-	//当前页数
+	//當前頁數
 	var curnum = $('#'+type+'num').text();
 	//向前
 	if ( action == 1 ){
@@ -23,7 +23,7 @@ function gorank(action,type,obj,num){
 			$('#'+type+'num').text(curnum);
 		}
 	} else {
-		//向后翻页
+		//向後翻頁
 		curnum = parseInt(curnum) + 1;
 		if ( curnum <= num ){
 			if ( curnum == num ){
@@ -44,7 +44,7 @@ function gorank(action,type,obj,num){
 function rankpost(type){
 	$.post(U('public/Rank/postRank'),{type:type},function (res){
 		if ( res == 1 ){
-			ui.success('发布成功！');
+			ui.success('釋出成功！');
 		}
 	});
 }
@@ -62,10 +62,10 @@ function rankpost(type){
                                <a href="{:U('public/Rank/weibo')}">微博排行榜</a><i class="line"></i>  
                              </li>
                              <li>
-                               <a href="{:U('public/Rank/topic')}">话题排行榜</a><i class="line"></i>  
+                               <a href="{:U('public/Rank/topic')}">話題排行榜</a><i class="line"></i>  
                              </li>
                              <li>
-                               <a <php>if($type==2){</php>class="current"<php>}</php> href="{:U('public/Rank/index','type=2')}">用户排行榜<php>if($type==2){</php><span class="triangle"></span><php>}</php></a><i class="line"></i>  
+                               <a <php>if($type==2){</php>class="current"<php>}</php> href="{:U('public/Rank/index','type=2')}">使用者排行榜<php>if($type==2){</php><span class="triangle"></span><php>}</php></a><i class="line"></i>  
                              </li>
                              <li>
                                 <a <php>if($type==1){</php>class="current"<php>}</php> href="{:U('public/Rank/index')}">好友排行榜<php>if($type==1){</php><span class="triangle"></span><php>}</php></a></i>  
@@ -78,10 +78,10 @@ function rankpost(type){
 	   	   	   <div class="rank-content clearfix">
                     <div class="rank-box">
                         <div class="rank-tit">
-                            <span class="right"><i class="arrow-rank-l" id="followerlast" onclick="gorank(1,'follower',this,{$follower.ranknum})"></i><font id="followernum">{$follower.firstrank}</font>/{$follower.ranknum}<i class="arrow-rank-r<php>if($follower['ranknum']==1){</php>1<php>}</php>" id="followernext" onclick="gorank(2,'follower',this,{$follower.ranknum})"></i></span>{$typename}粉丝排行榜
+                            <span class="right"><i class="arrow-rank-l" id="followerlast" onclick="gorank(1,'follower',this,{$follower.ranknum})"></i><font id="followernum">{$follower.firstrank}</font>/{$follower.ranknum}<i class="arrow-rank-r<php>if($follower['ranknum']==1){</php>1<php>}</php>" id="followernext" onclick="gorank(2,'follower',this,{$follower.ranknum})"></i></span>{$typename}粉絲排行榜
                         </div>
-                        <div class="rank-num">您在{$typename}粉丝排行榜中排名第<em>{$follower.userrank}</em>名</div>
-                        <div class="rank-cate"><span class="right">粉丝数</span><span class="num">排名</span><span class="name">昵称</span></div>
+                        <div class="rank-num">您在{$typename}粉絲排行榜中排名第<em>{$follower.userrank}</em>名</div>
+                        <div class="rank-cate"><span class="right">粉絲數</span><span class="num">排名</span><span class="name">昵稱</span></div>
                         <php>foreach ( $follower['list'] as $followerk=>$followerv ){</php>
 	                        <div rel="followerdiv" <php>if($followerk>1){</php>style="display:none;"<php>}else{</php>current="1"<php>}</php>>
 	                        <php>foreach ( $followerv as $fv ){</php>
@@ -95,10 +95,10 @@ function rankpost(type){
                     </div>
                     <div class="rank-box">
                         <div class="rank-tit">
-                            <span class="right"><i class="arrow-rank-l" id="experiencelast" onclick="gorank(1,'experience',this,{$experience.ranknum})"></i><font id="experiencenum">{$experience.firstrank}</font>/{$experience.ranknum}<i class="arrow-rank-r<php>if($experience['ranknum']==1){</php>1<php>}</php>" id="experiencenext" onclick="gorank(2,'experience',this,{$experience.ranknum})"></i></span>{$typename}经验排行榜
+                            <span class="right"><i class="arrow-rank-l" id="experiencelast" onclick="gorank(1,'experience',this,{$experience.ranknum})"></i><font id="experiencenum">{$experience.firstrank}</font>/{$experience.ranknum}<i class="arrow-rank-r<php>if($experience['ranknum']==1){</php>1<php>}</php>" id="experiencenext" onclick="gorank(2,'experience',this,{$experience.ranknum})"></i></span>{$typename}經驗排行榜
                         </div>
-                        <div class="rank-num">您在{$typename}经验排行榜中排名第<em>{$experience.userrank}</em>名</div>
-                        <div class="rank-cate"><span class="right">经验值</span><span class="num">排名</span><span class="name">昵称</span></div>
+                        <div class="rank-num">您在{$typename}經驗排行榜中排名第<em>{$experience.userrank}</em>名</div>
+                        <div class="rank-cate"><span class="right">經驗值</span><span class="num">排名</span><span class="name">昵稱</span></div>
                        
                         <php>foreach ( $experience['list'] as $experiencek=>$experiencev ){</php>
 	                        <div rel="experiencediv" <php>if($experiencek>1){</php>style="display:none;"<php>}else{</php>current="1"<php>}</php>>
@@ -113,10 +113,10 @@ function rankpost(type){
                     </div>
                     <div class="rank-box no-border">
                         <div class="rank-tit">
-                            <span class="right"><i class="arrow-rank-l" id="scorelast" onclick="gorank(1,'score',this,{$score.ranknum})"></i><font id="scorenum">{$score.firstrank}</font>/{$score.ranknum}<i class="arrow-rank-r<php>if($score['ranknum']==1){</php>1<php>}</php>" id="scorenext" onclick="gorank(2,'score',this,{$score.ranknum})"></i></span>{$typename}财富排行榜
+                            <span class="right"><i class="arrow-rank-l" id="scorelast" onclick="gorank(1,'score',this,{$score.ranknum})"></i><font id="scorenum">{$score.firstrank}</font>/{$score.ranknum}<i class="arrow-rank-r<php>if($score['ranknum']==1){</php>1<php>}</php>" id="scorenext" onclick="gorank(2,'score',this,{$score.ranknum})"></i></span>{$typename}財富排行榜
                         </div>
-                        <div class="rank-num">您在{$typename}财富排行榜中排名第<em>{$score.userrank}</em>名</div>
-                        <div class="rank-cate"><span class="right">财富值</span><span class="num">排名</span><span class="name">昵称</span></div>
+                        <div class="rank-num">您在{$typename}財富排行榜中排名第<em>{$score.userrank}</em>名</div>
+                        <div class="rank-cate"><span class="right">財富值</span><span class="num">排名</span><span class="name">昵稱</span></div>
                         <php>foreach ( $score['list'] as $scorek=>$scorev ){</php>
 	                        <div rel="scorediv" <php>if($scorek>1){</php>style="display:none;"<php>}else{</php>current="1"<php>}</php>>
 	                        <php>foreach ( $scorev as $gv ){</php>
@@ -130,10 +130,10 @@ function rankpost(type){
                     <php>if( CheckTaskSwitch() ){</php>
                     <div class="rank-box">
                         <div class="rank-tit">
-                            <span class="right"><i class="arrow-rank-l" id="medallast" onclick="gorank(1,'medal',this,{$medal.ranknum})"></i><font id="medalnum">{$medal.firstrank}</font>/{$medal.ranknum}<i class="arrow-rank-r<php>if($medal['ranknum']==1){</php>1<php>}</php>" id="medalnext" onclick="gorank(2,'medal',this,{$medal.ranknum})"></i></span>{$typename}勋章排行榜
+                            <span class="right"><i class="arrow-rank-l" id="medallast" onclick="gorank(1,'medal',this,{$medal.ranknum})"></i><font id="medalnum">{$medal.firstrank}</font>/{$medal.ranknum}<i class="arrow-rank-r<php>if($medal['ranknum']==1){</php>1<php>}</php>" id="medalnext" onclick="gorank(2,'medal',this,{$medal.ranknum})"></i></span>{$typename}勳章排行榜
                         </div>
-                        <div class="rank-num">您在{$typename}勋章排行榜中排名第<em>{$medal.userrank}</em>名</div>
-                        <div class="rank-cate"><span class="right">勋章数</span><span class="num">排名</span><span class="name">昵称</span></div>
+                        <div class="rank-num">您在{$typename}勳章排行榜中排名第<em>{$medal.userrank}</em>名</div>
+                        <div class="rank-cate"><span class="right">勳章數</span><span class="num">排名</span><span class="name">昵稱</span></div>
                         <php>foreach ( $medal['list'] as $medalk=>$medalv ){</php>
 	                        <div rel="medaldiv" <php>if($medalk>1){</php>style="display:none;"<php>}else{</php>current="1"<php>}</php>>
 	                        <php>foreach ( $medalv as $mv ){</php>
@@ -146,10 +146,10 @@ function rankpost(type){
                     </div>
                     <div class="rank-box">
                         <div class="rank-tit">
-                            <span class="right"><i class="arrow-rank-l" id="checkconlast" onclick="gorank(1,'checkcon',this,{$checkcon.ranknum})"></i><font id="checkconnum">{$checkcon.firstrank}</font>/{$checkcon.ranknum}<i class="arrow-rank-r<php>if($checkcon['ranknum']==1){</php>1<php>}</php>" id="checkconnext" onclick="gorank(2,'checkcon',this,{$checkcon.ranknum})"></i></span>{$typename}连续签到排行榜
+                            <span class="right"><i class="arrow-rank-l" id="checkconlast" onclick="gorank(1,'checkcon',this,{$checkcon.ranknum})"></i><font id="checkconnum">{$checkcon.firstrank}</font>/{$checkcon.ranknum}<i class="arrow-rank-r<php>if($checkcon['ranknum']==1){</php>1<php>}</php>" id="checkconnext" onclick="gorank(2,'checkcon',this,{$checkcon.ranknum})"></i></span>{$typename}連續簽到排行榜
                         </div>
-                        <div class="rank-num">您在{$typename}连续签到排行榜中排名第<em>{$checkcon.userrank}</em>名</div>
-                        <div class="rank-cate"><span class="right">连续签到数</span><span class="num">排名</span><span class="name">昵称</span></div>
+                        <div class="rank-num">您在{$typename}連續簽到排行榜中排名第<em>{$checkcon.userrank}</em>名</div>
+                        <div class="rank-cate"><span class="right">連續簽到數</span><span class="num">排名</span><span class="name">昵稱</span></div>
                         <php>foreach ( $checkcon['list'] as $checkconk=>$checkconv ){</php>
 	                        <div rel="checkcondiv" <php>if($checkconk>1){</php>style="display:none;"<php>}else{</php>current="1"<php>}</php>>
 	                        <php>foreach ( $checkconv as $ccv ){</php>
@@ -162,10 +162,10 @@ function rankpost(type){
                     </div>
                     <div class="rank-box no-border">
                         <div class="rank-tit">
-                            <span class="right"><i class="arrow-rank-l" id="checktotallast" onclick="gorank(1,'checktotal',this,{$checktotal.ranknum})"></i><font id="checktotalnum">{$checktotal.firstrank}</font>/{$checktotal.ranknum}<i class="arrow-rank-r<php>if($checktotal['ranknum']==1){</php>1<php>}</php>" id="checktotalnext" onclick="gorank(2,'checktotal',this,{$checktotal.ranknum})"></i></span>{$typename}累积签到排行榜
+                            <span class="right"><i class="arrow-rank-l" id="checktotallast" onclick="gorank(1,'checktotal',this,{$checktotal.ranknum})"></i><font id="checktotalnum">{$checktotal.firstrank}</font>/{$checktotal.ranknum}<i class="arrow-rank-r<php>if($checktotal['ranknum']==1){</php>1<php>}</php>" id="checktotalnext" onclick="gorank(2,'checktotal',this,{$checktotal.ranknum})"></i></span>{$typename}累積簽到排行榜
                         </div>
-                        <div class="rank-num">您在{$typename}累积签到排行榜中排名第<em>{$checktotal.userrank}</em>名</div>
-                        <div class="rank-cate"><span class="right">累计签到数</span><span class="num">排名</span><span class="name">昵称</span></div>
+                        <div class="rank-num">您在{$typename}累積簽到排行榜中排名第<em>{$checktotal.userrank}</em>名</div>
+                        <div class="rank-cate"><span class="right">累計簽到數</span><span class="num">排名</span><span class="name">昵稱</span></div>
                        <php>foreach ( $checktotal['list'] as $checktotalk=>$checktotalv ){</php>
 	                        <div rel="checktotaldiv" <php>if($checktotalk>1){</php>style="display:none;"<php>}else{</php>current="1"<php>}</php>>
 	                        <php>foreach ( $checktotalv as $ctv ){</php>
@@ -178,7 +178,7 @@ function rankpost(type){
                     </div>
                     <php>}</php>
            	 </div>
-           	 <div class="rank-forward"><a href="javascript:rankpost({$type})" class="btn-forward-rank">转发我的{$typename}排名到微博</a></div> 
+           	 <div class="rank-forward"><a href="javascript:rankpost({$type})" class="btn-forward-rank">轉發我的{$typename}排名到微博</a></div> 
            	</div>
         </div>
 	   </div>

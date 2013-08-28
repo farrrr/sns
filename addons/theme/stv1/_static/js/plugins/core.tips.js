@@ -1,4 +1,4 @@
-// 顶操作模型
+// 頂操作模型
 core.tips = {	
 			_init: function(attrs) {
 				return false;

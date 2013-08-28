@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 /* CSS Document */
 
 body { font:12px Arial, Verdana, Helvetica, sans-serif; text-align:center; color:#333; }
@@ -10,14 +10,14 @@ img { border:none }
 ol, ul, li{ list-style:none }
 em { color:#999; font-family: Tahoma, Verdana, helvetica; font-size: 10px; font-style: normal; white-space: nowrap; }
 
-/* 连接 */
+/* 連線 */
 a { color:#005fab; text-decoration:none }
 a:link { color:#3b5999; text-decoration:none }
 a:visited { color:#3b5999; text-decoration:none }
 a:hover { color:#3b5999; text-decoration:underline }
 a:active { color:#3b5999 }
 
-/*头部*/
+/*頭部*/
 .header { height:60px;_height:60px; text-align:left; margin:0 auto; background:#2E4C8C; z-index:1; border-bottom:3px solid #1e325c; position:relative }
 .header .logo { position:absolute; top:20px; left:60px;}
 .header .logo img{vertical-align:-8px;margin-right:5px}
@@ -29,7 +29,7 @@ a:active { color:#3b5999 }
 .header .nav_sub a { color:#fff; }
 .header_line { background-color:#dee4ed; height:9px; padding-left:200px }
 .header_line span { background:#dee4ed url(image/top_line.gif) repeat-x 0 0; height:9px; display:block; overflow:hidden; }
-/*左侧菜单*/
+/*左側選單*/
 .LeftMenu { height: auto; margin-left:5px; text-align:left }
 .MenuList ul, .MenuList li { list-style-type: none; float:left; width:100% }
 .MenuList a { display: block; width: 100%; line-height: 32px; float:left }

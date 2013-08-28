@@ -1,5 +1,5 @@
 @charset "utf-8";
-/*公用样式部分*/
+/*公用樣式部分*/
 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));}
 *{word-wrap:break-word }
 body, div, dl, dt, dd, ul, ol, li, pre, form, fieldset, blockquote, h1, h2, h3, h4, h5, h6,p{padding:0;margin:0 }
@@ -40,7 +40,7 @@ textarea{resize:none}
 .lh30 {height:auto;}
 .lh35 {line-height:35px;height:auto;_height:35px }
 
-/*浮动及清除浮动*/
+/*浮動及清除浮動*/
 .left {float:left }
 .right {float:right }
 .flw100{float:left;width:100%}
@@ -54,7 +54,7 @@ textarea{resize:none}
 .OverH {overflow: hidden;text-overflow:ellipsis;white-space: nowrap;*zoom:1;}
 .overflowH {margin:0;padding:0;zoom:1}
 
-/*内边距外边距*/
+/*內邊距外邊距*/
 .ml5{margin-left:5px;}  .mr5{margin-right:5px;}
 .mt10{margin-top:10px}  .mr10{margin-right:10px}  .ml10{margin-left:10px}
 .pb5{padding-top:2px;}  .pl5{padding-left:5px}  .pt5{padding-top:5px}  .pr5{padding-right:5px}
@@ -73,7 +73,7 @@ textarea{resize:none}
 .WB {word-wrap:break-word}
 .wn {white-space: nowrap}
 
-/*边框线及分割线*/
+/*邊框線及分割線*/
 .lineD_btm{border-bottom:1px solid #eee}
 .lineS_btm{border-bottom:1px solid #E6E6E6}
 .app_lineL{background: url(images/app_lineL.gif) repeat-y left top}
@@ -118,7 +118,7 @@ textarea{resize:none}
 .q_con1 h4 a{color:#000}
 .talkBox{}
 .talkBox h2{}
-.talkBox .cntBox textarea{background: #fff url(images/cnBot_text_bg.gif) repeat-x 0 top;border:solid 1px;border-color:#abadb3 #dbdfe6 #d2d2d2 #cecece;-moz-border-radius: 3px;-khtml-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;font-family:Arial,Helvetica,sans-serif,"宋体"}
+.talkBox .cntBox textarea{background: #fff url(images/cnBot_text_bg.gif) repeat-x 0 top;border:solid 1px;border-color:#abadb3 #dbdfe6 #d2d2d2 #cecece;-moz-border-radius: 3px;-khtml-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;font-family:Arial,Helvetica,sans-serif,"宋體"}
 .talkBox .cntBox textarea:hover{border:solid 1px #345974}
 .imgicon {cursor:url("images/cursor_zoom.cur"), auto}
 .imgSmall {cursor:url("images/cursor_minify.cur"), auto}
@@ -127,7 +127,7 @@ a:hover .imgSmall{cursor:url(http://timg.sjs.sinajs.cn/t3/style/images/common/sm
 .check{background-position:-90px -54px; width:20px; height:20px; vertical-align:middle;text-indent:-9999px}
 .check:hover{background-position:-112px -54px; width:20px; height:20px; vertical-align:middle;text-indent:-9999px}
 
-/*日常操作的小图标*/
+/*日常操作的小圖示*/
 .ico_Del,.ico_Modify,.ico_Preview,.ico_Img{ background: transparent url(images/sicon.gif) no-repeat;display:inline-block;width:14px;height:14px;vertical-align:middle;margin-right:2px}
 .ico_Del{background-position:-159px -36px}
 .ico_Modify{background-position:-108px -36px}
@@ -139,49 +139,49 @@ a:hover .imgSmall{cursor:url(http://timg.sjs.sinajs.cn/t3/style/images/common/sm
 .app_ico{ width:16px;height:16px;display:inline-block;position:absolute;left:5px;top:7px}
 .ico_manage{background: url(images/app_ico.gif) no-repeat;background-position:0 -144px} 
 
-/*导航菜单图标*/
+/*導航選單圖示*/
 .ico_pub_billboard,.ico_pub_hall,.ico_pub_screen,.ico_pub_blog,.ico_pub_photo,.ico_pub_group,.ico_pub_posters,.ico_pub_activity,.ico_pub_voting,.ico_pub_gift,.ico_pub_find,.ico_pub_set,.ico_pub_invitation,.ico_pub_tool,.ico_pub_skin,.ico_pub_signout,.ico_pub_admin{background: transparent url(images/ico_nav.png) no-repeat;display:inline-block}
 .ico_pub{width:16px;height:16px;margin-right:5px;vertical-align: middle}
-.ico_pub_billboard{background-position:2px 0}/*风云榜*/
+.ico_pub_billboard{background-position:2px 0}/*風雲榜*/
 .ico_pub_hall{background-position:0 -114px}/*名人堂*/
-.ico_pub_screen{background-position:0 -38px}/*微薄大屏幕*/
-.ico_pub_blog{background-position:0 -57px}/*日志*/
-.ico_pub_photo{background-position:0 -76px}/*相册*/
-.ico_pub_group{background-position:0 -95px}/*群组*/
+.ico_pub_screen{background-position:0 -38px}/*微薄大螢幕*/
+.ico_pub_blog{background-position:0 -57px}/*日誌*/
+.ico_pub_photo{background-position:0 -76px}/*相簿*/
+.ico_pub_group{background-position:0 -95px}/*群組*/
 .ico_pub_posters{background-position:0 -152px}/*招帖*/
-.ico_pub_activity{background-position:0 -171px}/*活动*/
+.ico_pub_activity{background-position:0 -171px}/*活動*/
 .ico_pub_voting{background-position:0 247}/*投票*/
-.ico_pub_gift{background-position:0 -133px}/*礼物*/
+.ico_pub_gift{background-position:0 -133px}/*禮物*/
 .ico_pub_find{background-position:0 -266px}/*找人*/
-.ico_pub_set{background-position:0 -228} /*设置*/
-.ico_pub_invitation{background-position:0 -19px}/*邀请*/
+.ico_pub_set{background-position:0 -228} /*設定*/
+.ico_pub_invitation{background-position:0 -19px}/*邀請*/
 .ico_pub_tool{background-position:0 -284px}/*小工具*/
-.ico_pub_skin{background-position:0 -209px}/*皮肤*/
-.ico_pub_admin{background-position:0 -302px}/*进入后台*/
+.ico_pub_skin{background-position:0 -209px}/*面板*/
+.ico_pub_admin{background-position:0 -302px}/*進入後臺*/
 .ico_pub_signout{background-position:0 -190px}/*退出*/
 
-/*左边菜单图标 */
+/*左邊選單圖示 */
 .ico_square,.ico_billboard,.ico_hall,.ico_screen,.ico_journal,.ico_album,.ico_group,.ico_home,.ico_atme,.ico_favorites,.ico_comment,.ico_voting,.ico_gift,.ico_activity,.ico_board,.ico_square_on,.user_app .celerity_menu a.on .ico_billboard,.ico_hall_on,.ico_screen_on,.ico_journal_on,.ico_album_on,.ico_group_on,.user_app .celerity_menu a.on .ico_voting_on,.user_app .celerity_menu a.on .ico_gift_on,.user_app .celerity_menu a.on .ico_activity_on,.user_app .celerity_menu a.on .ico_board_on,.user_app .celerity_menu a.on .ico_home,.user_app .celerity_menu a.on .ico_atme,
 .user_app .celerity_menu a.on .ico_favorites,.user_app .celerity_menu a.on .ico_comment
 {background: transparent url(images/ico_sidebar.png) no-repeat;display:inline-block}
 .ico_side{width:16px;height:16px;margin-right:5px;vertical-align: middle}
-.ico_square{background-position:0 -208px}.ico_square_on{background-position:-26px -208px}/*广场首页*/
-.ico_billboard{background-position:0 -227px}.user_app .celerity_menu a.on .ico_billboard{background-position:-26px -227px}/*风云榜*/
+.ico_square{background-position:0 -208px}.ico_square_on{background-position:-26px -208px}/*廣場首頁*/
+.ico_billboard{background-position:0 -227px}.user_app .celerity_menu a.on .ico_billboard{background-position:-26px -227px}/*風雲榜*/
 .ico_hall{background-position:0 -265px}.ico_hall_on{background-position:-26px -265px}/*名人堂*/
-.ico_screen{background-position:0 -246px}.ico_screen_on{background-position:-26px -246px}/*大屏幕*/
-.ico_journal{background-position:0 -95px}.ico_journal_on{background-position:-26px -95px}/*日志*/
-.ico_album{background-position:0 -114px}.ico_album_on{background-position:-26px -114px}/*相册*/
-.ico_group{background-position:0 -190px}.ico_group_on{background-position:-26px -190px}/*群组*/
-.ico_home{background-position:0 0}.user_app .celerity_menu a.on .ico_home{background-position:-26px 0}/*首页*/
+.ico_screen{background-position:0 -246px}.ico_screen_on{background-position:-26px -246px}/*大螢幕*/
+.ico_journal{background-position:0 -95px}.ico_journal_on{background-position:-26px -95px}/*日誌*/
+.ico_album{background-position:0 -114px}.ico_album_on{background-position:-26px -114px}/*相簿*/
+.ico_group{background-position:0 -190px}.ico_group_on{background-position:-26px -190px}/*群組*/
+.ico_home{background-position:0 0}.user_app .celerity_menu a.on .ico_home{background-position:-26px 0}/*首頁*/
 .ico_atme{background-position:0 -19px}.user_app .celerity_menu a.on .ico_atme{background-position:-26px -19px}/*atme*/
 .ico_favorites{background-position:0 -38px}.user_app .celerity_menu a.on .ico_favorites{background-position:-26px -38px}/*收藏*/
-.ico_comment{background-position:0 -57px}.user_app .celerity_menu a.on .ico_comment{background-position:-26px -57px}/*评论*/
+.ico_comment{background-position:0 -57px}.user_app .celerity_menu a.on .ico_comment{background-position:-26px -57px}/*評論*/
 .ico_voting{background-position:0 -152px}.user_app .celerity_menu a.on .ico_voting{background-position:-26px -152px}/*投票*/
-.ico_gift{background-position:0 -171px}.user_app .celerity_menu a.on .ico_gift{background-position:-26px -171px}/*礼物*/
-.ico_activity{background-position:0 -133px}.user_app .celerity_menu a.on .ico_activity{background-position:-26px -133px}/*活动*/
+.ico_gift{background-position:0 -171px}.user_app .celerity_menu a.on .ico_gift{background-position:-26px -171px}/*禮物*/
+.ico_activity{background-position:0 -133px}.user_app .celerity_menu a.on .ico_activity{background-position:-26px -133px}/*活動*/
 .ico_board{background-position:0 -76px}.user_app .celerity_menu a.on .ico_board{background-position:-26px -76px}/*招帖板*/
 
-/*关闭按钮*/
+/*關閉按鈕*/
 .ico_close,.ico_close_send,.a.ico_close:hover,.ico_show_on,.ico_show_off,.ico_sync_on,.ico_sync_off,.del,.del:hover{background: transparent url(images/close.gif) no-repeat;display:inline-block}
 .ico_close{background-position:0 -17px}
 a.ico_close:hover{background-position:0 0}
@@ -193,7 +193,7 @@ a.ico_close:hover{background-position:0 0}
 .del{width:17px;height:17px;background-position:0 -85px;overflow:hidden;margin:3px 5px 0 0}
 .del:hover{width:17px;height:17px;background-position:0 -102px;overflow:hidden;margin:3px 5px 0 0}
 
-/* 文件类型图标*/
+/* 檔案類型圖示*/
 .ico_doc,.ico_docx,.ico_xls,.ico_xlsx,.ico_ppt,.ico_pptx,.ico_pdf,.ico_jpg,.ico_gif,.ico_png,.ico_jpeg,.ico_bmp,.ico_zip,.ico_rar{background: transparent url(images/ico_file.gif) no-repeat;display:inline-block;background-position:0 -419px;width:48px;height:48px}
 .ico_gif,.ico_jpg,.ico_png,.ico_jpeg,.ico_bmp{background-position:0 -318px}
 .ico_doc,.ico_docx{background-position:0 0}
@@ -202,7 +202,7 @@ a.ico_close:hover{background-position:0 0}
 .ico_zip,.ico_rar{background-position:0 -371px}
 .ico_pdf{background-position:0 -159px}
 
-/*排行榜数字图标*/
+/*排行榜數字圖示*/
 .top_topic_list .no{background-position:0 -341px;height:17px;line-height:17px;width:18px;text-align:center;color:#fff;font-size:12px;margin:6px 12px 0 3px;float:left}
 .top_topic_list .top1,.top_topic_list .top2,.top_topic_list .top3{height:29px;width:14px;line-height:20px;font-weight:bold;text-align:center;margin:4px 16px 0 5px}
 .top_topic_list .top1{background-position:0 -224px}
@@ -210,18 +210,18 @@ a.ico_close:hover{background-position:0 0}
 .top_topic_list .top3{background-position:0 -302px}
 
 
-/*发布框下图标*/
+/*釋出框下圖示*/
 .icon_add_link_d{background-position: -32px -2px;height:12px;width:16px;margin:0 2px -2px 0}
 .icon_add_face_d,.icon_add_topic_d,.icon_add_img_d,.icon_add_video_d,.icon_add_music_d,.icon_add_vote_d,.icon_add_blog_d,.icon_add_file_d,.ico_morefoot,.top_topic_list .no,.top_topic_list .top1,.top_topic_list .top2,.top_topic_list .top3,.icoup,.icodown,.btn_s,.ico_speaker,a.faceicon1:link, a.faceicon1:visited{background: url(images/ico.png) no-repeat 0 0;display: inline-block;vertical-align:middle}
 .icon_add_face_d{background-position: 0 0px;height:25px;width:19px;margin:0 2px -3px 0}/*表情*/
-.icon_add_topic_d{background-position:0 -23px;height:25px;width:19px;margin:0 2px -2px 0}/*话题*/
-.icon_add_img_d{background-position: 0 -47px;height:25px;width:19px;margin:0 2px -2px 0}/*图片*/
-.icon_add_video_d{background-position:0 -73px;height:25px;width:19px;margin:0 2px -2px 0}/*视频*/
-.icon_add_music_d{background-position: 0 -98px;height:25px;width:19px;margin:0 2px -2px 0}/*音乐*/
+.icon_add_topic_d{background-position:0 -23px;height:25px;width:19px;margin:0 2px -2px 0}/*話題*/
+.icon_add_img_d{background-position: 0 -47px;height:25px;width:19px;margin:0 2px -2px 0}/*圖片*/
+.icon_add_video_d{background-position:0 -73px;height:25px;width:19px;margin:0 2px -2px 0}/*視訊*/
+.icon_add_music_d{background-position: 0 -98px;height:25px;width:19px;margin:0 2px -2px 0}/*音樂*/
 .icon_add_vote_d{background-position: 0 -124px;height:25px;width:19px;margin:0 2px -2px 0}/*投票*/
-.icon_add_blog_d{background-position: 0 -150px;height:25px;width:19px;margin:0 2px -2px 0}/*日志*/
-.icon_add_file_d{background-position: 0 -174px;height:25px;width:19px;margin:0 2px -2px 0}/*日志*/
-.ico_morefoot{background-position:0 -203px;height:11px;width:11px;margin:0 5px 2px 0;_margin:2px 5px 0 0}/*查看更多*/
+.icon_add_blog_d{background-position: 0 -150px;height:25px;width:19px;margin:0 2px -2px 0}/*日誌*/
+.icon_add_file_d{background-position: 0 -174px;height:25px;width:19px;margin:0 2px -2px 0}/*日誌*/
+.ico_morefoot{background-position:0 -203px;height:11px;width:11px;margin:0 5px 2px 0;_margin:2px 5px 0 0}/*檢視更多*/
 .ico_speaker{background-position:0 -429px;height:13px;width:13px;margin:0 5px 2px 0}
 .icoup,.icodown{width:9px;height:9px;margin:-2px 0 0 5px}
 .icoup{background-position:0 -292px}
@@ -236,7 +236,7 @@ a.ico_close:hover{background-position:0 0}
 .ico_follow{background-position:-72px -18px ;height:14px;width:14px;margin-right:5px}
 .ico_tuijian{background-position:-90px -18px ;height:14px;width:14px;margin-right:5px;vertical-align:middle}
 
-/*box 箭头*/
+/*box 箭頭*/
 .arr_left,.arr_right{background: url(images/small_arrow.gif) no-repeat 0 0;display: inline-block;vertical-align:middle}
 .arr_left{width:8px;height:13px}
 .head_pic{background-position:0 -36px;width:60px;height:55px;text-align:center;float:left}
@@ -244,7 +244,7 @@ a.ico_close:hover{background-position:0 0}
 .head_pic a{line-height:20px}
 .addnew{background: url(images/add.gif) no-repeat 0 0;width:8px;height:8px;margin:0 5px;vertical-align:middle;display:inline-block;overflow:hidden;}
 
-/*圆角*/
+/*圓角*/
 #indt{right:10px;top:5px}
 /*#reply_content img{max-width:100%;height:auto}*/
 .br3{-moz-border-radius:3px;-khtml-border-radius:3px;-webkit-border-radius:3px;border-radius:3px}
@@ -252,7 +252,7 @@ a.ico_close:hover{background-position:0 0}
 /*.box_create{padding:10px;margin:0;background-color:#FFFFCC;border-radius:3px 3px 3px 3px;border:1px solid #F5C83C;text-align:center}*/
 .box_create h4{font-weight:400;height:20px;font-size:14px;padding:10px 0 0 0}
 
-/*更换皮肤*/
+/*更換面板*/
 .setskinbox{padding:0;margin:0;}
 .skin_choose{width:30px;height:30px;display:block;background:url(images/skin.png) no-repeat -3px -4px;margin:-10px -20px 0 0;*margin:-10px -20px 0 0;float:right}
 .font_stroke{
@@ -262,11 +262,11 @@ a.ico_close:hover{background-position:0 0}
 		   Dropshadow(offx=-1,offy=0,color=white);
     	   text-shadow:0 0 1px #FFF;font-size:14px}
 #share_other{margin-right:5px;margin-top:-8px;_margin-top:-5px;float:left}
-/*群组*/
+/*群組*/
 .groupBox .boxL .search li{overflow:hidden;*zoom:1;padding:10px 0}
 
 
-/*常见问题解答回答之星*/
+/*常見問題解答回答之星*/
 .ynmx li{overflow:hidden;padding:10px 0}
 .ynmx_l{margin-left:65px;}
 

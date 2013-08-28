@@ -2,14 +2,14 @@
     <div class="pop_up_main">
         <div class="pop_up_tab">
             <div class="tab attrSetTab">
-                <a href="javascript:void(0)" rel="diy_baseSet" class="on">基本设置</a>
+                <a href="javascript:void(0)" rel="diy_baseSet" class="on">基本設定</a>
             </div>
         </div>
         <div class="pop_up_box">
             <ul class="pop_up_box_form" id="diy_baseSet">
                 <li>
                     <div class="c1">
-                        标题：
+                        標題：
                     </div>
                     <div class="c2">
                         <input id="title" value="" class="param_post text"/>
@@ -17,7 +17,7 @@
                     </li>
                                     <li>
                     <div class="c1">
-                        默认内容：
+                        默認內容：
                     </div>
                     <div class="c2">
                         <input id="initHtml" value="" class="param_post text"/>
@@ -95,11 +95,11 @@
                                         frameArray[parentId][layout][index] = result['sign'];
                                         if ($('#' + id).html() == null) {
                                             $('#placeholder').html(result['html']);
-                                            $('#placeholder').removeAttr('class').removeAttr('style').addClass('mb10').attr('id', id).attr('rel', namespace).attr('sign', result['sign']).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\'' + id + '\',\'' + namespace + '\')" class="ico_diyedit" title="设置">设置</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="删除">删除</a></div></div>');
+                                            $('#placeholder').removeAttr('class').removeAttr('style').addClass('mb10').attr('id', id).attr('rel', namespace).attr('sign', result['sign']).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\'' + id + '\',\'' + namespace + '\')" class="ico_diyedit" title="設定">設定</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="刪除">刪除</a></div></div>');
                                         }
                                         else {
                                             $('#' + id).html(result['html']).attr('sign', result['sign']);
-                                            $('#' + id).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\'' + id + '\',\'' + namespace + '\')" class="ico_diyedit" title="设置">设置</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="删除">删除</a></div></div>');
+                                            $('#' + id).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\'' + id + '\',\'' + namespace + '\')" class="ico_diyedit" title="設定">設定</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="刪除">刪除</a></div></div>');
                                         }
                                         
                                     }

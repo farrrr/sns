@@ -7,7 +7,7 @@
 </div>
 <script>
 core.plugInit('department','DepartmentSelect','saveDepartMent','select',{$sid},{$nosid});
-//回调函数 返回部门ID和部门显示的名称
+//回撥函數 返回部門ID和部門顯示的名稱
 var saveDepartMent = function(id,departmentName){
 	$('#DepartmentSelect').attr('departmentid',id);
 	$('#DepartmentSelect').attr('departname',departmentName);

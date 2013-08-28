@@ -3,16 +3,16 @@
 <input type="hidden" autocomplete="off" value="{$cid}" id="contribute" />
 
 <script type="text/javascript">
-var boxmodule = function() {
-	M(document.getElementById('tsbox'));
-};
+    var boxmodule = function() {
+        M(document.getElementById('tsbox'));
+    };
 
-if("undefined" == typeof(loadmore) || loadmore == 0) {
-	var loadmore = '0';
-	var loadnew = '0';	 
-	core.loadFile(THEME_URL+'/js/module.weibo.js',boxmodule);
-} else {
-	boxmodule();
-}
+    if("undefined" == typeof(loadmore) || loadmore == 0) {
+        var loadmore = '0';
+        var loadnew = '0';   
+        core.loadFile(THEME_URL+'/js/module.weibo.js',boxmodule);
+    } else {
+        boxmodule();
+    }
 </script>
- 
+

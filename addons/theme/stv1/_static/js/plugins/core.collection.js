@@ -4,9 +4,9 @@
  * @version TS3.0
  */
 core.collection = {	
-	// 初始化参数
+	// 初始化參數
 	_init: function(attrs) {
-		// 转化为数组
+		// 轉化為陣列
 		attrs = $.makeArray(attrs);
 		if(typeof attrs[6] == 'undefined') {
 			attrs.push(0);
@@ -18,7 +18,7 @@ core.collection = {
 		}
 	},
 	init: function(obj, type, sid, stable, sapp, isIco) {
-		// 参数验证
+		// 參數驗證
 		if('undefined'==typeof(obj) || 'undefined'==typeof(sid) || 'undefined'==typeof(stable) || 'undefined'==typeof(sapp) ) {
 			ui.error(L('PUBLIC_TIPES_ERROR'));
 			return false;
@@ -29,7 +29,7 @@ core.collection = {
 				if(msg.status == 0) {
 					ui.error(msg.data);
 				} else {
-					// 设置对象操作属性
+					// 設定物件操作屬性
 					$(obj).attr('rel', 'remove');
 					
 					if($('.count_' + stable + '_' + sid).length > 0) {
@@ -49,7 +49,7 @@ core.collection = {
 			}, 'json');
 			return false;
 		}
-		// 删除收藏操作
+		// 刪除收藏操作
 		if($(obj).attr('rel') == 'remove') {
 			$.post(U('widget/Collection/delColl'),{sid:sid,stable:stable},function(msg){
 				if(msg.status == 1){	

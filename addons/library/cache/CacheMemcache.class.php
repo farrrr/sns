@@ -11,7 +11,7 @@
 
 defined('THINK_PATH') or exit();
 /**
- * Memcache缓存驱动
+ * Memcache快取驅動
  * @category   Extend
  * @package  Extend
  * @subpackage  Driver.Cache
@@ -20,8 +20,8 @@ defined('THINK_PATH') or exit();
 class CacheMemcache extends Cache {
 
     /**
-     * 架构函数
-     * @param array $options 缓存参数
+     * 架構函數
+     * @param array $options 快取參數
      * @access public
      */
     function __construct($options=array()) {
@@ -38,8 +38,8 @@ class CacheMemcache extends Cache {
         }
         $this->options      =   $options;
         $this->options['expire'] =  isset($options['expire'])?  $options['expire']  :   C('DATA_CACHE_TIME');
-        $this->options['prefix'] =  isset($options['prefix'])?  $options['prefix']  :   C('DATA_CACHE_PREFIX');        
-        $this->options['length'] =  isset($options['length'])?  $options['length']  :   0;        
+        $this->options['prefix'] =  isset($options['prefix'])?  $options['prefix']  :   C('DATA_CACHE_PREFIX');
+        $this->options['length'] =  isset($options['length'])?  $options['length']  :   0;
         $func               =   $options['persistent'] ? 'pconnect' : 'connect';
         $this->handler      =   new Memcache;
         $options['timeout'] === false ?
@@ -48,9 +48,9 @@ class CacheMemcache extends Cache {
     }
 
     /**
-     * 读取缓存
+     * 讀取快取
      * @access public
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return mixed
      */
     public function get($name) {
@@ -59,55 +59,55 @@ class CacheMemcache extends Cache {
     }
 
     /**
-     * 批量读取缓存
+     * 批量讀取快取
      * @access public
-     * @param string $prefix 缓存前缀
+     * @param string $prefix 快取字首
      * @return mixed
      */
-	public function getMulti( $prefix , $key ){
-		N('cache_read',1);
-		foreach( $key as $k=>$v ){
-			$namelist[] = $this->options['prefix'].$prefix.$v;
-		}
-		
-		$result = $this->handler->get ( $namelist );
-		
-		foreach ( $result as $k=>$v){
-			$k = str_replace( $this->options['prefix'].$prefix , '', $k );
-			$data[ $k ] = $v;
-		}
-		unset( $result );
-		return $data;
-	}
+    public function getMulti( $prefix , $key ){
+        N('cache_read',1);
+        foreach( $key as $k=>$v ){
+            $namelist[] = $this->options['prefix'].$prefix.$v;
+        }
+
+        $result = $this->handler->get ( $namelist );
+
+        foreach ( $result as $k=>$v){
+            $k = str_replace( $this->options['prefix'].$prefix , '', $k );
+            $data[ $k ] = $v;
+    }
+    unset( $result );
+    return $data;
+    }
 
     /**
-     * 写入缓存
+     * 寫入快取
      * @access public
-     * @param string $name 缓存变量名
-     * @param mixed $value  存储数据
-     * @param integer $expire  有效时间（秒）
+     * @param string $name 快取變數名
+     * @param mixed $value  存儲資料
+     * @param integer $expire  有效時間（秒）
      * @return boolen
      */
     public function set($name, $value, $expire = null) {
         N('cache_write',1);
         if(is_null($expire)) {
             $expire  =  $this->options['expire'];
-        }
-        $name   =   $this->options['prefix'].$name;
-        if($this->handler->set($name, $value, 0, $expire)) {
-            if($this->options['length']>0) {
-                // 记录缓存队列
-                $this->queue($name);
-            }
-            return true;
-        }
-        return false;
+    }
+    $name   =   $this->options['prefix'].$name;
+    if($this->handler->set($name, $value, 0, $expire)) {
+        if($this->options['length']>0) {
+            // 記錄快取佇列
+            $this->queue($name);
+    }
+    return true;
+    }
+    return false;
     }
 
     /**
-     * 删除缓存
+     * 刪除快取
      * @access public
-     * @param string $name 缓存变量名
+     * @param string $name 快取變數名
      * @return boolen
      */
     public function rm($name, $ttl = false) {
@@ -118,11 +118,11 @@ class CacheMemcache extends Cache {
     }
 
     /**
-     * 清除缓存
+     * 清除快取
      * @access public
      * @return boolen
      */
     public function clear() {
         return $this->handler->flush();
     }
-}
+    }

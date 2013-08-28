@@ -1,14 +1,14 @@
 <?php
 /**
- * 添加标签 Widget
+ * 添加標籤 Widget
  * @author jason
  * @version TS3.0
  */
 class StringTextWidget extends Widget{
 	
 	/**
-	 * @param string inputname 文本框名称
-	 * @param string value 默认值
+	 * @param string inputname 文字框名稱
+	 * @param string value 預設值
 	 */
 	public function render($data){
 		
@@ -22,7 +22,7 @@ class StringTextWidget extends Widget{
 	
 		unset($var,$data);
 
-        //输出数据
+        //輸出資料
 		return $content;
     }
 }

@@ -1,5 +1,5 @@
 /**
- * 全站供用的Js监听
+ * 全站供用的Js監聽
  * @author jason <yangjs17@yeah.net> 
  * @version TS3.0
  */
@@ -14,7 +14,7 @@ M.addModelFns({
 		load: function() {
 			var parentModel = this.parentNode,
 				list = this;
-			// 鼠标进入父Model，显示Menu；反之，则隐藏Menu。
+			// 滑鼠進入父Model，顯示Menu；反之，則隱藏Menu。
 			M.addListener( parentModel, {
 				mouseenter: function() {
 					var className = this.className;
@@ -116,7 +116,7 @@ M.addModelFns({
 			var _this = this;
 			var args  = M.getModelArgs(this);
 			core.plugFunc('widget',function(){
-				//拖动处理
+				//拖動處理
 				core.loadFile(THEME_URL+'/js/ui.sortable.js',function(){
 					$(_this).sortable({
 						items: '.ui-state-disabled',
@@ -182,8 +182,8 @@ M.addEventFns({
 	},
 	face_card:{
 		load:function(){
-			//载入小名片js
-			core.plugInit('facecard'); //只初始化那个框体
+			//載入小名片js
+			core.plugInit('facecard'); //只初始化那個框體
 		},
 		mouseenter:function(){
 			var uid = $(this).attr('uid');
@@ -212,7 +212,7 @@ M.addEventFns({
 			core.facecard.hide();	
 		}
 	},
-	//个人信息
+	//個人資訊
 	more_person_info: {
 		click: function() {
 			var li;
@@ -238,7 +238,7 @@ M.addEventFns({
 			return false;
 		}
 	},
-	ico_wallet:{//财富
+	ico_wallet:{//財富
 		mouseenter:function(){
 			this._model.style.display = 'block';
 		},
@@ -250,7 +250,7 @@ M.addEventFns({
 			this._model = _model[0];
 		}
 	},
-	ico_level:{//等级
+	ico_level:{//等級
 		mouseenter:function(){
 			this._model.style.display = 'block';
 		},
@@ -308,7 +308,7 @@ M.addEventFns({
 			return false;
 		}
 	},
-	setremark:{	//设置备注
+	setremark:{	//設定備註
 		click:function(){
 			var remark = $(this).attr('remark');
 			var uid = $(this).attr('uid');
@@ -316,7 +316,7 @@ M.addEventFns({
 		}
 	},
 	/**
-	 * 添加关注
+	 * 添加關注
 	 * @type {Object}
 	 */
 	doFollow: {
@@ -354,7 +354,7 @@ M.addEventFns({
 		}
 	},
 	comment:{	
-		click:function(){	//点击评论的时候
+		click:function(){	//點選評論的時候
 			var attrs = M.getEventArgs(this);
 			var comment_list = this.parentModel.childModels['comment_detail'][0];
 			
@@ -369,7 +369,7 @@ M.addEventFns({
 			return false;
 		}
 	},
-	reply_comment:{	//点某条回复
+	reply_comment:{	//點某條回覆
 		click:function(){
 			var attrs = M.getEventArgs(this);
 			var comment_list = this.parentModel.parentModel;
@@ -398,7 +398,7 @@ M.addEventFns({
 			}
 		}
 	},
-	do_comment:{	//回复操作
+	do_comment:{	//回覆操作
 		click:function(){
 			if ( this.noreply == 1 ){
 				return;
@@ -448,7 +448,7 @@ M.addEventFns({
 	showCategory:{
 		click:function(){
 			var attrs = M.getEventArgs(this);
-			//显示分类
+			//顯示分類
 			var obj = this;
 			core.plugFunc('category',function(){
 				core.category.loadSelect(obj,attrs.model_name,attrs.app_name,attrs.method,attrs.id,attrs.inputname,attrs.callback);
@@ -475,35 +475,35 @@ var share=function(sid,stable,initHTML,curid,curtable,appname,cancomment,is_repo
 };
 
 /**
- * 关注操作Js类
+ * 關注操作Js類
  * @type {Object}
  */
 var follow = {
-	// 按钮样式
+	// 按鈕樣式
 	btnClass: {
 		doFollow: "btn-cancel",
 		unFollow: "btn-att-white",
 		haveFollow: "btn-att-white",
 		eachFollow: "btn-att-white"
 	},
-	// 按钮图标
+	// 按鈕圖示
 	flagClass: {
 		doFollow: "ico-add-black",
 		unFollow: "ico-minus-gray",
 		haveFollow: "ico-already",
 		eachFollow: "ico-connect"
 	},
-	// 按钮文字
+	// 按鈕文字
 	btnText: {
-		doFollow: '关注',
+		doFollow: '關注',
 		unFollow: L('PUBLIC_ERROR_FOLLOWING'),
-		haveFollow: '已关注',
-		eachFollow: '相互关注'
+		haveFollow: '已關注',
+		eachFollow: '相互關注'
 	},
 	/**
-	 * 创建关注按钮
-	 * @param object node 按钮节点对象
-	 * @param string btnType 按钮类型，4种
+	 * 創建關注按鈕
+	 * @param object node 按鈕節點物件
+	 * @param string btnType 按鈕類型，4種
 	 * @return void
 	 */
 	createBtn: function(node, btnType) {
@@ -513,10 +513,10 @@ var follow = {
 		var flagClass = this.flagClass[btnType];
 		var btnText = this.btnText[btnType];
 		var btnHTML = ['<span><b class="', flagClass, '"></b>', btnText, '</span>'].join( "" );
-		// 按钮节点添加HTML与样式
+		// 按鈕節點添加HTML與樣式
 		node.innerHTML = btnHTML;
 		node.className = btnClass;
-		// 选择按钮类型
+		// 選擇按鈕類型
 		switch(btnType) {
 			case "haveFollow":
 			case "eachFollow":
@@ -543,8 +543,8 @@ var follow = {
 		}
 	},
 	/**
-	 * 添加关注操作
-	 * @param object node 关注按钮的DOM对象
+	 * 添加關注操作
+	 * @param object node 關注按鈕的DOM物件
 	 * @return void
 	 */
 	doFollow: function(node) {
@@ -574,7 +574,7 @@ var follow = {
 						$(_model[0]).append(msg);
 						M(_model[0]);
 					}, 'json');
-					ui.success("关注成功");
+					ui.success("關注成功");
 				} else {
 					followGroupSelectorBox(args.uid, args.isrefresh);
 				}
@@ -584,9 +584,9 @@ var follow = {
 		}, 'json');
 	},
 	/**
-	 * 选择关注分组下拉窗
-	 * @param object node 关注按钮的DOM对象
-	 * @param integer fid 关注人ID
+	 * 選擇關注分組下拉窗
+	 * @param object node 關注按鈕的DOM物件
+	 * @param integer fid 關注人ID
 	 * @return void
 	 */
 	setFollowGroup: function(node, fid) {
@@ -594,15 +594,15 @@ var follow = {
 		ui.box.load(url, L('PUBLIC_SET_GROUP'));	
 	},
 	/**
-	 * 取消关注操作
-	 * @param object node 关注按钮的DOM对象
+	 * 取消關注操作
+	 * @param object node 關注按鈕的DOM物件
 	 * @return void
 	 */
 	unFollow: function(node) {
 		var _this = this;
 		var args = M.getEventArgs(node);
 		var url = node.getAttribute( "href" ) || U('public/Follow/unFollow');
-		// 取消关注操作
+		// 取消關注操作
 		$.post(url, {fid:args.uid}, function(txt) {
 			txt = eval( "(" + txt + ")" );
 			if ( 1 == txt.status ) {
@@ -630,8 +630,8 @@ var follow = {
 		});
 	},
 	/**
-	 * 更新关注数目
-	 * @param integer num 添加的数值
+	 * 更新關注數目
+	 * @param integer num 添加的數值
 	 * @return void
 	 */
 	updateFollowCount: function(num) {
@@ -646,15 +646,15 @@ var follow = {
 	}
 };
 /**
- * 好友分组选择，下拉框
- * @param object obj 点击按钮DOM对象
- * @param integer fid 关注人ID
+ * 好友分組選擇，下拉框
+ * @param object obj 點選按鈕DOM物件
+ * @param integer fid 關注人ID
  * @return void
  */
 var followGroupSelectorList = function(obj, fid)
 {
 	var x = obj.offset();
-	// 获取数据列表
+	// 獲取資料列表
 	$.post(U('public/FollowGroup/selectorList'), {fid:fid}, function(res) {
 		if($('#followGroupList').length > 0) {
 			if($('#followGroupList').attr('rel') == fid) {
@@ -676,9 +676,9 @@ var followGroupSelectorList = function(obj, fid)
 	});
 };
 /**
- * 好友分组选择，弹出框
- * @param integer fid 关注人ID
- * @param integer isrefresh 确定后是否刷新页面
+ * 好友分組選擇，彈出框
+ * @param integer fid 關注人ID
+ * @param integer isrefresh 確定後是否重新整理頁面
  * @return void
  */
 var followGroupSelectorBox = function(fid, isrefresh)
@@ -691,9 +691,9 @@ var followGroupSelectorBox = function(fid, isrefresh)
 	ui.box.load(U('public/FollowGroup/selectorBox')+'&fid='+fid+'&isrefresh='+isrefresh, L('PUBLIC_FOLLOWING_SUCCESS'), r);
 };
 /**
- * 好友设置分组，弹出框
- * @param integer fid 关注人ID
- * @param integer isrefresh 确定后是否刷新页面
+ * 好友設定分組，彈出框
+ * @param integer fid 關注人ID
+ * @param integer isrefresh 確定後是否重新整理頁面
  */
 var setFollowGroup = function(fid, isrefresh)
 {
@@ -702,11 +702,11 @@ var setFollowGroup = function(fid, isrefresh)
 	}else{
 		var r = '';
 	}
-	ui.box.load(U('public/FollowGroup/selectorBox')+'&fid='+fid+'&isrefresh='+isrefresh, '设置分组', r);
+	ui.box.load(U('public/FollowGroup/selectorBox')+'&fid='+fid+'&isrefresh='+isrefresh, '設定分組', r);
 };
 /**
- * 关闭好友分组选择
- * @param integer fid 关注人ID
+ * 關閉好友分組選擇
+ * @param integer fid 關注人ID
  * @return void
  */
 var followGroupSelectorClose = function(fid)
@@ -715,7 +715,7 @@ var followGroupSelectorClose = function(fid)
 	$('.followGroupStatus'+fid).html('');
 };
 /**
- * 添加、编辑关注分组，弹出框
+ * 添加、編輯關注分組，彈出框
  * @return void
  */
 var setFollowGroupTab = function(gid)

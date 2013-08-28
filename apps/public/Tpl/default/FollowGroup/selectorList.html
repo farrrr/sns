@@ -15,13 +15,13 @@
 <php>endif;</php>
 
 <script type="text/javascript">
-// 用户ID
+// 使用者ID
 var fid = '{$fid}';
-// 分组个数
+// 分組個數
 var groupNums = '<php>echo intval(count($group_list));</php>';
-// 是否已经移出
+// 是否已經移出
 var isOut = true;			
-// 初始化绑定
+// 初始化繫結
 $(document).ready(function() {
 	<volist name="f_group_status" id="gs">
     	$( "input[name='gids[]'][value='{$gs.gid}']" ).attr('checked', true);
@@ -34,7 +34,7 @@ $(document).ready(function() {
 	$('#followGroupList').mouseover(function() {
 		isOut = false;
 	});
-	// 绑定body事件
+	// 繫結body事件
 	$('body').click(function() {
 		if(isOut) {
 			$('#followGroupList').remove();
@@ -42,9 +42,9 @@ $(document).ready(function() {
 	});
 });
 /**
- * 设置关组分组
- * @param object obj 点击DOM对象
- * @param integer gid 分组ID
+ * 設定關組分組
+ * @param object obj 點選DOM物件
+ * @param integer gid 分組ID
  * @return void
  */
 var setFollowGroup = function(obj, gid) {
@@ -53,7 +53,7 @@ var setFollowGroup = function(obj, gid) {
 	} else {
 		var add = 'delete';
 	}
-	// 设置关注分组
+	// 設定關注分組
 	$.post(U('public/FollowGroup/setFollowGroup'), {gid:gid, fid:fid, add:add}, function(res) {
 		$('.followGroup' + fid).attr('title', res.oldTitle);
 		$('.followGroup' + fid).html(res.title + '<i class="arrow-down"></i>');
@@ -65,8 +65,8 @@ var setFollowGroup = function(obj, gid) {
 	}, 'json');
 };
 /**
- * 创建关注分组按钮显示
- * @param string action 操作类型
+ * 創建關注分組按鈕顯示
+ * @param string action 操作類型
  * @return void
  */
 var createFollowGroupTab = function(action) {
@@ -75,7 +75,7 @@ var createFollowGroupTab = function(action) {
 		$('#createFollowGroup .row').css('display','none');
 		$('#createFollowGroup .cancelTab').css('display','none');
 		$('#createFollowGroup .openTab').css('display','block');
-        // 隐藏弹窗
+        // 隱藏彈窗
         var len = $('#followGroupSelector').find("label").length;
         if(len >= 9) {
             $('#open_tab').css('display','none');
@@ -89,7 +89,7 @@ var createFollowGroupTab = function(action) {
 	}
 };
 /**
- * 创建分组操作
+ * 創建分組操作
  * @return void
  */
 var createFollowGroup = function() {

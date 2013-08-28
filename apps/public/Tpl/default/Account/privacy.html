@@ -4,27 +4,27 @@
         <div id="main-wrap">
             <div id="col" class="st-grid content-bg boxShadow">
             	<div id="col4" class="main-left">
-                    <!--tab菜单--><include file="_tabs" />
+                    <!--tab選單--><include file="_tabs" />
                 </div>
                 <div id="col7" class="main-right">
                     <div class="extend minh person-set">
                     	<div class="set-hd"><h3>{$tabName}</h3></div>
-                    <!--信息设置项---基本信息-->
-                <!--信息设置项---隐私设置-->
+                    <!--資訊設定項---基本資訊-->
+                <!--資訊設定項---隱私設定-->
                         <div class="set-item-info">
                         <form action="{:U('public/Account/doSavePrivacy')}" method="post">
                             <dl class="form-set form-privacy">
                                 <dd>
                                     <div class="form-tt">{:L('PUBLIC_STREAM_COMMENT')}：</div>
-                                    <div class="form-row">{:L('PUBLIC_WEIBO_COMMENT_SETTING')}<label><input name="comment_weibo" type="radio" value="0" class="s-ck" <if condition="0 eq $user_privacy['comment_weibo']">checked="checked"</if> />{:L('PUBLIC_WEIBO_COMMENT_ALL')}（不包括你的黑名单用户） </label><label><input name="comment_weibo" type="radio" value="1" class="s-ck" <if condition="1 eq $user_privacy['comment_weibo']">checked="checked"</if> />{:L('PUBLIC_WEIBO_COMMENT_FOLLOWING')}</label></div>
+                                    <div class="form-row">{:L('PUBLIC_WEIBO_COMMENT_SETTING')}<label><input name="comment_weibo" type="radio" value="0" class="s-ck" <if condition="0 eq $user_privacy['comment_weibo']">checked="checked"</if> />{:L('PUBLIC_WEIBO_COMMENT_ALL')}（不包括你的黑名單使用者） </label><label><input name="comment_weibo" type="radio" value="1" class="s-ck" <if condition="1 eq $user_privacy['comment_weibo']">checked="checked"</if> />{:L('PUBLIC_WEIBO_COMMENT_FOLLOWING')}</label></div>
                                 </dd>
                                 <dd>
                                     <div class="form-tt">{:L('PUBLIC_PRIVATE_MESSAGE')}：</div>
-                                    <div class="form-row">{:L('PUBLIC_PRIVATE_MESSAGE_SETTING')}<label><input name="message" type="radio" value="0" class="s-ck" <if condition="0 eq $user_privacy['message']">checked="checked"</if> />{:L('PUBLIC_WEIBO_COMMENT_ALL')}（不包括你的黑名单用户）</label><label><input name="message" type="radio" value="1" class="s-ck" <if condition="1 eq $user_privacy['message']">checked="checked"</if> />{:L('PUBLIC_WEIBO_COMMENT_FOLLOWING')}</label></div>
+                                    <div class="form-row">{:L('PUBLIC_PRIVATE_MESSAGE_SETTING')}<label><input name="message" type="radio" value="0" class="s-ck" <if condition="0 eq $user_privacy['message']">checked="checked"</if> />{:L('PUBLIC_WEIBO_COMMENT_ALL')}（不包括你的黑名單使用者）</label><label><input name="message" type="radio" value="1" class="s-ck" <if condition="1 eq $user_privacy['message']">checked="checked"</if> />{:L('PUBLIC_WEIBO_COMMENT_FOLLOWING')}</label></div>
                                 </dd>
                                 <dd>
-                                    <div class="form-tt">空间：</div>
-                                    <div class="form-row">设置谁可以查看我的个人空间<label><input name="space" type="radio" value="0" class="s-ck" <if condition="0 eq $user_privacy['message']">checked="checked"</if> />{:L('PUBLIC_WEIBO_COMMENT_ALL')}（不包括你的黑名单用户）</label><label><input name="space" type="radio" value="1" class="s-ck" <if condition="1 eq $user_privacy['message']">checked="checked"</if> />我关注的人</label></div>
+                                    <div class="form-tt">空間：</div>
+                                    <div class="form-row">設定誰可以檢視我的個人空間<label><input name="space" type="radio" value="0" class="s-ck" <if condition="0 eq $user_privacy['message']">checked="checked"</if> />{:L('PUBLIC_WEIBO_COMMENT_ALL')}（不包括你的黑名單使用者）</label><label><input name="space" type="radio" value="1" class="s-ck" <if condition="1 eq $user_privacy['message']">checked="checked"</if> />我關注的人</label></div>
                                 </dd>
                                 <!--<dd>
                                     <div class="form-tt">{:L('PUBLIC_MAIL')}：</div>

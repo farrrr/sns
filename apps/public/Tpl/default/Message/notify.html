@@ -7,21 +7,21 @@
               <div id="aside" class="pad">
                   <dl class="nav-left mt10 border-no">
                       <dd><a href="{:U('public/Mention')}">@提到我的</a></dd>
-                      <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的评论</a></dd>
-                      <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">发出的评论</a></dd>
+                      <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的評論</a></dd>
+                      <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">發出的評論</a></dd>
                       <dd><a href="{:U('public/Message')}">我的私信</a></dd>
-                      <dd class="current"><a href="{:U('public/Message/notify')}">系统消息</a></dd>
+                      <dd class="current"><a href="{:U('public/Message/notify')}">系統訊息</a></dd>
                   </dl>
               </div>
           </div>
           <div id="col7" class="main-right">
               <div class="extend minh person-set">
-                  <!--tab菜单-->
+                  <!--tab選單-->
                   <div class="feed-nav">
                     <div class="set-hd"><h3>{:L('PUBLIC_SYSTEM_MESSAGE')}</h3></div>
                   </div>
-                  <!--tab菜单/end-->
-                <!--消息列表-->
+                  <!--tab選單/end-->
+                <!--訊息列表-->
                 <div class="private-lists">
                     <if condition="empty($list['group'])"><div class="note">{:L('PUBLIC_NO_MORE_INFO')}</div></if>
                     <volist name='list.group' id='group'>
@@ -52,9 +52,9 @@
                         </dl>
                     </volist>
                 </div>
-                <!--页码-->
+                <!--頁碼-->
                 <div id="page" class="page">{$html}</div>
-                <!--页码/end-->
+                <!--頁碼/end-->
               </div>
           </div>
       </div>

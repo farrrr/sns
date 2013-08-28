@@ -4,149 +4,149 @@ define('BELONGS_TO',2);
 define('HAS_MANY',3);
 define('MANY_TO_MANY',4);
 /**
- * ThinkPHP Model模型类
- * 实现了ORM和ActiveRecords模式
+ * ThinkPHP Model模型類
+ * 實現了ORM和ActiveRecords模式
  * @author    liu21st <liu21st@gmail.com>
  * @version   $Id$
  */
 class Model extends Think
 {
-    // 操作状态
-    const MODEL_INSERT			=   1;	//  插入模型数据
-    const MODEL_UPDATE			=   2;	//  更新模型数据
-    const MODEL_BOTH			=   3;	//  包含上面两种方式
-    const MUST_VALIDATE         =   1;	//	必须验证
-    const EXISTS_VAILIDATE      =   0;	//	表单存在字段则验证
-    const VALUE_VAILIDATE       =   2;	//	表单值不为空则验证
-    // 当前使用的扩展模型
+    // 操作狀態
+    const MODEL_INSERT          =   1;  //  插入模型資料
+    const MODEL_UPDATE          =   2;  //  更新模型資料
+    const MODEL_BOTH            =   3;  //  包含上面兩種方式
+    const MUST_VALIDATE         =   1;  //  必須驗證
+    const EXISTS_VAILIDATE      =   0;  //  表單存在欄位則驗證
+    const VALUE_VAILIDATE       =   2;  //  表單值不為空則驗證
+    // 當前使用的擴展模型
     private $_extModel =  null;
-    // 当前数据库操作对象
+    // 當前資料庫操作物件
     protected $db = null;
-    // 主键名称
+    // 主鍵名稱
     protected $pk  = 'id';
-    // 数据表前缀
+    // 資料表字首
     protected $tablePrefix  =   '';
-    // 数据表后缀
+    // 資料表字尾
     protected $tableSuffix   =  '';
-    // 模型名称
+    // 模型名稱
     protected $name = '';
-    // 数据库名称
+    // 資料庫名稱
     protected $dbName  = '';
-    // 数据表名（不包含表前缀）
+    // 資料表名（不包含表字首）
     protected $tableName = '';
-    // 实际数据表名（包含表前缀）
+    // 實際資料表名（包含表字首）
     protected $trueTableName ='';
-    // 最近错误信息
+    // 最近錯誤資訊
     protected $error = '';
-    // 字段信息
+    // 欄位資訊
     protected $fields = array();
-    // 数据信息
+    // 資料資訊
     protected $data =   array();
-    // 查询表达式参数
+    // 查詢表示式參數
     protected $options  =   array();
-    protected $_validate       = array();  // 自动验证定义
-    protected $_auto           = array();  // 自动完成定义
-    protected $_map           = array();  // 字段映射定义
-    // 是否自动检测数据表字段信息
+    protected $_validate       = array();  // 自動驗證定義
+    protected $_auto           = array();  // 自動完成定義
+    protected $_map           = array();  // 欄位對映定義
+    // 是否自動檢測資料表欄位資訊
     protected $autoCheckFields   =   true;
     protected $forceCheckFields   =   false;
 
     /**
-     * 架构函数
-     * 取得DB类的实例对象 字段检查
-     * @param string $name 模型名称
+     * 架構函數
+     * 取得DB類的例項物件 欄位檢查
+     * @param string $name 模型名稱
      * @access public
      */
     public function __construct($name='')
     {
         // 模型初始化
         $this->_initialize();
-        // 获取模型名称
+        // 獲取模型名稱
         if(!empty($name)) {
             $this->name   =  $name;
         }elseif(empty($this->name)){
             $this->name =   $this->getModelName();
         }
-        // 数据库初始化操作
-        // 获取数据库操作对象
-        // 当前模型有独立的数据库连接信息
+        // 資料庫初始化操作
+        // 獲取資料庫操作物件
+        // 當前模型有獨立的資料庫連線資訊
         $this->db = Db::getInstance(empty($this->connection)?'':$this->connection);
 
-        // 设置表前缀
+        // 設定表字首
         $this->tablePrefix = $this->tablePrefix?$this->tablePrefix:C('DB_PREFIX');
         $this->tableSuffix = $this->tableSuffix?$this->tableSuffix:C('DB_SUFFIX');
-        // 字段检测
+        // 欄位檢測
         if(!empty($this->name) && $this->autoCheckFields)    $this->_checkTableInfo();
-        //TODO  临时强制要求
-        if(!empty($this->tableName) && empty($this->fields)) throw_exception('开发阶段,请为你的model填写fields!');
+        //TODO  臨時強制要求
+        if(!empty($this->tableName) && empty($this->fields)) throw_exception('開發階段,請為你的model填寫fields!');
     }
 
     /**
-     * 自动检测数据表信息
+     * 自動檢測資料表資訊
      * @access protected
      * @return void
      */
     protected function _checkTableInfo() {
-        // 如果不是Model类 自动记录数据表信息
-        // 只在第一次执行记录
+        // 如果不是Model類 自動記錄資料表資訊
+        // 只在第一次執行記錄
         if(empty($this->fields)) {
-            //是否强制检查字段配置
-            if($this->forceCheckFields) 
-			     throw_exception($class.L('_FIELDS_IS_EMPTYNOT_'));
-            
-            // 如果数据表字段没有定义则自动获取
+            //是否強制檢查欄位配置
+            if($this->forceCheckFields)
+                throw_exception($class.L('_FIELDS_IS_EMPTYNOT_'));
+
+            // 如果資料表欄位沒有定義則自動獲取
             if(C('DB_FIELDS_CACHE')) {
                 $this->fields = S('_fields_'.$this->name);
                 if(!$this->fields)   $this->flush();
             }else{
-                // 每次都会读取数据表信息
+                // 每次都會讀取資料表資訊
                 $this->flush();
             }
         }
     }
 
     /**
-     * 获取字段信息并缓存
+     * 獲取欄位資訊並快取
      * @access public
      * @return void
      */
     public function flush() {
-        // 缓存不存在则查询数据表信息
+        // 快取不存在則查詢資料表資訊
         $fields =   $this->db->getFields($this->getTableName());
         $this->fields   =   array_keys($fields);
         $this->fields['_autoinc'] = false;
         foreach ($fields as $key=>$val){
-            // 记录字段类型
+            // 記錄欄位類型
             $type[$key]    =   $val['type'];
             if($val['primary']) {
                 $this->fields['_pk'] = $key;
                 if($val['autoinc']) $this->fields['_autoinc']   =   true;
             }
         }
-        // 记录字段类型信息
+        // 記錄欄位類型資訊
         if(C('DB_FIELDTYPE_CHECK'))   $this->fields['_type'] =  $type;
 
-        // 2008-3-7 增加缓存开关控制
+        // 2008-3-7 增加快取開關控制
         if(C('DB_FIELDS_CACHE'))
-            // 永久缓存数据表信息
+            // 永久快取資料表資訊
             S('_fields_'.$this->name,$this->fields);
     }
 
     /**
-     * 动态切换扩展模型
+     * 動態切換擴展模型
      * @access public
-     * @param string $type 模型类型名称
-     * @param mixed $vars 要传入扩展模型的属性变量
+     * @param string $type 模型類型名稱
+     * @param mixed $vars 要傳入擴展模型的屬性變數
      * @return Model
      */
     public function switchModel($type,$vars=array()) {
         $class = ucwords(strtolower($type)).'Model';
         if(!class_exists($class))
             throw_exception($class.L('_MODEL_NOT_EXIST_'));
-        // 实例化扩展模型
+        // 例項化擴展模型
         $this->_extModel   = new $class($this->name);
         if(!empty($vars)) {
-            // 传入当前模型的属性到扩展模型
+            // 傳入當前模型的屬性到擴展模型
             foreach ($vars as $var)
                 $this->_extModel->setProperty($var,$this->$var);
         }
@@ -154,21 +154,21 @@ class Model extends Think
     }
 
     /**
-     * 设置数据对象的值
+     * 設定資料物件的值
      * @access public
-     * @param string $name 名称
+     * @param string $name 名稱
      * @param mixed $value 值
      * @return void
      */
     public function __set($name,$value) {
-        // 设置数据对象属性
+        // 設定資料物件屬性
         $this->data[$name]  =   $value;
     }
 
     /**
-     * 获取数据对象的值
+     * 獲取資料物件的值
      * @access public
-     * @param string $name 名称
+     * @param string $name 名稱
      * @return mixed
      */
     public function __get($name) {
@@ -176,9 +176,9 @@ class Model extends Think
     }
 
     /**
-     * 检测数据对象的值
+     * 檢測資料物件的值
      * @access public
-     * @param string $name 名称
+     * @param string $name 名稱
      * @return boolean
      */
     public function __isset($name) {
@@ -186,9 +186,9 @@ class Model extends Think
     }
 
     /**
-     * 销毁数据对象的值
+     * 銷燬資料物件的值
      * @access public
-     * @param string $name 名称
+     * @param string $name 名稱
      * @return void
      */
     public function __unset($name) {
@@ -196,23 +196,23 @@ class Model extends Think
     }
 
     /**
-     * 利用__call方法实现一些特殊的Model方法
+     * 利用__call方法實現一些特殊的Model方法
      * @access public
-     * @param string $method 方法名称
-     * @param array $args 调用参数
+     * @param string $method 方法名稱
+     * @param array $args 呼叫參數
      * @return mixed
      */
     public function __call($method,$args) {
         if(in_array(strtolower($method),array('field','table','where','order','limit','page','having','group','lock','distinct'),true)) {
-            // 连贯操作的实现
+            // 連貫操作的實現
             $this->options[strtolower($method)] =   $args[0];
             return $this;
         }elseif(in_array(strtolower($method),array('count','sum','min','max','avg'),true)){
-            // 统计查询的实现
+            // 統計查詢的實現
             $field =  isset($args[0])?$args[0]:'*';
             return $this->getField(strtoupper($method).'('.$field.') AS tp_'.$method);
         }elseif(strtolower(substr($method,0,5))=='getby') {
-            // 根据某个字段获取记录
+            // 根據某個欄位獲取記錄
             $field   =   parse_name(substr($method,5));
             $options['where'] =  $field.'=\''.$args[0].'\'';
             return $this->find($options);
@@ -221,115 +221,115 @@ class Model extends Think
             return;
         }
     }
-    // 回调方法 初始化模型
+    // 回撥方法 初始化模型
     protected function _initialize() {}
-//     protected function getSourceInfo() {}
+        //     protected function getSourceInfo() {}
 
-    /**
-     * 对保存到数据库的数据进行处理
-     * @access protected
-     * @param mixed $data 要操作的数据
-     * @return boolean
-     */
-     protected function _facade($data) {
-        // 检查非数据字段
-        if(!empty($this->fields)) {
-            foreach ($data as $key=>$val){
-                if(!in_array($key,$this->fields,true)){
-                    unset($data[$key]);
-                }elseif(C('DB_FIELDTYPE_CHECK') && is_scalar($val)) {
-                    // 字段类型检查
-                    $fieldType = strtolower($this->fields['_type'][$key]);
-                    if(false !== strpos($fieldType,'int')) {
-                        $data[$key]   =  intval($val);
-                    }elseif(false !== strpos($fieldType,'float') || false !== strpos($fieldType,'double')){
-                        $data[$key]   =  floatval($val);
+        /**
+         * 對儲存到資料庫的資料進行處理
+         * @access protected
+         * @param mixed $data 要操作的資料
+         * @return boolean
+         */
+        protected function _facade($data) {
+            // 檢查非資料欄位
+            if(!empty($this->fields)) {
+                foreach ($data as $key=>$val){
+                    if(!in_array($key,$this->fields,true)){
+                        unset($data[$key]);
+                    }elseif(C('DB_FIELDTYPE_CHECK') && is_scalar($val)) {
+                        // 欄位類型檢查
+                        $fieldType = strtolower($this->fields['_type'][$key]);
+                        if(false !== strpos($fieldType,'int')) {
+                            $data[$key]   =  intval($val);
+                        }elseif(false !== strpos($fieldType,'float') || false !== strpos($fieldType,'double')){
+                            $data[$key]   =  floatval($val);
+                        }
                     }
                 }
             }
+            $this->_before_write($data);
+            return $data;
         }
-        $this->_before_write($data);
-        return $data;
-     }
 
-    // 写入数据前的回调方法 包括新增和更新
+    // 寫入資料前的回撥方法 包括新增和更新
     protected function _before_write(&$data) {}
 
-    /**
-     * 新增数据
-     * @access public
-     * @param mixed $data 数据
-     * @param array $options 表达式
-     * @return mixed
-     */
-    public function add($data='',$options=array()) {
-        if(empty($data)) {
-            // 没有传递数据，获取当前数据对象的值
-            if(!empty($this->data)) {
-                $data    =   $this->data;
-            }else{
-                $this->error = L('_DATA_TYPE_INVALID_');
+        /**
+         * 新增資料
+         * @access public
+         * @param mixed $data 資料
+         * @param array $options 表示式
+         * @return mixed
+         */
+        public function add($data='',$options=array()) {
+            if(empty($data)) {
+                // 沒有傳遞資料，獲取當前資料物件的值
+                if(!empty($this->data)) {
+                    $data    =   $this->data;
+                }else{
+                    $this->error = L('_DATA_TYPE_INVALID_');
+                    return false;
+                }
+            }
+            // 分析表示式
+            $options =  $this->_parseOptions($options);
+            // 資料處理
+            $data = $this->_facade($data);
+
+            if(false === $this->_before_insert($data,$options)) {
                 return false;
             }
-        }
-        // 分析表达式
-        $options =  $this->_parseOptions($options);
-        // 数据处理
-        $data = $this->_facade($data);
-        
-        if(false === $this->_before_insert($data,$options)) {
-            return false;
-        }
-        // 写入数据到数据库
-        $result = $this->db->insert($data,$options);
-        if(false !== $result ) {
-            $insertId   =   $this->getLastInsID();
-            if($insertId) {
-                // 自增主键返回插入ID
-                $data[$this->getPk()]  = $insertId;
-                $this->_after_insert($data,$options);
-                return $insertId;
+            // 寫入資料到資料庫
+            $result = $this->db->insert($data,$options);
+            if(false !== $result ) {
+                $insertId   =   $this->getLastInsID();
+                if($insertId) {
+                    // 自增主鍵返回插入ID
+                    $data[$this->getPk()]  = $insertId;
+                    $this->_after_insert($data,$options);
+                    return $insertId;
+                }
             }
-        }
-        return $result;
-    }
-    // 插入数据前的回调方法
-    protected function _before_insert(&$data,$options) {}
-    // 插入成功后的回调方法
-    protected function _after_insert($data,$options) {}
-
-    /**
-     * 通过Select方式添加记录
-     * @access public
-     * @param string $fields 要插入的数据表字段名
-     * @param string $table 要插入的数据表名
-     * @param array $options 表达式
-     * @return boolean
-     */
-    public function selectAdd($fields='',$table='',$options=array()) {
-        // 分析表达式
-        $options =  $this->_parseOptions($options);
-        // 写入数据到数据库
-        if(false === $result = $this->db->selectInsert($fields?$fields:$options['field'],$table?$table:$this->getTableName(),$options)){
-            // 数据库插入操作失败
-            $this->error = L('_OPERATION_WRONG_');
-            return false;
-        }else {
-            // 插入成功
             return $result;
         }
-    }
+    // 插入資料前的回撥方法
+    protected function _before_insert(&$data,$options) {}
+        // 插入成功後的回撥方法
+        protected function _after_insert($data,$options) {}
+
+        /**
+         * 通過Select方式添加記錄
+         * @access public
+         * @param string $fields 要插入的資料表欄位名
+         * @param string $table 要插入的資料表名
+         * @param array $options 表示式
+         * @return boolean
+         */
+        public function selectAdd($fields='',$table='',$options=array()) {
+            // 分析表示式
+            $options =  $this->_parseOptions($options);
+            // 寫入資料到資料庫
+            if(false === $result = $this->db->selectInsert($fields?$fields:$options['field'],$table?$table:$this->getTableName(),$options)){
+                // 資料庫插入操作失敗
+                $this->error = L('_OPERATION_WRONG_');
+                return false;
+            }else {
+                // 插入成功
+                return $result;
+            }
+        }
 
     /**
-     * 保存数据
+     * 儲存資料
      * @access public
-     * @param mixed $data 数据
-     * @param array $options 表达式
+     * @param mixed $data 資料
+     * @param array $options 表示式
      * @return boolean
      */
     public function save($data='',$options=array()) {
         if(empty($data)) {
-            // 没有传递数据，获取当前数据对象的值
+            // 沒有傳遞資料，獲取當前資料物件的值
             if(!empty($this->data)) {
                 $data    =   $this->data;
             }else{
@@ -337,22 +337,22 @@ class Model extends Think
                 return false;
             }
         }
-        // 数据处理
+        // 資料處理
         $data = $this->_facade($data);
-        // 分析表达式
+        // 分析表示式
         $options =  $this->_parseOptions($options);
         if(false === $this->_before_update($data,$options)) {
             return false;
         }
         if(!isset($options['where']) ) {
-            // 如果存在主键数据 则自动作为更新条件
+            // 如果存在主鍵資料 則自動作為更新條件
             if(isset($data[$this->getPk()])) {
                 $pk   =  $this->getPk();
                 $options['where']  =  $pk.'=\''.$data[$pk].'\'';
                 $pkValue = $data[$pk];
                 unset($data[$pk]);
             }else{
-                // 如果没有任何更新条件则不执行
+                // 如果沒有任何更新條件則不執行
                 $this->error = L('_OPERATION_WRONG_');
                 return false;
             }
@@ -364,126 +364,126 @@ class Model extends Think
         }
         return $result;
     }
-    // 更新数据前的回调方法
+    // 更新資料前的回撥方法
     protected function _before_update(&$data,$options) {}
-    // 更新成功后的回调方法
-    protected function _after_update($data,$options) {}
+        // 更新成功後的回撥方法
+        protected function _after_update($data,$options) {}
 
-    /**
-     * 删除数据
-     * @access public
-     * @param mixed $options 表达式
-     * @return mixed
-     */
-    public function delete($options=array()) {
-        if(empty($options) && empty($this->options)) {
-            // 如果删除条件为空 则删除当前数据对象所对应的记录
-            if(!empty($this->data) && isset($this->data[$this->getPk()]))
-                return $this->delete($this->data[$this->getPk()]);
-            else
-                return false;
-        }
-        if(is_numeric($options)  || is_string($options)) {
-            // 根据主键删除记录
-            $pk   =  $this->getPk();
-            if(strpos($options,',')) {
-                $where  =  $pk.' IN ('.$options.')';
-            }else{
-                $where  =  $pk.'=\''.$options.'\'';
-                $pkValue = $options;
+        /**
+         * 刪除資料
+         * @access public
+         * @param mixed $options 表示式
+         * @return mixed
+         */
+        public function delete($options=array()) {
+            if(empty($options) && empty($this->options)) {
+                // 如果刪除條件為空 則刪除當前資料物件所對應的記錄
+                if(!empty($this->data) && isset($this->data[$this->getPk()]))
+                    return $this->delete($this->data[$this->getPk()]);
+                else
+                    return false;
             }
-            $options =  array();
-            $options['where'] =  $where;
+            if(is_numeric($options)  || is_string($options)) {
+                // 根據主鍵刪除記錄
+                $pk   =  $this->getPk();
+                if(strpos($options,',')) {
+                    $where  =  $pk.' IN ('.$options.')';
+                }else{
+                    $where  =  $pk.'=\''.$options.'\'';
+                    $pkValue = $options;
+                }
+                $options =  array();
+                $options['where'] =  $where;
+            }
+            // 分析表示式
+            $options =  $this->_parseOptions($options);
+            $result=    $this->db->delete($options);
+            if(false !== $result) {
+                $data = array();
+                if(isset($pkValue)) $data[$pk]   =  $pkValue;
+                $this->_after_delete($data,$options);
+            }
+            // 返回刪除記錄個數
+            return $result;
         }
-        // 分析表达式
-        $options =  $this->_parseOptions($options);
-        $result=    $this->db->delete($options);
-        if(false !== $result) {
-            $data = array();
-            if(isset($pkValue)) $data[$pk]   =  $pkValue;
-            $this->_after_delete($data,$options);
-        }
-        // 返回删除记录个数
-        return $result;
-    }
-    // 删除成功后的回调方法
+    // 刪除成功後的回撥方法
     protected function _after_delete($data,$options) {}
 
-    /**
-     * 查询数据集
-     * @access public
-     * @param array $options 表达式参数
-     * @return mixed
-     */
-    public function select($options=array()) {
-        if(is_string($options) || is_numeric($options)) {
-            // 根据主键查询
-            $where   =  $this->getPk().' IN ('.$options.')';
-            $options =  array();
-            $options['where'] =  $where;
+        /**
+         * 查詢資料集
+         * @access public
+         * @param array $options 表示式參數
+         * @return mixed
+         */
+        public function select($options=array()) {
+            if(is_string($options) || is_numeric($options)) {
+                // 根據主鍵查詢
+                $where   =  $this->getPk().' IN ('.$options.')';
+                $options =  array();
+                $options['where'] =  $where;
+            }
+            // 分析表示式
+            $options =  $this->_parseOptions($options);
+            $resultSet = $this->db->select($options);
+            if(false === $resultSet) {
+                return false;
+            }
+            if(empty($resultSet)) { // 查詢結果為空
+                return null;
+            }
+            $this->_after_select($resultSet,$options);
+            return $resultSet;
         }
-        // 分析表达式
-        $options =  $this->_parseOptions($options);
-        $resultSet = $this->db->select($options);
+    // 查詢成功後的回撥方法
+    protected function _after_select(&$resultSet,$options) {}
+
+        public function findAll($options=array()) {
+
+            return $this->select($options);
+        }
+
+    public function getAsFieldArray($field='*'){
+        $options =  $this->_parseOptions(array());
+        $resultSet = $this->db->select($options,'getAsFieldArray',$field);
+
         if(false === $resultSet) {
             return false;
         }
-        if(empty($resultSet)) { // 查询结果为空
-            return null;
-        }
-        $this->_after_select($resultSet,$options);
-        return $resultSet;
-    }
-    // 查询成功后的回调方法
-    protected function _after_select(&$resultSet,$options) {}
-
-    public function findAll($options=array()) {
-    	
-        return $this->select($options);
-    }
-	
-    public function getAsFieldArray($field='*'){
-    	$options =  $this->_parseOptions(array());
-    	$resultSet = $this->db->select($options,'getAsFieldArray',$field);
-    	
-      	if(false === $resultSet) {
-            return false;
-        }
-        if(empty($resultSet)) { // 查询结果为空
+        if(empty($resultSet)) { // 查詢結果為空
             return null;
         }
         return $resultSet;
     }
     public function getHashList($hashKey='',$hashValue='*'){
-    	$options =  $this->_parseOptions(array());
-    	$resultSet = $this->db->select($options,'getHashList',$hashKey,$hashValue);
-    	if(false === $resultSet) {
-    		return false;
-    	}
-    	if(empty($resultSet)) { // 查询结果为空
-    		return null;
-    	}
-    	return $resultSet;
+        $options =  $this->_parseOptions(array());
+        $resultSet = $this->db->select($options,'getHashList',$hashKey,$hashValue);
+        if(false === $resultSet) {
+            return false;
+        }
+        if(empty($resultSet)) { // 查詢結果為空
+            return null;
+        }
+        return $resultSet;
     }
     /**
-     * 分析表达式
+     * 分析表示式
      * @access private
-     * @param array $options 表达式参数
+     * @param array $options 表示式參數
      * @return array
      */
     private function _parseOptions($options) {
         if(is_array($options))
             $options =  array_merge($this->options,$options);
-        // 查询过后清空sql表达式组装 避免影响下次查询
+        // 查詢過後清空sql表示式組裝 避免影響下次查詢
         $this->options  =   array();
         if(!isset($options['table']))
-            // 自动获取表名
+            // 自動獲取表名
             $options['table'] =$this->getTableName();
-        // 字段类型验证
-       	
+        // 欄位類型驗證
+
         if(C('DB_FIELDTYPE_CHECK')) {
             if(isset($options['where']) && is_array($options['where'])) {
-                // 对数组查询条件进行字段类型检查
+                // 對陣列查詢條件進行欄位類型檢查
                 foreach ($options['where'] as $key=>$val){
                     if(in_array($key,$this->fields,true) && is_scalar($val)){
                         $fieldType = strtolower($this->fields['_type'][$key]);
@@ -496,71 +496,71 @@ class Model extends Think
                 }
             }
         }
-        // 表达式过滤
+        // 表示式過濾
         $this->_options_filter($options);
         return $options;
     }
-    // 表达式过滤回调方法
+    // 表示式過濾回撥方法
     protected function _options_filter(&$options) {}
 
-    /**
-     * 查询数据
-     * @access public
-     * @param mixed $options 表达式参数
-     * @return mixed
-     */
-     public function find($options=array()) {
-         if(is_numeric($options) || is_string($options)) {
-             $where  =  $this->getPk().'=\''.$options.'\'';
-             $options = array();
-             $options['where'] = $where;
-         }
-         // 总是查找一条记录
-        $options['limit'] = 1;
-        // 分析表达式
-        $options =  $this->_parseOptions($options);
-        $resultSet = $this->db->select($options);
-        if(false === $resultSet) {
-            return false;
+        /**
+         * 查詢資料
+         * @access public
+         * @param mixed $options 表示式參數
+         * @return mixed
+         */
+        public function find($options=array()) {
+            if(is_numeric($options) || is_string($options)) {
+                $where  =  $this->getPk().'=\''.$options.'\'';
+                $options = array();
+                $options['where'] = $where;
+            }
+            // 總是查找一條記錄
+            $options['limit'] = 1;
+            // 分析表示式
+            $options =  $this->_parseOptions($options);
+            $resultSet = $this->db->select($options);
+            if(false === $resultSet) {
+                return false;
+            }
+            if(empty($resultSet)) {// 查詢結果為空
+                return null;
+            }
+            $this->data = $resultSet[0];
+            $this->_after_find($this->data,$options);
+            return $this->data;
         }
-        if(empty($resultSet)) {// 查询结果为空
-            return null;
+    // 查詢成功的回撥方法
+    protected function _after_find(&$result,$options) {}
+
+        /**
+         * 設定記錄的某個欄位值
+         * 支援使用資料庫欄位和方法
+         * @access public
+         * @param string|array $field  欄位名
+         * @param string|array $value  欄位值
+         * @param mixed $condition  條件
+         * @return boolean
+         */
+        public function setField($field,$value,$condition='') {
+            if(empty($condition) && isset($this->options['where']))
+                $condition   =  $this->options['where'];
+            $options['where'] =  $condition;
+            if(is_array($field)) {
+                foreach ($field as $key=>$val)
+                    $data[$val]    = $value[$key];
+            }else{
+                $data[$field]   =  $value;
+            }
+            return $this->save($data,$options);
         }
-        $this->data = $resultSet[0];
-        $this->_after_find($this->data,$options);
-        return $this->data;
-     }
-     // 查询成功的回调方法
-     protected function _after_find(&$result,$options) {}
 
     /**
-     * 设置记录的某个字段值
-     * 支持使用数据库字段和方法
+     * 欄位值增長
      * @access public
-     * @param string|array $field  字段名
-     * @param string|array $value  字段值
-     * @param mixed $condition  条件
-     * @return boolean
-     */
-    public function setField($field,$value,$condition='') {
-        if(empty($condition) && isset($this->options['where']))
-            $condition   =  $this->options['where'];
-        $options['where'] =  $condition;
-        if(is_array($field)) {
-            foreach ($field as $key=>$val)
-                $data[$val]    = $value[$key];
-        }else{
-            $data[$field]   =  $value;
-        }
-        return $this->save($data,$options);
-    }
-
-    /**
-     * 字段值增长
-     * @access public
-     * @param string $field  字段名
-     * @param mixed $condition  条件
-     * @param integer $step  增长值
+     * @param string $field  欄位名
+     * @param mixed $condition  條件
+     * @param integer $step  增長值
      * @return boolean
      */
     public function setInc($field,$condition='',$step=1) {
@@ -568,11 +568,11 @@ class Model extends Think
     }
 
     /**
-     * 字段值减少
+     * 欄位值減少
      * @access public
-     * @param string $field  字段名
-     * @param mixed $condition  条件
-     * @param integer $step  减少值
+     * @param string $field  欄位名
+     * @param mixed $condition  條件
+     * @param integer $step  減少值
      * @return boolean
      */
     public function setDec($field,$condition='',$step=1) {
@@ -580,11 +580,11 @@ class Model extends Think
     }
 
     /**
-     * 获取一条记录的某个字段值
+     * 獲取一條記錄的某個欄位值
      * @access public
-     * @param string $field  字段名
-     * @param mixed $condition  查询条件
-     * @param string $spea  字段数据间隔符号
+     * @param string $field  欄位名
+     * @param mixed $condition  查詢條件
+     * @param string $spea  欄位資料間隔符號
      * @return mixed
      */
     public function getField($field,$condition='',$sepa=' ') {
@@ -593,7 +593,7 @@ class Model extends Think
         $options['where'] =  $condition;
         $options['field']    =  $field;
         $options =  $this->_parseOptions($options);
-        if(strpos($field,',')) { // 多字段
+        if(strpos($field,',')) { // 多欄位
             $resultSet = $this->db->select($options);
             if(!empty($resultSet)) {
                 $field  =   explode(',',$field);
@@ -608,7 +608,7 @@ class Model extends Think
                 }
                 return $cols;
             }
-        }else{   // 查找一条记录
+        }else{   // 查找一條記錄
             $options['limit'] = 1;
             $result = $this->db->select($options);
             if(!empty($result)) {
@@ -619,14 +619,14 @@ class Model extends Think
     }
 
     /**
-     * 创建数据对象 但不保存到数据库
+     * 創建資料物件 但不儲存到資料庫
      * @access public
-     * @param mixed $data 创建数据
-     * @param string $type 状态
+     * @param mixed $data 創建資料
+     * @param string $type 狀態
      * @return mixed
      */
-     public function create($data='',$type='') {
-        // 如果没有传值默认取POST数据
+    public function create($data='',$type='') {
+        // 如果沒有傳值默認取POST資料
         if(empty($data)) {
             $data    =   $_POST;
         }elseif(is_object($data)){
@@ -635,18 +635,18 @@ class Model extends Think
             $this->error = L('_DATA_TYPE_INVALID_');
             return false;
         }
-        // 状态
+        // 狀態
         $type = $type?$type:(!empty($data[$this->getPk()])?self::MODEL_UPDATE:self::MODEL_INSERT);
 
-        // 表单令牌验证
+        // 表單令牌驗證
         if(C('TOKEN_ON') && !$this->autoCheckToken($data)) {
             $this->error = L('_TOKEN_ERROR_');
             return false;
         }
-        // 数据自动验证
+        // 資料自動驗證
         if(!$this->autoValidation($data,$type)) return false;
 
-        // 检查字段映射
+        // 檢查欄位對映
         if(!empty($this->_map)) {
             foreach ($this->_map as $key=>$val){
                 if(isset($data[$key])) {
@@ -655,44 +655,44 @@ class Model extends Think
                 }
             }
         }
-        // 验证完成生成数据对象
+        // 驗證完成生成資料物件
         $vo   =  array();
         foreach ($this->fields as $key=>$name){
             if(substr($key,0,1)=='_') continue;
             $val = isset($data[$name])?$data[$name]:null;
-            //保证赋值有效
+            //保證賦值有效
             if(!is_null($val)){
                 $vo[$name] = (MAGIC_QUOTES_GPC && is_string($val))?   stripslashes($val)  :  $val;
             }
         }
-        // 创建完成对数据进行自动处理
+        // 創建完成對資料進行自動處理
         $this->autoOperation($vo,$type);
-        // 赋值当前数据对象
+        // 賦值當前資料物件
         $this->data =   $vo;
-        // 返回创建的数据以供其他调用
+        // 返回創建的資料以供其他呼叫
         return $vo;
-     }
+    }
 
-    // 自动表单令牌验证
+    // 自動錶單令牌驗證
     public function autoCheckToken($data) {
         $name   = C('TOKEN_NAME');
         if(isset($_SESSION[$name])) {
-            // 当前需要令牌验证
+            // 當前需要令牌驗證
             if(empty($data[$name]) || $_SESSION[$name] != $data[$name]) {
                 // 非法提交
                 return false;
             }
-            // 验证完成销毁session
+            // 驗證完成銷燬session
             unset($_SESSION[$name]);
         }
         return true;
     }
 
     /**
-     * 使用正则验证数据
+     * 使用正則驗證資料
      * @access public
-     * @param string $value  要验证的数据
-     * @param string $rule 验证规则
+     * @param string $value  要驗證的資料
+     * @param string $rule 驗證規則
      * @return boolean
      */
     public function regex($value,$rule) {
@@ -707,46 +707,46 @@ class Model extends Think
             'double' => '/^[-\+]?\d+(\.\d+)?$/',
             'english' => '/^[A-Za-z]+$/',
         );
-        // 检查是否有内置的正则表达式
+        // 檢查是否有內建的正規表示式
         if(isset($validate[strtolower($rule)]))
             $rule   =   $validate[strtolower($rule)];
         return preg_match($rule,$value)===1;
     }
 
     /**
-     * 自动表单处理
+     * 自動錶單處理
      * @access public
-     * @param array $data 创建数据
-     * @param string $type 创建类型
+     * @param array $data 創建資料
+     * @param string $type 創建類型
      * @return mixed
      */
     private function autoOperation(&$data,$type) {
-        // 自动填充
+        // 自動填充
         if(!empty($this->_auto)) {
             foreach ($this->_auto as $auto){
-                // 填充因子定义格式
-                // array('field','填充内容','填充条件','附加规则',[额外参数])
-                if(empty($auto[2])) $auto[2] = self::MODEL_INSERT; // 默认为新增的时候自动填充
+                // 填充因子定義格式
+                // array('field','填充內容','填充條件','附加規則',[額外參數])
+                if(empty($auto[2])) $auto[2] = self::MODEL_INSERT; // 默認為新增的時候自動填充
                 if( $type == $auto[2] || $auto[2] == self::MODEL_BOTH) {
                     switch($auto[3]) {
-                        case 'function':    //  使用函数进行填充 字段的值作为参数
-                        case 'callback': // 使用回调方法
-                            $args = isset($auto[4])?$auto[4]:array();
-                            if(isset($data[$auto[0]])) {
-                                array_unshift($args,$data[$auto[0]]);
-                            }
-                            if('function'==$auto[3]) {
-                                $data[$auto[0]]  = call_user_func_array($auto[1], $args);
-                            }else{
-                                $data[$auto[0]]  =  call_user_func_array(array(&$this,$auto[1]), $args);
-                            }
-                            break;
-                        case 'field':    // 用其它字段的值进行填充
-                            $data[$auto[0]] = $data[$auto[1]];
-                            break;
-                        case 'string':
-                        default: // 默认作为字符串填充
-                            $data[$auto[0]] = $auto[1];
+                    case 'function':    //  使用函數進行填充 欄位的值作為參數
+                    case 'callback': // 使用回撥方法
+                        $args = isset($auto[4])?$auto[4]:array();
+                        if(isset($data[$auto[0]])) {
+                            array_unshift($args,$data[$auto[0]]);
+                        }
+                        if('function'==$auto[3]) {
+                            $data[$auto[0]]  = call_user_func_array($auto[1], $args);
+                        }else{
+                            $data[$auto[0]]  =  call_user_func_array(array(&$this,$auto[1]), $args);
+                        }
+                        break;
+                    case 'field':    // 用其它欄位的值進行填充
+                        $data[$auto[0]] = $data[$auto[1]];
+                        break;
+                    case 'string':
+                    default: // 默認作為字元串填充
+                        $data[$auto[0]] = $auto[1];
                     }
                     if(false === $data[$auto[0]] )   unset($data[$auto[0]]);
                 }
@@ -756,51 +756,51 @@ class Model extends Think
     }
 
     /**
-     * 自动表单验证
+     * 自動錶單驗證
      * @access public
-     * @param array $data 创建数据
-     * @param string $type 创建类型
+     * @param array $data 創建資料
+     * @param string $type 創建類型
      * @return boolean
      */
     private function autoValidation($data,$type) {
-        // 属性验证
+        // 屬性驗證
         if(!empty($this->_validate)) {
-            // 如果设置了数据自动验证
-            // 则进行数据验证
-            // 重置验证错误信息
+            // 如果設定了資料自動驗證
+            // 則進行資料驗證
+            // 重置驗證錯誤資訊
             foreach($this->_validate as $key=>$val) {
-                // 验证因子定义格式
+                // 驗證因子定義格式
                 // array(field,rule,message,condition,type,when,params)
-                // 判断是否需要执行验证
+                // 判斷是否需要執行驗證
                 if(empty($val[5]) || $val[5]== self::MODEL_BOTH || $val[5]== $type ) {
                     if(0==strpos($val[2],'{%') && strpos($val[2],'}'))
-                        // 支持提示信息的多语言 使用 {%语言定义} 方式
+                        // 支援提示資訊的多語言 使用 {%語言定義} 方式
                         $val[2]  =  L(substr($val[2],2,-1));
                     $val[3]  =  isset($val[3])?$val[3]:self::EXISTS_VAILIDATE;
                     $val[4]  =  isset($val[4])?$val[4]:'regex';
-                    // 判断验证条件
+                    // 判斷驗證條件
                     switch($val[3]) {
-                        case self::MUST_VALIDATE:   // 必须验证 不管表单是否有设置该字段
+                    case self::MUST_VALIDATE:   // 必須驗證 不管表單是否有設定該欄位
+                        if(false === $this->_validationField($data,$val)){
+                            $this->error    =   $val[2];
+                            return false;
+                        }
+                        break;
+                    case self::VALUE_VAILIDATE:    // 值不為空的時候才驗證
+                        if('' != trim($data[$val[0]])){
                             if(false === $this->_validationField($data,$val)){
                                 $this->error    =   $val[2];
                                 return false;
                             }
-                            break;
-                        case self::VALUE_VAILIDATE:    // 值不为空的时候才验证
-                            if('' != trim($data[$val[0]])){
-                                if(false === $this->_validationField($data,$val)){
-                                    $this->error    =   $val[2];
-                                    return false;
-                                }
+                        }
+                        break;
+                    default:    // 默認表單存在該欄位就驗證
+                        if(isset($data[$val[0]])){
+                            if(false === $this->_validationField($data,$val)){
+                                $this->error    =   $val[2];
+                                return false;
                             }
-                            break;
-                        default:    // 默认表单存在该字段就验证
-                            if(isset($data[$val[0]])){
-                                if(false === $this->_validationField($data,$val)){
-                                    $this->error    =   $val[2];
-                                    return false;
-                                }
-                            }
+                        }
                     }
                 }
             }
@@ -809,53 +809,53 @@ class Model extends Think
     }
 
     /**
-     * 根据验证因子验证字段
+     * 根據驗證因子驗證欄位
      * @access public
-     * @param array $data 创建数据
-     * @param string $val 验证规则
+     * @param array $data 創建資料
+     * @param string $val 驗證規則
      * @return boolean
      */
     private function _validationField($data,$val) {
         switch($val[4]) {
-            case 'function':// 使用函数进行验证
-            case 'callback':// 调用方法进行验证
-                $args = isset($val[6])?$val[6]:array();
-                array_unshift($args,$data[$val[0]]);
-                if('function'==$val[4]) {
-                    return call_user_func_array($val[1], $args);
-                }else{
-                    return call_user_func_array(array(&$this, $val[1]), $args);
-                }
-            case 'confirm': // 验证两个字段是否相同
-                return $data[$val[0]] == $data[$val[1]];
-            case 'in': // 验证是否在某个数组范围之内
-                return in_array($data[$val[0]] ,$val[1]);
-            case 'equal': // 验证是否等于某个值
-                return $data[$val[0]] == $val[1];
-            case 'unique': // 验证某个值是否唯一
-                if(is_string($val[0]) && strpos($val[0],','))
-                    $val[0]  =  explode(',',$val[0]);
-                $map = array();
-                if(is_array($val[0])) {
-                    // 支持多个字段验证
-                    foreach ($val[0] as $field)
-                        $map[$field]   =  $data[$field];
-                }else{
-                    $map[$val[0]] = $data[$val[0]];
-                }
-                if($this->where($map)->find())
-                    return false;
-                break;
-            case 'regex':
-            default:    // 默认使用正则验证 可以使用验证类中定义的验证名称
-                // 检查附加规则
-                return $this->regex($data[$val[0]],$val[1]);
+        case 'function':// 使用函數進行驗證
+        case 'callback':// 呼叫方法進行驗證
+            $args = isset($val[6])?$val[6]:array();
+            array_unshift($args,$data[$val[0]]);
+            if('function'==$val[4]) {
+                return call_user_func_array($val[1], $args);
+            }else{
+                return call_user_func_array(array(&$this, $val[1]), $args);
+            }
+        case 'confirm': // 驗證兩個欄位是否相同
+            return $data[$val[0]] == $data[$val[1]];
+        case 'in': // 驗證是否在某個陣列範圍之內
+            return in_array($data[$val[0]] ,$val[1]);
+        case 'equal': // 驗證是否等於某個值
+            return $data[$val[0]] == $val[1];
+        case 'unique': // 驗證某個值是否唯一
+            if(is_string($val[0]) && strpos($val[0],','))
+                $val[0]  =  explode(',',$val[0]);
+            $map = array();
+            if(is_array($val[0])) {
+                // 支援多個欄位驗證
+                foreach ($val[0] as $field)
+                    $map[$field]   =  $data[$field];
+            }else{
+                $map[$val[0]] = $data[$val[0]];
+            }
+            if($this->where($map)->find())
+                return false;
+            break;
+        case 'regex':
+        default:    // 默認使用正則驗證 可以使用驗證類中定義的驗證名稱
+            // 檢查附加規則
+            return $this->regex($data[$val[0]],$val[1]);
         }
         return true;
     }
 
     /**
-     * SQL查询
+     * SQL查詢
      * @access public
      * @param mixed $sql  SQL指令
      * @return mixed
@@ -872,7 +872,7 @@ class Model extends Think
     }
 
     /**
-     * 执行SQL语句
+     * 執行SQL語句
      * @access public
      * @param string $sql  SQL指令
      * @return false | integer
@@ -889,7 +889,7 @@ class Model extends Think
     }
 
     /**
-     * 得到当前的数据对象名称
+     * 得到當前的資料物件名稱
      * @access public
      * @return string
      */
@@ -901,7 +901,7 @@ class Model extends Think
     }
 
     /**
-     * 得到完整的数据表名
+     * 得到完整的資料表名
      * @access public
      * @return string
      */
@@ -923,10 +923,10 @@ class Model extends Think
     }
 
     /**
-     * 启动事务
-     * 
-     * 开启事务的同时先提交其他Sql,
-     * 
+     * 啟動事務
+     *
+     * 開啟事務的同時先提交其他Sql,
+     *
      * @access public
      * @return void
      */
@@ -938,7 +938,7 @@ class Model extends Think
     }
 
     /**
-     * 提交事务
+     * 提交事務
      * @access public
      * @return boolean
      */
@@ -948,7 +948,7 @@ class Model extends Think
     }
 
     /**
-     * 事务回滚
+     * 事務回滾
      * @access public
      * @return boolean
      */
@@ -958,29 +958,29 @@ class Model extends Think
     }
 
     /**
-     * 返回模型的错误信息
+     * 返回模型的錯誤資訊
      * @access public
      * @return string
      */
     public function getError(){
-    	if(empty($this->error)){
-    		return $this->getDbError();
-    	}
+        if(empty($this->error)){
+            return $this->getDbError();
+        }
         return $this->error;
     }
 
     /**
-     * 返回数据库的错误信息
+     * 返回資料庫的錯誤資訊
      * @access public
      * @return string
      */
     public function getDbError() {
         //return $this->db->getError();
-        return $this->db->error();	//edit by yangjs
+        return $this->db->error();  //edit by yangjs
     }
 
     /**
-     * 返回最后插入的ID
+     * 返回最後插入的ID
      * @access public
      * @return string
      */
@@ -989,7 +989,7 @@ class Model extends Think
     }
 
     /**
-     * 返回最后执行的sql语句
+     * 返回最後執行的sql語句
      * @access public
      * @return string
      */
@@ -998,7 +998,7 @@ class Model extends Think
     }
 
     /**
-     * 获取主键名称
+     * 獲取主鍵名稱
      * @access public
      * @return string
      */
@@ -1007,7 +1007,7 @@ class Model extends Think
     }
 
     /**
-     * 获取数据表字段信息
+     * 獲取資料表欄位資訊
      * @access public
      * @return array
      */
@@ -1016,9 +1016,9 @@ class Model extends Think
     }
 
     /**
-     * 设置数据对象值
+     * 設定資料物件值
      * @access public
-     * @param mixed $data 数据
+     * @param mixed $data 資料
      * @return Model
      */
     public function data($data){
@@ -1032,7 +1032,7 @@ class Model extends Think
     }
 
     /**
-     * 查询SQL组装 join
+     * 查詢SQL組裝 join
      * @access public
      * @param mixed $join
      * @return Model
@@ -1046,9 +1046,9 @@ class Model extends Think
     }
 
     /**
-     * 设置模型的属性值
+     * 設定模型的屬性值
      * @access public
-     * @param string $name 名称
+     * @param string $name 名稱
      * @param mixed $value 值
      * @return Model
      */
@@ -1058,169 +1058,169 @@ class Model extends Think
         return $this;
     }
 
-	/**
-     * 统计满足条件的记录个数
+    /**
+     * 統計滿足條件的記錄個數
      * @access public
-     * @param mixed $condition  条件
-     * @param string $field  要统计的字段 默认为*
+     * @param mixed $condition  條件
+     * @param string $field  要統計的欄位 默認為*
      * @return integer
      */
-	public function count($options = array(),$field='1') {
-		$fields = 'count('.$field.') as count';
-		// 总是查找一条记录
+    public function count($options = array(),$field='1') {
+        $fields = 'count('.$field.') as count';
+        // 總是查找一條記錄
         $options['limit'] = 1;
-		$options['field'] = $fields;
-        // 分析表达式
+        $options['field'] = $fields;
+        // 分析表示式
         $options =  $this->_parseOptions($options);
-       
-		if($result = $this->db->select($options)) {
+
+        if($result = $this->db->select($options)) {
             return $result[0]['count'];
-		}else{
+        }else{
             return false;
         }
-	}
+    }
 
     /**
-     * 分页查询数据
+     * 分頁查詢資料
      * @access public
-     * @param mixed $options 表达式参数
-     * @param mixed $pageopt 分页参数
+     * @param mixed $options 表示式參數
+     * @param mixed $pageopt 分頁參數
      * @return mixed
      */
-     public function findPage($pageopt,$count=false,$options=array()) {
-		// 分析表达式
+    public function findPage($pageopt,$count=false,$options=array()) {
+        // 分析表示式
         $options =  $this->_parseOptions($options);
-		// 如果没有传入总数，则自动根据条件进行统计
-		if($count===false){
-			// 查询总数
-			$count_options		=	$options;
-			$count_options['limit'] = 1;
-			$count_options['field'] = 'count(1) as count';
-			// 去掉统计时的排序提高效率
-			unset($count_options['order']);
-			$result =	$this->db->select($count_options);
-            
-			$count	=	$result[0]['count'];
-			unset($result);
-			unset($count_options);
-		}
-		// 如果查询总数大于0
-		if($count > 0) {
-			// 载入分页类
-			//import('ORG.Util.Page');
-			// 解析分页参数
-			if( is_numeric($pageopt) ) {
-				$pagesize	=	intval($pageopt);
-			}else{
-				$pagesize	=	intval(C('LIST_NUMBERS'));
-			}
-			
-			$p	=	new Page($count,$pagesize);
-		      
-			// 查询数据
-			$options['limit']	=	$p->firstRow.','.$p->listRows;
-			$resultSet	=	$this->select($options);
+        // 如果沒有傳入總數，則自動根據條件進行統計
+        if($count===false){
+            // 查詢總數
+            $count_options      =   $options;
+            $count_options['limit'] = 1;
+            $count_options['field'] = 'count(1) as count';
+            // 去掉統計時的排序提高效率
+            unset($count_options['order']);
+            $result =   $this->db->select($count_options);
 
-			if($resultSet){
-				$this->dataList = $resultSet;
-			}else{
-				$resultSet	=	'';
-			}
+            $count  =   $result[0]['count'];
+            unset($result);
+            unset($count_options);
+        }
+        // 如果查詢總數大於0
+        if($count > 0) {
+            // 載入分頁類
+            //import('ORG.Util.Page');
+            // 解析分頁參數
+            if( is_numeric($pageopt) ) {
+                $pagesize   =   intval($pageopt);
+            }else{
+                $pagesize   =   intval(C('LIST_NUMBERS'));
+            }
 
-			// 输出控制
-			$output['count']		=	$count;
-			$output['totalPages']	=	$p->totalPages;
-			$output['totalRows']	=	$p->totalRows;
-			$output['nowPage']		=	$p->nowPage;
-			$output['html']			=	$p->show();
-			$output['data']			=	$resultSet;
-			unset($resultSet);
-			unset($p);
-			unset($count);
-		}else{
-			$output['count']		=	0;
-			$output['totalPages']	=	0;
-			$output['totalRows']	=	0;
-			$output['nowPage']		=	1;
-			$output['html']			=	'';
-			$output['data']			=	'';
-		}
-		// 输出数据
-		return $output;
-     }
+            $p  =   new Page($count,$pagesize);
 
-    /**
-     * 通过SQL语句，分页查询数据
-     * @access public
-     * @param mixed $options 表达式参数
-     * @param mixed $pageopt 分页参数
-     * @return mixed
-     */
-	public function findPageBySql($sql, $count = null, $pagesize = null) {
-		//if ( strtoupper(substr($sql, 0, 6)) !== 'SELECT	' ) return false;
+            // 查詢資料
+            $options['limit']   =   $p->firstRow.','.$p->listRows;
+            $resultSet  =   $this->select($options);
 
-		// 计算结果总数
+            if($resultSet){
+                $this->dataList = $resultSet;
+            }else{
+                $resultSet  =   '';
+            }
 
-		if ( !is_numeric($count)  || $count == null) {
-			$count_sql 				= explode(' FROM ', $sql);
-			if (count($count_sql) != 2) return false;
-			$count_sql 				= 'SELECT count(*) AS count FROM ' . $count_sql[1];
-          
-			$count	   				= $this->db->query($count_sql);
-			$count					= $count[0]['count'];
-		}
-		$count = intval($count);
-
-		// 如果查询总数大于0
-		if ($count > 0) {
-			// 解析分页参数
-			$pagesize 				=	is_numeric($pagesize) ? intval($pagesize) : intval(C('LIST_NUMBERS'));
-			$p		  				=	new Page($count,$pagesize);
-			// 查询数据
-			$limit					=	$p->firstRow.','.$p->listRows;
-			$resultSet				=	$this->query($sql . ' LIMIT ' . $limit);
-			if($resultSet){
-				$this->dataList = $resultSet;
-			}else{
-				$resultSet			=	'';
-			}
-			// 输出控制
-			$output['count']		=	$count;
-			$output['totalPages']	=	$p->totalPages;
-			$output['totalRows']	=	$p->totalRows;
-			$output['nowPage']		=	$p->nowPage;
-			$output['html']			=	$p->show();
-			$output['data']			=	$resultSet;
-			unset($resultSet);
-			unset($p);
-			unset($count);
-		}else {
-			$output['count']		=	0;
-			$output['totalPages']	=	0;
-			$output['totalRows']	=	0;
-			$output['nowPage']		=	1;
-			$output['html']			=	'';
-			$output['data']			=	'';
-		}
-
+            // 輸出控制
+            $output['count']        =   $count;
+            $output['totalPages']   =   $p->totalPages;
+            $output['totalRows']    =   $p->totalRows;
+            $output['nowPage']      =   $p->nowPage;
+            $output['html']         =   $p->show();
+            $output['data']         =   $resultSet;
+            unset($resultSet);
+            unset($p);
+            unset($count);
+        }else{
+            $output['count']        =   0;
+            $output['totalPages']   =   0;
+            $output['totalRows']    =   0;
+            $output['nowPage']      =   1;
+            $output['html']         =   '';
+            $output['data']         =   '';
+        }
+        // 輸出資料
         return $output;
     }
 
     /**
-     * 执行SQL文件
+     * 通過SQL語句，分頁查詢資料
      * @access public
-     * @param string  $file 要执行的sql文件路径
-     * @param boolean $stop 遇错是否停止  默认为true
-     * @param string  $db_charset 数据库编码 默认为utf-8
-     * @return array
+     * @param mixed $options 表示式參數
+     * @param mixed $pageopt 分頁參數
+     * @return mixed
      */
-    public function executeSqlFile($file,$stop = true,$db_charset = 'utf-8') {
-        if (!is_readable($file)) {
-            $error = array(
-                        'error_code' => 'SQL文件不可读',
-                        'error_sql'  => '',
-                     );
-            return $error;
+    public function findPageBySql($sql, $count = null, $pagesize = null) {
+        //if ( strtoupper(substr($sql, 0, 6)) !== 'SELECT   ' ) return false;
+
+        // 計算結果總數
+
+        if ( !is_numeric($count)  || $count == null) {
+            $count_sql              = explode(' FROM ', $sql);
+            if (count($count_sql) != 2) return false;
+            $count_sql              = 'SELECT count(*) AS count FROM ' . $count_sql[1];
+
+            $count                  = $this->db->query($count_sql);
+            $count                  = $count[0]['count'];
+        }
+        $count = intval($count);
+
+        // 如果查詢總數大於0
+        if ($count > 0) {
+            // 解析分頁參數
+            $pagesize               =   is_numeric($pagesize) ? intval($pagesize) : intval(C('LIST_NUMBERS'));
+            $p                      =   new Page($count,$pagesize);
+            // 查詢資料
+            $limit                  =   $p->firstRow.','.$p->listRows;
+            $resultSet              =   $this->query($sql . ' LIMIT ' . $limit);
+            if($resultSet){
+                $this->dataList = $resultSet;
+            }else{
+                $resultSet          =   '';
+            }
+            // 輸出控制
+            $output['count']        =   $count;
+            $output['totalPages']   =   $p->totalPages;
+            $output['totalRows']    =   $p->totalRows;
+            $output['nowPage']      =   $p->nowPage;
+            $output['html']         =   $p->show();
+            $output['data']         =   $resultSet;
+            unset($resultSet);
+            unset($p);
+            unset($count);
+        }else {
+            $output['count']        =   0;
+            $output['totalPages']   =   0;
+            $output['totalRows']    =   0;
+            $output['nowPage']      =   1;
+            $output['html']         =   '';
+            $output['data']         =   '';
+        }
+
+        return $output;
+        }
+
+        /**
+         * 執行SQL檔案
+         * @access public
+         * @param string  $file 要執行的sql檔案路徑
+         * @param boolean $stop 遇錯是否停止  默認為true
+         * @param string  $db_charset 資料庫編碼 默認為utf-8
+         * @return array
+         */
+        public function executeSqlFile($file,$stop = true,$db_charset = 'utf-8') {
+            if (!is_readable($file)) {
+                $error = array(
+                    'error_code' => 'SQL檔案不可讀',
+                    'error_sql'  => '',
+                );
+                return $error;
         }
 
         $fp = fopen($file, 'rb');
@@ -1233,7 +1233,7 @@ class Model extends Think
             $query = trim($query);
             if($query) {
                 if(substr($query, 0, 12) == 'CREATE TABLE') {
-                    //预处理建表语句
+                    //預處理建表語句
                     $db_charset = (strpos($db_charset, '-') === FALSE) ? $db_charset : str_replace('-', '', $db_charset);
                     $type   = strtoupper(preg_replace("/^\s*CREATE TABLE\s+.+\s+\(.+?\).*(ENGINE|TYPE)\s*=\s*([a-z]+?).*$/isU", "\\2", $query));
                     $type   = in_array($type, array("MYISAM", "HEAP")) ? $type : "MYISAM";
@@ -1241,30 +1241,30 @@ class Model extends Think
                         (mysql_get_server_info() > "4.1" ? " ENGINE=$type DEFAULT CHARSET=$db_charset" : " TYPE=$type");
 
                     $res = $this->execute($_temp_query);
-                }else {
-                    $res = $this->execute($query);
-                }
-                if($res === false) {
-                    $error[] = array(
-                                'error_code' => $this->getDbError(),
+        }else {
+            $res = $this->execute($query);
+        }
+        if($res === false) {
+            $error[] = array(
+                'error_code' => $this->getDbError(),
                                 'error_sql'  => $query,
-                               );
+                            );
 
-                    if($stop) return $error[0];
-                }
-            }
+            if($stop) return $error[0];
+        }
+        }
         }
         return $error;
-    }
+        }
 
-    /**
-     * 清理缓存
-     * @access public
-     * @param mixed $param
-     * @return boolean
-     */
-    public function cleanCache($param){
-        return true;
-    }
-};
+        /**
+         * 清理快取
+         * @access public
+         * @param mixed $param
+         * @return boolean
+         */
+        public function cleanCache($param){
+            return true;
+        }
+        };
 ?>

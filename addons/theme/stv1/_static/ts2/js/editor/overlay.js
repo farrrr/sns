@@ -5,7 +5,7 @@ build time: ${build.time}
 */
 /**
  * KISSY Overlay
- * @author: 玉伯<lifesinger@gmail.com>, 承玉<yiminghe@gmail.com>,乔花<qiaohua@taobao.com>
+ * @author: 玉伯<lifesinger@gmail.com>, 承玉<yiminghe@gmail.com>,喬花<qiaohua@taobao.com>
  */
 KISSY.add("overlay/overlayrender", function(S, UA, UIBase, Component) {
 
@@ -38,7 +38,7 @@ KISSY.add("overlay/overlayrender", function(S, UA, UIBase, Component) {
 });
 
 /**
- * 2010-11-09 2010-11-10 承玉<yiminghe@gmail.com>重构，attribute-base-uibase-Overlay ，采用 UIBase.create
+ * 2010-11-09 2010-11-10 承玉<yiminghe@gmail.com>重構，attribute-base-uibase-Overlay ，採用 UIBase.create
  */
 /**
  * model and control for overlay
@@ -75,7 +75,7 @@ KISSY.add("overlay/overlay", function(S, UIBase, Component, OverlayRender) {
     requires:['uibase','./overlayrender']
 });/**
  * KISSY.Dialog
- * @author: 承玉<yiminghe@gmail.com>, 乔花<qiaohua@taobao.com>
+ * @author: 承玉<yiminghe@gmail.com>, 喬花<qiaohua@taobao.com>
  */
 KISSY.add('overlay/dialog', function(S, Overlay, UIBase, DialogRender) {
 
@@ -92,7 +92,7 @@ KISSY.add('overlay/dialog', function(S, Overlay, UIBase, DialogRender) {
         renderUI:function() {
             var self = this;
             self.get("view").get("el").addClass(this.get("view").get("prefixCls")+"dialog");
-            //设置值，drag-ext 绑定时用到
+            //設定值，drag-ext 繫結時用到
             self.set("handlers", [self.get("view").get("header")]);
         }
     });
@@ -106,7 +106,7 @@ KISSY.add('overlay/dialog', function(S, Overlay, UIBase, DialogRender) {
 });
 
 /**
- * 2010-11-10 承玉<yiminghe@gmail.com>重构，使用扩展类
+ * 2010-11-10 承玉<yiminghe@gmail.com>重構，使用擴展類
  */
 
 

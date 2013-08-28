@@ -1,6 +1,6 @@
 <?php
 /**
- * 报表图形Js图形Widget,用于生产各种图形报表
+ * 報表圖形Js圖形Widget,用於生產各種圖形報表
  * @example {:W('Plot', array('type'=>'pieChart', 'id'=>'1', 'pWidth'=>$pWidth, 'pHeight'=>$pHeight, 'key'=>$key, 'value'=>$value1, 'color'=>$color, 'show'=>$show1))}
  * @author zivss
  * @version TS3.0
@@ -8,25 +8,25 @@
 class PlotWidget extends Widget{
 
  	/**
- 	 * @param string type 报表类型 分为pieChart(饼状图)、pointLabelsChart(折线图)、barChart(柱状图)
+ 	 * @param string type 報表類型 分為pieChart(餅狀圖)、pointLabelsChart(折線圖)、barChart(柱狀圖)
  	 * @param integer id //未知
- 	 * @param integer pWidth 图表宽度
- 	 * @param integer pHeight 图表高度
- 	 * @param array key //好像没用
+ 	 * @param integer pWidth 圖表寬度
+ 	 * @param integer pHeight 圖表高度
+ 	 * @param array key //好像沒用
  	 * @param array value
  	 * @param array color
  	 */
 	public function render($data) {
 		$var['tpl']  = isset($data['tpl']) ? $data['tpl'] : 'chart';
-		// 获取渲染模板
+		// 獲取渲染模板
 		$type = t($data['type']);
 		$var['type'] = $type;
 		$var['id'] = t($data['id']);
 		$pWidth = isset($data['pWidth']) ? intval($data['pWidth']) : 120;
 		$pHeight = isset($data['pHeight']) ? intval($data['pHeight']) : 120;
-		// 显示图形的div长宽
+		// 顯示圖形的div長寬
 		$var['plotCls'] = 'width:'.$pWidth.'px;height:'.$pHeight.'px';
-		// 获取图形显示数据
+		// 獲取圖形顯示資料
 		$plotData = $this->getPlotPlugins($type, $data);
 		$var = array_merge($var, $plotData);
 
@@ -40,7 +40,7 @@ class PlotWidget extends Widget{
 	/*** 私有方法 ***/
 	/**
 	 * Plot插件路由
-	 * @return 统计图信息
+	 * @return 統計圖資訊
 	 */ 
 	private function getPlotPlugins($type, $data) {
 		switch($type) {
@@ -62,15 +62,15 @@ class PlotWidget extends Widget{
 	}
 
 	/**
-	 * 未知，无显示
+	 * 未知，無顯示
 	 */
 	public function getZx($data){
 		/*
 		$data['value'][] = array(-1,4,4,2,5,6,7,13);
 		$data['value'][] = array(-1,2,4,5,4,2,3,22);
-		$data['ticks']	= array('周一','er','san','si','wu','liu','ri');
-		$data['title']  = '一周进展';
-		测试数据
+		$data['ticks']	= array('週一','er','san','si','wu','liu','ri');
+		$data['title']  = '一週進展';
+		測試資料
 		*/
 		$var['jsHtml'] = '';
 		$most = 0;
@@ -98,13 +98,13 @@ class PlotWidget extends Widget{
 	}
 
 	/**
-	 * 获取饼状图显示数据
-	 * @return array 饼状图信息
+	 * 獲取餅狀圖顯示資料
+	 * @return array 餅狀圖資訊
 	 */ 
 	private function getPieChart($data) {
-		// 配置对应的数据
+		// 配置對應的資料
 		$var['key'] = implode(',', $data['key']);
-		// 换算数据的百分比
+		// 換算資料的百分比
 		$sum = array_sum($data['value']);
 		if($sum == 0) {
 			$var['value'] = '100,0';
@@ -122,13 +122,13 @@ class PlotWidget extends Widget{
 	}
 
 	/**
-	 * 获取折线图显示数据
-	 * @return array 折线图信息
+	 * 獲取折線圖顯示資料
+	 * @return array 折線圖資訊
 	 */ 
 	private function getPointLabels($data) {
-		// 配置对应的数据
+		// 配置對應的資料
 		$var['value'] = implode(',', $data['value']);
-		// 报表标题
+		// 報表標題
 		$var['title'] = t($data['title']);
 		$var['show'] = $data['show'];
 		$var['location'] = $data['location'];
@@ -137,14 +137,14 @@ class PlotWidget extends Widget{
 	}
 
 	/**
-	 * 获取条形图显示数据
-	 * @return array 条形图信息
+	 * 獲取條形圖顯示資料
+	 * @return array 條形圖資訊
 	 */ 
 	private function getBarChart($data) {
-		// 配置对应的数据
+		// 配置對應的資料
 		$var['key'] = implode(',', $data['key']);
 		$var['value'] = implode(',', $data['value']);
-		// 报表标题
+		// 報表標題
 		$var['title'] = t($data['title']);
 		$var['show'] = $data['show'];
 		$var['location'] = $data['location'];

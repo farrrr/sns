@@ -14,7 +14,7 @@
 	<p class="info">
 		<span class="right">
 	<span id='digg{$feed_id}' rel='0'>
-	   <a href="javascript:void(0)" onclick="addDigg({$feed_id})" >赞</a>
+	   <a href="javascript:void(0)" onclick="addDigg({$feed_id})" >贊</a>
   </span>
 	<i class="vline">|</i>
 			
@@ -43,7 +43,7 @@
 			<php>endif;</php>
 		</span>
 		<span>
-			<a class="date" date="{:time()}" href="{:U('public/Profile/feed', array('feed_id'=>$feed_id, 'uid'=>$uid))}">刚刚</a>
+			<a class="date" date="{:time()}" href="{:U('public/Profile/feed', array('feed_id'=>$feed_id, 'uid'=>$uid))}">剛剛</a>
 			<span>{$from}</span>
 			<php>if(CheckPermission('core_normal','feed_del')){</php>
 			<em class="hover">

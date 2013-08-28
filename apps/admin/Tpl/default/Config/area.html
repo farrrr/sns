@@ -1,10 +1,10 @@
 <include file="__THEME__/admin_header" />
 <div id="container" class="so_main">
-  <div class="page_tit"><div class="right"><neq name="back_id" value="-1"><a href="{:U('admin/Config/area',array('pid'=>$back_id))}" class="btn_a"><span>返回</span></a></neq></div>地区管理</div>
+  <div class="page_tit"><div class="right"><neq name="back_id" value="-1"><a href="{:U('admin/Config/area',array('pid'=>$back_id))}" class="btn_a"><span>返回</span></a></neq></div>地區管理</div>
   <div class="Toolbar_inbox">
     
-    <a href="javascript:void(0);" class="btn_a" onclick="add();"><span>添加地区</span></a>
-    <a href="javascript:void(0);" class="btn_a" onclick="del();"><span>删除地区</span></a>
+    <a href="javascript:void(0);" class="btn_a" onclick="add();"><span>添加地區</span></a>
+    <a href="javascript:void(0);" class="btn_a" onclick="del();"><span>刪除地區</span></a>
   </div>
   
   <div class="list">
@@ -15,7 +15,7 @@
         <label for="checkbox"></label>
     </th>
     <th class="line_l">ID</th>
-    <th class="line_l">地区名称</th>
+    <th class="line_l">地區名稱</th>
     <th class="line_l">操作</th>
   </tr>
   <volist id="vo" name="area">
@@ -24,9 +24,9 @@
         <td>{$vo.area_id}</td>
         <td><div style="float:left"><a href="{:U('admin/Config/area',array('pid'=>$vo['area_id']))}" id="area_title_{$vo.area_id}">{$vo.title}</a></div></td>
         <td>
-            <a href="javascript:void(0);" onclick="edit({$vo['area_id']});">编辑</a> 
-            <a href="{:U('admin/Config/area',array('pid'=>$vo['area_id']))}">下级管理</a>
-            <a href="javascript:void(0);" onclick="del({$vo['area_id']});">删除</a>  
+            <a href="javascript:void(0);" onclick="edit({$vo['area_id']});">編輯</a> 
+            <a href="{:U('admin/Config/area',array('pid'=>$vo['area_id']))}">下級管理</a>
+            <a href="javascript:void(0);" onclick="del({$vo['area_id']});">刪除</a>  
         </td>
       </tr>
   </volist>
@@ -35,13 +35,13 @@
   </div>
   <div class="Toolbar_inbox">
     <neq name="back_id" value="-1"><a href="{:U('admin/Config/area',array('pid'=>$back_id))}" class="btn_a"><span>返回</span></a></neq>
-    <a href="javascript:void(0);" class="btn_a" onclick="add();"><span>添加地区</span></a>
-    <a href="javascript:void(0);" class="btn_a" onclick="del();"><span>删除地区</span></a>
+    <a href="javascript:void(0);" class="btn_a" onclick="add();"><span>添加地區</span></a>
+    <a href="javascript:void(0);" class="btn_a" onclick="del();"><span>刪除地區</span></a>
   </div>
 </div>
 
 <script>
-    //鼠标移动表格效果
+    //滑鼠移動表格效果
     $(document).ready(function(){
         $("tr[overstyle='on']").hover(
           function () {
@@ -71,7 +71,7 @@
         }
     }
 
-    //获取已选择用户的ID数组
+    //獲取已選擇使用者的ID陣列
     function getChecked() {
         var gids = new Array();
         $.each($('input:checked'), function(i, n){
@@ -80,35 +80,35 @@
         return gids;
     }
 
-    //添加地区
+    //添加地區
     function add() {
-        ui.box.load("{:U('admin/Config/addArea',array('pid'=>$pid))}", '添加地区');
+        ui.box.load("{:U('admin/Config/addArea',array('pid'=>$pid))}", '添加地區');
     }
     
-    //编辑地区
+    //編輯地區
     function edit(area_id) {
-        ui.box.load("{:U('admin/Config/editArea')}&area_id="+area_id, '编辑地区');
+        ui.box.load("{:U('admin/Config/editArea')}&area_id="+area_id, '編輯地區');
     }
     
-    //删除地区
+    //刪除地區
     function del(aid) {
         aid = aid ? aid : getChecked();
         aid = aid.toString();
         if(aid == '' || getLength(aid)<1){
-          ui.error('请选择地区');
+          ui.error('請選擇地區');
           return false;
         } 
-        if(confirm('确定删除选中地区？')){
-          //提交删除
+        if(confirm('確定刪除選中地區？')){
+          //提交刪除
           $.post("{:U('admin/Config/doDeleteArea')}", {ids:aid}, function(res){
   	        if(res == '1') {
   		        aid = aid.split(',');
   		        $.each(aid, function(i,n){
   		            $('#area_'+n).remove();
   		        });
-  	            ui.success('删除成功');
+  	            ui.success('刪除成功');
   	        }else {
-  	        	ui.error('删除失败');
+  	        	ui.error('刪除失敗');
   	        }
           });
       }

@@ -5,7 +5,7 @@
  * Ver: Sociax Team
  */
 
-/*tab菜单*/
+/*tab選單*/
 .tab-menu{/*background:#fff;*/border-bottom:#ccc solid 1px;margin:0 0 10px;height:30px;_border:none 0;_background:url(../image/tab-menu-line.gif) repeat-x left bottom;}
 .tab-menu ul{float:left;height:30px;border-bottom:none 0;border-left:none 0;}
 .tab-menu ul li{float:left;height:30px;margin:0 5px 0 0;line-height:30px;}
@@ -17,7 +17,7 @@
 .tab-menu .ico-more{border-color: #535353 transparent transparent;}
 .tab-menu .open a:link,.tab-menu .open a:visited{border:1px solid #ccc;background:#fff;}
 
-/*tab菜单*/
+/*tab選單*/
 .mod-tab-menu{height: 28px;padding:0 0 10px 0;}
 .tab-menu-app{height:28px;border:#E4E4E4 solid 1px;border-left:none 0;-webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;}
 .tab-menu-app ul{float:left;height:28px}
@@ -34,7 +34,7 @@
 
 .tab-menu .arrange{float: right;padding:5px 0 0;}
 
-/*tab菜单*/
+/*tab選單*/
 .tab-menu-profile{border:0;overflow:hidden;*zoom:1;}
 .tab-menu-profile li{float:left;margin:0 10px 0 0;background:#f3f5f1;width:80px;height:30px;line-height:30px;text-align:center;}
 .tab-menu-profile li a:link,.tab-menu-profile li a:visited{display:inline-block;font-size:14px;color:#333;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;}

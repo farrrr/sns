@@ -1,20 +1,20 @@
 /**
  * @Me操作Js插件
  * @example
- * 工厂调用：core.plugInit('at',$(this)); 其中 $(this)为可编辑域对象
+ * 工廠呼叫：core.plugInit('at',$(this)); 其中 $(this)為可編輯域物件
  * @author jason <yangjs@yeah.net>
  * @version TS3.0
  */
 core.at = {
 	/**
-	 * 给工厂调用的接口
-	 * @param array attrs 配置数组
+	 * 給工廠呼叫的介面
+	 * @param array attrs 配置陣列
 	 * @return void
 	 * @private
 	 */
 	_init: function(attrs) {
 		if(attrs.length == 1) {
-			return false; 		// 只是为了加载此文件
+			return false; 		// 只是為了載入此檔案
 		} 
 		if(attrs.length == 3) {
 			core.at.init(attrs[1], attrs[2]);
@@ -24,34 +24,34 @@ core.at = {
 	},
 	/**
 	 * 初始化插件
-	 * @param object textarea 查询的对象域
-	 * @param function callback 回调函数
+	 * @param object textarea 查詢的物件域
+	 * @param function callback 回撥函數
 	 * @return void
 	 */
 	init: function(textarea, objat, callback) {
-		this.searchModel = 'at', 			// 查询模式at、user
-		this.notuser = '',					// 上次查询的无结果用户
-		this.olduser = '',					// 上次查询的用户名
-		this.searchTime = 0, 				// 当前搜索用户记录的次数
-		this.textarea = textarea,			// 查询的对象域
+		this.searchModel = 'at', 			// 查詢模式at、user
+		this.notuser = '',					// 上次查詢的無結果使用者
+		this.olduser = '',					// 上次查詢的使用者名
+		this.searchTime = 0, 				// 當前搜索使用者記錄的次數
+		this.textarea = textarea,			// 查詢的物件域
 		this.objat = objat;
 		if(this.onsearch!=1){
 			this.inputor = textarea;
 		}
-		this.atsetintval = '',				// 查询at的轮询
-		this.userserintval = '', 			// 查询用户的轮询
-		this.userList = '';					// 用户列表对象
+		this.atsetintval = '',				// 查詢at的輪詢
+		this.userserintval = '', 			// 查詢使用者的輪詢
+		this.userList = '';					// 使用者列表物件
 		if("undefined" != typeof(callback)) {
 			this.callback = callback;
 		} else {
 			this.callback = '';
 		}
 		
-		this._startAt();					// 启动at查询
+		this._startAt();					// 啟動at查詢
 	},
 	/**
-	 * 插入@数据
-	 * @param object textarea 查询的对象域
+	 * 插入@資料
+	 * @param object textarea 查詢的物件域
 	 * @return void
 	 */
 	insertAt: function(url,textarea) {
@@ -115,14 +115,14 @@ core.at = {
 		core.at.init($('#at_search'));
 	},
 	/**
-	 * 开始@Me查询
+	 * 開始@Me查詢
 	 * @return void
 	 * @private
 	 */
 	_startAt: function() {
 		this.searchModel = 'at';
 		var _this = this;
-		// 轮询获取@的位置，验证是否插入@查询
+		// 輪詢獲取@的位置，驗證是否插入@查詢
 		var loopSearchAt = function() {
 			if(_this.searchModel != 'at') {
 				core.at._stopAt();
@@ -131,7 +131,7 @@ core.at = {
 			if ( _this.firstsearch == 0 ) return;
 			var str = _this.textarea.val();
 			if(str.length > 0) {
-				core.at._startUser();		// 进入预查找用户模式
+				core.at._startUser();		// 進入預查找使用者模式
 			} else {
 				$('#atUserList').remove();
 				$('#friendchoose').show();
@@ -140,9 +140,9 @@ core.at = {
 		this.atsetintval = setInterval(loopSearchAt, 250);
 	},
 	/**
-	 * 插入用户数据，插入到查询对象域中
-	 * @param integer uid 用户ID
-	 * @param string uname 用户昵称
+	 * 插入使用者資料，插入到查詢物件域中
+	 * @param integer uid 使用者ID
+	 * @param string uname 使用者昵稱
 	 * @return void
 	 */
 	insertUser: function(uname) {
@@ -160,7 +160,7 @@ core.at = {
 //		this._startAt();
 	},
 	/**
-	 * 停止@查询
+	 * 停止@查詢
 	 * @return void
 	 * @private
 	 */
@@ -173,7 +173,7 @@ core.at = {
 		this.searchModel = '';
 	},
 	/**
-	 * 选择用户
+	 * 選擇使用者
 	 * @return void
 	 */
 	selectUser: function() {
@@ -186,25 +186,25 @@ core.at = {
 		return true;
 	},
 	/**
-	 * 开始查询用户
+	 * 開始查詢使用者
 	 * @return void
 	 * @private
 	 */
 	_startUser: function() {
-		this._stopAt();					// 关掉进程中的轮询
+		this._stopAt();					// 關掉程序中的輪詢
 		this.searchModel = 'user';
 		var _this = this;
 		var loopSearchUser = function() {
-			// 验证下@是否正常
+			// 驗證下@是否正常
 			var str = _this.textarea.val();
 			
 			var searchUser = function(searchTime, user) {
 				$.post(U('widget/SearchUser/search'), {key:user, type:'at'}, function(msg) {
-					// 超时判断
+					// 超時判斷
 					if(searchTime != _this.searchTime) {
 						return false;
 					}
-					// 判断数据正确性
+					// 判斷資料正確性
 					if(msg.status == 0 || msg.data == null || msg.data == "" || msg.data.length == 0) {
 						_this.notuser = user;
 						core.at._stopUser();
@@ -217,7 +217,7 @@ core.at = {
 						}
 						var data = msg.data;
 						_this.notuser = '';
-						// 组装列表数据
+						// 組裝列表資料
 						if(data.length > 0) {
 							var html = '<ul class="at-user-list">';
 							for(var i in data) {
@@ -227,7 +227,7 @@ core.at = {
 				 	 						<div class="content"><a href="javascript:void(0)">'+data[i].uname+'</a></div></li>';//<span>'+data[i].email+'</span>
 				 	 			}
 				 	 			html += '</ul>';
-				 	 			// 插入数据
+				 	 			// 插入資料
 				 	 			if ( _this.userList == '' ){
 				 	 				var userhtml = "<div class='mod-at-wrap' id='atUserList'><div class='mod-at'><div class='mod-at-list'>\
 										<div class='mod-at-tips'>"+L('PUBLIC_AT_FOLLOWING')+"</div>\
@@ -240,13 +240,13 @@ core.at = {
 //				 	 				_this._showUserList();
 				 	 			}
 				 	 			_this.userList.find('.mod-at-list').html(html);
-				 	 			// 绑定选中事件
+				 	 			// 繫結選中事件
 				 	 			_this.userList.find('.mod-at-list').find('li').hover(function(){
 									$(this).addClass('hover');	
 								},function(){
 									$(this).removeClass('hover');
 								});
-				 	 			// TODO:方向键控制
+				 	 			// TODO:方向鍵控制
 //				 	 			core.plugInit('bindkey',$(_this.userList.find('.mod-at-list')),'li','current','core.at.selectUser()');
 				 	 		} else {
 				 	 			// 直接添加
@@ -265,7 +265,7 @@ core.at = {
 //					core.at._createUserlistDiv(user);
 					return false;
 				}
-				// 创建列表
+				// 創建列表
 				if(user != "" && user != _this.olduser){
 					_this.olduser = user;
 					_this.searchTime++;
@@ -276,11 +276,11 @@ core.at = {
 				core.at._stopUser();
 			}
 		}
-		// 轮询事件绑定
+		// 輪詢事件繫結
 		this.userserintval = setInterval(loopSearchUser, 250);
 	},
 	/**
-	 * 停止用户查询
+	 * 停止使用者查詢
 	 * @return void
 	 * @private
 	 */
@@ -294,17 +294,17 @@ core.at = {
 		core.at._startAt();
 	},
 	/**
-	 * 创建用户DIV窗口
+	 * 創建使用者DIV視窗
 	 * @return void
 	 * @private
 	 */
 	_createUserlistDiv: function(user) {
-		// 验证数据正确性
+		// 驗證資料正確性
 		if(typeof(this.userList) != "string" || this.userList.length > 0) {
 			return false;
 		}
-		// 数据模板
-		if(!user && document.getElementById('atUserList') == null){   //@后跟了查找不到用户的字符时不显示提示框2012/10/12
+		// 資料模板
+		if(!user && document.getElementById('atUserList') == null){   //@後跟了查找不到使用者的字元時不顯示提示框2012/10/12
 			var html = "<div class='mod-at-wrap' id='atUserList'><div class='mod-at'><div class='mod-at-list'>\
 						<div class='mod-at-tips'>"+L('PUBLIC_AT_FOLLOWING')+"</div>\
 						</div></div></div>";
@@ -314,18 +314,18 @@ core.at = {
        	}
 	},
 	/**
-	 * 显示用户查询列表
+	 * 顯示使用者查詢列表
 	 * @return void
 	 * @private
 	 */
 	_showUserList: function() {
-		// 定位问题
+		// 定位問題
 		var x = this.textarea.offset();
         this.userList.css({'left':(x.left-1)+'px','top':(x.top+this.textarea.height()+10)+'px','width':this.textarea.width()+10+'px','display':'block'});
         return false;
 	},
 	/**
-	 * 移除用户查询列表
+	 * 移除使用者查詢列表
 	 * @return void
 	 * @private
 	 */

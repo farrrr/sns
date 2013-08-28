@@ -1,13 +1,13 @@
 <?php
 /**
- * 邀请好友
+ * 邀請好友
  * @example {:W('InviteFriend')}
  * @version TS3.0
  */
 class InviteFriendWidget extends Widget{
 
 	/**
-	 * 渲染邀请好友页面
+	 * 渲染邀請好友頁面
 	 */
 	public function render($data){
 
@@ -16,7 +16,7 @@ class InviteFriendWidget extends Widget{
 
 		unset($var,$data);
 
-		//输出数据
+		//輸出資料
 		return $content;
     }
 }

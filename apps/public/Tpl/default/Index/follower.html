@@ -8,7 +8,7 @@
                 <div id="col5" class="st-index-main">
 	                <div class="extend-foot">
 	                    <div class="feed-nav clearfix">
-	                    	<div class="my-feed-title"><h4>我的粉丝(共<span id="follow_count" event-node="follower_count" event-args="uid={$GLOBALS['ts']['mid']}">{$followerCount|default=0}</span>人)</h4></div>
+	                    	<div class="my-feed-title"><h4>我的粉絲(共<span id="follow_count" event-node="follower_count" event-args="uid={$GLOBALS['ts']['mid']}">{$followerCount|default=0}</span>人)</h4></div>
 		                </div>
 						<div class="sperson-feedlist">
 						<php>if($data){</php>
@@ -20,7 +20,7 @@
 									<dd class="person-info">
 										<div class="info-right right">
 											<p>{:W('FollowBtn', array('fid'=>$vo['uid'], 'uname'=>$vo['uname'], 'follow_state'=>$vo['followState']))}</p>
-											<p><a rel="add" onclick="core.plugInit('blacklist',this,'btn',{$vo['uid']},'')" href="javascript:void(0)">加入黑名单</a></p>
+											<p><a rel="add" onclick="core.plugInit('blacklist',this,'btn',{$vo['uid']},'')" href="javascript:void(0)">加入黑名單</a></p>
 										</div>
 									   <div class="info-left">
 										<p class="hd">
@@ -54,7 +54,7 @@
 							</volist>
 							<div id="page" class="page">{$html}</div>
 						<php>}else{</php>
-                        <div class="loading">暂时没有关注你的人</div>
+                        <div class="loading">暫時沒有關注你的人</div>
                     <php>}</php>
 						</div>
 	                </div>

@@ -3,14 +3,14 @@
         <div id="feedback" class="feedback-fixed"><a href="{:U('public/Index/feedback')}" target="_blank">{:L('PUBLIC_FEEDBACK')}</a></div>
         <div id="main-wrap">
             <div id="st-index-grid" class="st-grid boxShadow">
-                <!--左边 -->
+                <!--左邊 -->
                 <include file="__THEME__/public_left" />
                 <div id="col8" class="st-section content-bg">
-                    <!--右边-->
+                    <!--右邊-->
                     <include file="__THEME__/public_right" />
                     <div id="col5" class="st-index-main">
                     <div class="extend-foot">
-                    <!--发布框-->
+                    <!--釋出框-->
                     {:W('SendWeibo',array('title'=>$title, 'topicHtml'=>$initHtml))}
                     <!--feednav-->
                     {:Addons::hook('show_ad_space', array('place'=>'home_middle'))}
@@ -29,12 +29,12 @@
                                 <case value="following">
                                 <li class="current" model-node="myfollow"><span><a href="javascript:void(0);" title="{$groupname}">{$groupname|getShort=###, 4}<i class="arrow-down"></i></a></span></li> 
                                 <li><span><a href="{:U('public/Index/index',array('type'=>'all'))}">{:L('PUBLIC_ACTIVITY')}</a></span></li>
-                                <eq name="isChannelOpen" value="true"><li><span><a href="{:U('public/Index/index',array('type'=>'channel'))}">我关注的频道<i class="arrow-down"></i></a></span></li></eq>
+                                <eq name="isChannelOpen" value="true"><li><span><a href="{:U('public/Index/index',array('type'=>'channel'))}">我關注的頻道<i class="arrow-down"></i></a></span></li></eq>
                                 </case>
                                 <case value="all">
                                 <li><span><a href="{:U('public/Index/index')}">{:L('PUBLIC_ACTIVITY_STREAM')}<i class="arrow-down"></i></a></span></li>
                                 <li class="current"><span><a href="{:U('public/Index/index',array('type'=>'all'))}">{:L('PUBLIC_ACTIVITY')}</a></span></li>
-                                <eq name="isChannelOpen" value="true"><li><span><a href="{:U('public/Index/index',array('type'=>'channel'))}">我关注的频道<i class="arrow-down"></i></a></span></li></eq>
+                                <eq name="isChannelOpen" value="true"><li><span><a href="{:U('public/Index/index',array('type'=>'channel'))}">我關注的頻道<i class="arrow-down"></i></a></span></li></eq>
                                 </case>
                                 <case value="channel">
                                 <li><span><a href="{:U('public/Index/index')}">{:L('PUBLIC_ACTIVITY_STREAM')}<i class="arrow-down"></i></a></span></li>
@@ -57,7 +57,7 @@
                             <li <eq name='feed_type' value='postfile'>class="current"</eq>>
                             <a href="{:U('public/Index/index',array('type'=>$type,'feed_type'=>'postfile'))}">{:L('PUBLIC_FILE_STREAM')}</a></li>
                             <li <eq name="feed_type" value="postvideo">class="current"</eq>>
-                            <a href="{:U('public/Index/index',array('type'=>$type,'feed_type'=>'postvideo'))}">视频</a></li>
+                            <a href="{:U('public/Index/index',array('type'=>$type,'feed_type'=>'postvideo'))}">視訊</a></li>
                         </ul>
                     </div>
                     </div>
@@ -89,7 +89,7 @@
 <div class="layer-channel-group-list" style="display:none" model-node="layer_channel_group_list">
     <div class="inner">
         <ul>
-            <li><a href="{:U('public/Index/index',array('type'=>'channel'))}">我关注的频道</a></li>
+            <li><a href="{:U('public/Index/index',array('type'=>'channel'))}">我關注的頻道</a></li>
             <volist name='channelGroup' id ='f'>
             <li><a href="{:U('public/Index/index',array('type'=>'channel','fgid'=>$f['channel_category_id']))}" class="group_title" gid="{$f['channel_category_id']}">{$f.title}</a></li>
             </volist>

@@ -1,251 +1,251 @@
 <?php
 /**
- * 日志模型 - 数据对象模型
+ * 日誌模型 - 資料物件模型
  * @example
- * load($type) 						链式指定类型
- * action($action)  				链式指定行为
- * record($content, $isAdminLog)	记录日志
- * get($map,$limit=30, $table) 		获取日志
- * cleanLogs($m)					清理m个月之前的日志
- * getMenuList()					获取所有权限节点列表
- * logsArchive()					归档1个月之前的日志
- * dellogs($id, $date)				删除某张表中的某条记录
- * getMenuList($app)				获取应用下的日志节点
- * 请直接使用函数库中的LogRecord($type, $action, $data, $isAdmin);进行日志存储                          
- * @author jason <yangjs17@yeah.net> 
+ * load($type)                      鏈式指定類型
+ * action($action)                  鏈式指定行為
+ * record($content, $isAdminLog)    記錄日誌
+ * get($map,$limit=30, $table)      獲取日誌
+ * cleanLogs($m)                    清理m個月之前的日誌
+ * getMenuList()                    獲取所有許可權節點列表
+ * logsArchive()                    歸檔1個月之前的日誌
+ * dellogs($id, $date)              刪除某張表中的某條記錄
+ * getMenuList($app)                獲取應用下的日志節點
+ * 請直接使用函數庫中的LogRecord($type, $action, $data, $isAdmin);進行日誌存儲
+ * @author jason <yangjs17@yeah.net>
  * @version TS3.0
  */
 class LogsModel extends Model {
 
-	protected $tableName = 'x_logs';
-	protected $fields = array('id','uid','uname','app_name','group','action','data','ctime','url','isAdmin','ip','keyword');
+    protected $tableName = 'x_logs';
+    protected $fields = array('id','uid','uname','app_name','group','action','data','ctime','url','isAdmin','ip','keyword');
 
-    public $option;				// 日志配置字段
-	public $keyword;			// 日志关键字
+    public $option;             // 日誌配置欄位
+    public $keyword;            // 日誌關鍵字
 
-	/**
-	 * 链式指定日志类型
-	 * @param string $type 日志类型，用“_”进行分割
-	 * @return object 日志模型对象
-	 */
-	public function load($type) {
-		$type = explode('_', $type, 2);
-		$this->option['app'] = $type[0];
-		$this->option['group'] = $type[1];
-		return $this;
-	}
-
-	/**
-	 * 链式指定日志行为
-	 * @param string $type 行为字段
-	 * @return object 日志模型对象
-	 */
-	public function action($type) {
-		$this->option['action'] = $type;
-		return $this;
-	}
-
-	/**
-	 * 记录日志
-	 * @param string $content 日志内容
-	 * @param integer $isAdminLog 是否是管理员日志，默认为1
-	 * @return mix 添加失败返回false，添加成功返回日志ID
-	 */
-    public function record($content, $isAdminLog) {
-    	$this->parseKeyWord($content);
-    	$user = $GLOBALS['ts']['user'];
-		$data['uid'] = $user['uid'];				// TODO:临时写死
-		$data['uname'] = $user['uname'];		// TODO:临时写死
-		$data['app_name'] = $this->option['app'];
-		$data['group'] = $this->option['group'];
-		$data['action'] = $this->option['action'];
-		$data['data'] = serialize( $content );
-		$data['ctime'] = time();
-		$data['url'] = $_SERVER['REQUEST_URI'];
-        $data['isAdmin'] = intval( $isAdminLog );
-        $data['ip'] = get_client_ip();
-        $data['keyword'] = ($this->keyword) ? implode(' ',$this->keyword) : '' ;
-		return $this->add($data);
+    /**
+     * 鏈式指定日誌類型
+     * @param string $type 日誌類型，用“_”進行分割
+     * @return object 日誌模型物件
+     */
+    public function load($type) {
+        $type = explode('_', $type, 2);
+        $this->option['app'] = $type[0];
+        $this->option['group'] = $type[1];
+        return $this;
     }
 
     /**
-     * 将数值转换为字符串
-     * @param string $content 日志内容
+     * 鏈式指定日志行為
+     * @param string $type 行為欄位
+     * @return object 日誌模型物件
+     */
+    public function action($type) {
+        $this->option['action'] = $type;
+        return $this;
+    }
+
+    /**
+     * 記錄日誌
+     * @param string $content 日誌內容
+     * @param integer $isAdminLog 是否是管理員日誌，默認為1
+     * @return mix 添加失敗返回false，添加成功返回日誌ID
+     */
+    public function record($content, $isAdminLog) {
+        $this->parseKeyWord($content);
+        $user = $GLOBALS['ts']['user'];
+        $data['uid'] = $user['uid'];                // TODO:臨時寫死
+        $data['uname'] = $user['uname'];        // TODO:臨時寫死
+        $data['app_name'] = $this->option['app'];
+        $data['group'] = $this->option['group'];
+        $data['action'] = $this->option['action'];
+        $data['data'] = serialize( $content );
+        $data['ctime'] = time();
+        $data['url'] = $_SERVER['REQUEST_URI'];
+        $data['isAdmin'] = intval( $isAdminLog );
+        $data['ip'] = get_client_ip();
+        $data['keyword'] = ($this->keyword) ? implode(' ',$this->keyword) : '' ;
+        return $this->add($data);
+    }
+
+    /**
+     * 將數值轉換為字元串
+     * @param string $content 日誌內容
      * @return void
      */
     private function parseKeyWord($content) {
         if(is_array($content)) {
             foreach($content as $key => $value) {
-            	!in_array($value, $this->keyword) && $this->parseKeyWord($value);
+                !in_array($value, $this->keyword) && $this->parseKeyWord($value);
             }
         } else {
             $this->keyword[] = $content;
         }
     }
 
-	/**
-	 * 获取指定日志的列表信息
-	 * @param array $map 查询条件
-	 * @param integer $limit 结果集数目，默认为30
-	 * @param string $table 指定日志表，默认为系统日志表
-	 * @return array 指定日志的列表信息
-	 */
+    /**
+     * 獲取指定日誌的列表資訊
+     * @param array $map 查詢條件
+     * @param integer $limit 結果集數目，默認為30
+     * @param string $table 指定日誌表，默認為系統日誌表
+     * @return array 指定日誌的列表資訊
+     */
     public function get($map, $limit = 30, $table = false) {
         $table = $table ? $this->tablePrefix.'x_logs_'.$table : $this->tablePrefix.'x_logs';
-		$list = $this->table($table)->where($map)->order('id DESC')->findPage($limit);
-	    foreach($list['data'] as $key => $v) {
-    		$tempData = $this->__paseTemplate($v);
-    		$list['data'][$key]['data'] = $tempData['data'];
-    		$list['data'][$key]['type_info'] = $tempData['info'];
-    	}
-
-		return $list;
-	}
-
-	/**
-	 * 获取指定应用下所有权限节点列表
-	 * @param string $app 应用名称
-	 * @return array 指定应用下所有权限节点列表
-	 */
-	public function getMenuList($app){
-		$logsXml = SITE_PATH.'/apps/'.$app.'/Conf/logs.xml';
-		if(!file_exists($logsXml)) {
-			$this->error = L('PUBLIC_SETTING_FILE', array('file'=>$logsXml));			// 配置文件：{file}不存在
-			return false;
-		}
-        $xml = simplexml_load_file($logsXml);
-		if($xml->group) {
-			foreach($xml->group as $k=>$v) {
-				unset($rule);
-				foreach($v->action as $kk => $vv) {
-					$rule[(string)$vv['type']] = (string)$vv['info'];
-				}
-
-				$data['_group'][(string)$v['name']] = array(
-					'info'=>(string)$v['info'],
-					'_rule'=>$rule
-				);
-			}
-		} else {
-			foreach($xml->action as $kk => $vv) {
-				$data['_rule'][(string)$vv['type']] = (string)$vv['info'];
-			}
+        $list = $this->table($table)->where($map)->order('id DESC')->findPage($limit);
+        foreach($list['data'] as $key => $v) {
+            $tempData = $this->__paseTemplate($v);
+            $list['data'][$key]['data'] = $tempData['data'];
+            $list['data'][$key]['type_info'] = $tempData['info'];
         }
 
-		return $data;
-	}
+        return $list;
+    }
 
-	/**
-	 * 清除日志数据，删除几个月前的日志信息
-	 * @param integer $m 月数，删除几个月前的日志信息
-	 * @return mix 删除失败返回false，删除成功返回1
-	 */
-	public function cleanLogs($m) {
-		$m = intval($m);
-		if($m == 0) {
-			return false;
-		}
-		// 获取日志表列表
-		$tableList = D('')->query("SHOW TABLE STATUS LIKE '".$this->tablePrefix."x_logs_%'");
+    /**
+     * 獲取指定應用下所有許可權節點列表
+     * @param string $app 應用名稱
+     * @return array 指定應用下所有許可權節點列表
+     */
+    public function getMenuList($app){
+        $logsXml = SITE_PATH.'/apps/'.$app.'/Conf/logs.xml';
+        if(!file_exists($logsXml)) {
+            $this->error = L('PUBLIC_SETTING_FILE', array('file'=>$logsXml));           // 配置檔案：{file}不存在
+            return false;
+        }
+        $xml = simplexml_load_file($logsXml);
+        if($xml->group) {
+            foreach($xml->group as $k=>$v) {
+                unset($rule);
+                foreach($v->action as $kk => $vv) {
+                    $rule[(string)$vv['type']] = (string)$vv['info'];
+                }
+
+                $data['_group'][(string)$v['name']] = array(
+                    'info'=>(string)$v['info'],
+                    '_rule'=>$rule
+                );
+            }
+        } else {
+            foreach($xml->action as $kk => $vv) {
+                $data['_rule'][(string)$vv['type']] = (string)$vv['info'];
+            }
+        }
+
+        return $data;
+    }
+
+    /**
+     * 清除日誌資料，刪除幾個月前的日誌資訊
+     * @param integer $m 月數，刪除幾個月前的日誌資訊
+     * @return mix 刪除失敗返回false，刪除成功返回1
+     */
+    public function cleanLogs($m) {
+        $m = intval($m);
+        if($m == 0) {
+            return false;
+        }
+        // 獲取日誌表列表
+        $tableList = D('')->query("SHOW TABLE STATUS LIKE '".$this->tablePrefix."x_logs_%'");
         $todayInfo = getDate(time());
         $diff = getDate(mktime(0,0,0,$todayInfo['mon'] - $m,1,$todayInfo['year']));
 
         foreach($tableList as $k => $value) {
             $table = explode('_',$value['Name']);
             if($table[3] == $diff['year']) {
-				if($table[4] <= $diff['mon']) {
+                if($table[4] <= $diff['mon']) {
                     $dropTables[] = $value['Name'];
                 }
             } else if($table[3] < $diff['year']) {
-				$dropTables[] = $value['Name'];
+                $dropTables[] = $value['Name'];
             }
         }
 
         if($dropTables) {
             return D('')->query("DROP TABLE ".implode(',',$dropTables));
         } else {
-        	return false;
+            return false;
         }
-	}
+    }
 
-	/**
-	 * 重建日志归档，重建后的日志只存在归档表中，主日志表不在有该日志信息
-	 * @return boolean 是否重建成功
-	 */
-	public function logsArchive() {
-		$logsTableName = $this->tablePrefix.'x_logs';
-    	$today = getDate(time());
-    	// 上个月底的时间
-    	$dayBeforeTime = strtotime(date('Y-m-t 23:59:59', strtotime('-1 month')));
-    	// 主表是否存在31天前的日志
-    	if($this->where('ctime<='.$dayBeforeTime)->count()) {
-    		// 搜索下有多少个月的数据需要归档
-    		$findDate = D('')->query("SELECT DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m') AS lists FROM {$logsTableName} WHERE ctime <= ".$dayBeforeTime." GROUP BY DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m')");
-    		// 每个月归档
-    		foreach($findDate as $value) {
-    			$dataInfo = explode('-', $value['lists']);
-    			// 归档表的名称
-    			$archiveTableName = $logsTableName.'_'.$dataInfo[0].'_'.$dataInfo[1];
-    			// 先创建表
-    			if(D('')->query("DESC $archiveTableName") == false) {
-    				D('')->query("CREATE TABLE $archiveTableName LIKE $logsTableName");
-    			}
-    			$querySql = "DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m') = '".$value[lists]."'";
-    			$result = D('')->query("INSERT INTO $archiveTableName SELECT * FROM $logsTableName WHERE $querySql");
-    		}
-    		$this->where($querySql)->delete();
-    		return true;
-    	} else {
-    		return false;
-    	}
-	}
+    /**
+     * 重建日誌歸檔，重建後的日誌只存在歸檔表中，主日誌表不在有該日誌資訊
+     * @return boolean 是否重建成功
+     */
+    public function logsArchive() {
+        $logsTableName = $this->tablePrefix.'x_logs';
+        $today = getDate(time());
+        // 上個月底的時間
+        $dayBeforeTime = strtotime(date('Y-m-t 23:59:59', strtotime('-1 month')));
+        // 主表是否存在31天前的日誌
+        if($this->where('ctime<='.$dayBeforeTime)->count()) {
+            // 搜索下有多少個月的資料需要歸檔
+            $findDate = D('')->query("SELECT DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m') AS lists FROM {$logsTableName} WHERE ctime <= ".$dayBeforeTime." GROUP BY DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m')");
+            // 每個月歸檔
+            foreach($findDate as $value) {
+                $dataInfo = explode('-', $value['lists']);
+                // 歸檔表的名稱
+                $archiveTableName = $logsTableName.'_'.$dataInfo[0].'_'.$dataInfo[1];
+                // 先創建表
+                if(D('')->query("DESC $archiveTableName") == false) {
+                    D('')->query("CREATE TABLE $archiveTableName LIKE $logsTableName");
+        }
+        $querySql = "DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m') = '".$value[lists]."'";
+        $result = D('')->query("INSERT INTO $archiveTableName SELECT * FROM $logsTableName WHERE $querySql");
+        }
+        $this->where($querySql)->delete();
+        return true;
+        } else {
+            return false;
+        }
+        }
 
-	/**
-	 * 删除指定的日志记录信息
-	 * @param integer $id 日志ID
-	 * @param string $date 时间字段
-	 * @return mix 删除失败返回false，删除成功返回删除的日志ID
-	 */
-	public function dellogs($id, $date = '') {
-		$logsTableName = $this->tablePrefix.'x_logs'.(empty($date) ? "" : "_".$date);
-		$map['id'] = is_array($id) ? array('IN', $id) : $id;
-		return D('')->table($logsTableName)->where($map)->delete();
-	}
+        /**
+         * 刪除指定的日誌記錄資訊
+         * @param integer $id 日誌ID
+         * @param string $date 時間欄位
+         * @return mix 刪除失敗返回false，刪除成功返回刪除的日誌ID
+         */
+        public function dellogs($id, $date = '') {
+            $logsTableName = $this->tablePrefix.'x_logs'.(empty($date) ? "" : "_".$date);
+            $map['id'] = is_array($id) ? array('IN', $id) : $id;
+            return D('')->table($logsTableName)->where($map)->delete();
+        }
 
-	/**
-	 * 渲染日志模板变量
-	 * @param array $_data 日志相关数据
-	 * @return array 渲染后的日志模板变量
-	 */
-    protected function __paseTemplate($_data) {
-        $app = $_data['app_name'];
-		$var = unserialize($_data['data']);
-		$logFile = SITE_PATH.'/apps/'.$app.'/Conf/logs.xml';
-		if(!file_exists($logFile)) {
-			$this->error = L('PUBLIC_SETTING_FILE', array('file'=>$logFile));			// 配置文件：{file}不存在
-			return false;
-		}
-		$content = fetch($logFile, $var,'UTF8','text/xml');
+        /**
+         * 渲染日誌模板變數
+         * @param array $_data 日誌相關資料
+         * @return array 渲染後的日誌模板變數
+         */
+        protected function __paseTemplate($_data) {
+            $app = $_data['app_name'];
+            $var = unserialize($_data['data']);
+            $logFile = SITE_PATH.'/apps/'.$app.'/Conf/logs.xml';
+            if(!file_exists($logFile)) {
+                $this->error = L('PUBLIC_SETTING_FILE', array('file'=>$logFile));           // 配置檔案：{file}不存在
+                return false;
+        }
+        $content = fetch($logFile, $var,'UTF8','text/xml');
 
-		$dom = new domDocument;
-		$dom->loadXml($content);
-		unset($content);
+        $dom = new domDocument;
+        $dom->loadXml($content);
+        unset($content);
 
         $s = simplexml_import_dom($dom);
 
         if($_data['group']) {
-        	$result = $s->xpath("//root/group[@name='".$_data['group']."']/action[@type='".$_data['action']."']");
+            $result = $s->xpath("//root/group[@name='".$_data['group']."']/action[@type='".$_data['action']."']");
         } else {
-			$result = $s->xpath("//root/action[@type='".$_data['action']."']");
+            $result = $s->xpath("//root/action[@type='".$_data['action']."']");
         }
-        // 异常情况
-        $return = array('info'=>L('PUBLIC_PERMISSION_POINT_NOEXIST'),'data'=>L('PUBLIC_PERMISSION_POINT_NOEXIST'));			// 权限节点不存在，权限节点不存在
+        // 異常情況
+        $return = array('info'=>L('PUBLIC_PERMISSION_POINT_NOEXIST'),'data'=>L('PUBLIC_PERMISSION_POINT_NOEXIST'));         // 許可權節點不存在，許可權節點不存在
 
-       	if($result) {
-			$return['info'] = (string)$result[0]['info'];
-        	$return['data'] = trim((string)$result[0]);
-       	}
+        if($result) {
+            $return['info'] = (string)$result[0]['info'];
+            $return['data'] = trim((string)$result[0]);
+        }
 
-		return $return;
-	}
-}
+        return $return;
+        }
+        }

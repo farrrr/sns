@@ -1,6 +1,6 @@
 <?php
 /**
- * 视频模块
+ * 視訊模組
  * @author Stream
  *
  */
@@ -10,7 +10,7 @@ class VideoWidget extends Widget{
 	  
     /**
     * 
-    * 上传视频接受处理
+    * 上傳視訊接受處理
     * 
     */
 	public function paramUrl(){
@@ -20,14 +20,14 @@ class VideoWidget extends Widget{
 	  		$return['data']   = $link;
 	  	}else{
 	  		$return['boolen'] = 0;
-	  		$return['message'] = '仅支持新浪播客、优酷网、土豆网、酷6网、搜狐等视频发布';
+	  		$return['message'] = '僅支援新浪播客、優酷網、土豆網、酷6網、搜狐等視訊釋出';
 	  	}
 	  	$flashinfo = model('Video')->_video_getflashinfo($link, $hosts[1]);
 	  	
 	  	$return['title'] = 1;
 	  	if( !$flashinfo['title'] || json_encode($flashinfo['title']) == 'null'){
 	  		$return['title'] = 0;
-	  		$return['message'] = '仅支持新浪播客、优酷网、土豆网、酷6网、搜狐等视频发布';
+	  		$return['message'] = '僅支援新浪播客、優酷網、土豆網、酷6網、搜狐等視訊釋出';
 	  	}
 	  	$return['data'] = $flashinfo['title'].$return['data'];
 	  	exit( json_encode($return) );

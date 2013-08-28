@@ -1,7 +1,7 @@
 <include file="__THEME__/admin_header" />
 
 <div id="container" class="so_main">
-  <div class="page_tit">邮件邀请</div>
+  <div class="page_tit">郵件邀請</div>
   <!-- START TAB框 -->
   <php>if(!empty($pageTab)):</php>
   <div class="tit_tab">
@@ -17,22 +17,22 @@
   <div class="form2">
     <div class="inviteMode">
       <div class="invite-title">
-        <h4>输入邀请用户邮箱</h4>
-        <input id="check_email" class="s-txt" type="text" autocomplete="off"><a href="javascript:;" onclick="doInviteEmail();" class="btn-green-big">发送邀请</a>
+        <h4>輸入邀請使用者郵箱</h4>
+        <input id="check_email" class="s-txt" type="text" autocomplete="off"><a href="javascript:;" onclick="doInviteEmail();" class="btn-green-big">發送邀請</a>
         <div id="prompt_box" class="box-ver"></div>
       </div>
       <!--
       <div class="invite-user-list">
-        <h4>已邀请用户：</h4>
+        <h4>已邀請使用者：</h4>
         <php>if(empty($inviteList)):</php>
-        <p>当前无邀请好友</p>
+        <p>當前無邀請好友</p>
         <php>else:</php>
         <ul>
           <li>
             <div class="w0">&nbsp;</div>
-            <div class="w3">昵称</div>
-            <div class="w1">邮箱</div>
-            <div class="">邀请人</div>
+            <div class="w3">昵稱</div>
+            <div class="w1">郵箱</div>
+            <div class="">邀請人</div>
            </li>
           <volist name="inviteList.data" id="vo">
           <li>
@@ -52,18 +52,18 @@
 
 <script type="text/javascript">
 /**
- * 发送邮件邀请
+ * 發送郵件邀請
  */
 var doInviteEmail = function()
 {
-  // 邮件内容
+  // 郵件內容
   var email = $.trim($('#check_email').val());
-  // 测试邮件内容
+  // 測試郵件內容
   if(email == '') {
-    ui.error('请填写邀请人邮箱');
+    ui.error('請填寫邀請人郵箱');
     return false;
   }
-  // 提交邀请
+  // 提交邀請
   $.post(U('admin/Config/doInvite'), {email:email}, function(res) {
     if(res.status ) {
       ui.success(res.info);

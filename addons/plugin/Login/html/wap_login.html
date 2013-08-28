@@ -20,25 +20,25 @@
 </style>
 </head>
 <body>
-<div class="top">欢迎访问{$ts['site']['site_name']}</div>
-<div>第一次来{$ts['site']['site_name']}，点击这里直接登录：</div>
+<div class="top">歡迎訪問{$ts['site']['site_name']}</div>
+<div>第一次來{$ts['site']['site_name']}，點選這裡直接登入：</div>
 <div class="addtbox"> 
     <form action="{:Addons::createAddonUrl('Login','login_register_on_client')}" method="post">
         <input type="hidden" name="type" value="{$type}" />
-        用户名：<br />
+        使用者名：<br />
         <input type="text" name="uname" value="{$user.uname}"/><br />
-        <input type="submit" value="登录" />
+        <input type="submit" value="登入" />
     </form>
 </div>
-<div>已经有{$ts['site']['site_name']}帐号？点击这里绑定帐号：</div>
+<div>已經有{$ts['site']['site_name']}帳號？點選這裡繫結帳號：</div>
 <div class="addtbox">
     <form action="{:Addons::createAddonUrl('Login','login_bind_on_client')}" method="post">
       	<input type="hidden" name="type" value="{$type}" />
-        电子邮箱：<br />
+        電子郵箱：<br />
         <input type="text" name="email" /><br />
-        密码：<br />
+        密碼：<br />
         <input type="password" name="passwd" /><br />
-        <input type="submit" value="确认绑定" class="btn_b" />
+        <input type="submit" value="確認繫結" class="btn_b" />
         <input type="hidden" value="231889230089c2f46233284e6fbeb4e0" name="__hash__">
     </form>
 </div>

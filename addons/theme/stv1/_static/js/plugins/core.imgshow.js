@@ -1,11 +1,11 @@
-//追加核心图片展示插件
+//追加核心圖片展示插件
 
 var imgScroll  = function(id){
 	this.id = id;
 	this.init();
-}; //图片滚动
-var imgTab	   = function(){}; //图片直接切换	
-var imgAnimate = function(){}; //图片切换（带移动）
+}; //圖片滾動
+var imgTab	   = function(){}; //圖片直接切換	
+var imgAnimate = function(){}; //圖片切換（帶移動）
 
 imgScroll.prototype={
 	init:function(){
@@ -77,18 +77,18 @@ imgScroll.prototype={
 	}	
 };
 core.imgshow ={
-		//给工厂调用的接口
+		//給工廠呼叫的介面
 		_init:function(attrs){
 			if(attrs.length == 3){
 
 			}else{
-				return false;	//只是未了加载文件
+				return false;	//只是未了載入檔案
 			}
 		},
 		loginImg:function(t){
-			//登录页面图片切换
-			var sWidth = $(".slide-con").width(); //获取焦点图的宽度（显示面积）
-			var len = $(".slide-con ul.slide li").length; //获取焦点图个数
+			//登入頁面圖片切換
+			var sWidth = $(".slide-con").width(); //獲取焦點圖的寬度（顯示面積）
+			var len = $(".slide-con ul.slide li").length; //獲取焦點圖個數
 			var index = 0;
 			var picTimer;
 			if("undefined" == typeof(t)){
@@ -100,7 +100,7 @@ core.imgshow ={
 				showPics(index);
 			}).eq(0).trigger("mouseenter");
 
-			//本例为左右滚动，即所有li元素都是在同一排向左浮动，所以这里需要计算出外围ul元素的宽度
+			//本例為左右滾動，即所有li元素都是在同一排向左浮動，所以這裡需要計算出外圍ul元素的寬度
 			$(".slide-con ul.slide").css("width",sWidth * (len));
 			
 		    var setPicTimer = function(){
@@ -108,10 +108,10 @@ core.imgshow ={
 		            showPics(index);
 		            index++;
 		            if(index == len) {index = 0;}
-		        },t*1000); //此4000代表自动播放的间隔，单位：毫秒
+		        },t*1000); //此4000代表自動播放的間隔，單位：毫秒
 		    };
 
-			//鼠标滑上焦点图时停止自动播放，滑出时开始自动播放
+			//滑鼠滑上焦點圖時停止自動播放，滑出時開始自動播放
 			$("#focus").hover(function() {
 				clearInterval(picTimer);
 		        picTimer = null;
@@ -119,7 +119,7 @@ core.imgshow ={
 		        setPicTimer();
 		    });
 		    
-			//显示图片函数，根据接收的index值显示相应的内容
+			//顯示圖片函數，根據接收的index值顯示相應的內容
 			function showPics(index) {
 				var nowLeft = -index*sWidth;
 				$(".slide-con ul.slide").stop(true,false).animate({"left":nowLeft},300); 

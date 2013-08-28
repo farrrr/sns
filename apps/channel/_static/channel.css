@@ -1,4 +1,4 @@
-/*图标*/
+/*圖示*/
 .ico-comment{background-position:-219px -66px;width:16px;height:16px;display:inline-block;vertical-align:-6px;*vertical-align:-3px}
 .ico-favorites{background-position:-219px -33px;width:16px;height:16px;display:inline-block;vertical-align:-4px;*vertical-align:-2px}
 .channel-user-share .ico-favorites.current{background-position:-219px -99px;width:16px;height:16px;display:inline-block;vertical-align:-4px;*vertical-align:-2px}
@@ -16,7 +16,7 @@
 *+html .channel-type .ml{*margin:5px 0 0 130px;}
 .channel-type{background:#f7f7f7;padding:10px 10px 10px 0;color:#999;width:950px;position:relative;z-index:99;}
 .channel-type.fixed{position:fixed;top:40px;z-index:9;}
-.channel-type h4{position:absolute;left:0;top:0;color:#333;font-size:18px;font-family:"微软雅黑";border:1px solid #f7f7f7;margin:2px 0 0 0;padding:13px;line-height:22px;height:22px;cursor:pointer;border-bottom:0;_padding:12px;}
+.channel-type h4{position:absolute;left:0;top:0;color:#333;font-size:18px;font-family:"微軟雅黑";border:1px solid #f7f7f7;margin:2px 0 0 0;padding:13px;line-height:22px;height:22px;cursor:pointer;border-bottom:0;_padding:12px;}
 .channel-type h4:hover{background:#fff;padding:13px;line-height:22px;height:22px;border:1px solid #ccc;border-bottom:0;margin:2px 0 0 0;z-index:10;_padding:12px;}
 .channel-type h4 span{width:72px;display:inline-block;overflow:hidden;white-space:nowrap;}
 .channel-type em{font-style:normal;}
@@ -44,7 +44,7 @@
 .channel-blank{background:#f1f9fb;}
 
 
-/*频道列表页*/
+/*頻道列表頁*/
 .channel-feed-list .content{position:relative;margin:0 0 0 70px;border:1px solid #ccc;padding:20px;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;box-shadow:0 2px 0 0 #EBEBEB;-webkit-box-shadow:0 2px 0 0 #ebebeb;-moz-box-shadow:0 2px 0 0 #ebebeb;}
 .channel-feed-list .content .arrow-channel-left{position:absolute;left:-12px;top:12px;}
 .channel-feed-list .content img{padding:10px 0;}
@@ -53,7 +53,7 @@
 
 .boxy-modal-blackout-channel { position: absolute;background:red;left: 0; top: 0;filter:alpha(opacity=20); /*IE*/-moz-opacity:0.2; /*MOZ , FF*/opacity:0.2;}
 
-/*投稿弹窗*/
+/*投稿彈窗*/
 .contribute-box{width:620px;padding:20px;}
 .contribute-box li{margin:0 0 10px 0;}
 .contribute-box .textL{width:60px;text-align:right;float:left;padding:5px 0 0 0;}
@@ -67,7 +67,7 @@
 .contribute-box .btn .btn-big span{padding:8px 25px;}
 .contribute-box .upload{background:#fafafa;padding:10px;}
 
-/* 分类下拉菜单样式 */
+/* 分類下拉選單樣式 */
 .on .channel-dropbox{display:block;box-shadow:2px 2px 5px #CCC;-webkit-box-shadow:2px 2px 5px #CCC;-moz-box-shadow:2px 2px 5px #ccc;}
 .on .channel-category-btn {background:#fff;padding:13px;line-height:22px;height:22px;border:1px solid #ccc;border-bottom:0;z-index:9;_padding:12px;}
 .channel-selector {position:relative;top:-12px;}

@@ -4,7 +4,7 @@
 <div id="page-wrap">
   <div id="main-wrap">
     <div id="st-index-grid">
-    <!--左边 -->
+    <!--左邊 -->
       <include file="__THEME__/public_left" />
       <div id="col8" class="content-bg clearfix boxShadow">
         <div id="col4" class="main-left">
@@ -12,13 +12,13 @@
             <dl class="nav-left mt10 border-no">
               <dd><a href="{:U('public/Mention')}">@提到我的</a></dd>
               <dd <neq name='_GET.type' value='send'>class="current"</neq>>
-                <a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的评论</a>
+                <a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的評論</a>
               </dd>
               <dd <eq name='_GET.type' value='send'>class="current"</eq>>
-                <a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">发出的评论</a>
+                <a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">發出的評論</a>
               </dd>
               <dd><a href="{:U('public/Message')}">我的私信</a></dd>
-              <dd><a href="{:U('public/Message/notify')}">系统消息</a></dd>
+              <dd><a href="{:U('public/Message/notify')}">系統訊息</a></dd>
             </dl>
           </div>
         </div>
@@ -44,7 +44,7 @@
               </div>
             </div>
             <php> $cancomment1 = intval(CheckPermission('core_normal','feed_comment')); </php>
-            <!-- 收到的评论 -->
+            <!-- 收到的評論 -->
             <php>if($_GET['type'] == 'receive'):</php>
             <div class="feed_lists" id="comment-lists">
               <neq name='list.data' value=''>
@@ -69,7 +69,7 @@
                     <php>if($vo['is_audit']){</php>
                       {$vo.content}
                     <php>}else{</php>
-                      内容正在审核
+                      內容正在稽覈
                     <php>}</php>
                   </p>
                   <dl class="comment">
@@ -90,12 +90,12 @@
                         <a href="{$vo.sourceInfo.source_url}">{:L('PUBLIC_VIEW')}</a>
                         <php>if(in_array('comment',$weibo_premission)):</php>
                         <neq name='_GET.type' value='send'>
-                        <i class="vline">|</i><a href="javascript:void(0);" onclick="if({$cancomment1}){ui.reply(<php>echo $vo['comment_id'];</php>);}else{ui.error('没有权限');}">{:L('PUBLIC_STREAM_REPLY')}</a>
+                        <i class="vline">|</i><a href="javascript:void(0);" onclick="if({$cancomment1}){ui.reply(<php>echo $vo['comment_id'];</php>);}else{ui.error('沒有許可權');}">{:L('PUBLIC_STREAM_REPLY')}</a>
                         </neq>
                         <php>endif;</php>
                       </span>
                       <span class="date">{$vo.ctime|friendlyDate}</span>&nbsp;
-                      <span>来自网站</span>
+                      <span>來自網站</span>
                       <php>if($i<=$unread_comment_count){</php>
                         <img src="__THEME__/image/icon_new.gif" />
                       <php>}</php>
@@ -110,7 +110,7 @@
               <div id='page' class='page'>{$list.html}</div>
             </div>
             <php>else:</php>
-            <!-- 发出的评论 -->
+            <!-- 發出的評論 -->
             <div class="feed_lists" id="feed-lists">
               <neq name='list.data' value=''>
               <volist name='list.data' id='vo'>
@@ -145,11 +145,11 @@
                       <php>}</php>
                       <a href="{$vo.sourceInfo.source_url}">{:L('PUBLIC_VIEW')}</a>
                       <neq name='_GET.type' value='send'>
-                      <i class="vline">|</i><a href="javascript:void(0);" onclick="if({$cancomment1}){ui.reply(<php>echo $vo['comment_id'];</php>);}else{ui.error('没有权限');}">{:L('PUBLIC_STREAM_REPLY')}</a>
+                      <i class="vline">|</i><a href="javascript:void(0);" onclick="if({$cancomment1}){ui.reply(<php>echo $vo['comment_id'];</php>);}else{ui.error('沒有許可權');}">{:L('PUBLIC_STREAM_REPLY')}</a>
                       </neq>
                     </span>
                     <span class="date">{$vo.ctime|friendlyDate}</span>&nbsp;
-                    <span>来自网站</span>
+                    <span>來自網站</span>
                   </p>
                 </dd>
               </dl>
@@ -170,7 +170,7 @@
 <script type="text/javascript" src="__THEME__/js/module.weibo.js"></script>
 <script type="text/javascript">
 M.addEventFns({
-  img_small:{ //图片显示
+  img_small:{ //圖片顯示
     click:function(){
       $(this.parentModel).find('div').each(function(){
         if($(this).attr('rel') == 'small'){

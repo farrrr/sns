@@ -2,7 +2,7 @@
     <div class="pop_up_main">
         <div class="pop_up_tab">
             <div class="tab">
-                <a href="#" class="on">基本设置</a>
+                <a href="#" class="on">基本設定</a>
             </div>
         </div>
         <div class="pop_up_box">
@@ -16,16 +16,16 @@
                     </div>
                 </li>
                 <li>
-                    <div class="c1">激活方式:</div>
+                    <div class="c1">啟用方式:</div>
                     <div class="c2">
                         <select name="u" id="event" class="param_post text">
-                            <option value="click" selected="selected">鼠标点击</option>
-                            <!-- <option value="mouseover">鼠标经过</option> -->
+                            <option value="click" selected="selected">滑鼠點選</option>
+                            <!-- <option value="mouseover">滑鼠經過</option> -->
                         </select>
                     </div>
                 </li>
                 <li>
-                    <div class="c1 pt5">tab成员:</div>
+                    <div class="c1 pt5">tab成員:</div>
                     <div class="c2">
 
                         <ul id="diy_tabs_items">
@@ -34,9 +34,9 @@
 									<li class="tab_items{$i}">
                                      <div class="mb5">
 		                                <label>
-		                                    标题:
+		                                    標題:
 		                                </label>
-		                                <input type="text" rel="tabItemsComment{$i}" class="tabItems" value="<php>echo $vo->title;</php>"/><span><a href="javascript:void(0)" class="delTabHref ml5" rel="{$i}">删除</a></span>
+		                                <input type="text" rel="tabItemsComment{$i}" class="tabItems" value="<php>echo $vo->title;</php>"/><span><a href="javascript:void(0)" class="delTabHref ml5" rel="{$i}">刪除</a></span>
                                      </div>
 										<textarea cols="" rows="5" id="tabItemsComment{$i}" class="text" style="width:90%;"><php>echo str_replace("[@]","&",$vo->comment);</php></textarea>
 		                            </li>
@@ -45,9 +45,9 @@
 								 <li class="tab_items{$count}">
                                   <div class="mb5">
 	                                <label>
-	                                    标题:
+	                                    標題:
 	                                </label>
-	                                <input type="text" rel="tabItemsComment{$count}" class="tabItems" /><span><a href="javascript:void(0)" class="delTabHref ml5" rel="{$count}">删除</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="addTabHref" rel="{$count}">增加</a></span>
+	                                <input type="text" rel="tabItemsComment{$count}" class="tabItems" /><span><a href="javascript:void(0)" class="delTabHref ml5" rel="{$count}">刪除</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="addTabHref" rel="{$count}">增加</a></span>
                                    </div>
 									<textarea cols="" rows="5"  id="tabItemsComment{$count}" class="text" style="width:90%;"/>
 	                        	 </li>
@@ -55,27 +55,27 @@
 	                            <li class="tab_items1">
                                   <div class="mb5">
 	                                <label>
-	                                    标题:
+	                                    標題:
 	                                </label>
-	                                <input type="text" rel="tabItemsComment1" class="tabItems" /><span><a href="javascript:void(0)" class="delTabHref ml5" rel="1">删除</a></span>
+	                                <input type="text" rel="tabItemsComment1" class="tabItems" /><span><a href="javascript:void(0)" class="delTabHref ml5" rel="1">刪除</a></span>
                                   </div>
 									<textarea cols="" rows="5" id="tabItemsComment1" class="text" style="width:90%;"/>
 	                            </li>
 	                            <li class="tab_items2">
                                   <div class="mb5">
 	                                <label>
-	                                    标题:
+	                                    標題:
 	                                </label>
-	                                <input type="text" class="tabItems" rel="tabItemsComment2" /><span><a href="javascript:void(0)" class="delTabHref ml5" rel="2">删除</a></span>
+	                                <input type="text" class="tabItems" rel="tabItemsComment2" /><span><a href="javascript:void(0)" class="delTabHref ml5" rel="2">刪除</a></span>
                                   </div>
 									<textarea cols="" rows="5" id="tabItemsComment2"  class="text" style="width:90%;"/>
 	                            </li>
 								<li class="tab_items3">
                                   <div class="mb5">
 	                                <label>
-	                                    标题:
+	                                    標題:
 	                                </label>
-	                                <input type="text" rel="tabItemsComment3" class="tabItems" /><span><a href="javascript:void(0)" class="delTabHref ml5" rel="3">删除</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="addTabHref" rel="3">增加</a></span>
+	                                <input type="text" rel="tabItemsComment3" class="tabItems" /><span><a href="javascript:void(0)" class="delTabHref ml5" rel="3">刪除</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="addTabHref" rel="3">增加</a></span>
                                    </div>
 									<textarea cols="" rows="5"  id="tabItemsComment3" class="text" style="width:90%;"/>
 	                        	 </li>
@@ -171,10 +171,10 @@
                                     success: function(result){
                                         $('#preview').html(result.html);
                                         var content = '<div id="diy_copyHtmlContent">\
-                                            		复制源代码:<input type="text" id="copyHtmlContent" onclick="select();" style="width:150px;" />\
+                                            		複製原始碼:<input type="text" id="copyHtmlContent" onclick="select();" style="width:150px;" />\
                                         		</div>'
 										var widget = '<div id="diy_copyHtmlContent">\
-                                            		复制标签:<input type="text" id="copyWidgetContent" onclick="select();" style="width:150px;" />\
+                                            		複製標籤:<input type="text" id="copyWidgetContent" onclick="select();" style="width:150px;" />\
                                         		</div>'		
                                         $('#preview').append(content);
 										$('#preview').append(widget);
@@ -240,10 +240,10 @@
                             					.attr('id',id)
                             					.attr('rel',namespace)
         										.attr('sign', result['sign'])
-                            		 			.prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="设置">设置</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="删除">删除</a></div></div>');
+                            		 			.prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="設定">設定</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="刪除">刪除</a></div></div>');
                     		        		 }else{
                     		    			 	$('#'+id).html(result['html']).attr('sign', result['sign']);
-                    		    				$('#'+id).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="设置">设置</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="删除">删除</a></div></div>');
+                    		    				$('#'+id).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="設定">設定</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="刪除">刪除</a></div></div>');
                     		    
                     		    			 }
                         				}
@@ -280,7 +280,7 @@
                                                                             }
                                                                         });
 																		
-																		//取得参数值
+																		//取得參數值
 																		var newTempArray = new Array();
 	                                                                    $('.tabItems').each(function(){
 																			 newTempArray.push({

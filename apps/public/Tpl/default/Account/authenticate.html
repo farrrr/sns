@@ -5,21 +5,21 @@
   <div id="main-wrap">
     <div id="col" class="st-grid content-bg boxShadow">
       <div id="col4" class="main-left">
-        <!--tab菜单-->
+        <!--tab選單-->
         <include file="_tabs" />
       </div>
       <div id="col7" class="main-right">
         <div class="extend minh person-set">
           <div class="set-hd"><h3>{$tabName}</h3></div>
-          <div class="set-item-title f9"><font color="red"> * </font>为必填项，请放心填写，您的隐私信息将会得到保护。</div>
+          <div class="set-item-title f9"><font color="red"> * </font>為必填項，請放心填寫，您的隱私資訊將會得到保護。</div>
           <div class="set-item-info">
             <form action="{:U('public/Account/doAuthenticate')}" method="post" model-node='verify_apply'>
               <input type="hidden" name="vtype" value="{$verifyInfo['usergroup_id']}" id="vtype">
               <dl class="form-set form-contact">
-                <dd><div class="form-tt">当前状态：</div><div class="form-row">{$status}</div></dd>
+                <dd><div class="form-tt">當前狀態：</div><div class="form-row">{$status}</div></dd>
                 <php>if($edit == 1 || !$verifyInfo){</php>
                 <dd>
-                  <div class="form-tt"><font color="red"> * </font>认证类型：</div>
+                  <div class="form-tt"><font color="red"> * </font>認證類型：</div>
                   <div class="form-row">
                   <volist name='auType' id='vo'>
                   <label><input class="s-ck" type="radio" value="{$vo.user_group_id}"<php>if(($verifyInfo['usergroup_id']=="" &&  $vo['user_group_id']==5) || $vo['user_group_id']==$verifyInfo['usergroup_id']){</php>checked="checked"<php>}</php> name="usergroup_id" onclick='changeText({$vo.user_group_id})'>{$vo.user_group_name}</label>
@@ -27,7 +27,7 @@
                   </div>
                 </dd>
                 <dd id="vCate" style="display:none;">
-                  <div class="form-tt">认证分类：</div>
+                  <div class="form-tt">認證分類：</div>
                   <div class="form-row">
                     <select name="verifiedCategory" id="verifiedCategory">
                       {$option[5]}
@@ -38,29 +38,29 @@
                   </div>
                 </dd>
                 <dd style="<php>if($verifyInfo['usergroup_id'] <> 6){</php>display:none;<php>}</php>" id="company2">
-                  <div class="form-tt"><font color="red"> * </font>企业名称：</div>
+                  <div class="form-tt"><font color="red"> * </font>企業名稱：</div>
                   <div class="form-row"><input name="company" class="s-txt" id="company" value="{$verifyInfo['company']}"/></div>
                 </dd>
                 <dd>
-                  <div class="form-tt" id="realname2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>法人姓名：<php>}else{</php>真实姓名：<php>}</php></div>
+                  <div class="form-tt" id="realname2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>法人姓名：<php>}else{</php>真實姓名：<php>}</php></div>
                   <div class="form-row"><input name="realname" class="s-txt" id="realname" <php>if($verifyInfo['verified'] !== ""){</php>value="{$verifyInfo['realname']}"<php>}</php> /></div>
                 </dd>
                 <dd>
-                  <div class="form-tt" id="idcard2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>营业执照号：<php>}else{</php>身份证号码：<php>}</php></div>
+                  <div class="form-tt" id="idcard2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>營業執照號：<php>}else{</php>身份證號碼：<php>}</php></div>
                   <div class="form-row"><input name="idcard" class="s-txt" id="idcard" <php>if($verifyInfo['verified'] !== ""){</php>value="{$verifyInfo['idcard']}"<php>}</php> /></div>
                 </dd>
                 <dd>
-                  <div class="form-tt" id="phone2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>联系方式：<php>}else{</php>手机号码：<php>}</php></div>
+                  <div class="form-tt" id="phone2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>聯繫方式：<php>}else{</php>手機號碼：<php>}</php></div>
                   <div class="form-row"><input name="phone" class="s-txt" id="phone" <php>if($verifyInfo['verified'] !== ""){</php>value="{$verifyInfo['phone']}"<php>}</php> /></div>
                 </dd>
                 <dd>
-                  <div class="form-tt"><font color="red"> * </font>认证理由：</div>
+                  <div class="form-tt"><font color="red"> * </font>認證理由：</div>
                   <div class="form-row"><textarea rows="4" cols="73" name="reason" id="reason" class="s-textarea"><php>if($verifyInfo['verified'] !== ""){</php>{$verifyInfo['reason']}<php>}</php></textarea></div>
                 </dd>
-                                        <!-- <dd><div class="form-tt"><font color="red"> * </font>认证资料：</div><div class="form-row"><textarea rows="4" cols="73" name="info" id="info" class="s-textarea"><php>if($verifyInfo['verified'] !== ""){</php>{$verifyInfo['info']}<php>}</php></textarea></div></dd> -->
+                                        <!-- <dd><div class="form-tt"><font color="red"> * </font>認證資料：</div><div class="form-row"><textarea rows="4" cols="73" name="info" id="info" class="s-textarea"><php>if($verifyInfo['verified'] !== ""){</php>{$verifyInfo['info']}<php>}</php></textarea></div></dd> -->
                 <dd>
-                  <div class="form-tt">认证附件：</div>
-                  <div class="form-row" >{:W('Upload',array('attachIds'=>$verifyInfo['attachIds'], 'uploadType'=>'image', 'urlquery'=>'attach_type=feed_image&upload_type=image&thumb=1'))}<div style="padding:5px 0;">附件格式：{$attachOption.attach_allow_extension}；  附件大小：不超过{$attachOption.attach_max_size}M</div></div>
+                  <div class="form-tt">認證附件：</div>
+                  <div class="form-row" >{:W('Upload',array('attachIds'=>$verifyInfo['attachIds'], 'uploadType'=>'image', 'urlquery'=>'attach_type=feed_image&upload_type=image&thumb=1'))}<div style="padding:5px 0;">附件格式：{$attachOption.attach_allow_extension}；  附件大小：不超過{$attachOption.attach_max_size}M</div></div>
                 </dd>
                 <dd>
                   <div class="form-tt"></div>
@@ -71,7 +71,7 @@
                 </dd>
                 <php>}else{</php>
                 <dd>
-                  <div class="form-tt"><font color="red"> * </font>认证类型：</div>
+                  <div class="form-tt"><font color="red"> * </font>認證類型：</div>
                   <div class="form-row">
                   <volist name='auType' id='vo'>
                   <php>if($vo['user_group_id']==$verifyInfo['usergroup_id']){</php><label>{$vo.user_group_name}</label><php>}</php>
@@ -80,34 +80,34 @@
                 </dd>
                 <php>if($verifyInfo['category']['title']){</php>
                 <dd>
-                  <div class="form-tt">认证分类：</div>
+                  <div class="form-tt">認證分類：</div>
                   <div class="form-row">{$verifyInfo['category']['title']}</div>
                 </dd>
                 <php>}</php>
                 <dd style="<php>if($verifyInfo['usergroup_id'] <> 6){</php>display:none;<php>}</php>" id="company2">
-                  <div class="form-tt"><font color="red"> * </font>企业名称：</div>
+                  <div class="form-tt"><font color="red"> * </font>企業名稱：</div>
                   <div class="form-row">{$verifyInfo['company']}</div>
                 </dd>
                 <dd>
-                  <div class="form-tt" id="realname2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>法人姓名：<php>}else{</php>真实姓名：<php>}</php></div>
+                  <div class="form-tt" id="realname2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>法人姓名：<php>}else{</php>真實姓名：<php>}</php></div>
                   <div class="form-row">{$verifyInfo['realname']}</div>
                 </dd>
                 <dd>
-                  <div class="form-tt" id="idcard2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>营业执照号：<php>}else{</php>身份证号码：<php>}</php></div>
+                  <div class="form-tt" id="idcard2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>營業執照號：<php>}else{</php>身份證號碼：<php>}</php></div>
                   <div class="form-row">{$verifyInfo['idcard']}</div>
                 </dd>
                 <dd>
-                  <div class="form-tt" id="phone2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>联系方式：<php>}else{</php>手机号码：<php>}</php></div>
+                  <div class="form-tt" id="phone2"><font color="red"> * </font><php>if($verifyInfo['usergroup_id'] == 6){</php>聯繫方式：<php>}else{</php>手機號碼：<php>}</php></div>
                   <div class="form-row">{$verifyInfo['phone']}</div>
                 </dd>
                 <dd>
-                  <div class="form-tt"><font color="red"> * </font>认证理由：</div>
+                  <div class="form-tt"><font color="red"> * </font>認證理由：</div>
                   <div class="form-row">{$verifyInfo['reason']}</div>
                 </dd>
-                <!-- <dd><div class="form-tt"><font color="red"> * </font>认证资料：</div><div class="form-row">{$verifyInfo['info']}</div></dd> -->
+                <!-- <dd><div class="form-tt"><font color="red"> * </font>認證資料：</div><div class="form-row">{$verifyInfo['info']}</div></dd> -->
                 <dd>
-                  <div class="form-tt">认证附件：</div>
-                  <div class="form-row"><php>if($verifyInfo['attachment']){</php>{$verifyInfo['attachment']}<php>}else{</php>无<php>}</php></div>
+                  <div class="form-tt">認證附件：</div>
+                  <div class="form-row"><php>if($verifyInfo['attachment']){</php>{$verifyInfo['attachment']}<php>}else{</php>無<php>}</php></div>
                 </dd>
                 <php>}</php>
               </dl>
@@ -133,13 +133,13 @@
         if(user_group_id == 6){
             $('#company2').css('display','');
             $('#realname2').html('<font color="red"> * </font>法人姓名：');
-            $('#idcard2').html('<font color="red"> * </font>营业执照号：');
-            $('#phone2').html('<font color="red"> * </font>联系方式：');   
+            $('#idcard2').html('<font color="red"> * </font>營業執照號：');
+            $('#phone2').html('<font color="red"> * </font>聯繫方式：');   
         }else{
             $('#company2').css('display','none');
-            $('#realname2').html('<font color="red"> * </font>真实姓名：');
-            $('#idcard2').html('<font color="red"> * </font>身份证号码：');
-            $('#phone2').html('<font color="red"> * </font>手机号码：');
+            $('#realname2').html('<font color="red"> * </font>真實姓名：');
+            $('#idcard2').html('<font color="red"> * </font>身份證號碼：');
+            $('#phone2').html('<font color="red"> * </font>手機號碼：');
         }
         $('#vtype').val(user_group_id);
         var cate = <?php echo $option;?>;
@@ -152,13 +152,13 @@
     };
     
     var delverify = function(){
-        if(confirm('确定要注销认证吗？')){
+        if(confirm('確定要登出認證嗎？')){
             $.post(U('public/Account/delverify'),{},function(txt){
                 if(txt == 1){
-                    ui.success('注销成功');
+                    ui.success('登出成功');
                     setTimeout("location.reload()",'3000');
                 }else{
-                    ui.error('注销失败');
+                    ui.error('登出失敗');
                 }
             });
         }
@@ -175,7 +175,7 @@
       var attach_ids = $('#attach_ids').val();
       $.post(U('public/Account/doAuthenticate'),{usergroup_id:vtype,company:company,realname:realname,idcard:idcard,phone:phone,reason:reason,verifiedCategory:verifiedCategory,attach_ids:attach_ids},function(msg){
           if(msg=='1'){
-            ui.success('申请成功，请等待审核');
+            ui.success('申請成功，請等待稽覈');
             setTimeout("location.reload()",'3000');
           }else{
             ui.error(msg);

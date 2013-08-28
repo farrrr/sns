@@ -4,13 +4,13 @@
   <div id="main-wrap">
     <div id="col" class="st-grid content-bg">
       <div id="col4" class="main-left">
-        <!--tab菜单-->
+        <!--tab選單-->
         <include file="_tabs" />
       </div>
       <div id="col7" class="main-right">
         <div class="extend minh person-set">
           <div class="set-hd"><h3>{$tabName}</h3></div>
-          <!--信息设置项 基本信息-->
+          <!--資訊設定項 基本資訊-->
           <form action="{:U('public/Account/doSaveProfile')}" method="post" model-node='account_save'>
             <dl class="form-set">
               <dd>
@@ -38,11 +38,11 @@
                 </div>
               </dd>
               <dd>
-                <div class="form-tt"><font color="red"> * </font>地区：</div>
+                <div class="form-tt"><font color="red"> * </font>地區：</div>
                 <div class="form-row">{:W('Area',array('curPro'=>$user_info['province'],'curCity'=>$user_info['city'],'area'=>$user_info['area'],'city_names'=>$user_info['location'],'tpl'=>'selectArea'))}</div>
               </dd>
               <!-- <dd>
-                <div class="form-tt"><font color="red"> * </font>职业信息：</div>
+                <div class="form-tt"><font color="red"> * </font>職業資訊：</div>
                 <div class="form-row">
                   <font id="userCategory">{$user_info['category']}</font>&nbsp;&nbsp;
                   <a style="color:#36c" href="javascript:void(0)" onclick="editUserCategory();">修改</a>
@@ -68,13 +68,13 @@
               </volist>
               -->
               <!-- <dd>
-                <div class="form-tt">个人标签：</div>
+                <div class="form-tt">個人標籤：</div>
                 <div class="form-row">
                 {:W('Tag', array('width'=>'400px', 'row_id'=>$mid, 'tpl'=>'tags'))}
                 </div>
               </dd> -->
               <dd>
-                <div class="form-tt"> 个人简介：</div>
+                <div class="form-tt"> 個人簡介：</div>
                 <div class="form-row">
                   <textarea class="s-textarea" name="intro">{$user_info['intro']}</textarea>
                 </div>

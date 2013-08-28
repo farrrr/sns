@@ -7,7 +7,7 @@
     <php>}</php>
     {$pageTitle} 
 	</div>
-	<!-- START 页面配置 -->
+	<!-- START 頁面配置 -->
 	<div id='page_config' class = "form2 list" >
   		<div class="hd">{:L('PUBLIC_CHECH_IS')}</div>
   		<form action="{:U('admin/Index/savePageConfig')}" method="POST">
@@ -40,25 +40,25 @@
   			</volist>
   		</table>
   		<div class="page_btm">
-	      <input type="submit" class="btn_b" value="确定" />
+	      <input type="submit" class="btn_b" value="確定" />
 	    </div>
 	    </form>
   	</div>
-	<!-- END 页面配置 -->
+	<!-- END 頁面配置 -->
 	
 	<!-- START 搜索配置 -->
 	<div id='search_config' class = "form2 list" >
-  		<div class="hd">提示:checkbox如果默认有多个值,请以","隔开。</div>
+  		<div class="hd">提示:checkbox如果默認有多個值,請以","隔開。</div>
   		<form action="{:U('admin/Index/saveSearchConfig')}" method="POST">
   		<input type="hidden" name='searchPageKey' value="{$searchPageKey}" />
   		<input type="hidden" name='pageTitle' value="{$pageTitle}" />
   		<table width="100%" cellspacing="0" cellpadding="0" border="0">
   			<tr>
-  				<th>字段</th>
-  				<th class="line_l">名称</th>
-  				<th class="line_l">输入类型</th>
-  				<th class="line_l">提示信息</th>
-  				<th class="line_l">验证事件</th>
+  				<th>欄位</th>
+  				<th class="line_l">名稱</th>
+  				<th class="line_l">輸入類型</th>
+  				<th class="line_l">提示資訊</th>
+  				<th class="line_l">驗證事件</th>
   			</tr>
   			<volist name='searchKeyList' id='pk'>
   			<php> 
@@ -70,14 +70,14 @@
   				<td width="15%"><input type="hidden" name='key[]' value='{$pk}'> {$pk}</td>
   				<td width="20%"><input type="text" name='key_name[]' value='{$searchKeyData['key_name'][$key]}' class="s-txt"   style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
   				<td width="20%"><select name='key_type[]'>
-  					<option value='text' <eq name='keyType' value='text'> selected="selected"</eq>>文本框:input_text</option>
+  					<option value='text' <eq name='keyType' value='text'> selected="selected"</eq>>文字框:input_text</option>
   					<option value='select' <eq name='keyType' value='select'> selected="selected"</eq>>下拉框:select</option>
-  					<option value='radio' <eq name='keyType' value='radio'> selected="selected"</eq>>单选框:radio</option>
-  					<option value='checkbox' <eq name='keyType' value='checkbox'> selected="selected"</eq>>多选框:checkbox</option>
+  					<option value='radio' <eq name='keyType' value='radio'> selected="selected"</eq>>單選框:radio</option>
+  					<option value='checkbox' <eq name='keyType' value='checkbox'> selected="selected"</eq>>多選框:checkbox</option>
   					<option value='date' <eq name='keyType' value='date'> selected="selected"</eq>>日期插件:date</option>
-  					<option value='hidden' <eq name='keyType' value='hidden'> selected="selected"</eq>>隐藏值:input_hidden</option>
-            <option value='department' <eq name='keyType' value='department'> selected="selected"</eq>>部门选择:department</option>
-            <option value='user' <eq name='keyType' value='user'> selected="selected"</eq>>用户选择:selectUser</option>
+  					<option value='hidden' <eq name='keyType' value='hidden'> selected="selected"</eq>>隱藏值:input_hidden</option>
+            <option value='department' <eq name='keyType' value='department'> selected="selected"</eq>>部門選擇:department</option>
+            <option value='user' <eq name='keyType' value='user'> selected="selected"</eq>>使用者選擇:selectUser</option>
   				</select></td>
   				<td width="20%"><input type='text' name='key_tishi[]' value='{$searchKeyData['key_tishi'][$key]}' class="s-txt"  style="width:200px"  onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
   				<td width="20%"><input type='text' name='key_javascript[]' value='{$searchKeyData['key_javascript'][$key]}' class="s-txt"  style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
@@ -85,7 +85,7 @@
   			</volist>
   		</table>
   		<div class="page_btm">
-	      <input type="submit" class="btn_b" value="确定" />
+	      <input type="submit" class="btn_b" value="確定" />
 	    </div>
 	    </form>
   	</div>
@@ -103,15 +103,15 @@
   	$defaultS = isset($searchData[$pk]) ? $searchData[$pk] : '';
   	$keyType = $searchKeyData['key_type'][$key] ? $searchKeyData['key_type'][$key] :'text';
   	$event = $searchKeyData['key_javascript'][$key];
-  	if($keyType != 'hidden'):/*非隐藏域*/ 
+  	if($keyType != 'hidden'):/*非隱藏域*/ 
   	</php>
     <dl class="lineD" id='dl_{$pk}'>
       <dt>{$keyName}：</dt>
       <dd>
-    <php>endif; /*非隐藏域*/ </php>
+    <php>endif; /*非隱藏域*/ </php>
   
        	<php>
-       	/* text 支持一行多个 */
+       	/* text 支援一行多個 */
        	if($keyType == 'text'):
        	if(is_array($_pk)){
        		foreach($_pk as $v=>$vv){
@@ -155,7 +155,7 @@
       	<php>endforeach; endif;</php>
       	
       		<php>
-      	/* checkBox 默认值是以","隔开的字符串,表示可以选多个  */
+      	/* checkBox 預設值是以","隔開的字元串,表示可以選多個  */
       	if($keyType == 'checkbox'):
       		empty($defaultS) && $defaultS = array(); 
       		$defaultS = !is_array($defaultS) ? explode(',',trim($defaultS,',')) : $defaultS;
@@ -166,7 +166,7 @@
       	
       	
       		<php>
-      	/* 日期插件 支持一行多个*/
+      	/* 日期插件 支援一行多個*/
       	if($keyType == 'date'):	
       	if(is_array($_pk)){
        		foreach($_pk as $v=>$vv){
@@ -188,13 +188,13 @@
         <p>{$searchKeyData['key_tishi'][$key]}</p>
         <php> }</php>
      
-       <php>if($keyType != 'hidden'): /*非隐藏域*/</php> 
+       <php>if($keyType != 'hidden'): /*非隱藏域*/</php> 
         </dd>
     </dl>
-    <php>endif; /*隐藏域*/ </php>
+    <php>endif; /*隱藏域*/ </php>
 	</volist>
     <div class="page_btm">
-      <input type="submit" value="确定" class="btn_b"> &nbsp;&nbsp;<input type="button" value="关闭" class="btn_w" onclick="admin.fold('search_form')">
+      <input type="submit" value="確定" class="btn_b"> &nbsp;&nbsp;<input type="button" value="關閉" class="btn_w" onclick="admin.fold('search_form')">
     </div>
     </form>
    </div> 
@@ -245,7 +245,7 @@
 	</volist>
   </tr>
   <php>if(empty($listData['data'])){</php>
-  <tr><td colspan='100' align="center">没有需要显示的数据!</td></tr>
+  <tr><td colspan='100' align="center">沒有需要顯示的資料!</td></tr>
   <php>}else{</php>
   
   <volist name='listData.data' id='vo'>

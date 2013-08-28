@@ -1,6 +1,6 @@
 <php>if($send_type =='send_weibo'){</php>
 	<php>if(CheckPermission('core_normal','feed_post')){</php>
-		<!-- 发布微博/微博 -->
+		<!-- 釋出微博/微博 -->
 		<div class="send_weibo diy-send-weibo" model-node="send_weibo">
 			<div class="title clearfix">
 				<div model-node="numsLeft" class="right num">{:L('PUBLIC_INPUT_CHARACTER_LIMIT',array('num'=>'<span>'.$initNums.'</span>'))}</div>
@@ -26,7 +26,7 @@
 					<div class="kind">
 					
 					<div class="right release">{:Addons::hook('weibo_syn_middle_publish')}
-						<a class="btn-grey-white" event-node='{$post_event}' event-args='type={$type}&app_name={$app_name}&topicHtml={$initHtml}' href="javascript:;"><span>发布</span></a>
+						<a class="btn-grey-white" event-node='{$post_event}' event-args='type={$type}&app_name={$app_name}&topicHtml={$initHtml}' href="javascript:;"><span>釋出</span></a>
 					</div>
 
 					<div class="acts">
@@ -44,7 +44,7 @@
 
 					    <eq name="actions.image" value="true">
 					    <php>if(in_array('image',$weibo_type)):</php>
-					    <a href="javascript:void(0);" class="image-block"><i class="image" ></i>图片
+					    <a href="javascript:void(0);" class="image-block"><i class="image" ></i>圖片
 					    <form style='display:inline;padding:0;margin:0;border:0;outline:none;' >
 					    <input type="file" name="attach" inputname='attach' onchange="core.plugInit('uploadFile',this,'','image')" urlquery='attach_type=feed_image&upload_type=image&thumb=1&width=100&height=100&cut=1' hidefocus="true">
 					    </form>
@@ -56,7 +56,7 @@
 					    <eq name="actions.video" value="true">
 					    <php>if(in_array('video',$weibo_type)):</php>
 					    <input type="hidden" id="postvideourl" value="" />
-					    <a event-node="insert_video" rel="{$post_event}" class="video-block" href="javascript:;"><i class="video"></i>视频</a>
+					    <a event-node="insert_video" rel="{$post_event}" class="video-block" href="javascript:;"><i class="video"></i>視訊</a>
 					    <php>endif;</php>
 					    </eq>
 
@@ -72,7 +72,7 @@
 					    
 					    <eq name="actions.topic" value="true">
 						<php>if(in_array('topic',$weibo_type)):</php>
-					    <a event-node="insert_topic" class="topic-block" href="javascript:;"><i class="topic"></i>话题</a>
+					    <a event-node="insert_topic" class="topic-block" href="javascript:;"><i class="topic"></i>話題</a>
 						<php>endif;</php>
 						</eq>
 
@@ -94,7 +94,7 @@
  		<div class="send_weibo"><div class="box-purview"><i class="ico-error"></i>{:L('PUBLIC_SENTWEIBO_ISNOT')}</div></div>
 	<php>}</php>
 <php>}else if($send_type =='repost_weibo'){</php>
-	<!-- 分享微博/微博发布框 -->
+	<!-- 分享微博/微博釋出框 -->
 	<div class="action clearfix mb10" ><!--<span class="faces" event-node='share_insert_face'></span>--><div class="num"  model-node="numsLeft">{:L('PUBLIC_INPUT_CHARACTER_LIMIT',array('num'=>'<span>'.$initNums.'</span>'))}</div></div>
 	<div model-node="weibo_post_box" class="clearfix">
 		<div class="input_before" model-node="mini_editor" style='margin:0 0 5px 0' >

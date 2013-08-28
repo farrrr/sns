@@ -1,5 +1,5 @@
 /**
- * 查询用户操作Js插件
+ * 查詢使用者操作Js插件
  * @example
  * 使用demo:<input type="text" name='' value='' onclick="core.searchUser.init($(this),showUser)">
  * @author jason <yangjs@yeah.net>
@@ -7,8 +7,8 @@
  */
 core.searchUser = {
 		/**
-		 * 给工厂调用的接口
-		 * @param array attrs 配置数组
+		 * 給工廠呼叫的介面
+		 * @param array attrs 配置陣列
 		 * @return void
 		 * @private
 		 */
@@ -30,20 +30,20 @@ core.searchUser = {
 		},
 		/**
 		 * 插件初始化
-		 * @param object input 查询对象域
-		 * @param integer follow 查询类型，全站或关注的人
-		 * @param integer max 最大查询人数
-		 * @param function callback 回调函数
+		 * @param object input 查詢物件域
+		 * @param integer follow 查詢類型，全站或關注的人
+		 * @param integer max 最大查詢人數
+		 * @param function callback 回撥函數
 		 * @param integer noself 是否排除自己
 		 * @return void
 		 */
 		init: function(input, follow, max, callback, noself) {
-			this.notuser = '',					// 上次查询的无结果用户
-			this.olduser = '',					// 上次查询的用户名
-			this.searchTime = 0, 				// 当前搜索用户记录的次数
-			this.input = input,					// 查询的对象域
-			this.userserintval = '', 			// 查询用户的轮询
-			this.userList = '';					// 用户列表显示对象
+			this.notuser = '',					// 上次查詢的無結果使用者
+			this.olduser = '',					// 上次查詢的使用者名
+			this.searchTime = 0, 				// 當前搜索使用者記錄的次數
+			this.input = input,					// 查詢的物件域
+			this.userserintval = '', 			// 查詢使用者的輪詢
+			this.userList = '';					// 使用者列表顯示物件
 			this.follow = "undefined" == typeof(follow) ? 1 : follow;
 			this.max = "undefined" == typeof(max) ? 0: max;
 			this.noself = "undefined" == typeof(noself) ? 1: noself;
@@ -54,7 +54,7 @@ core.searchUser = {
 				this.callback = '';
 			}
 			var _this = this;
-			// 绑定离开事件
+			// 繫結離開事件
 			this.input.blur(function() {
 				var hide = function() {
 					_this._stopUser();
@@ -62,16 +62,16 @@ core.searchUser = {
 				};
 				setTimeout(hide, 150);
 			});
-			// 移除用户列表
+			// 移除使用者列表
 			this._removeUserList();
-			// 启动用户查询
+			// 啟動使用者查詢
 			this._startUser();
 		},
 		/**
-		 * 插入用户数据
-		 * @param integer uid 用户ID
-		 * @param string uname 用户昵称
-		 * @param string email 用户Email
+		 * 插入使用者資料
+		 * @param integer uid 使用者ID
+		 * @param string uname 使用者昵稱
+		 * @param string email 使用者Email
 		 * @return void
 		 */
 		insertUser: function(uid, uname) {
@@ -143,7 +143,7 @@ core.searchUser = {
 		selectUser:function(){
 			var curUser = this.userList.find('.mod-at-list').find('.current');
 			if(curUser.length>0){
-				//选人吧
+				//選人吧
 				var uid = curUser.attr('uid');
 				var uname = curUser.attr('uname');
 				var email = curUser.attr('email');
@@ -154,14 +154,14 @@ core.searchUser = {
 			return true;
 		},
 		/**
-		 * 移除已选中的用户
-		 * @param integer uid 移除用户ID
-		 * @param object obj 事件触发对象
+		 * 移除已選中的使用者
+		 * @param integer uid 移除使用者ID
+		 * @param object obj 事件觸發物件
 		 * @return void
 		 */
 		removeUser: function(uid, obj)
 		{
-			// 获取隐藏表单的值
+			// 獲取隱藏表單的值
 			var hideInput = null;
 			$(obj).parent().parent().parent().find('input').each(function(){
 				if($(this).attr('rel') == 'uids'){
@@ -170,11 +170,11 @@ core.searchUser = {
 			});
 			// 移除LI
 			$(obj).parent().remove();
-			// 设置新的表单对象
+			// 設定新的表單物件
 			if(hideInput == null){
 				hideInput = this.input.prev();
 			}
-			// 获取表单对象值 
+			// 獲取表單物件值 
 			var uids = hideInput.val();
 			var arr = uids.split(',');
 			var val = new Array();
@@ -197,7 +197,7 @@ core.searchUser = {
 
 				var searchUser = function(searchTime,user){
 					 $.post(U('widget/SearchUser/search'),{key:user,follow:_this.follow,noself:_this.noself},function(msg){
-						 	if(searchTime != _this.searchTime){	// 超时了
+						 	if(searchTime != _this.searchTime){	// 超時了
 						 		return false;
 						 	}
 					 	 	if(msg.status==0 || msg.data == null || msg.data =='' || msg.data.length == 0 ){
@@ -227,7 +227,7 @@ core.searchUser = {
 									},function(){
 										$(this).removeClass('hover');
 									});
-					 	 			//TODO 方向键控制
+					 	 			//TODO 方向鍵控制
 					 	 			core.plugInit('bindkey',$(_this.userList.find('.mod-at-list')),'li','current','core.searchUser.selectUser()');
 					 	 		}else{	//直接添加
 					 	 			core.searchUser.insertUser(data.uid,data.uname);//,data.email
@@ -240,7 +240,7 @@ core.searchUser = {
 
 				var user = _this.input.val();
 
-				if(user == ''){  //重建显示下拉框
+				if(user == ''){  //重建顯示下拉框
 
 					_this.olduser = '';
 					//_this.input.parent().find('.mod-at-wrap').remove();
@@ -248,7 +248,7 @@ core.searchUser = {
 					core.searchUser._createUserlistDiv();
 				}else{
 					if((_this.notuser!='' && user.indexOf(_this.notuser) >= 0) || _this.olduser == user){
-						//不查找用户了
+						//不查找使用者了
 					}else{
 						_this.olduser = user;
 						_this.searchTime ++;
@@ -262,7 +262,7 @@ core.searchUser = {
 		_stopUser:function(){
 			this.stoploop = 1;
 			if(this.userserintval != ''){
-				//停止轮询查找
+				//停止輪詢查找
 				clearInterval(this.userserintval);
 				this.userserintval='';
 			}

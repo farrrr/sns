@@ -1,8 +1,8 @@
 <?php
 /**
- * 文件上传
+ * 檔案上傳
  * 主要由core.uploadFile完成前端ajaxpost功能
- * 要自定义回调显示则需要自定义回调函数
+ * 要自定義回撥顯示則需要自定義回撥函數
  * @example {:W('Upload',array('callback'=>'callback','uploadType'=>'file','inputname'=>'inputname','urlquery'=>'a=aaa&b=bb','attachIds'=>'1,2,3,4'))}
  * @author jason
  * @version TS3.0
@@ -12,11 +12,11 @@ class UploadWidget extends Widget{
     private  static $rand = 1;
 
     /**
-     * @param string callback 上传之后的回调函数，不自定义就不要传递此参数
-     * @param string uploadType 上传类型，分file和image
-     * @param string inputname 上传组件的name
-     * @param string urlquery 需要存储在附件表的一些信息，暂时可能用到的不多
-     * @param mixed attachIds 已有附件ID，可以为空
+     * @param string callback 上傳之後的回撥函數，不自定義就不要傳遞此參數
+     * @param string uploadType 上傳類型，分file和image
+     * @param string inputname 上傳元件的name
+     * @param string urlquery 需要存儲在附件表的一些資訊，暫時可能用到的不多
+     * @param mixed attachIds 已有附件ID，可以為空
      */
 	public function render($data){
 		$var = array();
@@ -53,13 +53,13 @@ class UploadWidget extends Widget{
         
         unset($var,$data);
         
-        //输出数据
+        //輸出資料
         return $content;
     }
 
     /**
-     * 附件上传
-     * @return array 上传的附件的信息
+     * 附件上傳
+     * @return array 上傳的附件的資訊
      */
     public function save(){
 
@@ -94,12 +94,12 @@ class UploadWidget extends Widget{
     }
     
     /** 
-     * 编辑器图片上传
-     * @return array 上传图片的路径及错误信息
+     * 編輯器圖片上傳
+     * @return array 上傳圖片的路徑及錯誤資訊
      */
     public function saveEditorImg(){
         $data['attach_type'] = 'editor_img';
-        $data['upload_type'] = 'image'; //使用又拍云时，必须指定类型为image
+        $data['upload_type'] = 'image'; //使用又拍雲時，必須指定類型為image
         $info = model('Attach')->upload($data);
         if($info['status']){
             $data           = $info['info'][0];
@@ -112,12 +112,12 @@ class UploadWidget extends Widget{
     }
     
     /**
-     * 编辑器文件上传
-     * @return array 上传文件的信息
+     * 編輯器檔案上傳
+     * @return array 上傳檔案的資訊
      */
     public function saveEditorFile(){
         $data['attach_type'] = 'editor_file';
-        $data['upload_type'] = 'file'; //使用又拍云时，必须指定类型为file
+        $data['upload_type'] = 'file'; //使用又拍雲時，必須指定類型為file
         $info = model('Attach')->upload($data);
         if($info['status']){
             $data           = $info['info'][0];
@@ -131,7 +131,7 @@ class UploadWidget extends Widget{
     }
     
     /**
-     * 附件下载
+     * 附件下載
      */
     public function down(){
     
@@ -146,16 +146,16 @@ class UploadWidget extends Widget{
         $filename = $attach['save_path'].$attach['save_name'];
         $realname = auto_charset ( $attach['name'], "UTF-8", 'GBK//IGNORE');
 
-		//下载函数
+		//下載函數
 		tsload(ADDON_PATH.'/library/Http.class.php');
-        //从云端下载
+        //從雲端下載
         $cloud = model('CloudAttach');
         if($cloud->isOpen()){
             $url = $cloud->getFileUrl($filename);
             redirect($url);
-            //$content = $cloud->getFileContent($filename); //读文件下载
+            //$content = $cloud->getFileContent($filename); //讀檔案下載
             //Http::download('', $realname, $content);
-        //从本地下载
+        //從本地下載
         }else{
     		if(file_exists(UPLOAD_PATH.'/'.$filename)) {
     			Http::download(UPLOAD_PATH.'/'.$filename, $realname);

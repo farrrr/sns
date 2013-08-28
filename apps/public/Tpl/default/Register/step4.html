@@ -4,20 +4,20 @@
 	<div class="reg-wrap">
 		<!--<div class="title">{:L('PUBLIC_FOLLOW_THE_PEOPLE_INTERESTED')}</div>-->
 		<div class="reg-main">
-			<!--注册步骤-->
+			<!--註冊步驟-->
 			<div class="article article-avatar boxShadow">
 				<div class="item-step4">
 					<div class="step">
 						<span class="step1"></span><span class="step2"></span><span class="step3 step3-current"></span>
 					</div>
-				<!-- 推荐关注用户 -->
+				<!-- 推薦關注使用者 -->
 				<php>if($related_recommend_user){</php>
 				<div class="tab-menu">
 					<php>if(count($related_recommend_user)==8){</php>
                 		<a event-node="change_related_user" keywords="recommend" type="5" href="{:U('public/Register/getRelatedUser')}" class="right mt5">{:L('PUBLIC_CHANGE_USERS')}</a>	
                 	<php>}</php>				
 					<ul>
-						<li class="current"><a href="javascript:;">推荐关注用户</a></li>
+						<li class="current"><a href="javascript:;">推薦關注使用者</a></li>
 					</ul>
 				</div>
 				<div class="face_name_list">
@@ -37,14 +37,14 @@
 				</div>
 				<php>}</php>
 
-				<!-- TA们跟你拥有相同的标签 -->
+				<!-- TA們跟你擁有相同的標籤 -->
 				<php>if($related_tag_user){</php>
 				<div class="tab-menu">
 					<php>if(count($related_tag_user)==8){</php>
                 		<a event-node="change_related_user" keywords="tag" type="4" href="{:U('public/Register/getRelatedUser')}" class="right">{:L('PUBLIC_CHANGE_USERS')}</a>	
                 	<php>}</php>					
 					<ul>
-						<li class="current"><a href="javascript:;">TA们跟你拥有相同的标签</a></li>
+						<li class="current"><a href="javascript:;">TA們跟你擁有相同的標籤</a></li>
 					</ul>
 				</div>
 				<div class="face_name_list">
@@ -64,14 +64,14 @@
 				</div>
 				<php>}</php>
 
-				<!-- TA们跟你在同一个地区 -->
+				<!-- TA們跟你在同一個地區 -->
 				<php>if($related_city_user){</php>
 				<div class="tab-menu">
 					<php>if(count($related_city_user)==8){</php>
                 		<a event-node="change_related_user" keywords="city" type="3" href="{:U('public/Register/getRelatedUser')}" class="right">{:L('PUBLIC_CHANGE_USERS')}</a>	
                 	<php>}</php>					
 					<ul>
-						<li class="current"><a href="javascript:;">TA们跟你在同一个地区：{$location}</a></li>
+						<li class="current"><a href="javascript:;">TA們跟你在同一個地區：{$location}</a></li>
 					</ul>
 				</div>
 				<div class="face_name_list">
@@ -97,7 +97,7 @@
 				</div>
 				</div>
 			</div>
-			<!--//注册步骤-->
+			<!--//註冊步驟-->
 		</div>
 	</div>
 </div>

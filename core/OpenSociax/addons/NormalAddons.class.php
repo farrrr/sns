@@ -1,6 +1,6 @@
 <?php
 /**
- * 通常插件插件类
+ * 通常插件插件類
  * @author SamPeng <penglingjun@zhishisoft.com>
  * @version TS3.0
  */
@@ -8,9 +8,9 @@ tsload(CORE_LIB_PATH.'/addons/AbstractAddons.class.php');
 abstract class NormalAddons extends AbstractAddons
 {
     /**
-     * 获取该插件所需的钩子列表
-     * @param string $name 插件名称
-     * @return array 插件所需的钩子列表
+     * 獲取該插件所需的鉤子列表
+     * @param string $name 插件名稱
+     * @return array 插件所需的鉤子列表
      */
     public function getHooksList($name)
     {
@@ -36,7 +36,7 @@ abstract class NormalAddons extends AbstractAddons
                 $list[$name][$key] = $temp;
             }
         }
-        
+
         return $list;
     }
 }

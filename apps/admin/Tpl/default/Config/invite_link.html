@@ -1,6 +1,6 @@
 <include file="__THEME__/admin_header" />
 <div id="container" class="so_main">
-  <div class="page_tit">链接邀请</div>
+  <div class="page_tit">連結邀請</div>
    <!-- START TAB框 -->
   <php>if(!empty($pageTab)):</php>
   <div class="tit_tab">
@@ -15,9 +15,9 @@
   <!-- END TAB框 -->
   <div class="from2">
     <div class="inviteMode">
-      <div class="invite-title"><h4>每个邀请码可以邀请1个用户</h4></div>
+      <div class="invite-title"><h4>每個邀請碼可以邀請1個使用者</h4></div>
       <div class="invite-links clearfix">
-      	<a href="javascript:;" onclick="getInviteCode()">点击获取邀请码</a>
+      	<a href="javascript:;" onclick="getInviteCode()">點選獲取邀請碼</a>
         <ul id="code_list">
           <volist name="codeList.data" id="vo">
           <li>
@@ -38,15 +38,15 @@
       <div class="Toolbar_inbox"><div class="page">{$codeList.html}</div></div>
       <!--
       <div class="invite-user-list">
-        <h4>已邀请用户：</h4>
+        <h4>已邀請使用者：</h4>
         <php>if(empty($inviteList)):</php>
-        <p>当前无邀请好友</p>
+        <p>當前無邀請好友</p>
         <php>else:</php>
         <ul>
           <li>
             <div class="w0">&nbsp;</div>
-            <div class="w3">昵称</div>
-            <div class="w1">邮箱</div>
+            <div class="w3">昵稱</div>
+            <div class="w1">郵箱</div>
           </li>
           <volist name="inviteList.data" id="vo">
           <li>
@@ -66,12 +66,12 @@
 
 <script type="text/javascript">
 /**
- * 点击获取邀请码
+ * 點選獲取邀請碼
  * @return void
  */
 var getInviteCode = function()
 {
-	// 获取邀请码操作
+	// 獲取邀請碼操作
 	$.post(U('admin/Config/getInviteCode'), {}, function(res) {
 		if(res.status == 1) {
 			ui.success(res.info);

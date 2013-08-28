@@ -13,7 +13,7 @@
                  <div id="col3" class="st-index-right">
                     <div class="right-wrap">
                         <div class="right-list border-b mb20">
-                         <h3>该作者发表的其他帖子</h3>
+                         <h3>該作者發表的其他帖子</h3>
                          <ul>
                           <volist name="otherPost" id="vo">
                             <li>
@@ -37,7 +37,7 @@
                  <div id="col5" class="st-index-main">
                     <div class="extend-foot Posts-content">
                         <div class="content clearfix">
-                            <p class="pb15"><a href="{:U('weiba/Index/index')}">微吧</a>&nbsp;>&nbsp;<a href="{:U('weiba/Index/detail',array('weiba_id'=>$post_detail['weiba_id']))}">{$weiba_name}</a>&nbsp;>&nbsp;帖子详情</p>
+                            <p class="pb15"><a href="{:U('weiba/Index/index')}">微吧</a>&nbsp;>&nbsp;<a href="{:U('weiba/Index/detail',array('weiba_id'=>$post_detail['weiba_id']))}">{$weiba_name}</a>&nbsp;>&nbsp;帖子詳情</p>
                             <dl class="pb15 weiba-post-title">
                                 <dt><a href="{$user_info[$post_detail['post_uid']]['space_url']}" target="_blank"><img src="{$user_info[$post_detail['post_uid']]['avatar_small']}" /></a></dt>
                                 <dd>
@@ -46,12 +46,12 @@
                                     <span class="right">
                                     <php>if($GLOBALS['ts']['mid']){</php>
                                       <php>if($mid==$post_detail['post_uid']){</php>
-                                        <a href="{:U('weiba/Index/postEdit',array('post_id'=>$post_detail['post_id']))}">编辑</a>
+                                        <a href="{:U('weiba/Index/postEdit',array('post_id'=>$post_detail['post_id']))}">編輯</a>
                                         <i class="vline">|</i>
-                                        <a href="#" event-node="post_del" event-args='post_id={$post_detail['post_id']}&weiba_id={$post_detail['weiba_id']}&log=0'>删除</a>
+                                        <a href="#" event-node="post_del" event-args='post_id={$post_detail['post_id']}&weiba_id={$post_detail['weiba_id']}&log=0'>刪除</a>
                                         <i class="vline">|</i>
                                       <php>}</php>
-                                      <a event-args="sid={$post_detail['post_id']}&stable=weiba_post&curtable=feed&curid={$post_detail['feed_id']}&initHTML=&appname=weiba&cancomment=1&feedtype=weiba_post" href="javascript:void(0)" event-node="share">转发到微博</a>
+                                      <a event-args="sid={$post_detail['post_id']}&stable=weiba_post&curtable=feed&curid={$post_detail['feed_id']}&initHTML=&appname=weiba&cancomment=1&feedtype=weiba_post" href="javascript:void(0)" event-node="share">轉發到微博</a>
                                         <i class="vline">|</i>
                                       <php>if($post_detail['favorite']==1){</php>
                                         <a event-args="post_id={$post_detail['post_id']}&weiba_id={$post_detail['weiba_id']}&post_uid={$post_detail['post_uid']}" href="javascript:void(0)" event-node="post_unfavorite" id="favorite">取消收藏</a>
@@ -59,7 +59,7 @@
                                         <a event-args="post_id={$post_detail['post_id']}&weiba_id={$post_detail['weiba_id']}&post_uid={$post_detail['post_uid']}" href="javascript:void(0)" event-node="post_favorite" id="favorite">收藏</a>
                                       <php>}</php>
                                     </span>
-                                    <php>if($post_detail['top']==2){</php><span class="ico-bar-top mr5">置顶</span><php>}</php><php>if($post_detail['top']==1){</php><span class="ico-bar-top0 mr5">置顶</span><php>}</php><php>if($post_detail['digest']==1){</php><span class="ico-bar-fine mr5">精华</span><php>}</php>{$user_info[$post_detail['post_uid']]['space_link']} <span class="f9">发表于 {$post_detail.post_time|friendlyDate}</span>                                   
+                                    <php>if($post_detail['top']==2){</php><span class="ico-bar-top mr5">置頂</span><php>}</php><php>if($post_detail['top']==1){</php><span class="ico-bar-top0 mr5">置頂</span><php>}</php><php>if($post_detail['digest']==1){</php><span class="ico-bar-fine mr5">精華</span><php>}</php>{$user_info[$post_detail['post_uid']]['space_link']} <span class="f9">發表於 {$post_detail.post_time|friendlyDate}</span>                                   
                                   <php>}</php>
                                   </p>
                                 </dd>
@@ -73,12 +73,12 @@
                                 <php>if(in_array($mid,$weiba_admin) || CheckPermission('core_admin','admin_login')){</php><a href="javascript:void(0);" onclick="$('#post_manage').toggle();$('body').bind('click', function(event) {if($(event.target).attr('id') != 'manage') $('#post_manage').css('display', 'none') });" class="right" id="manage">管理</a><php>}</php>
                                   <span>
                                   <php>if($mid==$post_detail['post_uid']){</php>
-                                    <a href="{:U('weiba/Index/postEdit',array('post_id'=>$post_detail['post_id']))}">编辑</a>
+                                    <a href="{:U('weiba/Index/postEdit',array('post_id'=>$post_detail['post_id']))}">編輯</a>
                                     <i class="vline">|</i>
-                                    <a href="#" event-node="post_del" event-args='post_id={$post_detail['post_id']}&weiba_id={$post_detail['weiba_id']}&log=0'>删除</a>
+                                    <a href="#" event-node="post_del" event-args='post_id={$post_detail['post_id']}&weiba_id={$post_detail['weiba_id']}&log=0'>刪除</a>
                                     <i class="vline">|</i>
                                   <php>}</php>
-                                  <a event-args="sid={$post_detail['post_id']}&stable=weiba_post&curtable=feed&curid={$post_detail['feed_id']}&initHTML=&appname=weiba&cancomment=1&feedtype=weiba_post" href="javascript:void(0)" event-node="share">转发到微博</a>
+                                  <a event-args="sid={$post_detail['post_id']}&stable=weiba_post&curtable=feed&curid={$post_detail['feed_id']}&initHTML=&appname=weiba&cancomment=1&feedtype=weiba_post" href="javascript:void(0)" event-node="share">轉發到微博</a>
                                   <i class="vline">|</i>
                                   <php>if($post_detail['favorite']==1){</php>
                                     <a event-args="post_id={$post_detail['post_id']}&weiba_id={$post_detail['weiba_id']}&post_uid={$post_detail['post_uid']}" href="javascript:void(0)" event-node="post_unfavorite" id="favorite">取消收藏</a>
@@ -92,23 +92,23 @@
                                    <ul>
                                       <php>if(CheckPermission('core_admin','admin_login')){</php>
                                         <li>
-                                          <php>if($post_detail['top']==2){</php><a style="width:75px" href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=1&currentValue={$post_detail['top']}&targetValue=0'>取消全局置顶</a><php>}else{</php><a href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=1&currentValue={$post_detail['top']}&targetValue=2'>设为全局置顶</a><php>}</php>
+                                          <php>if($post_detail['top']==2){</php><a style="width:75px" href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=1&currentValue={$post_detail['top']}&targetValue=0'>取消全局置頂</a><php>}else{</php><a href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=1&currentValue={$post_detail['top']}&targetValue=2'>設為全局置頂</a><php>}</php>
                                         </li>
                                       <php>}</php>
                                       <php>if(in_array($mid,$weiba_admin) || CheckPermission('core_admin','admin_login')){</php>
                                         <li>
-                                          <php>if($post_detail['top']==1){</php><a href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=1&currentValue={$post_detail['top']}&targetValue=0'>取消吧内置顶</a><php>}else{</php><a href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=1&currentValue={$post_detail['top']}&targetValue=1'>设为吧内置顶</a><php>}</php>
+                                          <php>if($post_detail['top']==1){</php><a href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=1&currentValue={$post_detail['top']}&targetValue=0'>取消吧內建頂</a><php>}else{</php><a href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=1&currentValue={$post_detail['top']}&targetValue=1'>設為吧內建頂</a><php>}</php>
                                         </li>
                                         <li>
-                                          <php>if($post_detail['digest']==1){</php><a href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=2&currentValue={$post_detail['digest']}&targetValue=0'>取消精华</a><php>}else{</php><a href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=2&currentValue={$post_detail['digest']}&targetValue=1'>设为精华</a><php>}</php>
+                                          <php>if($post_detail['digest']==1){</php><a href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=2&currentValue={$post_detail['digest']}&targetValue=0'>取消精華</a><php>}else{</php><a href="#" event-node="post_set" event-args='post_id={$post_detail['post_id']}&type=2&currentValue={$post_detail['digest']}&targetValue=1'>設為精華</a><php>}</php>
                                         </li>
                                       <php>}</php>
                                       <php>if(in_array($mid,$weiba_admin) || CheckPermission('core_admin','admin_login')){</php>
                                         <li>
-                                          <a href="{:U('weiba/Index/postEdit',array('post_id'=>$post_detail['post_id'],'log'=>1))}">编辑</a>
+                                          <a href="{:U('weiba/Index/postEdit',array('post_id'=>$post_detail['post_id'],'log'=>1))}">編輯</a>
                                         </li>
                                         <li>
-                                          <a href="#" event-node="post_del" event-args='post_id={$post_detail['post_id']}&weiba_id={$post_detail['weiba_id']}&log=1'>删除</a>
+                                          <a href="#" event-node="post_del" event-args='post_id={$post_detail['post_id']}&weiba_id={$post_detail['weiba_id']}&log=1'>刪除</a>
                                         </li>
                                       <php>}</php>
                                    </ul>

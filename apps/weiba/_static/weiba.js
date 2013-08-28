@@ -1,6 +1,6 @@
 /**
- * 异步提交表单
- * @param object form 表单DOM对象
+ * 非同步提交表單
+ * @param object form 表單DOM物件
  * @return void
  */
 var ajaxSubmit = function(form) {
@@ -29,7 +29,7 @@ var ajaxSubmit = function(form) {
 };
 
 /**
- * 处理ajax返回数据之后的刷新操作
+ * 處理ajax返回資料之後的重新整理操作
  */
 var ajaxReload = function(obj,callback){
     if("undefined" == typeof(callback)){
@@ -64,17 +64,17 @@ var checkAll = function(o){
 };
 
 M.addModelFns({
-	weiba_post:{  //发布帖子
+	weiba_post:{  //釋出帖子
 		callback:function(txt){
-			ui.success('发布成功');
+			ui.success('釋出成功');
 			setTimeout(function() {
 				location.href = U('weiba/Index/postDetail')+'&post_id='+txt.data;
 			}, 1500);
 		}
 	},
-	weiba_post_edit:{  //编辑帖子
+	weiba_post_edit:{  //編輯帖子
 		callback:function(txt){
-			ui.success('编辑成功');
+			ui.success('編輯成功');
 			setTimeout(function() {
 				location.href = U('weiba/Index/postDetail')+'&post_id='+txt.data;
 			}, 1500);
@@ -89,17 +89,17 @@ M.addModelFns({
 			});	
 		}
 	},
-	weiba_reply_edit:{   //编辑帖子回复
+	weiba_reply_edit:{   //編輯帖子回覆
 		callback:function(txt){
-			ui.success('编辑成功');
+			ui.success('編輯成功');
 			setTimeout(function() {
 				location.href = U('weiba/Index/postDetail')+'&post_id='+txt.data;
 			}, 1500);
 		}
 	},
-	weiba_apply:{   //申请吧主
+	weiba_apply:{   //申請吧主
 		callback:function(txt){
-			ui.success('申请成功，请等待管理员审核');
+			ui.success('申請成功，請等待管理員稽覈');
 			setTimeout(function() {
 				location.href = U('weiba/Index/detail')+'&weiba_id='+txt.data;
 			}, 1500);
@@ -135,7 +135,7 @@ M.addEventFns({
 			try{
 				(function( node ) {
 					var parent = node.parentNode;
-					// 判断node 类型，防止意外循环
+					// 判斷node 類型，防止意外迴圈
 					if ( "FORM" === parent.nodeName ) {
 						if ( "false" === args.ajax ) {
 							( ( "function" !== typeof parent.onsubmit ) || ( false !== parent.onsubmit() ) ) && parent.submit();
@@ -148,7 +148,7 @@ M.addEventFns({
 								var strlen = getLength($('#content').val())
 								var leftnums = initNums - strlen;
 								if(leftnums < 0){
-									ui.error('不能超过'+initNums+'个字');
+									ui.error('不能超過'+initNums+'個字');
 									return false;
 								}
 							}
@@ -164,7 +164,7 @@ M.addEventFns({
 			return false;
 		}
 	},
-	do_weiba_reply:{	//回复帖子操作
+	do_weiba_reply:{	//回覆帖子操作
 		click:function(){
 			if ( this.noreply == 1 ){
 				return;
@@ -196,15 +196,15 @@ M.addEventFns({
 				flashTextarea(_textarea);
 				return false;
 			}
-			$(_this).html('<span>回复中...</span>');
+			$(_this).html('<span>回覆中...</span>');
 			// if(getLength(content) == '') {
 			// 	flashTextarea(_textarea);
 			// 	return false;
 			// }
 			if("undefined" != typeof(this.addComment) && (this.addComment == true)) {
-				return false;	//不要重复评论
+				return false;	//不要重複評論
 			}
-			// 如果转发到自己的微博
+			// 如果轉發到自己的微博
 			var ischecked = $(this.comment_textarea).find("input[name='shareFeed']").get(0).checked;
 			if(ischecked == true) {
 				var ifShareFeed = 1;
@@ -217,14 +217,14 @@ M.addEventFns({
 					ui.error(msg.data);
 				}else{
 					if("undefined" != typeof(commentListObj.childModels['comment_list']) ){
-						ui.success('评论成功');
+						ui.success('評論成功');
 						if(attrs.addtoend == 1){
 							$(commentListObj).find('.comment_lists').eq(0).append(msg.data);
 						}else{
 							$(msg.data).insertBefore($(commentListObj.childModels['comment_list'][0]));
 						}
 					}else{
-						ui.success('评论成功');
+						ui.success('評論成功');
 						$(commentListObj).find('.comment_lists').eq(0).html(msg.data);
 					}
 					M(commentListObj);
@@ -236,7 +236,7 @@ M.addEventFns({
 					// 	afterComment();
 					// }
 				}
-				$(_this).html('<span>回复</span>');
+				$(_this).html('<span>回覆</span>');
 				addComment = false;
 			},'json');
 		}
@@ -246,11 +246,11 @@ M.addEventFns({
 			var attrs = M.getEventArgs(this);
 			$(this.parentModel).fadeOut();
 			$.post(U('widget/WeibaReply/delReply'),{widget_appname:'weiba',reply_id:attrs.reply_id},function(msg){
-			//什么也不做吧
+			//什麼也不做吧
 		});
 		}
 	},
-	reply_reply:{	//点某条回复
+	reply_reply:{	//點某條回覆
 		click:function(){ 
 			var attrs = M.getEventArgs(this);
 			ui.box.load(U('widget/WeibaReply/reply_reply')+'&widget_appname=weiba'+'&weiba_id='+attrs.weiba_id+'&post_id='+attrs.post_id+'&post_uid='+attrs.post_uid+'&to_reply_id='+attrs.to_reply_id+'&to_uid='+attrs.to_uid+'&to_comment_uname='+attrs.to_comment_uname+'&feed_id='+attrs.feed_id+'&addtoend='+attrs.addtoend+'&comment_id='+attrs.comment_id,L('PUBLIC_RESAVE'),function(){
@@ -265,10 +265,10 @@ M.addEventFns({
 			var post_del = function(){
 				$.post(U('weiba/Index/postDel'),{post_id:attrs.post_id,weiba_id:attrs.weiba_id,log:attrs.log},function(res){
 				if(res == 1){
-					ui.success('删除成功');
+					ui.success('刪除成功');
 					location.href=U('weiba/Index/detail') + '&weiba_id='+ attrs.weiba_id;
 				}else{
-					ui.error('删除失败');
+					ui.error('刪除失敗');
 				}
 				});
 			}		
@@ -280,10 +280,10 @@ M.addEventFns({
 			var attrs = M.getEventArgs(this);
 			$.post(U('weiba/Index/postSet'),{post_id:attrs.post_id,type:attrs.type,currentValue:attrs.currentValue,targetValue:attrs.targetValue},function(res){
 				if(res == 1){
-					ui.success('设置成功');
+					ui.success('設定成功');
 					setTimeout("location.reload()",1000);
 				}else{
-					ui.error('设置失败');
+					ui.error('設定失敗');
 				}
 			});
 		}
@@ -296,7 +296,7 @@ M.addEventFns({
 					ui.success('收藏成功');
 					setTimeout("location.reload()",1000);
 				}else{
-					ui.error('收藏失败');
+					ui.error('收藏失敗');
 				}
 			});
 		}	
@@ -309,38 +309,38 @@ M.addEventFns({
 					ui.success('取消成功');
 					setTimeout("location.reload()",1000);
 				}else{
-					ui.error('取消失败');
+					ui.error('取消失敗');
 				}
 			});
 		}	
 	}
 });
 	/**
- * 关注操作Js对象
+ * 關注操作Js物件
  */
 var followWeiba = {
-	// 按钮样式
+	// 按鈕樣式
 	btnClass: {
 		doFollow: "btn-cancel",
 		unFollow: "btn-att-white",
 		haveFollow: "btn-att-white"
 	},
-	// 按钮图标
+	// 按鈕圖示
 	flagClass: {
 		doFollow: "ico-add-black",
 		unFollow: "ico-minus-gray",
 		haveFollow: "ico-already"
 	},
-	// 按钮文字
+	// 按鈕文字
 	btnText: {
-		doFollow: '关注',
+		doFollow: '關注',
 		unFollow: L('PUBLIC_ERROR_FOLLOWING'),
-		haveFollow: '已关注'
+		haveFollow: '已關注'
 	},
 	/**
-	 * 创建关注按钮
-	 * @param object node 按钮节点对象
-	 * @param string btnType 按钮类型，4种
+	 * 創建關注按鈕
+	 * @param object node 按鈕節點物件
+	 * @param string btnType 按鈕類型，4種
 	 * @return void
 	 */
 	createBtn: function(node, btnType) {
@@ -351,10 +351,10 @@ var followWeiba = {
 		var flagClass = this.flagClass[btnType];
 		var btnText = this.btnText[btnType];
 		var btnHTML = ['<span><b class="', flagClass, '"></b>', btnText, '</span>'].join( "" );
-		// 按钮节点添加HTML与样式
+		// 按鈕節點添加HTML與樣式
 		node.innerHTML = btnHTML;
 		node.className = btnClass;
-		// 选择按钮类型
+		// 選擇按鈕類型
 		switch(btnType) {
 			case "haveFollow":
 				M.addListener(node, {
@@ -383,8 +383,8 @@ var followWeiba = {
 		}
 	},
 	/**
-	 * 添加关注操作
-	 * @param object node 关注按钮的DOM对象
+	 * 添加關注操作
+	 * @param object node 關注按鈕的DOM物件
 	 * @return void
 	 */
 	doFollow: function(node) {
@@ -393,7 +393,7 @@ var followWeiba = {
 		var url = node.getAttribute("href") || [U('weiba/Index/doFollowWeiba'), '&weiba_id=', args.weiba_id].join("");
 		$.post(url, {}, function(txt) {
 			if(1 == txt.status ) {
-				ui.success('关注成功');
+				ui.success('關注成功');
 				if(args.isrefresh==1){
 					setTimeout("location.reload()",1000);
 				}else{
@@ -409,8 +409,8 @@ var followWeiba = {
 		}, 'json');
 	},
 	/**
-	 * 取消关注操作
-	 * @param object node 关注按钮的DOM对象
+	 * 取消關注操作
+	 * @param object node 關注按鈕的DOM物件
 	 * @return void
 	 */
 	unFollow: function(node) {
@@ -451,9 +451,9 @@ var search = {
 	displayList: function(obj){
 		this.searchKey = obj.value.replace(/(^\s*)|(\s*$)/g,"");
 		if(getLength(this.searchKey)>0){
-			var html = '<div class="search-box" id="search-box"><dd id="s_2" class="current" onclick="search.dosearch(2);" onmouseover="$(\'#s_2\').addClass(\'current\');$(\'#s_1\').removeClass(\'current\');">搜“<span>'+this.searchKey+'</span>”相关帖子&raquo;</dd>'
-						+'<dd id="s_1" onclick="search.dosearch(1);" onmouseover="$(\'#s_1\').addClass(\'current\');$(\'#s_2\').removeClass(\'current\');">搜“<span>'+this.searchKey+'</span>”相关微吧&raquo;</dd></div>';
-					//+'<dd class="more"><a href="#"" onclick="core.search.dosearch();">点击查看更多结果&raquo;</a></dd>';
+			var html = '<div class="search-box" id="search-box"><dd id="s_2" class="current" onclick="search.dosearch(2);" onmouseover="$(\'#s_2\').addClass(\'current\');$(\'#s_1\').removeClass(\'current\');">搜“<span>'+this.searchKey+'</span>”相關帖子&raquo;</dd>'
+						+'<dd id="s_1" onclick="search.dosearch(1);" onmouseover="$(\'#s_1\').addClass(\'current\');$(\'#s_2\').removeClass(\'current\');">搜“<span>'+this.searchKey+'</span>”相關微吧&raquo;</dd></div>';
+					//+'<dd class="more"><a href="#"" onclick="core.search.dosearch();">點選檢視更多結果&raquo;</a></dd>';
 		}else{
 			var html = '';
 		}
@@ -461,7 +461,7 @@ var search = {
 		$(html).insertAfter($(obj).parent());
 	},
 
-	//查找数据
+	//查找資料
 	dosearch:function(type){
 		 var url = U('weiba/Index/search')+'&k='+this.searchKey;
 		 if("undefined" != typeof(type)){
@@ -485,10 +485,10 @@ var	upload = function(type,obj){
 	};
 
 /**
- * 修改吧内成员等级
+ * 修改吧內成員等級
  * @param integer weiba_id 微吧ID
- * @param integer follower_uid 当前成员UID
- * @param integer targetLevel 目标等级
+ * @param integer follower_uid 當前成員UID
+ * @param integer targetLevel 目標等級
  * @return void
  */
 var editLevel = function(weiba_id,follower_uid,targetLevel){
@@ -498,15 +498,15 @@ var editLevel = function(weiba_id,follower_uid,targetLevel){
 };
 
 /**
- * 将用户移出微吧
+ * 將使用者移出微吧
  * @param integer weiba_id 微吧ID
- * @param integer follower_uid 微吧成员UID
+ * @param integer follower_uid 微吧成員UID
  * @return void
  */
 var moveOut = function(weiba_id,follower_uid){
 	if("undefined" == typeof(follower_uid) || follower_uid=='') follower_uid = getChecked();
     if(follower_uid==''){
-        ui.error('请选择要移出的用户');return false;
+        ui.error('請選擇要移出的使用者');return false;
     }
 	$.post(U('weiba/Manage/moveOut'), {weiba_id:weiba_id,follower_uid:follower_uid}, function(msg) {
 		ajaxReload(msg);
@@ -519,24 +519,24 @@ var moveOut = function(weiba_id,follower_uid){
  * @return void
  */
 var delWeiba = function(weiba_id){
-	if(confirm('确定要解散此微吧吗？')){
+	if(confirm('確定要解散此微吧嗎？')){
         $.post(U('weiba/Manage/delWeiba'),{weiba_id:weiba_id},function(msg){
             if(msg == 1) {
             	ui.success('解散成功');
             	location.href = U('weiba/Index/index');
             }else if(msg == -1){
-            	ui.error('微吧ID不能为空');
+            	ui.error('微吧ID不能為空');
             }else{
-            	ui.error('解散失败');
+            	ui.error('解散失敗');
             }
         });
     }
 };
 
 /**
- * 检查是否有发帖权限
+ * 檢查是否有發帖許可權
  * @param integer weiba_id 微吧ID
- * @param boolean who_can_post 发帖权限 0：所有人  1：关注本吧的人
+ * @param boolean who_can_post 發帖許可權 0：所有人  1：關注本吧的人
  */
 var check_post = function(weiba_id, who_can_post){
 	if(who_can_post){
@@ -544,7 +544,7 @@ var check_post = function(weiba_id, who_can_post){
 			if(txt==1){
 				location.href = U('weiba/Index/post')+'&weiba_id='+weiba_id;
 			}else{
-				ui.box.load(U('weiba/Index/joinWeiba')+'&weiba_id='+weiba_id,'您没有发帖权限');
+				ui.box.load(U('weiba/Index/joinWeiba')+'&weiba_id='+weiba_id,'您沒有發帖許可權');
 			}
 		});
 	}else{
@@ -557,20 +557,20 @@ var weiba_apply = function(weiba_id,type){
 		if(txt==1){
 			location.href = U('weiba/Index/apply')+'&weiba_id='+weiba_id+'&type='+type;
 		}else if(txt==-1){
-			ui.error('您已经提交了申请，请等待审核');
+			ui.error('您已經提交了申請，請等待稽覈');
 		}else if(txt==-2){
-			ui.error('您已经是吧主，不能重复申请');
+			ui.error('您已經是吧主，不能重複申請');
 		}else if(txt==2){
-			ui.error('该吧已经设置了吧主');
+			ui.error('該吧已經設定了吧主');
 			setTimeout("location.reload()",2000);
 		}else{
-			ui.error('您需要发布5篇以上帖子才能申请');
+			ui.error('您需要釋出5篇以上帖子才能申請');
 		}
 	});
 };
 
 /**
- * 处理申请吧主或小吧申请
+ * 處理申請吧主或小吧申請
  */
 var verify = function(weiba_id, uid, value){
 	$.post(U('weiba/Manage/verify'),{weiba_id:weiba_id,uid:uid,value:value},function(msg){
@@ -586,7 +586,7 @@ var saveWeibaInfo = function(){
 	var who_can_post = $('input:checked[name="who_can_post"]').val();
 	$.post(U('weiba/Manage/doWeibaEdit'),{weiba_id:weiba_id,weiba_name:weiba_name,intro:intro,logo:logo,who_can_post:who_can_post},function(msg){
 		if(msg=='1'){
-			ui.success('保存成功');
+			ui.success('儲存成功');
 		}else{
 			ui.error(msg);
 		}

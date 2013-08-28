@@ -1,10 +1,10 @@
 /**
- * 注册流程使用
+ * 註冊流程使用
  * @author jason <yangjs17@yeah.net>
  * @version TS3.0
  */
 (function() {
-// 获取关联用户信息
+// 獲取關聯使用者資訊
 var oRelatedUser = {
 	nNumPerPage: 21,
 	nTotalItems: 0,
@@ -81,7 +81,7 @@ var oRelatedUser = {
 			ui.error(L('PUBLIC_FAVORITE_TIPS'));
 			return false;
 		}
-		// 添加关注操作
+		// 添加關注操作
 		$.post(url, {fids:fids.join(",")}, function(txt) {
 			var i;
 			var num = 0;
@@ -96,10 +96,10 @@ var oRelatedUser = {
 		}, 'json');
 	}
 };
-/*** 事件监听 ***/
-// 块监听
+/*** 事件監聽 ***/
+// 塊監聽
 M.addModelFns({
-	// 获取相关用户列表
+	// 獲取相關使用者列表
 	related_user_list: {
 		load: function() {
 			$(this).find('li').each(function() {
@@ -124,7 +124,7 @@ M.addModelFns({
 		}
 	}
 }).addEventFns({
-	// 重新发送激活邮件
+	// 重新發送啟用郵件
 	resend_activation_email: {
 		click: function() {
 			var url = this.href;
@@ -139,7 +139,7 @@ M.addModelFns({
 			return false;
 		}
 	},
-	// 更改激活邮件地址
+	// 更改啟用郵件地址
 	change_activation_email: {
 		click: function() {
 			if(inviteEmail.getIsValid()) {
@@ -158,7 +158,7 @@ M.addModelFns({
 			return false;
 		}
 	},
-	// 改变关联用户选择
+	// 改變關聯使用者選擇
 	register_change_related_user: {
 		click: function() {
 			oRelatedUser.fChange();
@@ -170,7 +170,7 @@ M.addModelFns({
 			oRelatedUser.fInit(this, M.getModels("related_recommend_list")[0]);
 		}
 	},
-	// 保存关注用户操作
+	// 儲存關注使用者操作
 	saveFollow: {
 		click: function() {
 			var _this = this;
@@ -178,12 +178,12 @@ M.addModelFns({
 			return false;
 		}
 	},
-	// 全选关组用户操作
+	// 全選關組使用者操作
 	selectAllFollow: {
 		click: function() {
 			var keyword = $(this).attr('keyword');
 			if($(this).attr('checked')) {
-				// 全选
+				// 全選
 				$('#'+keyword).find('i').attr('class', 'ico-ok-mark');
 				$('.face_part_'+keyword).each(function() {
 					var v = $(this).attr('value');
@@ -199,7 +199,7 @@ M.addModelFns({
 			}
 		}	
 	},
-	//换一换
+	//換一換
 	change_related_user: {
 		click: function() {
 			var keywords = $(this).attr('keywords');

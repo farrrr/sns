@@ -1,10 +1,10 @@
 /**
- * 群组评论
+ * 群組評論
  * @author jason <yangjs17@yeah.net>
  * @version TS3.0
  */
 core.groupcomment = {
-	// 给工厂调用的接口
+	// 給工廠呼叫的介面
 	_init:function(attrs) {
 		if(attrs.length == 3) {
 			core.groupcomment.init(attrs[1], attrs[2]);
@@ -12,9 +12,9 @@ core.groupcomment = {
 			return false;
 		}
 	},
-	// 初始化评论对象
+	// 初始化評論物件
 	init: function(attrs, commentListObj) {	
-		// 这些参数必须传入
+		// 這些參數必須傳入
 		this.app_uid = attrs.app_uid,
 		this.row_id  = attrs.row_id,
 		this.to_comment_id = attrs.to_comment_id,
@@ -29,12 +29,12 @@ core.groupcomment = {
 		if("undefined" != typeof(attrs.app_name)) {
 			this.app_name = attrs.app_name;
 		} else {
-			this.app_name = "group";	//默认应用
+			this.app_name = "group";	//默認應用
 		}
 		if("undefined" != typeof(attrs.table)) {
 			this.table = attrs.table;
 		} else {
-			this.table = 'group_feed';	//默认表
+			this.table = 'group_feed';	//默認表
 		}
 		if("undefined" != typeof(attrs.to_comment_uname)) {
 			this.to_comment_uname = attrs.to_comment_uname;
@@ -43,7 +43,7 @@ core.groupcomment = {
 			this.commentListObj = commentListObj;
 		}
 	},
-	// 显示回复块
+	// 顯示回覆塊
 	display: function() {	
 		var commentListObj = this.commentListObj;
 		if("undefined" == typeof this.table) {
@@ -74,7 +74,7 @@ core.groupcomment = {
 									M($('#commentlist_'+rowid).get(0));
 								});
 								M(commentListObj);
-								//@评论框
+								//@評論框
 								groupatwho($(commentListObj).find('textarea'));
 								$(commentListObj).find('textarea').focus();
 							}
@@ -84,7 +84,7 @@ core.groupcomment = {
 			commentListObj.style.display = 'none';
 		}
 	},
-	// 初始化回复操作
+	// 初始化回覆操作
 	initReply: function() {	
 		this.comment_textarea = this.commentListObj.childModels['comment_textarea'][0];
 		var mini_editor = this.comment_textarea.childModels['mini_editor'][0];
@@ -94,7 +94,7 @@ core.groupcomment = {
 		_textarea.inputToEnd(html);
 		_textarea.focus();
 	},
-	// 发表评论
+	// 發表評論
 	addComment:function(afterComment,obj) {
 		var commentListObj = this.commentListObj;
 		this.comment_textarea = commentListObj.childModels['comment_textarea'][0];
@@ -107,7 +107,7 @@ core.groupcomment = {
 			return false;
 		}
 		
-		// 如果转发到自己的微博
+		// 如果轉發到自己的微博
 		if(this.canrepost == 1){
 			var ischecked = $(this.comment_textarea).find("input[name='shareFeed']").get(0).checked;
 			if(ischecked == true) {
@@ -130,13 +130,13 @@ core.groupcomment = {
 			ui.error(L('PUBLIC_CONCENT_TIPES'));
 		}
 		if("undefined" != typeof(this.addComment) && (this.addComment == true)) {
-			return false;	//不要重复评论
+			return false;	//不要重複評論
 		}
 		var addcomment = this.addComment;
 		var addToEnd = this.addToEnd;
 
 		var _this = this;
-		obj.innerHTML = '回复中..';
+		obj.innerHTML = '回覆中..';
 		$.post(U('group/GroupComment/addcomment'),{
 			app_name:this.app_name,
 			table_name:this.table,
@@ -166,7 +166,7 @@ core.groupcomment = {
 					}
 					M(commentListObj);
 					if ( obj != undefined ){
-						obj.innerHTML = '回复';
+						obj.innerHTML = '回覆';
 					}
 					//重置
 					_textarea.value = '';
@@ -182,7 +182,7 @@ core.groupcomment = {
 	},
 	delComment:function(comment_id,gid){
 		$.post(U('group/GroupComment/delcomment'),{comment_id:comment_id,gid:gid},function(msg){
-			//什么也不做吧
+			//什麼也不做吧
 		});
 	}
 };

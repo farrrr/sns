@@ -2,7 +2,7 @@
 .arrow-find-r{background-position:-34px -51px;width:7px;height:7px;}
 .arrow-find-w{background-position:-32px -74px;width:13px;height:13px;}
 
-/*勋章列表*/
+/*勳章列表*/
 .medal-content{background:url(image/medal-bg.jpg) no-repeat;width:920px;height:598px;position:relative;}
 .medal-title{border:1px solid #eee;}
 .medal-title h3{font-size:16px;color:#333;height:40px;line-height:40px;padding:0 0 0 20px;background-image:-moz-linear-gradient(top, #fefefe, #fbfbfb);background:-webkit-gradient(linear, 0 0, 0 100%, from(#fefefe), to(#fbfbfb)); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#fefefe,endColorstr=#fbfbfb,grandientType=1);}
@@ -20,13 +20,13 @@ a:hover .arrow-medal-r{background-position:-55px -143px;width:49px;height:49px;d
 .medal-content .page{text-align:center;}
 
 
-/*我的勋章*/
+/*我的勳章*/
 .medal-user{margin:0 0 20px 0;}
 .medal-user dt{float:left;}
 .medal-user dd{margin:0 0 0 60px;}
 .medal-user dd p{margin:0 0 10px 0;}
 .medal-user dd .name{font-size:14px;}
-/*勋章详情*/
+/*勳章詳情*/
 .medal-info{padding:30px;width:420px;}
 .medal-info dt{background:url(image/medal-info-bg.png) no-repeat;width:184px;height:184px;float:left;position:relative;}
 .medal-info dt img{position:absolute;left:24%;top:23%;}

@@ -5,7 +5,7 @@
 <link href="{:APPS_URL}/admin/_static/admin.css" rel="stylesheet" type="text/css">
 <script>
 /**
- * 全局变量
+ * 全局變數
  */
 var SITE_URL  = '<php> echo SITE_URL;</php>';
 var THEME_URL = '__THEME__';
@@ -13,7 +13,7 @@ var APPNAME   = '<php> echo APP_NAME;</php>';
 var UPLOAD_URL ='{:UPLOAD_URL}';
 var MID		  = '<php> echo $mid;</php>';
 var UID		  = '<php> echo $uid;</php>';
-// Js语言变量
+// Js語言變數
 var LANG = new Array();
 </script>
 <script type="text/javascript" src="__THEME__/js/jquery.js"></script>
@@ -26,7 +26,7 @@ var LANG = new Array();
 <script type="text/javascript" src = "__THEME__/js/ui.core.js"></script>
 <script type="text/javascript" src = "__THEME__/js/ui.draggable.js"></script>
 <php>
-/* 非admin应用的后台js脚本统一写在  模板风格对应的app目录下的admin.js中*/
+/* 非admin應用的後臺js指令碼統一寫在  模板風格對應的app目錄下的admin.js中*/
 if(APP_NAME != 'admin' && file_exists(APP_PUBLIC_PATH.'/admin.js')){
 </php>
 <script type="text/javascript" src="{:APP_PUBLIC_URL}/admin.js"></script>

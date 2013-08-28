@@ -4,41 +4,41 @@
   <div id="main-wrap">
     <div class="boxShadow">
       <div class="extend-foot clearfix">
-        <!-- Tab切换 -->
+        <!-- Tab切換 -->
         <div class="tab-menu">
           <ul>
             <li <eq name="type" value="email">class="current"</eq>>
-              <a href="{:U('public/Invite/invite', array('type'=>'email'))}" class="feed_item"><span>邮件邀请</span></a>
+              <a href="{:U('public/Invite/invite', array('type'=>'email'))}" class="feed_item"><span>郵件邀請</span></a>
             </li>
             <li <eq name="type" value="link">class="current"</eq>>
-              <a href="{:U('public/Invite/invite', array('type'=>'link'))}" class="feed_item"><span>链接邀请</span></a>
+              <a href="{:U('public/Invite/invite', array('type'=>'link'))}" class="feed_item"><span>連結邀請</span></a>
             </li>
           </ul>
         </div>
         
         <div class="mainbox_C_C">
-          <!--通过邮箱邀请 -->
+          <!--通過郵箱邀請 -->
           <php>if($type == 'email'):</php>
           <div class="inviteMode">
             <div class="invite-title">
-              <h4>你可以通过邮箱免费邀请{$emailNum}位好友，当前还剩余{$count}个名额。免费名额用完后，每邀请1位好友，将相应扣除{$applyCredit}点财富值。若财富值不足，则无法进行邀请。</h4>
-              <input id="check_email" suffix="{$emailSuffix}" class="s-txt" type="text" autocomplete="off"><a href="javascript:;" onclick="doInviteEmail();" class="btn-green-big">发送邀请</a>
+              <h4>你可以通過郵箱免費邀請{$emailNum}位好友，當前還剩餘{$count}個名額。免費名額用完後，每邀請1位好友，將相應扣除{$applyCredit}點財富值。若財富值不足，則無法進行邀請。</h4>
+              <input id="check_email" suffix="{$emailSuffix}" class="s-txt" type="text" autocomplete="off"><a href="javascript:;" onclick="doInviteEmail();" class="btn-green-big">發送邀請</a>
               <div id="prompt_box" class="box-ver"></div>
             </div>
             <div class="invite-user-list">
               <php>if(empty($inviteList['data'])):</php>
-              <p class="f9">当前无邀请好友</p>
+              <p class="f9">當前無邀請好友</p>
               <php>else:</php>
-              <h4>已邀请好友：</h4>
+              <h4>已邀請好友：</h4>
               <ul>
                 <li>
-                  <div class="w3">昵称</div>
-                  <div class="w1">邮箱</div>
+                  <div class="w3">昵稱</div>
+                  <div class="w1">郵箱</div>
                  </li>
                 <volist name="inviteList.data" id="vo">
                 <li>
                   <div class="w3"><a href="{$vo.space_url}" class="mr5"><img src="{$vo.avatar_small}" width="30" height="30"/></a><a href="{$vo.space_url}">{$vo.uname}</a></div>
-                  <!-- 去掉邮箱链接 -->
+                  <!-- 去掉郵箱連結 -->
                   <!-- <div class="w1 line-h"><a href="{$vo.space_url}">{$vo.email}</a></div> -->
                   <div class="w1 line-h">{$vo.email}</div>
                 </li>
@@ -48,11 +48,11 @@
               <php>endif;</php>
             </div>
           </div> 
-          <!-- 链接邀请 -->
+          <!-- 連結邀請 -->
           <php>elseif($type == 'link'):</php>
           <div class="inviteMode">
             <php>if($count != 0):</php>
-            <div class="invite-title"><h4>您目前拥有{$count}个邀请码，每个邀请码可以邀请1个朋友</h4></div>
+            <div class="invite-title"><h4>您目前擁有{$count}個邀請碼，每個邀請碼可以邀請1個朋友</h4></div>
             <php>endif;</php>
             <div class="invite-links">
               <ul>
@@ -69,17 +69,17 @@
               </ul>
             </div>
             <php>if($count == 0):</php>
-            <div>你当前邀请名额已用完，<a href="javascript:;" onclick="applyInviteCode({$GLOBALS['ts']['mid']}, 'link')" class="btn-green-big">领取邀请码</a></div>
+            <div>你當前邀請名額已用完，<a href="javascript:;" onclick="applyInviteCode({$GLOBALS['ts']['mid']}, 'link')" class="btn-green-big">領取邀請碼</a></div>
             <php>endif;</php>
             <div class="invite-user-list">
               <php>if(empty($inviteList['data'])):</php>
-              <p class="f9">当前无邀请好友</p>
+              <p class="f9">當前無邀請好友</p>
               <php>else:</php>
-              <h4>已邀请好友：</h4>
+              <h4>已邀請好友：</h4>
               <ul>
                 <li>
-                  <div class="w3">昵称</div>
-                  <div class="w1">邮箱</div>
+                  <div class="w3">昵稱</div>
+                  <div class="w1">郵箱</div>
                 </li>
                 <volist name="inviteList.data" id="vo">
                 <li>
@@ -93,7 +93,7 @@
             </div>
             <php>endif;</php>
             <php>if(!empty($inviteList['data'])):</php>
-            <div>当你的朋友成功注册后，你们会自动互相关注。</div>
+            <div>當你的朋友成功註冊後，你們會自動互相關注。</div>
             <php>endif;</php>
           </div>
         </div><div class="c"></div>
@@ -105,43 +105,43 @@
 
 <script type="text/javascript">
 /**
- * 验证邮箱是否合理
- * @param object inputId 输入邮箱内容的input对象
- * @return object 验证邮箱对象
+ * 驗證郵箱是否合理
+ * @param object inputId 輸入郵箱內容的input物件
+ * @return object 驗證郵箱物件
  */
 var checkEmailBox = function(inputId)
 {
-  // 验证参数是否正确
+  // 驗證參數是否正確
   if(typeof inputId === "undefined") {
     return false;
   }
-  // 返回的实例化对象
+  // 返回的例項化物件
   var that = {};
-  // 获取验证数据
+  // 獲取驗證資料
   that.getIsValid = function()
   {
     return isValid;
   };
-  // 获取邮箱的值
+  // 獲取郵箱的值
   that.getValue = function()
   {
     return $.trim($input.val());
   };
-  // 原始数据
+  // 原始資料
   var oldVal = '';
   // 列表Li索引
   var indexLi = -1;
-  // 验证是否成功
+  // 驗證是否成功
   var isValid = false;
-  // 设置JQuery对象
+  // 設定JQuery物件
   var $input = $('#'+inputId);
-  // 获取邮件后缀
+  // 獲取郵件字尾
   if($.trim($input.attr('suffix')) == '') {
     isValid = true;
     return that;
   }
   var suffix = $input.attr('suffix').split(',');
-  // 下拉框对象
+  // 下拉框物件
   var offset = $input.offset();
   //var width = $input.outerWidth();
   var dropDown = '<div style="width:430px;display:none;position:absolute;left:'+offset.left+'px;top:'+(offset.top+29)+'px;" class="mod-at-wrap mod-at"><ul class="at-user-list">';
@@ -151,7 +151,7 @@ var checkEmailBox = function(inputId)
   dropDown += '</ul></div>';
   var $dropDown = $(dropDown);
   $('body').append($dropDown);
-  // 输入框改变内容
+  // 輸入框改變內容
   var valChange = function()
   {
     var tex = $input.val();
@@ -179,12 +179,12 @@ var checkEmailBox = function(inputId)
       });
     }
   };
-  // 隐藏下拉框列表
+  // 隱藏下拉框列表
   var blusDropDown = function()
   {
     $dropDown.hide();
   };
-  // 浏览器输入兼容性
+  // 瀏覽器輸入相容性
   if($.browser.msie) {
     $input.bind('propertychange', function() {
       $(this).val() != oldVal && valChange();
@@ -194,7 +194,7 @@ var checkEmailBox = function(inputId)
       valChange();
     });
   }
-  // 选中上下移动
+  // 選中上下移動
   var keyChange = function(up) {
     if(up == "up") {
       if(indexLi == 0) {
@@ -211,7 +211,7 @@ var checkEmailBox = function(inputId)
     }
     $dropDown.find('li[rel="show"]').eq(indexLi).addClass("current").siblings().removeClass(); 
   };
-  // 绑定按键事件
+  // 繫結按鍵事件
   $input.keydown(function(event) {
     if(event.which == 38) {
       // 按上
@@ -220,14 +220,14 @@ var checkEmailBox = function(inputId)
       // 按下
       keyChange();
     } else if(event.which == 13) {
-      // 按回车
+      // 按回車
       var liVal = $dropDown.find('li[rel="show"]').eq(indexLi).text();
       $input.val(liVal);
       $input.blur();
       blusDropDown();
     }
   });
-  // 给Li绑定点击事件
+  // 給Li繫結點選事件
   $(document).click(function(event) {
     if($(event.target).is('li') && typeof $(event.target).attr('email') !== 'undefined') {
       var liVal = $(event.target).text();
@@ -236,25 +236,25 @@ var checkEmailBox = function(inputId)
     }
     blusDropDown();
   });
-  // 绑定验证邮箱内容正确性
+  // 繫結驗證郵箱內容正確性
   $input.bind('blur', function() {
     setTimeout(function() {
       checkEmailValue();
     }, 300);
   });
-  // 验证邮件正确性
+  // 驗證郵件正確性
   var checkEmailValue = function() {
-    // 获取邮件内容
+    // 獲取郵件內容
     var email = $.trim($input.val());
     if(email == '') {
       return false;
     }
-    // 验证邮箱是否可用
+    // 驗證郵箱是否可用
     $.post(U('public/Invite/checkInviteEmail'), {email:email}, function(res) {
       var icoClass = '';
       if(res.status) {
         icoClass = 'ico-ok';
-        res.info = '<font style="color:green;">该邮箱可以使用</font>';
+        res.info = '<font style="color:green;">該郵箱可以使用</font>';
         isValid = true;
       } else {
         icoClass = 'ico-error';
@@ -272,14 +272,14 @@ var checkEmailBox = function(inputId)
 var inviteEmail = checkEmailBox('check_email');
 
 /**
- * 发送邮件邀请操作
+ * 發送郵件邀請操作
  */
 var doInviteEmail = function()
 {
   if(inviteEmail.getIsValid()) {
-    // 获取邮件内容
+    // 獲取郵件內容
     var email = $('#check_email').val();
-    // 验证邮箱是否可用
+    // 驗證郵箱是否可用
     $.post(U('public/Invite/doInvite'), {email:email}, function(res) {
       if(res.status) {
         ui.success(res.info);
@@ -295,24 +295,24 @@ var doInviteEmail = function()
   }
   return false;
 };
-// 获取焦点
+// 獲取焦點
 $(function() {
   $('#check_email').focus();
 });
 
 /**
- * 申请邀请码操作
- * @param integer uid 用户ID
- * @param string type 申请邀请码类型
+ * 申請邀請碼操作
+ * @param integer uid 使用者ID
+ * @param string type 申請邀請碼類型
  * @return void
  */
 var applyInviteCode = function(uid, type)
 {
-  // 验证参数正确性
+  // 驗證參數正確性
   if(typeof uid === 'undefined' || typeof type === 'undefined') {
     return false;
   }
-  // 提交申请邀请码操作
+  // 提交申請邀請碼操作
   $.post(U('public/Invite/applyInviteCode'), {uid:uid, type:type}, function(res) {
     if(res.status) {
       ui.success(res.info);

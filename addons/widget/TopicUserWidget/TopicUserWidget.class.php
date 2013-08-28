@@ -1,18 +1,18 @@
 <?php
 /**
- * 具有相同资料项的人Widget
+ * 具有相同資料項的人Widget
  * @author zivss <guolee226@gmail.com>
  * @version TS3.0
  */
 class TopicUserWidget extends Widget {
 
 	/**
-	 * 渲染话题人物页面
-	 * @param array $data 配置相关数据
-     * @param integer topic_id 话题ID
-     * @param integer type 话题人物类型 1:话题人物推荐   2:参与话题的人
-     * @param integer limit 人物数量限制
-	 * @return string 渲染页面的HTML
+	 * 渲染話題人物頁面
+	 * @param array $data 配置相關資料
+     * @param integer topic_id 話題ID
+     * @param integer type 話題人物類型 1:話題人物推薦   2:參與話題的人
+     * @param integer limit 人物數量限制
+	 * @return string 渲染頁面的HTML
 	 */
 	public function render($data) {
         $limit = isset($data['limit'])?intval($data['limit']):12;

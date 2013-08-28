@@ -1,5 +1,5 @@
 /**
- * 黑名单模型
+ * 黑名單模型
  */
 core.blacklist = {	
 			_init:function(attrs){
@@ -15,8 +15,8 @@ core.blacklist = {
 				this.obj = obj;
 				this.fid = fid;
 				this.isrefresh = isrefresh;
-				switch(type){ //操作类型
-					case 'btn': //按钮操作
+				switch(type){ //操作類型
+					case 'btn': //按鈕操作
 						core.blacklist.btn();
 						break;
 					case 'list':
@@ -37,7 +37,7 @@ core.blacklist = {
 							}else{
 								ui.success(msg.data);
 								$(obj).attr('rel','remove');
-								$('#follower_'+fid).fadeOut('slow');  //在我的粉丝页面用到
+								$('#follower_'+fid).fadeOut('slow');  //在我的粉絲頁面用到
 								//$(obj).html('<i class="ico-black"></i> '+L('PUBLIC_MOVE_PASSUSER_TIPES'));
 								$(obj).html(L('PUBLIC_MOVE_PASSUSER_TIPES'));
 								if(isrefresh==1) setTimeout("location.reload()",1000);
@@ -61,7 +61,7 @@ core.blacklist = {
 					});
 					return false;
 				}
-				//异常
+				//異常
 			},
 			list:function(){
 				var obj = this.obj;

@@ -1,11 +1,11 @@
 <div id="col1" class="st-index-left">
 <div class="left-wrap">
-<!--个人信息-->
+<!--個人資訊-->
 <div class="mod-person">
 <a href="{:U('public/Profile/index',array('uid'=>$mid))}" class="face"><img src="{$user.avatar_small}" width="48" /></a>
 <a href="{:U('public/Profile/index',array('uid'=>$mid))}"><span class="name">{$user.uname}</span></a>
 </div>
-<!--左导航菜单-->
+<!--左導航選單-->
 <div class="mod-sub-nav">
 <ul class="basic-list">
 	<li <php> if(MODULE_NAME =='Index' && APP_NAME=='public'){</php> class="current"<php>}</php> ><a href="{:U('public/Index/index')}" class="app"><i class="arrow-current"></i><i class="icon ico-home"></i>{:L('PUBLIC_MY_HOME')}</a></li>
@@ -17,7 +17,7 @@
 
 </ul>
 </div>
-<!--应用-->
+<!--應用-->
 <include file="__THEME__/public_app_list" />
 </div>
 </div>

@@ -6,31 +6,31 @@
     </div>
     <h3 class="hd">{:L('PUBLIC_ANNOUNCEMENT')}</h3>
     <div model-node="wigdet_setbox" style='display:none' class="announcement-set">
-    	<!-- start wigdet可设置内容 -->
-    	<form method='post' action='{:U('widget/Diy/set',array('diyId'=>$diyId,'widget_name'=>$widget_name,'appname'=>'public'))}'
+        <!-- start wigdet可設定內容 -->
+        <form method='post' action='{:U('widget/Diy/set',array('diyId'=>$diyId,'widget_name'=>$widget_name,'appname'=>'public'))}'
             model-node='wigdet_setform' >
-    	<dl>
-    		<dd>{:L('PUBLIC_SEE_MORE_NUM')}：<input type="text" name='limit' value='{$limit}' class="s-txt"></dd>
-    		<dd class="btn">
+            <dl>
+                <dd>{:L('PUBLIC_SEE_MORE_NUM')}：<input type="text" name='limit' value='{$limit}' class="s-txt"></dd>
+                <dd class="btn">
                 <a event-node="submit_btn" href="javascript:void(0)" class="btn-green-small"><span>{:L('PUBLIC_CONFIRM')}</span></a> 
-    			<a href="javascript:void(0)" event-node='widget_cancel_set' class="btn-cancel"><span>{:L('PUBLIC_CANCEL')}</span></a>
-            </dd>
-    	</dl>
-    	</form>	
-    	<!-- end wigdet可设置内容 -->
+                <a href="javascript:void(0)" event-node='widget_cancel_set' class="btn-cancel"><span>{:L('PUBLIC_CANCEL')}</span></a>
+                </dd>
+            </dl>
+        </form> 
+        <!-- end wigdet可設定內容 -->
     </div>
     <div model-node="widget_child">
-    	<!-- start widget内部定义的 -->
+        <!-- start widget內部定義的 -->
         <dl class="announcement-list">
-             <volist name='announcement' id='vo'>
+            <volist name='announcement' id='vo'>
             <dd> <a href="{:U('public/Index/announcement',array('id'=>$vo['id']))}" target="_blank">{$vo.title|getShort=30,'...'}
                 <neq name='vo.attach' value=''><i class="ico-attach"></i></neq></a></dd>
             </volist>  
         </dl>
         <div class="action">
-        	<a href="{:U('public/Index/announcementList')}" target="_blank">More&raquo;</a>
+            <a href="{:U('public/Index/announcementList')}" target="_blank">More&raquo;</a>
         </div>
-        <!-- end widget内部定义的 -->
+        <!-- end widget內部定義的 -->
     </div>
 
 </div>

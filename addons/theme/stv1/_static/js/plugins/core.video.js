@@ -1,8 +1,8 @@
 /**
- * 插入视频
+ * 插入視訊
  */
 core.video = {
-		//给工厂调用的接口
+		//給工廠呼叫的介面
 		_init:function(attrs){
 			if(attrs.length == 4){
 				core.video.init(attrs[1],attrs[2],attrs[3]);
@@ -29,7 +29,7 @@ core.video = {
 				 + '<div class="arrow arrow-t">'
 				 + '</div>'
 				 + '<div class="talkPop_box">'
-				 + '<div class="close hd"><a onclick=" $(\'#videos\').remove()" class="ico-close" href="javascript:void(0)" title="'+L('PUBLIC_CLOSE')+'"></a><span>请输入<a href="http://video.sina.com.cn" target="_blank">新浪播客</a>、<a href="http://www.youku.com" target="_blank">优酷网</a>、<a href="http://www.tudou.com" target="_blank">土豆网</a>、<a href="http://www.ku6.com" target="_blank">酷6网</a>、<a href="http://v.blog.sohu.com" target="_blank">搜狐</a>等播放页的链接</span></div>'
+				 + '<div class="close hd"><a onclick=" $(\'#videos\').remove()" class="ico-close" href="javascript:void(0)" title="'+L('PUBLIC_CLOSE')+'"></a><span>請輸入<a href="http://video.sina.com.cn" target="_blank">新浪播客</a>、<a href="http://www.youku.com" target="_blank">優酷網</a>、<a href="http://www.tudou.com" target="_blank">土豆網</a>、<a href="http://www.ku6.com" target="_blank">酷6網</a>、<a href="http://v.blog.sohu.com" target="_blank">搜狐</a>等播放頁的連結</span></div>'
 				 + '<div class="video-box" id="video_content"><input type="text" style="width: 320px;" id="videourl" class="s-txt left"/><input type="button" onclick="core.video.video_add();" value="添加" class="btn-green-big"/></div></div></div></div>';
 			
 			//$(this.parentDiv).append(html);

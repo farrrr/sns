@@ -1,23 +1,23 @@
 <div class="pop_up">
   <div class="pop_up_main">
     <div class="pop_up_tab">
-      <div class="tab"> <a href="#" class="on">基本设置</a> </div>
+      <div class="tab"> <a href="#" class="on">基本設定</a> </div>
     </div>
     <div class="pop_up_box">
       <ul class="pop_up_box_form">
         <li>
-          <div class="c1" style="width:100px;">图片展示方式： </div>
+          <div class="c1" style="width:100px;">圖片展示方式： </div>
           <div class="c2" style="width:370px;">
             <select name="u" id="style" class="param_post text" onchange="changStyle($(this))">
-              <option value="simImage">单独静态图片</option>
-              <option value="downWord">底部tab左右滚动</option>
-              <option value="downNum">底部数字滚动</option>
-              <option value="leftWord">左边图滚动</option>
+              <option value="simImage">單獨靜態圖片</option>
+              <option value="downWord">底部tab左右滾動</option>
+              <option value="downNum">底部數字滾動</option>
+              <option value="leftWord">左邊圖滾動</option>
             </select>
           </div>
         </li>
         <li class="imageStyle" id="simImage">
-          <div class="c1" style="width:100px;">上传图片： </div>
+          <div class="c1" style="width:100px;">上傳圖片： </div>
           <div class="c2" style="width:370px;">
           <div class="lh25" id="attach_upload_data">
             <php>if(!empty($attr['image_list'])){</php>
@@ -38,10 +38,10 @@
               <php>$attachid=str_replace('attach', '', $key);
               $key=='image' && $attachid = $simnum;</php>
                 <div class="mb10 attach{$attachid} attach">
-                  <p> <a onclick="deleteAttach({$attachid})" href="javascript:void(0)" class="attach{$attachid} attach">[删除]</a> 标题：
+                  <p> <a onclick="deleteAttach({$attachid})" href="javascript:void(0)" class="attach{$attachid} attach">[刪除]</a> 標題：
                     <input type="text" value="{$vo.title}" class="attach{$attachid} userInput attach text" name="attach_name_{$attachid}" attachid="{$attachid}" rel="title"/>
                   </p>
-                  <p style="padding-left: 33px;" class="pt10"> 链接：
+                  <p style="padding-left: 33px;" class="pt10"> 連結：
                     <input type="text" value="{$vo.url}" class="attach{$attachid} userInput attach text" name="attach_url_{$attachid}" rel="url"/>
                   </p>
                 </div>
@@ -54,36 +54,36 @@
         	
         </li>
         <li class="slide-param" style="<php>if($attr['style']=='simImage'){</php>display:none;<php>}</php>">
-          <div class="c1" style="width:100px;">自动播放间隔： </div>
+          <div class="c1" style="width:100px;">自動播放間隔： </div>
           <div class="c2" style="width:370px;">
             <input type="text" name="autoPlayInterval" id="autoPlayInterval" class="param_post text in_mr5" value="3">
-            (单位：秒) </div>
+            (單位：秒) </div>
         </li>
         <!--                <li>
                     <div class="c1">
-                        缓存时间：
+                        快取時間：
                     </div>
                     <div class="c2">
                      	<select name="u" id="cache_timeout" class="param_post text">
-                        	<option value="60" >1分钟</option>
-                            <option value="180">3分钟</option>
-							<option value="300">5分钟</option>
-							<option value="600"   selected="selected">10分钟</option>
-							<option value="1800">30分钟</option>
-                            <option value="3600">1小时</option>
-                                                        <option value="0">不开启缓存</option>
+                        	<option value="60" >1分鐘</option>
+                            <option value="180">3分鐘</option>
+							<option value="300">5分鐘</option>
+							<option value="600"   selected="selected">10分鐘</option>
+							<option value="1800">30分鐘</option>
+                            <option value="3600">1小時</option>
+                                                        <option value="0">不開啟快取</option>
                             
                         </select>
                     </div>
                 </li>-->
         <li class="slide-param" style="<php>if($attr['style']=='simImage'){</php>display:none;<php>}</php>">
-          <div class="c1" style="width:100px;"> 动画效果： </div>
+          <div class="c1" style="width:100px;"> 動畫效果： </div>
           <div class="c2" style="width:370px;">
             <select name="effect" id="effect" class="param_post text" onchange="changStyle($(this))">
-              <option value="none" selected="selected">无特效</option>
-              <option value="scrollx">左右滚动</option>
-              <option value="scrollx fade">左右滚动+淡入淡出</option>
-              <option value="scrolly fade">上下滚动+淡入淡出</option>
+              <option value="none" selected="selected">無特效</option>
+              <option value="scrollx">左右滾動</option>
+              <option value="scrollx fade">左右滾動+淡入淡出</option>
+              <option value="scrolly fade">上下滾動+淡入淡出</option>
               <option value="fade">淡入淡出</option>
             </select>
           </div>
@@ -133,7 +133,7 @@
                                     success: function(result){
                                         $('#preview').html(result.html);
   var content = '<div id="diy_copyHtmlContent">\
-                                            		复制源代码:<input type="text" id="copyHtmlContent" onclick="select();" style="width:150px;" />\
+                                            		複製原始碼:<input type="text" id="copyHtmlContent" onclick="select();" style="width:150px;" />\
                                         		</div>';
                                         $('#preview').append(content);
                                         $('#diy_copyHtmlContent');
@@ -167,10 +167,10 @@
                                     					.attr('id',id)
                                     					.attr('rel',namespace)
                                     					.attr('sign', result['sign'])
-                                    		 			.prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="设置">设置</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="删除">删除</a></div></div>');
+                                    		 			.prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="設定">設定</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="刪除">刪除</a></div></div>');
                             		        		 }else{
                             		    			 	$('#'+id).html(result['html']);
-                            		    				$('#'+id).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="设置">设置</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="删除">删除</a></div></div>');
+                            		    				$('#'+id).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="設定">設定</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="刪除">刪除</a></div></div>');
                             		    
                             		    			 }
                                 				}
@@ -184,7 +184,7 @@
 												  data['image'] = new Array();
 												  var attachid = $('.userInput[rel="title"]').attr('attachid');
 												  if ( $('.userInput[rel="title"]').length > 1 ){
-													  alert('单图模式只能显示一张图片');
+													  alert('單圖模式只能顯示一張圖片');
 							                		  return false;
 												  }
                                                     $('.userInput').each(function(){
@@ -241,29 +241,29 @@
                                         }
 
                 	function attach_upload_sim_imge(info){
-                		//判断附件类型
-                		//判断附件类型
-                		//var upload_url	=	'{$Think.const.UPLOAD_PATH}';				//上传目录
+                		//判斷附件類型
+                		//判斷附件類型
+                		//var upload_url	=	'{$Think.const.UPLOAD_PATH}';				//上傳目錄
                 		//var insertImage	=	'{$insert_image}';
-                		//var imgPattern = new RegExp('^.*\.(bmp|gif|jpg|png){1}$','gi');	//图片类型匹配
-                		var imgPattern = new RegExp('^.*.(bmp|gif|jpg|png){1}$','gi'); //图片类型匹配
+                		//var imgPattern = new RegExp('^.*\.(bmp|gif|jpg|png){1}$','gi');	//圖片類型匹配
+                		var imgPattern = new RegExp('^.*.(bmp|gif|jpg|png){1}$','gi'); //圖片類型匹配
                 		if(imgPattern.test(info.name)){
                 			attachInfo = '<input class="attach'+info.attach_id+' userInput attach" attachid='+info.attach_id+' type="hidden" value="'+info.save_path+info.save_name+'" rel="path" name="attach_path_'+info.attach_id+'"/>\
                 						   <div class="mb10 attach'+info.attach_id+' attach">\
-                						   <p><a class="attach'+info.attach_id+' attach" href="javascript:void(0)" onclick="deleteAttach('+info.attach_id+')">[删除]</a>\
-                						   标题：<input type="text" rel="title" name="attach_name_'+info.attach_id+'" class="attach'+info.attach_id+' userInput attach text" attachid='+info.attach_id+' value="'+info.name+'" /></p>\
-                						   <p class="pt10" style="padding-left:33px;">链接：<input type="text" rel="url" name="attach_url_'+info.attach_id+'" class="attach'+info.attach_id+' userInput attach text" attachid='+info.attach_id+' value=""></p>\
+                						   <p><a class="attach'+info.attach_id+' attach" href="javascript:void(0)" onclick="deleteAttach('+info.attach_id+')">[刪除]</a>\
+                						   標題：<input type="text" rel="title" name="attach_name_'+info.attach_id+'" class="attach'+info.attach_id+' userInput attach text" attachid='+info.attach_id+' value="'+info.name+'" /></p>\
+                						   <p class="pt10" style="padding-left:33px;">連結：<input type="text" rel="url" name="attach_url_'+info.attach_id+'" class="attach'+info.attach_id+' userInput attach text" attachid='+info.attach_id+' value=""></p>\
                 						  </div>';
                 		}
                 		++ limitimg;
                 		if ( $('#style').val() == 'simImage' && limitimg > 1){
-                			alert('单图模式只能显示一张图片')
+                			alert('單圖模式只能顯示一張圖片')
                 			return;
                 		}
                 		$('#attach_upload_data').prepend(attachInfo);
                 	}
                 	function deleteAttach(attach){
-                		if(confirm('确认删除？')){
+                		if(confirm('確認刪除？')){
                 			$('#attach_upload_data .attach'+attach).remove();
                 		}
                 	}

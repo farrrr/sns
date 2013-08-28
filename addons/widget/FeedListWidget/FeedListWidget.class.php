@@ -11,12 +11,12 @@ class FeedListWidget extends Widget {
 	private $limitnums   = 10;
 
     /**
-     * @param string type 获取哪类微博 following:我关注的 space：
-     * @param string feed_type 微博类型
-     * @param string feed_key 微博关键字
-     * @param integer fgid 关注的分组id
-     * @param integer gid 群组id
-     * @param integer loadnew 是否加载更多 1:是  0:否
+     * @param string type 獲取哪類微博 following:我關注的 space：
+     * @param string feed_type 微博類型
+     * @param string feed_key 微博關鍵字
+     * @param integer fgid 關注的分組id
+     * @param integer gid 群組id
+     * @param integer loadnew 是否載入更多 1:是  0:否
      */
 	public function render($data) {
 		$var = array();
@@ -30,18 +30,18 @@ class FeedListWidget extends Widget {
         $var['initNums'] = $weiboSet['weibo_nums'];
         $var['weibo_type'] = $weiboSet['weibo_type'];
         $var['weibo_premission'] = $weiboSet['weibo_premission'];
-        // 我关注的频道
+        // 我關注的頻道
         $var['channel'] = M('channel_follow')->where('uid='.$this->mid)->count();
  
-        // 查询是否有话题ID
+        // 查詢是否有話題ID
         if($var['topic_id']) {
         	$content = $this->getTopicData($var,'_FeedList.html');
         } else {
         	$content = $this->getData($var,'_FeedList.html');
         }
-        // 查看是否有更多数据
+        // 檢視是否有更多資料
         if(empty($content['html'])) {
-        	// 没有更多的
+        	// 沒有更多的
         	$var['list'] = L('PUBLIC_WEIBOISNOTNEW');
         } else {
         	$var['list'] = $content['html'];
@@ -52,17 +52,17 @@ class FeedListWidget extends Widget {
 	    $content['html'] = $this->renderFile(dirname(__FILE__)."/".$var['tpl'], $var); 
 		self::$rand ++;
 		unset($var, $data);
-        //输出数据
+        //輸出資料
 		return $content['html'];
     }
     /**
-     * 显示更多微博
-     * @return  array 更多微博信息、状态和提示
+     * 顯示更多微博
+     * @return  array 更多微博資訊、狀態和提示
      */
     public function loadMore() {
-        // 获取GET与POST数据
+        // 獲取GET與POST資料
     	$_REQUEST = $_GET + $_POST;
-        // 查询是否有分页
+        // 查詢是否有分頁
     	if(!empty($_REQUEST['p']) || intval($_REQUEST['load_count']) == 4) {
     		unset($_REQUEST['loadId']);
     		$this->limitnums = 40;
@@ -71,15 +71,15 @@ class FeedListWidget extends Widget {
             $_REQUEST['loadId'] = intval($_REQUEST['loadId']);
     		$this->limitnums = 10;
     	}
-        // 查询是否有话题ID
+        // 查詢是否有話題ID
         if($_REQUEST['topic_id']) { 
             $content = $this->getTopicData($_REQUEST,'_FeedList.html');
         } else {
     	    $content = $this->getData($_REQUEST,'_FeedList.html');
         }
-        // 查看是否有更多数据
+        // 檢視是否有更多資料
     	if(empty($content['html'])) {
-            // 没有更多的
+            // 沒有更多的
     		$return = array('status'=>0,'msg'=>L('PUBLIC_WEIBOISNOTNEW'));
     	} else {
     		$return = array('status'=>1,'msg'=>L('PUBLIC_SUCCESS_LOAD'));
@@ -92,8 +92,8 @@ class FeedListWidget extends Widget {
     }
 
     /**
-     * 显示最新微博
-     * @return  array 最新微博信息、状态和提示
+     * 顯示最新微博
+     * @return  array 最新微博資訊、狀態和提示
      */
     public function loadNew() {
     	$return = array('status'=>-1,'msg'=>'');
@@ -102,7 +102,7 @@ class FeedListWidget extends Widget {
     		echo json_encode($return);exit();
     	}
     	$content = $this->getData($_REQUEST,'_FeedList.html');
-    	if(empty($content['html'])){//没有最新的
+    	if(empty($content['html'])){//沒有最新的
     		$return = array('status'=>0,'msg'=>L('PUBLIC_WEIBOISNOTNEW'));
     	}else{
     		$return = array('status'=>1,'msg'=>L('PUBLIC_SUCCESS_LOAD'));
@@ -114,27 +114,27 @@ class FeedListWidget extends Widget {
     }
     
     /**
-     * 获取微博数据，渲染微博显示页面
-     * @param array $var 微博数据相关参数
+     * 獲取微博資料，渲染微博顯示頁面
+     * @param array $var 微博資料相關參數
      * @param string $tpl 渲染的模板
-     * @return array 获取微博相关模板数据
+     * @return array 獲取微博相關模板資料
      */
     private function getData($var, $tpl = 'FeedList.html') {
     	$var['feed_key'] = t($var['feed_key']);
         $var['cancomment'] = isset($var['cancomment']) ? $var['cancomment'] : 1;
         //$var['cancomment_old_type'] = array('post','repost','postimage','postfile');
         $var['cancomment_old_type'] = array('post','repost','postimage','postfile','weiba_post','weiba_repost');
-        // 获取微博配置
+        // 獲取微博配置
         $weiboSet = model('Xdata')->get('admin_Config:feed');
         $var = array_merge($var, $weiboSet);
     	$var['remarkHash'] = model('Follow')->getRemarkHash($GLOBALS['ts']['mid']);
     	$map = $list = array();
-    	$type = $var['new'] ? 'new'.$var['type'] : $var['type'];	// 最新的微博与默认微博类型一一对应
+    	$type = $var['new'] ? 'new'.$var['type'] : $var['type'];	// 最新的微博與默認微博類型一一對應
 
     	switch($type) {
-    		case 'following':// 我关注的
+    		case 'following':// 我關注的
     			if(!empty($var['feed_key'])){
-    				//关键字匹配 采用搜索引擎兼容函数搜索 后期可能会扩展为搜索引擎
+    				//關鍵字匹配 採用搜索引擎相容函數搜索 後期可能會擴展為搜索引擎
     				$list = model('Feed')->searchFeed($var['feed_key'],'following',$var['loadId'],$this->limitnums);
     			}else{
     				$where =' (a.is_audit=1 OR a.is_audit=0 AND a.uid='.$GLOBALS['ts']['mid'].') AND a.is_del = 0 ';
@@ -151,9 +151,9 @@ class FeedListWidget extends Widget {
     				$list =  model('Feed')->getFollowingFeed($where,$this->limitnums,'',$var['fgid']);
     			}
     			break;
-    		case 'all'://所有的 --正在发生的
+    		case 'all'://所有的 --正在發生的
     			if(!empty($var['feed_key'])){
-    				//关键字匹配 采用搜索引擎兼容函数搜索 后期可能会扩展为搜索引擎
+    				//關鍵字匹配 採用搜索引擎相容函數搜索 後期可能會擴展為搜索引擎
     				$list = model('Feed')->searchFeed($var['feed_key'],'all',$var['loadId'],$this->limitnums);
     			}else{
                     $where =' (is_audit=1 OR is_audit=0 AND uid='.$GLOBALS['ts']['mid'].') AND is_del = 0 ';
@@ -170,7 +170,7 @@ class FeedListWidget extends Widget {
     				$list = model('Feed')->getList($where,$this->limitnums);
     			}
     			break;
-    		case 'newfollowing'://关注的人的最新微博
+    		case 'newfollowing'://關注的人的最新微博
     			$where = ' a.is_del = 0 and a.is_audit = 1 and a.uid != '.$GLOBALS['ts']['uid'];
     			if($var['maxId'] > 0){
     				$where .=" AND a.feed_id > '".intval($var['maxId'])."'";
@@ -178,7 +178,7 @@ class FeedListWidget extends Widget {
                     $content['count'] = $list['count'];
     			}		
     			break;
-    		case 'newall':	//所有人最新微博 -- 正在发生的
+    		case 'newall':	//所有人最新微博 -- 正在發生的
     			if($var['maxId'] > 0){
     				$map['feed_id'] = array('gt',intval($var['maxId']));
     				$map['is_del'] = 0;
@@ -188,9 +188,9 @@ class FeedListWidget extends Widget {
                     $content['count'] = $list['count'];
     			}
     			break;
-    		case 'space':	//用户个人空间
+    		case 'space':	//使用者個人空間
     			if(!empty($var['feed_key'])){
-    				//关键字匹配 采用搜索引擎兼容函数搜索 后期可能会扩展为搜索引擎
+    				//關鍵字匹配 採用搜索引擎相容函數搜索 後期可能會擴展為搜索引擎
     				$list = model('Feed')->searchFeed($var['feed_key'],'space',$var['loadId'],$this->limitnums,'',$var['feed_type']);
     			}else{
 	    			if($var['loadId']>0){
@@ -213,14 +213,14 @@ class FeedListWidget extends Widget {
                 $list = D('ChannelFollow', 'channel')->getFollowingFeed($where, $this->limitnums, '' ,$var['fgid']);
                 break;
     	}
-    	// 分页的设置
+    	// 分頁的設定
         isset($list['html']) && $var['html'] = $list['html'];
     	if(!empty($list['data'])) {
     		$content['firstId'] = $var['firstId'] = $list['data'][0]['feed_id'];
     		$content['lastId'] = $var['lastId'] = $list['data'][(count($list['data'])-1)]['feed_id'];
             $var['data'] = $list['data'];
 
-            //赞功能
+            //贊功能
             $feed_ids = getSubByKey($var['data'],'feed_id');
             $var['diggArr'] = model('FeedDigg')->checkIsDigg($feed_ids, $GLOBALS['ts']['mid']);
             
@@ -256,10 +256,10 @@ class FeedListWidget extends Widget {
     }
 
     /**
-     * 获取话题微博数据，渲染微博显示页面
-     * @param array $var 微博数据相关参数
+     * 獲取話題微博資料，渲染微博顯示頁面
+     * @param array $var 微博資料相關參數
      * @param string $tpl 渲染的模板
-     * @return array 获取微博相关模板数据
+     * @return array 獲取微博相關模板資料
      */
     private function getTopicData($var,$tpl='FeedList.html') {
         $var['cancomment'] = isset($var['cancomment']) ? $var['cancomment'] : 1;
@@ -269,7 +269,7 @@ class FeedListWidget extends Widget {
         $var = array_merge($var,$weiboSet);
         $var['remarkHash'] = model('Follow')->getRemarkHash($GLOBALS['ts']['mid']);
         $map = $list = array();
-        $type = $var['new'] ? 'new'.$var['type'] : $var['type'];    //最新的微博与默认微博类型一一对应
+        $type = $var['new'] ? 'new'.$var['type'] : $var['type'];    //最新的微博與默認微博類型一一對應
 
         if($var['loadId'] > 0){ //非第一次
             $topics['topic_id'] = $var['topic_id'];
@@ -284,7 +284,7 @@ class FeedListWidget extends Widget {
         //$map['is_del'] = 0;
         $map['_string'] = ' (is_audit=1 OR is_audit=0 AND uid='.$GLOBALS['ts']['mid'].') AND is_del = 0 ';
         $list = model('Feed')->getList($map,$this->limitnums);
-        //分页的设置
+        //分頁的設定
         isset($list['html']) && $var['html'] = $list['html'];
         
         if(!empty($list['data'])){
@@ -292,7 +292,7 @@ class FeedListWidget extends Widget {
             $content['lastId']  = $var['lastId'] = $list['data'][(count($list['data'])-1)]['feed_id'];
             $var['data'] = $list['data'];
             
-            //赞功能
+            //贊功能
             $feed_ids = getSubByKey($var['data'],'feed_id');
             $var['diggArr'] = model('FeedDigg')->checkIsDigg($feed_ids, $GLOBALS['ts']['mid']);
             
@@ -327,7 +327,7 @@ class FeedListWidget extends Widget {
     }
 
     /**
-     * 获取微吧帖子数据
+     * 獲取微吧帖子資料
      * @param  [varname] [description]
      */
     public function getPostDetail() {

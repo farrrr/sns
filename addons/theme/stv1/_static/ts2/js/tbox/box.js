@@ -85,11 +85,11 @@ jQuery.extend(ui.box, {
 	
 	load:function(data,option,type,requestData){
 	   
-	   if("undefined" != typeof(_MID_)){ //需要才判断
-		   //增加判断未登录时的登录操作,可能有些地方需要排除.允许弹窗.
-		   // if(_MID_<=0 && option.title!='快速登录'){
+	   if("undefined" != typeof(_MID_)){ //需要才判斷
+		   //增加判斷未登入時的登入操作,可能有些地方需要排除.允許彈窗.
+		   // if(_MID_<=0 && option.title!='快速登入'){
            if(_MID_<=0){
-				option.title = '快速登录';
+				option.title = '快速登入';
 				data = U('home/Public/quick_login');
 		   }
 	   }

@@ -20,34 +20,34 @@ class VideoModel {
     }
 
     public function _weiboTypePublish($type_data){
-    	$link = $type_data;
-    	$parseLink = parse_url($link);
-    	if(preg_match("/(youku.com|youtube.com|qq.com|ku6.com|sohu.com|sina.com.cn|tudou.com|yinyuetai.com)$/i", $parseLink['host'], $hosts)) {
-    		$flashinfo = $this->_video_getflashinfo($link, $hosts[1]);
-    	}
-    	if ($flashinfo['flash_url']) {
-    		$typedata['flashvar']  = $flashinfo['flash_url'];
-    		$typedata['flashimg']  = $flashinfo['image_url'];
-    		$typedata['host']      = $hosts[1];
-    		$typedata['source']    = $type_data;
-    		$typedata['title']     = $flashinfo['title'];
-    	}
-    	return $typedata;	 
+        $link = $type_data;
+        $parseLink = parse_url($link);
+        if(preg_match("/(youku.com|youtube.com|qq.com|ku6.com|sohu.com|sina.com.cn|tudou.com|yinyuetai.com)$/i", $parseLink['host'], $hosts)) {
+            $flashinfo = $this->_video_getflashinfo($link, $hosts[1]);
+        }
+        if ($flashinfo['flash_url']) {
+            $typedata['flashvar']  = $flashinfo['flash_url'];
+            $typedata['flashimg']  = $flashinfo['image_url'];
+            $typedata['host']      = $hosts[1];
+            $typedata['source']    = $type_data;
+            $typedata['title']     = $flashinfo['title'];
+        }
+        return $typedata;
     }
 
-	//此代码需要持续更新.视频网站有变动.就得修改代码.
+    //此程式碼需要持續更新.視訊網站有變動.就得修改程式碼.
     public function _video_getflashinfo($link, $host) {
         $return='';
-		if(extension_loaded("zlib")){
-			$content = file_get_contents("compress.zlib://".$link);//获取
+        if(extension_loaded("zlib")){
+            $content = file_get_contents("compress.zlib://".$link);//獲取
         }
 
-		if(!$content)
-			$content = file_get_contents($link);//有些站点无法获取
+        if(!$content)
+            $content = file_get_contents($link);//有些站點無法獲取
 
-		if('youku.com' == $host)
+        if('youku.com' == $host)
         {
-			// 2012/3/7 修复优酷链接图片的获取
+            // 2012/3/7 修復優酷連結圖片的獲取
             preg_match('/http:\/\/profile\.live\.com\/badge\/\?[^"]+/i', $content, $share_url);
             preg_match('/id\_(.+)\.html/', $share_url[0], $flashvar);
             preg_match('/screenshot=([^"&]+)/', $share_url[0], $img);
@@ -62,10 +62,10 @@ class VideoModel {
         }
         elseif('ku6.com' == $host)
         {
-			// 2012/3/7 修复ku6链接和图片抓去
+            // 2012/3/7 修復ku6連結和圖片抓去
             preg_match("/\/([\w\-\.]+)\.html/",$link,$flashvar);
-			//preg_match("/<span class=\"s_pic\">(.*?)<\/span>/i",$content,$img);
-			preg_match("/cover: \"(.+?)\"/i", $content, $img);
+            //preg_match("/<span class=\"s_pic\">(.*?)<\/span>/i",$content,$img);
+            preg_match("/cover: \"(.+?)\"/i", $content, $img);
             preg_match("/<title>(.*?)<\/title>/i",$content,$title);
             $title[1] = iconv("GBK","UTF-8",$title[1]);
             $flash_url = 'http://player.ku6.com/refer/'.$flashvar[1].'/v.swf';
@@ -102,7 +102,7 @@ class VideoModel {
             $flash_url = 'http://www.tudou.com/v/'.$flashvar[1].'/&autoPlay=true/v.swf';
         }
         elseif('youtube.com' == $host) {
-			preg_match('/http:\/\/www.youtube.com\/watch\?v=([^\/&]+)&?/i',$link,$flashvar);
+            preg_match('/http:\/\/www.youtube.com\/watch\?v=([^\/&]+)&?/i',$link,$flashvar);
             preg_match("/<link itemprop=\"thumbnailUrl\" href=\"(.+?)\">/i", $content, $img);
             preg_match("/<title>(.*?)<\/title>/", $content, $title);
             $flash_url = 'http://www.youtube.com/embed/'.$FLASHVAR[1];
@@ -134,7 +134,7 @@ class VideoModel {
             preg_match("/<meta property=\"og:image\" content=\"(.*)\"\/>/i",$content,$img);
             preg_match("/<meta property=\"og:title\" content=\"(.*)\"\/>/i",$content,$title);
             $flash_url = 'http://player.yinyuetai.com/video/player/'.$flashvar[1].'/v_0.swf';
-			$base = base64_encode(file_get_contents($img[1]));
+            $base = base64_encode(file_get_contents($img[1]));
             $img[1] = 'data:image/jpeg;base64,'.$base;
         }
 
@@ -144,7 +144,7 @@ class VideoModel {
         return $return;
     }
 
-    // 运行服务，系统服务自动运行
+    // 運行服務，系統服務自動運行
     public function run() {
         return;
     }

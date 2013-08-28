@@ -27,15 +27,15 @@ M.addEventFns({
 
 			// M.getJS( THEME_URL + "/js/avatar/avatar.js?"+SYS_VERSION, function() {
 				avatar({
-					// 上传表单
+					// 上傳表單
 					uploadForm: uploadForm,
 					uploadBtn: uploadBtn,
 					loading: uploadForm.childEvents["loading"][0],
 
-					// 展示头像的IMG 元素及大小
+					// 展示頭像的IMG 元素及大小
 					scanImg: scanImg,
 
-					// 设置表单
+					// 設定表單
 				    settingForm: settingForm,
 				    picUrl: settingForm.childEvents["avatar_picurl"][0],
 				    picWidth: settingForm.childEvents["avatar_picwidth"][0],
@@ -46,7 +46,7 @@ M.addEventFns({
 				    resetBtn: settingForm.childEvents["avatar_reset"][0],
 				    saveTip: M.getEventArgs( settingForm.childEvents["avatar_save"][0] ).tip,
 
-					// 数据
+					// 資料
 				    selectEnd: {
 				    	avatarX1: settingForm.childEvents["avatar_x1"][0],
 				    	avatarY1: settingForm.childEvents["avatar_y1"][0],

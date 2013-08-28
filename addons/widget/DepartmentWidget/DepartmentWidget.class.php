@@ -1,8 +1,8 @@
 <?php
 /**
- * //TODO  以后统一优化成分类的多级选择widget
- * 部门选择
- * @example W('Department',array('tpl'=>'input','inputName'=>'depart','canChange'=>1,'sid'=>1,'defaultName'=>'无','defaultId'=>'0','callback'=>'contactBack'))
+ * //TODO  以後統一優化成分類的多級選擇widget
+ * 部門選擇
+ * @example W('Department',array('tpl'=>'input','inputName'=>'depart','canChange'=>1,'sid'=>1,'defaultName'=>'無','defaultId'=>'0','callback'=>'contactBack'))
  * @author jason
  * @version TS3.0
  */
@@ -12,13 +12,13 @@ class DepartmentWidget extends Widget{
 	public static $userDepartHash = array();
 
 	/**
-	 * @param string tpl 部门选择类型 admin:下拉形式  input:表单输入形式   menu:菜单形式
-	 * @param string inputName 表单输入的值，只针对tpl=input
-	 * @param integer sid 当前选择的部门ID
-	 * @param integer canChange 是否可修改，只针对tpl=input有效 
-	 * @param srting defaultName 默认的部门名称，只针对tpl=input有效
-	 * @param string defaultId 默认的部门ID，只针对tpl=input有效
-	 * @param string callback 选择部门之后的回调函数，只针对tpl=menu有效
+	 * @param string tpl 部門選擇類型 admin:下拉形式  input:表單輸入形式   menu:選單形式
+	 * @param string inputName 表單輸入的值，只針對tpl=input
+	 * @param integer sid 當前選擇的部門ID
+	 * @param integer canChange 是否可修改，只針對tpl=input有效 
+	 * @param srting defaultName 默認的部門名稱，只針對tpl=input有效
+	 * @param string defaultId 默認的部門ID，只針對tpl=input有效
+	 * @param string callback 選擇部門之後的回撥函數，只針對tpl=menu有效
 	 */
 	public function render($data){
 		self::$rand++;
@@ -30,27 +30,27 @@ class DepartmentWidget extends Widget{
 		$var['defaultId'] = intval($var['defaultId']);
 
 		if($var['select']==1){	//下拉形式
-			//部门选择wigdet
+			//部門選擇wigdet
 			$var['pid'] = !empty($data['pid']) ? $data['pid'] : 0;
 			$var['parentList'] = model('Department')->getHashDepartment($var['pid'],$var['sid'],$var['nosid'],intval($var['notop']));
 
 			$content = $this->renderFile(dirname(__FILE__)."/{$var['tpl']}.html",$var);
 			return $content;
 		}else{
-			//显示用户wigdet
+			//顯示使用者wigdet
 			switch($var['tpl']){
 				case 'input':
 					$departHash = model('Department')->getAllHash();
 					$var['defaultName'] = $departHash[$var['defaultId']]['title'];
-					break;	//input 输入框
-				case 'menu':		//菜单展示
-				//看看有没有子节点数据
+					break;	//input 輸入框
+				case 'menu':		//選單展示
+				//看看有沒有子節點資料
 				$var['pid'] = !empty($data['pid']) ? intval($data['pid']) : 0;
 				//
 				$var['sid'] = !empty($data['sid']) ? intval($data['sid']) : 0;
 				
 
-				//全部部门
+				//全部部門
 				$pInfo[] = array('sid'=>0,'pid'=>0,'name'=>L('PUBLIC_DEPARTMENT_ALL'));	
 
 				$list = $this->_getList($var['sid']);
@@ -84,11 +84,11 @@ class DepartmentWidget extends Widget{
     }
 
     /**
-    * 获取部门列表
-    * @return array 部门列表
+    * 獲取部門列表
+    * @return array 部門列表
     */
     private function _getList($sid){
-   		//判断是否有子节点
+   		//判斷是否有子節點
    	
    		$data = model('Department')->getDepartment($sid);
    		if(!empty($sid)){
@@ -97,7 +97,7 @@ class DepartmentWidget extends Widget{
    			$list = $data;
    		}
 
-		//取父数据
+		//取父資料
 		if(!empty($sid) && empty($data['_child'])){
 			$list = $this->_getList($data['parent_dept_id']);
 		}
@@ -106,7 +106,7 @@ class DepartmentWidget extends Widget{
    }
     
    /**
-    * 修改部门
+    * 修改部門
     */
    public function change(){
    		$var = $_REQUEST;
@@ -115,8 +115,8 @@ class DepartmentWidget extends Widget{
    } 
 
    /**
-    * 选择部门
-    * @return array 已选择的部门
+    * 選擇部門
+    * @return array 已選擇的部門
     */
    public function selectDepartment(){
     	$return = array('status'=>1,'data'=>'');

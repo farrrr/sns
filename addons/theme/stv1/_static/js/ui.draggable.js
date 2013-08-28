@@ -479,8 +479,8 @@
                     var index = 0;
                     var parentId = this.instance.element.parent().attr('id');
                     var namespace = $(self).attr('namespace');
-                    //判断父级是否是DIY框架，如果等于 body-bg表示框架
-                    //具体判断按照 diy_content 的父级而定
+                    //判斷父級是否是DIY框架，如果等於 body-bg表示框架
+                    //具體判斷按照 diy_content 的父級而定
                     if (parentId !== "" && parentId != "body-bg") {
                         var classs = this.instance.element.attr('class'), classes = classs.split(' '), needClass = classes.shift(),gid=$(self).attr('rel');
                         if (typeof(frameArray[parentId][needClass]) == "object") {
@@ -490,14 +490,14 @@
                             frameArray[parentId][needClass] = new Array;
                             index = frameArray[parentId][needClass].push("0");
                         }
-                        $.tbox.popup(SITE_URL + "/index.php?app=page&mod=Diy&act=getPopUp&gid="+gid+"&tagName=" + namespace + "&index=" + (index - 1) + "&parentId=" + parentId + "&needClass=" + needClass + "&id=" + parentId + "-" + needClass + "-" + index, "添加模块", false, false, {
+                        $.tbox.popup(SITE_URL + "/index.php?app=page&mod=Diy&act=getPopUp&gid="+gid+"&tagName=" + namespace + "&index=" + (index - 1) + "&parentId=" + parentId + "&needClass=" + needClass + "&id=" + parentId + "-" + needClass + "-" + index, "添加模組", false, false, {
                             "closed": function(){
                                 $('#placeholder').remove();
                             }
                         });
                         
                         
-                        var button = '<p><input class="btn_sea" id="savemodel"  name="" type="button" value="确定" /><input class="btn_sea_n ml5" name="" id="preview_button" type="button" value="预览"/></p>';
+                        var button = '<p><input class="btn_sea" id="savemodel"  name="" type="button" value="確定" /><input class="btn_sea_n ml5" name="" id="preview_button" type="button" value="預覽"/></p>';
                         $('#tbox .tb_button_list').show().html(button);
                         $('#preview_button').click(function(){
                             preview();

@@ -1,14 +1,14 @@
 function replaceComment( vo ){
   var quietly = "";
   if( vo.quietly == 1 ){
-    quietly = "<font color=\"red\"><b>[悄悄话]</b></font>";
+    quietly = "<font color=\"red\"><b>[悄悄話]</b></font>";
   }
   sub = "<div class=\"subcomment\"></div>";
   var result = "\
             <li class=\"comlist\" id=\'comm"+vo.id+"\'>\
             <div class=\"left\" style=\"width: 65px;\"><span class=\"headpic50\"><a href=\"#\"><img src=\""+vo.face+"\" /></a></span></div>\
             <div style=\"margin-left: 65px;\">\
-            <div style=\"padding-bottom: 20px;\"><h3 class=\"tit_Critique lh25 mb5\"><span class=\"right f12px mr5\"><span><a  href=\"javascript:replay( \'"+vo.name+"\',"+vo.id+" )\">回复</a></span><span class=\"ml5\"><a href=\"###\" onclick=\"deleteComment( "+vo.id+","+vo.appid+" )\">删除</a></span></span><a href=\"#\">"+vo.name+"</a>   <em class=\"cGray2\">"+vo.cTime+"</em>"+quietly+"</h3>\
+            <div style=\"padding-bottom: 20px;\"><h3 class=\"tit_Critique lh25 mb5\"><span class=\"right f12px mr5\"><span><a  href=\"javascript:replay( \'"+vo.name+"\',"+vo.id+" )\">回覆</a></span><span class=\"ml5\"><a href=\"###\" onclick=\"deleteComment( "+vo.id+","+vo.appid+" )\">刪除</a></span></span><a href=\"#\">"+vo.name+"</a>   <em class=\"cGray2\">"+vo.cTime+"</em>"+quietly+"</h3>\
               <p>"+vo.comment+"</p></div>"+sub+"</div></li>\
   "
   return result;
@@ -21,7 +21,7 @@ function subComment( vo ){
 <div class=\"sublist pt5 clear\" id=\"comm"+vo.id+"\">\
                   	<div style=\"width: 50px;\" class=\"left\"><span class=\"pic38\"><a href=\"#\"><img src=\""+vo.face+"\"/></a></span></div>\
           			<div style=\"margin-left:50px;\">\
-                      <h3 class=\"tit_Critique lh20 mb5\"><span class=\"right f12px mr5\"><a href=\"###\" onclick=\"deleteComment( "+vo.id+","+vo.appid+" )\">删除</a></span><a href=\"#\">"+vo.name+"</a>  <em class=\"cGray2\">"+vo.cTime+"</em> </h3>\
+                      <h3 class=\"tit_Critique lh20 mb5\"><span class=\"right f12px mr5\"><a href=\"###\" onclick=\"deleteComment( "+vo.id+","+vo.appid+" )\">刪除</a></span><a href=\"#\">"+vo.name+"</a>  <em class=\"cGray2\">"+vo.cTime+"</em> </h3>\
                       <p>"+vo.comment+"</p>\
    			  		</div>\
                   </div>\
@@ -31,7 +31,7 @@ function subComment( vo ){
 
 
 function deleteComment( id,appid ){
-    Confirm({message:'是否删除此评论',handler:function(button){
+    Confirm({message:'是否刪除此評論',handler:function(button){
       if ( 'ok' == button ){
             $.post( U("home/Comment/doDeleteComment/"),{id:id,appid:appid},function( result ){
                 if( result != -1 ){
@@ -42,7 +42,7 @@ function deleteComment( id,appid ){
                     
                   }
                 }else{
-                  Alert( '删除失败' );
+                  Alert( '刪除失敗' );
                   return;
                 }
             });
@@ -51,8 +51,8 @@ function deleteComment( id,appid ){
 }
 
 function pageselectCallback(page_id, jq){
-  //ajax获取评论json数据
-  var page = page_id+1; //鼠标按的页数
+  //ajax獲取評論json資料
+  var page = page_id+1; //滑鼠按的頁數
   $( '#comment >ul' ).html("");
   $( '#loadding' ).html( "<img src= \""+_THEME_+"/images/logging.gif\">" );
   $( '#comment > ul' ).load( U("home/Comment/getComment",["p="+page]),{type:type,id:appid,mid:mid},function(){
@@ -60,7 +60,7 @@ function pageselectCallback(page_id, jq){
       
       });
 
-  $('#Searchresult').text("当前显示"+((page_id*10)+1)+"-"+((page_id*10)+10));
+  $('#Searchresult').text("當前顯示"+((page_id*10)+1)+"-"+((page_id*10)+10));
 }
 
     //function bq_show(){
@@ -88,7 +88,7 @@ function pageselectCallback(page_id, jq){
 
 /**
  * deleteMouse 
- * 鼠标移动效果
+ * 滑鼠移動效果
  * @access public
  * @return void
  */
@@ -131,13 +131,13 @@ function getComments(){
     $( '#replay2' ).remove();
 
     $( '#loadding' ).html( "<img src= \""+_THEME_+"/images/logging.gif\">" );
-    //加载初始化的数据
+    //載入初始化的資料
     $( '#comment > ul' ).load( U("home/Comment/getComment"),{type:type,id:appid,mid:mid},function( result ){
       $( '#loadding' ).html( "" );
         $.post( U("home/Comment/getCount"),{type:type,id:appid,mid:mid},function( count ){
           if( count != -1 && count >100 ){
             var data_count = count;
-            var items_per_page = 10; //每页显示多少条数据
+            var items_per_page = 10; //每頁顯示多少條資料
             // Create pagination element
             $("#Pagination").pagination(data_count, {
               num_edge_entries: 2,
@@ -157,7 +157,7 @@ function getComments(){
 
 /**
  * replay 
- * 回复某人
+ * 回覆某人
  * @param uid $uid 
  * @param mini_id  $mini_id  
  * @access public
@@ -182,7 +182,7 @@ function cancel( _this ){
 
 /**
  * addComment 
- * 添加评论
+ * 添加評論
  * @access public
  * @return void
  */
@@ -194,15 +194,15 @@ function addComment(_this){
   _this.val( 'loadding...' );
   _this.attr( 'disabled',true );
 
-  //检查字数
+  //檢查字數
   if(  content.length >= 4000 ) {
-  Alert( "最多2000个中文字符" );
+  Alert( "最多2000箇中文字元" );
   _this.attr( 'disabled',false );
   _this.val( Abottom );
   return;
   }
   if(  content.length < 1  ){
-    Alert( "必须填写评论内容" );
+    Alert( "必須填寫評論內容" );
   _this.removeAttr( 'disabled');
   _this.val( Abottom );
   return;
@@ -219,7 +219,7 @@ function addComment(_this){
           _this.val( Abottom );
           _this.removeAttr( 'disabled');
           
-          //发送动态回调函数
+          //發送動態回撥函數
           try{
         	commentSuccess(txt);
           }catch(err){
@@ -227,7 +227,7 @@ function addComment(_this){
           }
           
       }else{
-        Alert( '添加失败，请稍后再试' );
+        Alert( '添加失敗，請稍後再試' );
           _this.val( Abottom );
           _this.removeAttr( 'disabled');
       }
@@ -239,7 +239,7 @@ function addComment(_this){
 
 /**
  * addComment 
- * 添加评论
+ * 添加評論
  * @access public
  * @return void
  */
@@ -251,15 +251,15 @@ function ReplayComment(_this){
   _this.val( 'loadding...' );
   _this.attr( 'disabled',true );
 
-  //检查字数
+  //檢查字數
   if( JHshStrLen( content ) >= 4000 ){
-Alert( "最多2000个中文字符" );
+Alert( "最多2000箇中文字元" );
   _this.attr( 'disabled',false );
   _this.val( Abottom );
 return
   }
   if( content.length <3 ){
-    Alert( "最少10个字符" );
+    Alert( "最少10個字元" );
           _this.removeAttr( 'disabled');
   _this.val( Abottom );
   return
@@ -275,14 +275,14 @@ return
           $( '#replay2' ).remove();
           _this.val( Abottom );
           _this.removeAttr( 'disabled');
-          //发送动态回调函数
+          //發送動態回撥函數
           try{
         	commentSuccess(txt);
           }catch(err){
         	  
           }
       }else{
-        Alert( '添加失败，请稍后再试' );
+        Alert( '添加失敗，請稍後再試' );
           _this.val( Abottom );
           _this.removeAttr( 'disabled');
       }

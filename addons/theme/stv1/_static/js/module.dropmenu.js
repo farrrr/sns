@@ -5,7 +5,7 @@ drop_menu_list: {
 	load: function() {
 		var parentModel = this.parentNode,
 			list = this;
-		// 鼠标进入父Model，显示Menu；反之，则隐藏Menu。
+		// 滑鼠進入父Model，顯示Menu；反之，則隱藏Menu。
 		M.addListener( parentModel, {
 			mouseenter: function() {
 				var className = this.className;

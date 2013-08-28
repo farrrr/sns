@@ -42,7 +42,7 @@
 	<span class="right">
 
 	<eq name='vl.actions.delete' value='true'>
-	<!-- 做普通删除权限 和 管理删除权限 判断 & 只有微博可以被删除  -->
+	<!-- 做普通刪除許可權 和 管理刪除許可權 判斷 & 只有微博可以被刪除  -->
 	<php>if($vl['user_info']['uid'] == $GLOBALS['ts']['mid'] && CheckPermission('core_normal','feed_del')){</php>
 		<a href="javascript:void(0)" event-node ='delFeed' event-args='feed_id={$vl.feed_id}&uid={$vl.user_info.uid}'>{:L('PUBLIC_STREAM_DELETE')}</a>
 		<i class="vline">|</i>
@@ -77,7 +77,7 @@
 	</span>
      <span>
 	<a class="date" href="{:U('public/Profile/feed',array('feed_id'=>$vl['feed_id'],'uid'=>$vl['uid']))}">{$vl.publish_time|friendlyDate}</a>
-	<span>来自网站</span>
+	<span>來自網站</span>
 	
 	<em class="hover">
 	<php>if($vl['user_info']['uid'] != $GLOBALS['ts']['mid']){</php>

@@ -7,19 +7,19 @@
               <div id="aside" class="pad">
                   <dl class="nav-left mt10 border-no">
                       <dd><a href="{:U('public/Mention')}">@提到我的</a></dd>
-                      <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的评论</a></dd>
-                      <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">发出的评论</a></dd>
+                      <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的評論</a></dd>
+                      <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">發出的評論</a></dd>
                       <dd><a href="{:U('public/Message')}">我的私信</a></dd>
-                      <dd class="current"><a href="{:U('public/Message/notify')}">系统消息</a></dd>
+                      <dd class="current"><a href="{:U('public/Message/notify')}">系統訊息</a></dd>
                   </dl>
               </div>
           </div>
           <div id="col7" class="main-right">
             <div class="extend minh person-set">
                 <div class="feed-nav">
-                    <div class="set-hd"><h3>系统消息</h3></div>
+                    <div class="set-hd"><h3>系統訊息</h3></div>
                 </div>
-                <!--消息列表-->
+                <!--訊息列表-->
                 <div class="private-lists">
                     <if condition="empty($data)">{:L('PUBLIC_NO_MORE_INFO')}</if>
                     
@@ -38,7 +38,7 @@
                           <dd class="info clearfix">                          
                             <div class="private-news-first">
                               <p class="hd">
-                              第一条消息
+                              第一條訊息
                               </p>
                               <p class="date">1秒前</p>
                             </div>
@@ -60,10 +60,10 @@
                         </dl>
                     
                 </div>
-                <!--消息列表/end-->
-                <!--页码-->
+                <!--訊息列表/end-->
+                <!--頁碼-->
                 <div id="page" class="page">{$html}</div>
-                <!--页码/Fend-->
+                <!--頁碼/Fend-->
               </div>
             </div>
       </div>

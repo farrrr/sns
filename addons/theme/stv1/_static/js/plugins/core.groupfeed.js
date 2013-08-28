@@ -4,38 +4,38 @@ core.groupfeed = {
 		},
 		// 微博初始化
 		init:function(agrs) {
-			this.initNums = agrs.initNums;		// 微博字数
+			this.initNums = agrs.initNums;		// 微博字數
 			this.maxId = args.maxId,			// 最大微博ID
-			this.loadId = args.loadId,			// 载入的微博ID
-			this.feedType = args.feedType,		// 微博类型
-			this.loadmore = args.loadmore,		// 是否载入更多
-			this.uid = args.uid,				// 当前微博列表对应的UID
-			this.loadnew = args.loadnew;		// 是否载入最新
+			this.loadId = args.loadId,			// 載入的微博ID
+			this.feedType = args.feedType,		// 微博類型
+			this.loadmore = args.loadmore,		// 是否載入更多
+			this.uid = args.uid,				// 當前微博列表對應的UID
+			this.loadnew = args.loadnew;		// 是否載入最新
 			this.feed_type = args.feed_type;
 			this.feed_key = args.feed_key;
 			this.firstId = 0;	
-			this.topic_id = args.topic_id;		// 是否为话题
+			this.topic_id = args.topic_id;		// 是否為話題
 			this.gid = args.gid;
-			//this.pre_page = "undefined" == typeof(pre_page) ? 1 :pre_page;//分页用到的前一页
+			//this.pre_page = "undefined" == typeof(pre_page) ? 1 :pre_page;//分頁用到的前一頁
 			if("undefined" == typeof(this.loadCount)) {
 				this.loadCount = 1;
 			}
 			if(this.loadmore == 1) {	
-				this.canLoading = true;		// 当前是否允许加载
+				this.canLoading = true;		// 當前是否允許載入
 				core.groupfeed.bindScroll();
 			} else {	
-				this.canLoading = false;	// 当前是否允许加载
+				this.canLoading = false;	// 當前是否允許載入
 			}
 			if($('#group-feed-lists').length > 0 && this.canLoading){
 				$('#group-feed-lists').append("<div class='loading' id='loadMore'>" + L('PUBLIC_LOADING') + "<img src='" + THEME_URL + "/image/load.gif' class='load'></div>");
 				core.groupfeed.loadMoreFeed();
 			}
 		},
-		// 页底加载微博
+		// 頁底載入微博
 		bindScroll: function() {	
 			var _this = this;
 			$(window).bind('scroll resize', function() {
-				// 加载3次后，将不能自动加载微博
+				// 載入3次後，將不能自動載入微博
 				if(_this.loadCount >= 4 || _this.canLoading == false){
 					return false;
 				}
@@ -50,24 +50,24 @@ core.groupfeed = {
 				}
 			});
 		},
-		// 加载更多微博
+		// 載入更多微博
 		loadMoreFeed: function() {
 			var _this = this;
 			_this.canLoading = false;
-			// 获取微博数据
+			// 獲取微博資料
 			$.get(U('group/GroupFeedList/loadMore'), {'loadId':_this.loadId, 'type':_this.feedType, 'uid':_this.uid, 'feed_type':_this.feed_type, 'feed_key':_this.feed_key, 'fgid':fgid, 'topic_id':_this.topic_id, 'load_count':_this.loadCount, 'gid':_this.gid}, function(msg) {
-				// 加载失败
+				// 載入失敗
 				if(msg.status == "0" || msg.status == "-1") {
 					$('#loadMore').remove();
 					if(msg.status == 0 && ("undefined" != typeof(msg.msg)) && _this.loadmore > 0) {
 						$('#group-feed-lists').append('<div class="loading" id="loadMore">' + msg.msg + '</div>');
 					}
 				}
-				// 加载成功
+				// 載入成功
 				if(msg.status == "1") {
 					if(msg.firstId > 0 && _this.loadnew == 1) {
 						_this.firstId = msg.firstId;
-						// 启动查找最新的loop
+						// 啟動查找最新的loop
 						_this.startNewLoop();
 					}
 					$('#loadMore').remove();
@@ -82,12 +82,12 @@ core.groupfeed = {
 					if(_this.loadCount >= 4) {
 						$('#group-feed-lists').append('<div id="page" class="page" style="display:none;">' + msg.pageHtml + '</div>');
 						if($('#group-feed-lists .page').find('a').size() > 2) {
-							// 4ping + next 说明还有30个以上
+							// 4ping + next 說明還有30個以上
 							var href = false;
 							$('#group-feed-lists .page').find('a').each(function() {
 								href = $(this).attr('href');
 							});
-							// 重组分页结构
+							// 重組分頁結構
 							$('#group-feed-lists .page').html(msg.pageHtml).show();
 							$('#group-feed-lists .page').find('a').each(function() {
 								var href = $(this).attr('href');
@@ -111,7 +111,7 @@ core.groupfeed = {
 			}, 'json')
 			return false;
 		},
-		// 分页加载更多数据
+		// 分頁載入更多資料
 		loadMoreByPage: function(href) {
 			var obj = this;
 			obj.canLoading = false;
@@ -139,14 +139,14 @@ core.groupfeed = {
 			},'json');
 			return false;
 		},
-		// 加载最新微博
+		// 載入最新微博
 		startNewLoop: function() {
 			var _this = this;
 			var searchNew = function() {
 				if(_this.firstId < 1) {
 					return false;
 				}
-				// 加载最新的数据
+				// 載入最新的資料
 				$.post(U('group/FeedList/loadNew'), {maxId:_this.firstId, type:'new' + _this.feedType, uid:_this.uid}, function(msg) {
 					if(msg.status == 1 && msg.count > 0) {
 						_this.showNew(msg.count);
@@ -155,10 +155,10 @@ core.groupfeed = {
 					}
 				}, 'json');
 			};
-			// 每2分钟查找一次最新微博
+			// 每2分鐘查找一次最新微博
 			var loop = setInterval(searchNew, 120000);
 		},
-		// 提示有多少新微博数据
+		// 提示有多少新微博資料
 		showNew: function(nums) {
 			if($('#group-feed-lists').find('.notes').length > 0) {
 				$('#group-feed-lists').find('.notes').html(L('PUBLIC_WEIBO_NUM',{'sum':nums}));
@@ -174,7 +174,7 @@ core.groupfeed = {
 			this.tempHtml = '';
 			M(document.getElementById('group-feed-lists'));
 		},
-		// 发布微博之后操作
+		// 釋出微博之後操作
 		afterPost: function(obj, textarea, topicHtml, close) {
 			if(topicHtml == ''){
 				textarea.value = '';
@@ -188,7 +188,7 @@ core.groupfeed = {
 			};
 			
 			$(obj.childModels['post_ok'][0]).fadeOut(500,fadeOutObj);
-			// 修改微博数目
+			// 修改微博數目
 			if("undefined" == typeof(close) || !close) {
 				updateUserData('weibo_count',1);
 			}
@@ -199,7 +199,7 @@ core.groupfeed = {
 				core.contribute.resetBtn();
 			}
 		},
-		// 将json数据插入到feed-lists中
+		// 將json資料插入到feed-lists中
 		insertToList: function(html, feedId) {
 			//alert(html);exit;
 			if("undefined" == typeof(html) || html == '') {
@@ -224,7 +224,7 @@ core.groupfeed = {
 				}
 				M($dl[0]);
 			}
-			//DIY专用
+			//DIY專用
 			if($('#group-feed-lists-d').length > 0) {
 				var before = $('#group-feed-lists-d dl').eq(0);
 				var _dl = document.createElement('dl');
@@ -244,23 +244,23 @@ core.groupfeed = {
 				M(_dl);
 			}
 		},
-		// 检验微博内容，obj = 要验证的表单对象，post = 表示是否发布
+		// 檢驗微博內容，obj = 要驗證的表單物件，post = 表示是否釋出
 		checkNums: function(obj, post) {
 			if("undefined" == typeof(obj.parentModel.parentModel.parentModel.childModels['numsLeft'])) {
 				return true;
 			}
-			// 获取输入框中还能输入的数字个数
+			// 獲取輸入框中還能輸入的數字個數
 			var strlen = core.getLength(obj.value , true);
 			var leftNums = initNums - strlen;
 			if(leftNums == initNums && 'undefined' != typeof(post)) {
 				return false;
 			}
-			// 获取按钮对象
+			// 獲取按鈕物件
 			var objInput = '';
 			if($(obj.parentModel.parentModel.childModels['send_action']).html() != null) {
 				objInput = $(obj.parentModel.parentModel.childModels['send_action'][0]).find('a').eq(0);
 			}
-			// 获取剩余字数
+			// 獲取剩餘字數
 			if(leftNums >= 0) {
 				var html = (leftNums == initNums) ? L('PUBLIC_INPUT_TIPES', {'sum':'<span>'+leftNums+'</span>'}) : L('PUBLIC_PLEASE_INPUT_TIPES', {'sum':'<span>'+leftNums+'</span>'});
 				obj.parentModel.parentModel.parentModel.childModels['numsLeft'][0].innerHTML = html;
@@ -269,7 +269,7 @@ core.groupfeed = {
 					if(typeof(objInput) == 'object') {
 						objInput[0].className = 'btn-grey-white';
 					}
-					return false;	// 没有输入内容
+					return false;	// 沒有輸入內容
 				}
 				if(typeof(objInput) == 'object') {
 					objInput[0].className = 'btn-green-big';
@@ -285,10 +285,10 @@ core.groupfeed = {
 				return false;
 			}
 		},
-		// 发布微博
+		// 釋出微博
 		post_feed: function(_this, mini_editor, textarea, isbox) {	
 			var obj = this;
-			// 避免重复发送
+			// 避免重複發送
 			if("undefined" == typeof(obj.isposting)) {
 				obj.isposting = true;
 			} else {
@@ -300,7 +300,7 @@ core.groupfeed = {
 			if("undefined" == typeof(isbox)) {
 				isbox = false;
 			}
-			// 微博类型在此区分
+			// 微博類型在此區分
 			var args = $(_this).attr('event-args');
 			var setargs = args.replace('type=postvideo','type=post');
 			
@@ -326,21 +326,21 @@ core.groupfeed = {
 					return false;
 				}
 			}
-			// 为空处理
+			// 為空處理
 			var data = textarea.value;
 			if(data == '' || data.length < 0) {
-				// TODO 只有一次情况才会执行到这里面 一般是不会的
+				// TODO 只有一次情況纔會執行到這裡面 一般是不會的
 				ui.error( L('PUBLIC_CENTE_ISNULL') );
 				obj.isposting = false;
 				return false;
 			}
 			data = removeHTMLTag(data);
 			if(data == '' || data.length < 0) {
-				ui.error('请勿输入非法与敏感字符');
+				ui.error('請勿輸入非法與敏感字元');
 				obj.isposting = false;
 				return false;
 			}
-			// 发布微博
+			// 釋出微博
 			$.post(U('group/GroupFeed/PostFeed'), {body:data, type:type, app_name:app_name, content:'', attach_id:attach_id,videourl:videourl,  source_url:attrs.source_url, gid:attrs.gid}, function(msg) {
 				obj.isposting = false;
 				_this.className = 'btn-grey-white';
@@ -391,12 +391,12 @@ core.groupfeed = {
 
 			if(dTime < 60) {
 				if(dTime < 10) {
-					return '刚刚';
+					return '剛剛';
 				} else {
 					return parseInt(Math.floor(dTime / 10) * 10) + '秒前';
 				}
 			} else if(dTime < 3600) {
-				return parseInt(Math.floor(dTime / 60)) + '分钟前';
+				return parseInt(Math.floor(dTime / 60)) + '分鐘前';
 			} else if(dYear === 0 && dMonth === 0 && dDay === 0) {
 				return '今天' + formatTime(sDate.getHours()) + ':' + formatTime(sDate.getMinutes());
 			} else if(dYear === 0) {

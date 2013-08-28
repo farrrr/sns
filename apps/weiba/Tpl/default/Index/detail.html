@@ -18,14 +18,14 @@
                                 <p class="mb10">
                                   {$weiba_detail['weiba_name']}&nbsp;<php>if(in_array($mid,$weiba_admin_uids) || CheckPermission('core_admin','admin_login')){</php>[<a href="{:U('weiba/Manage/index',array('weiba_id'=>$weiba_detail['weiba_id']))}">管理</a>]<php>}</php>
                                 </p>
-                                <p class="mb10">粉丝数：{$weiba_detail['follower_count']|default=0}</p>
-                                <p class="mb10">帖子数：{$weiba_detail['thread_count']|default=0}</p>
+                                <p class="mb10">粉絲數：{$weiba_detail['follower_count']|default=0}</p>
+                                <p class="mb10">帖子數：{$weiba_detail['thread_count']|default=0}</p>
                                 <p class="mb10">
                                 <php>if($follow_state[$weiba_detail['weiba_id']]['following'] && !in_array($mid,$weiba_admin_uids)){</php>
 	                                <php>if(CheckPermission('weiba_normal','weiba_apply_manage')){</php>
-		                                <php>if($weiba_super_admin){</php><a onclick="weiba_apply({$weiba_detail['weiba_id']},2)" href="javascript:void(0)">申请小吧</a>
+		                                <php>if($weiba_super_admin){</php><a onclick="weiba_apply({$weiba_detail['weiba_id']},2)" href="javascript:void(0)">申請小吧</a>
 		                                <php>}else{</php>
-		                                <a onclick="weiba_apply({$weiba_detail['weiba_id']},3)" href="javascript:void(0)">申请吧主</a>
+		                                <a onclick="weiba_apply({$weiba_detail['weiba_id']},3)" href="javascript:void(0)">申請吧主</a>
 		                                <php>}</php>
 	                                <php>}</php>
                                 <php>}</php></p>
@@ -34,7 +34,7 @@
                            </dl>
                        </div>
                        <div class="right-box mb20 clearfix border-b">
-                         <h3>微吧简介</h3>
+                         <h3>微吧簡介</h3>
                          <div class="mb20 content"><p>{$weiba_detail['intro']}</p></div>
                        </div>
                        <div class="right-box mb20 clearfix border-b">
@@ -54,7 +54,7 @@
                                     <img style="width:auto;height:auto;display:inline;cursor:pointer;" src="{$v1['user_group_icon_url']}" title="{$v1['user_group_name']}" />&nbsp;
                                   </volist>
                                 </p>
-                                <p><php>if($vo['level']==3){</php>超级吧主<php>}else{</php>小吧<php>}</php></p></dd>
+                                <p><php>if($vo['level']==3){</php>超級吧主<php>}else{</php>小吧<php>}</php></p></dd>
                           </dl>
                          </volist> 
                        </div>
@@ -67,15 +67,15 @@
                     <div class="extend-foot">
                         <div class="tab-menu">
                         <php>if($GLOBALS['ts']['mid'] && CheckPermission('weiba_normal','weiba_post') ){</php>
-                            <a href="javascript:void(0)" onclick="check_post({$weiba_detail['weiba_id']},{$weiba_detail['who_can_post']})" class="btn-green-small right"><span>发帖子</span></a>
+                            <a href="javascript:void(0)" onclick="check_post({$weiba_detail['weiba_id']},{$weiba_detail['who_can_post']})" class="btn-green-small right"><span>發帖子</span></a>
                             <php>}</php>
                             <ul>
                                 <li <php>if($type=='all'){</php>class="current"<php>}</php>><span><a href="{:U('weiba/Index/detail',array('weiba_id'=>$weiba_detail['weiba_id']))}">全部</a></span></li>
-                                <li <php>if($type=='digest'){</php>class="current"<php>}</php>><span><a href="{:U('weiba/Index/detail',array('weiba_id'=>$weiba_detail['weiba_id'],'type'=>'digest'))}">精华</a></span></li>
+                                <li <php>if($type=='digest'){</php>class="current"<php>}</php>><span><a href="{:U('weiba/Index/detail',array('weiba_id'=>$weiba_detail['weiba_id'],'type'=>'digest'))}">精華</a></span></li>
                             </ul>
                         </div>
                         <div class="weiba-sort f9 clearfix">
-                            <span class="right">排序方式：<a href="{:U('weiba/Index/detail',array('weiba_id'=>$weiba_detail['weiba_id'],'type'=>$type,'order'=>'reply_time'))}" <php>if($order=='reply_time'){</php>class="current"<php>}</php>>回复时间</a><i class="vline">|</i><a href="{:U('weiba/Index/detail',array('weiba_id'=>$weiba_detail['weiba_id'],'type'=>$type,'order'=>'post_time'))}" <php>if($order=='post_time'){</php>class="current"<php>}</php>>发帖时间</a></span><span>共有{$post_count|default=0}个帖子</span>
+                            <span class="right">排序方式：<a href="{:U('weiba/Index/detail',array('weiba_id'=>$weiba_detail['weiba_id'],'type'=>$type,'order'=>'reply_time'))}" <php>if($order=='reply_time'){</php>class="current"<php>}</php>>回覆時間</a><i class="vline">|</i><a href="{:U('weiba/Index/detail',array('weiba_id'=>$weiba_detail['weiba_id'],'type'=>$type,'order'=>'post_time'))}" <php>if($order=='post_time'){</php>class="current"<php>}</php>>發帖時間</a></span><span>共有{$post_count|default=0}個帖子</span>
                         </div>
                         <div class="weiba_postlist">
                            <ul>
@@ -83,10 +83,10 @@
                                <li>
                                 <div class="name">
                                   <span class="right num"><i class="arrow-weiba"></i>{$vo.reply_count}</span>
-                                  <a href="{:U('weiba/Index/postDetail',array('post_id'=>$vo['post_id']))}"><span style="vertical-align:-2px;">{$vo.title}</span><php>if(strstr($vo['content'],'<img')){</php><i class="ico-img"></i><php>}</php><php>if($vo['top']==2){</php><i class="ico-bar-top ml5">置顶</i><php>}</php><php>if($vo['top']==1){</php><i class="ico-bar-top0 ml5">置顶</i><php>}</php><php>if($vo['digest']==1){</php><i class="ico-bar-fine ml5">精华</i><php>}</php></a>
+                                  <a href="{:U('weiba/Index/postDetail',array('post_id'=>$vo['post_id']))}"><span style="vertical-align:-2px;">{$vo.title}</span><php>if(strstr($vo['content'],'<img')){</php><i class="ico-img"></i><php>}</php><php>if($vo['top']==2){</php><i class="ico-bar-top ml5">置頂</i><php>}</php><php>if($vo['top']==1){</php><i class="ico-bar-top0 ml5">置頂</i><php>}</php><php>if($vo['digest']==1){</php><i class="ico-bar-fine ml5">精華</i><php>}</php></a>
                                 </div>
                                 <div class="f9">
-                                  <span class="right"><php>if($vo['last_reply_time'] && $vo['last_reply_uid']){</php>{$user_info[$vo['last_reply_uid']]['space_link']}<span class="pl5 pr5">/</span>{$vo.last_reply_time|friendlyDate}<php>}</php></span><span>{$user_info[$vo['post_uid']]['space_link']}<span class="pl5 pr5">/</span>{$vo.post_time|friendlyDate}发布</span>
+                                  <span class="right"><php>if($vo['last_reply_time'] && $vo['last_reply_uid']){</php>{$user_info[$vo['last_reply_uid']]['space_link']}<span class="pl5 pr5">/</span>{$vo.last_reply_time|friendlyDate}<php>}</php></span><span>{$user_info[$vo['post_uid']]['space_link']}<span class="pl5 pr5">/</span>{$vo.post_time|friendlyDate}釋出</span>
                                 </div>
                               </li>
                             </volist>

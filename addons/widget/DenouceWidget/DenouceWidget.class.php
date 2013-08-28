@@ -1,6 +1,6 @@
 <?php
 /**
- * 举报弹窗Widget
+ * 舉報彈窗Widget
  * @example {:W('Denouce',array())}
  * @author jason
  * @version TS3.0
@@ -17,20 +17,20 @@ class DenouceWidget extends Widget
     }
     
     /**
-     * 举报弹框
-     * @return string 弹窗页面HTML
+     * 舉報彈框
+     * @return string 彈窗頁面HTML
      */
     public function index()
     {
-        // 获取相关数据
+        // 獲取相關資料
     	$var = $this->getVar();
         $content = $this->renderFile(dirname(__FILE__)."/index.html",$var);
     	return $content;
     }
 
     /**
-     * 判断资源是否已经被举报
-     * @return json 判断后的相关信息
+     * 判斷資源是否已經被舉報
+     * @return json 判斷後的相關資訊
      */
     public function isDenounce()
     {
@@ -41,7 +41,7 @@ class DenouceWidget extends Widget
         $res = array();
         if($count) {
             $res['status'] = 1;
-            $res['data'] = '您已经举报过此信息';
+            $res['data'] = '您已經舉報過此資訊';
         } else {
             $res['status'] = 0;
             $res['data'] = L('PUBLIC_REPORT_ERROR');
@@ -50,8 +50,8 @@ class DenouceWidget extends Widget
     }
     
     /**
-     * 格式化模板变量
-     * @return array 被举报的信息
+     * 格式化模板變數
+     * @return array 被舉報的資訊
      */
     public function getVar(){
     	if(empty($_GET['aid']) || empty($_GET['fuid']) || empty($_GET['type'])){
@@ -67,21 +67,21 @@ class DenouceWidget extends Widget
     }
     
     /**
-     * 提交举报
-     * @return array 举报信息和操作状态
+     * 提交舉報
+     * @return array 舉報資訊和操作狀態
      */
     public function post(){
     	$map['from'] = trim( $_POST['from'] );
 		$map['aid'] = intval( $_POST['aid'] );
 		$map['uid'] = intval( $_POST['uid'] );
 		$map['fuid'] = intval( $_POST['fuid'] );
-        // 判断资源是否删除
+        // 判斷資源是否刪除
         $fmap['feed_id'] = intval($_POST['aid']);
         $fmap['is_del'] = 0;
         $isExist = model('Feed')->where($fmap)->count();
         if($isExist == 0) {
             $return['status'] = 0;
-            $return['data'] = '内容已被删除，举报失败';
+            $return['data'] = '內容已被刪除，舉報失敗';
             exit(json_encode($return));
         }
 		$return = array();
@@ -93,7 +93,7 @@ class DenouceWidget extends Widget
 			$map['source_url'] = str_replace(SITE_URL,'[SITE_URL]',t($_POST['source_url']));
 			$map['ctime'] = time();
 			if( $id = model( 'Denounce' )->add( $map ) ){
-                //添加积分
+                //添加積分
                 model('Credit')->setUserCredit($_POST['uid'],'report_weibo');
                 model('Credit')->setUserCredit($_POST['fuid'],'reported_weibo');
 
@@ -101,7 +101,7 @@ class DenouceWidget extends Widget
                 foreach($touid as $k=>$v){
                     model('Notify')->sendNotify($v['uid'], 'denouce_audit');
                 }
-				$return = array('status'=>1,'data'=>'您已经成功举报此信息');
+				$return = array('status'=>1,'data'=>'您已經成功舉報此資訊');
 			}else{
 				$return = array('status'=>0,'data'=>L('PUBLIC_REPORT_ERROR'));
 			}

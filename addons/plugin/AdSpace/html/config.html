@@ -8,8 +8,8 @@
 </style>
 
 <div class="Toolbar_inbox">
-  <a href="{:Addons::adminPage('addAdSpace')}" class="btn_a"><span>添加广告</span></a>
-  <a href="javascript:;" class="btn_a" onclick="delAdSpace();"><span>删除广告</span></a>
+  <a href="{:Addons::adminPage('addAdSpace')}" class="btn_a"><span>添加廣告</span></a>
+  <a href="javascript:;" class="btn_a" onclick="delAdSpace();"><span>刪除廣告</span></a>
 </div>
 <div class="list">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -19,10 +19,10 @@
         <label for="checkbox"></label>
       </th>
       <th class="line_l">ID</th>
-      <th class="line_l">标题</th>
+      <th class="line_l">標題</th>
       <th class="line_l">位置</th>
-      <th class="line_l">创建时间</th>
-      <th class="line_l">更新时间</th>
+      <th class="line_l">創建時間</th>
+      <th class="line_l">更新時間</th>
       <th class="line_l">是否有效</th>
       <th class="line_l">排序</th>
       <th class="line_l">操作</th>
@@ -38,7 +38,7 @@
       <td>{$vo.ctime|date="Y-m-d H:i",###}</td>
       <td>
         <php>if(empty($vo['mtime'])):</php>
-        暂无更新
+        暫無更新
         <php>else:</php>
         {$vo.mtime|date="Y-m-d H:i",###}
         <php>endif;</php>
@@ -49,21 +49,21 @@
         <label><a href="javascript:;" class="ico-btm" onclick="mvAdSpace('{$vo['ad_id']}','down');"></a></label>
       </td>
       <td>
-        <a href="{:Addons::adminPage('editAdSpace', array('id'=>$vo['ad_id']))}">编辑</a>
-        <a href="javascript:;" onclick="delAdSpace('{$vo.ad_id}')">删除</a>
+        <a href="{:Addons::adminPage('editAdSpace', array('id'=>$vo['ad_id']))}">編輯</a>
+        <a href="javascript:;" onclick="delAdSpace('{$vo.ad_id}')">刪除</a>
       </td>
     </tr>
     </volist>
   </table>
 </div>
 <div class="Toolbar_inbox">
-  <a href="{:Addons::adminPage('addAdSpace')}" class="btn_a"><span>添加广告</span></a>
-  <a href="javascript:;" class="btn_a" onclick="delAdSpace();"><span>删除广告</span></a>
+  <a href="{:Addons::adminPage('addAdSpace')}" class="btn_a"><span>添加廣告</span></a>
+  <a href="javascript:;" class="btn_a" onclick="delAdSpace();"><span>刪除廣告</span></a>
 </div>
 
 <script type="text/javascript">
 /**
- * 鼠标移动表格效果
+ * 滑鼠移動表格效果
  * @return void
  */
 $(document).ready(function() {
@@ -77,8 +77,8 @@ $(document).ready(function() {
   );  
 });
 /**
- * 选中checked方法
- * @param obj o 点击的DOM对象
+ * 選中checked方法
+ * @param obj o 點選的DOM物件
  * @return void
  */
 var checkon = function(o)
@@ -90,8 +90,8 @@ var checkon = function(o)
   }
 };
 /**
- * 全选checked方法
- * @param obj o 点击的DOM对象
+ * 全選checked方法
+ * @param obj o 點選的DOM物件
  * @return void
  */
 var checkAll = function(o) {
@@ -104,8 +104,8 @@ var checkAll = function(o) {
   }
 };
 /**
- * 获取已选择的ID数组
- * @return array 已选择的ID数组
+ * 獲取已選擇的ID陣列
+ * @return array 已選擇的ID陣列
  */
 var getChecked = function() {
   var ids = [];
@@ -116,13 +116,13 @@ var getChecked = function() {
   return ids;
 };
 /**
- * 删除广告位操作
- * @param integer ids 广告位ID
+ * 刪除廣告位操作
+ * @param integer ids 廣告位ID
  * @return void
  */
 var delAdSpace = function(ids)
 {
-  // 获取选中内容
+  // 獲取選中內容
   var len = 0;
   if(ids) {
     len = 1;
@@ -131,13 +131,13 @@ var delAdSpace = function(ids)
     len = (ids[0] == 0) ? (ids.length - 1) : ids.length;
     ids = ids.toString();
   }
-  // 验证数据
+  // 驗證資料
   if(ids == '') {
-    ui.error('请选择广告');
+    ui.error('請選擇廣告');
     return false;
   }
-  // 删除操作
-  if(confirm('您将删除'+len+'条记录，删除后无法恢复，确定继续？')) {
+  // 刪除操作
+  if(confirm('您將刪除'+len+'條記錄，刪除後無法恢復，確定繼續？')) {
     $.post("{:Addons::adminUrl('doDelAdSpace')}", {ids:ids}, function(res) {
       if(res.status == 1) {
         ui.success(res.info);
@@ -154,17 +154,17 @@ var delAdSpace = function(ids)
   }
 };
 /**
- * 移动广告位操作
- * @param integer id 广告位ID
- * @param string type 移动类型，up or down
+ * 移動廣告位操作
+ * @param integer id 廣告位ID
+ * @param string type 移動類型，up or down
  * @return void
  */
 var mvAdSpace = function(id, type)
 {
-  // 判断是否能移动
+  // 判斷是否能移動
   var baseId = (type == 'up') ? $('#ad_space_'+id).prev().attr('rel') : $('#ad_space_'+id).next().attr('rel');
   if(baseId) {
-    // 提交移动操作
+    // 提交移動操作
     $.post("{:Addons::adminUrl('doMvAdSpace')}", {id:id, baseId:baseId}, function(res) {
       if(res.status == 1) {
         ui.success(res.info);

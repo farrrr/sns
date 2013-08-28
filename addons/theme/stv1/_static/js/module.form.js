@@ -1,6 +1,6 @@
 /**
- * 异步提交表单
- * @param object form 表单DOM对象
+ * 非同步提交表單
+ * @param object form 表單DOM物件
  * @return void
  */
 var ajaxSubmit = function(form) {
@@ -29,9 +29,9 @@ var ajaxSubmit = function(form) {
 };
 
 (function(){
-// 是否点击了发送按钮
+// 是否點選了發送按鈕
 var isSubmit = 0;
-// 块状模型监听
+// 塊狀模型監聽
 M.addModelFns({
 	account_save:{
 		callback:function(){
@@ -43,13 +43,13 @@ M.addModelFns({
 	},
 	verify_apply:{
 		callback:function(){
-			ui.success('申请成功，请等待审核');
+			ui.success('申請成功，請等待稽覈');
 			setTimeout(function() {
 				location.href = U('public/Account/authenticate');
 			}, 1500);
 		}
 	},
-	// 普通表单发送验证
+	// 普通表單發送驗證
 	normal_form: {
 		submit: function() {
 			isSubmit = 1;
@@ -61,7 +61,7 @@ M.addModelFns({
 			for(var i = 0; i < nL; i++) {
 				var dInput = oCollection[i];
 				var sName = dInput.name;
-				// 如果没有事件节点，则直接略过检查
+				// 如果沒有事件節點，則直接略過檢查
 				if(!sName || !dInput.getAttribute("event-node")) {
 					continue;
 				}
@@ -85,9 +85,9 @@ M.addModelFns({
 		}
 	}
 });
-// 事件模型监听
+// 事件模型監聽
 M.addEventFns({
-	// 文本框输入文本验证
+	// 文字框輸入文字驗證
 	input_text: {
 		focus: function() {
 			this.className='s-txt-focus';
@@ -95,11 +95,11 @@ M.addEventFns({
 		},
 		blur: function() {
 			this.className = 's-txt';
-			// 设置文本框的最大与最小输入限制
+			// 設定文字框的最大與最小輸入限制
 			var oArgs = M.getEventArgs( this );
 			var	min = oArgs.min ? parseInt( oArgs.min ) : 0;
 			var	max = oArgs.max ? parseInt( oArgs.max ) : 0;
-			// 最大和最小长度均小于或等于0，则不进行长度验证
+			// 最大和最小長度均小於或等於0，則不進行長度驗證
 			if(min <= 0 && max <= 0) {
 				return false;
 			}
@@ -124,7 +124,7 @@ M.addEventFns({
 			this.className='s-txt';
 		}
 	},
-	// 文本框输入纯数字文本验证
+	// 文字框輸入純數字文字驗證
 	input_nums: {
 		focus: function() {
 			this.className = 's-txt-focus';
@@ -132,11 +132,11 @@ M.addEventFns({
 		},
 		blur: function() {
 			this.className = 's-txt';
-			// 设置文本框的最大与最小输入限制
+			// 設定文字框的最大與最小輸入限制
 			var oArgs = M.getEventArgs(this);
 			var min = oArgs.min ? parseInt( oArgs.min ) : 0;
 			var max = oArgs.max ? parseInt( oArgs.max ) : 0;
-			// 最大和最小长度均小于或等于0，则不进行长度验证
+			// 最大和最小長度均小於或等於0，則不進行長度驗證
 			if(min <= 0 && max <= 0) {
 				return false;
 			}
@@ -144,11 +144,11 @@ M.addEventFns({
 			var dTips = (this.parentModel.childEvents[this.getAttribute( "name" ) + "_tips"] || [])[0];
 			var sValue = this.value;
 
-			// 纯数字验证
+			// 純數字驗證
 			var re = /^[0-9]*$/;
 			if(!re.test(sValue)) {
 				dTips && (dTips.style.display = "none");
-				tips.error(this, L('PUBLIC_TYPE_ISNOT'));		// 格式不正确
+				tips.error(this, L('PUBLIC_TYPE_ISNOT'));		// 格式不正確
 				this.bIsValid = false;
 				return false;
 			}
@@ -172,18 +172,18 @@ M.addEventFns({
 			this.className = 's-txt';
 		}
 	},
-	// 文本域验证
+	// 文字域驗證
 	textarea: {
 		focus: function() {
 			this.className = 's-textarea-focus';
 		},
 		blur: function() {
 			this.className = 's-textarea';
-			// 设置文本框的最大与最小输入限制
+			// 設定文字框的最大與最小輸入限制
 			var oArgs = M.getEventArgs(this);
 			var min = oArgs.min ? parseInt( oArgs.min ) : 0;
 			var max = oArgs.max ? parseInt( oArgs.max ) : 0;
-			// 最大和最小长度均小于或等于0，则不进行长度验证
+			// 最大和最小長度均小於或等於0，則不進行長度驗證
 			if(min <= 0 && max <= 0) {
 				return false;
 			}
@@ -202,7 +202,7 @@ M.addEventFns({
 			this.className = 's-textarea';
 		}
 	},
-	// 部门信息验证
+	// 部門資訊驗證
 	input_department: {
 		blur: function() {
 			var sValue = this.value;
@@ -225,19 +225,19 @@ M.addEventFns({
 			core.plugInit('department', $(this), $(this));
 		}
 	},
-	// 地区信息验证
+	// 地區資訊驗證
 	input_area: {
 		blur: function() {
-			// 获取数据
+			// 獲取資料
 			var sValue = $.trim(this.value);
 			var sValueArr = sValue.split(",");
-			// 验证数据正确性
+			// 驗證資料正確性
 			if(sValue == "" || sValueArr[0] == 0) {
-				tips.error(this, "请选择地区");
+				tips.error(this, "請選擇地區");
 				this.bIsValid = false;
 				this.value = '0,0,0';
 			} else if(sValueArr[1] == 0 || sValueArr[2] == 0) {
-				tips.error(this, "请选择完整地区信息");
+				tips.error(this, "請選擇完整地區資訊");
 				this.bIsValid = false;
 			} else {
 				tips.success(this);
@@ -245,19 +245,19 @@ M.addEventFns({
 			}
 		},
 		load: function() {
-			// 获取参数信息
+			// 獲取參數資訊
 			var _this = this;
-			// 验证数据正确性
+			// 驗證資料正確性
 			setInterval(function() {
-				// 获取数据
+				// 獲取資料
 				var sValue = $.trim(_this.value);
 				var sValueArr = sValue.split(",");
-				// 验证数据正确性
+				// 驗證資料正確性
 				if(sValue == "" || sValueArr[0] == 0) {
-					tips.error(_this, "请选择地区");
+					tips.error(_this, "請選擇地區");
 					_this.bIsValid = false;
 				} else if(sValueArr[1] == 0 || sValueArr[2] == 0) {
-					tips.error(_this, "请选择完整地区信息");
+					tips.error(_this, "請選擇完整地區資訊");
 					_this.bIsValid = false;
 				} else {
 					tips.success(_this);
@@ -266,7 +266,7 @@ M.addEventFns({
 			}, 200);
 		}
 	},
-	// 时间格式验证
+	// 時間格式驗證
 	input_date: {
 		focus: function() {
 			this.className = 's-txt-focus';
@@ -304,7 +304,7 @@ M.addEventFns({
 			this.className = 's-txt';
 		}
 	},
-	// 邮箱验证
+	// 郵箱驗證
 	email: {
 		focus: function() {
 			this.className = 's-txt-focus';
@@ -381,10 +381,10 @@ M.addEventFns({
 				if(dEmail.sCacheValue === sValue) {
 					return false;
 				} else {
-					// 缓存值
+					// 快取值
 					dEmail.sCacheValue = sValue;
 				}
-				// 空值判断
+				// 空值判斷
 				if(!sValue) {
 					dTips.style.display = "none";
 					return ;
@@ -394,7 +394,7 @@ M.addEventFns({
 				var l = aSuffix.length;
 				var sSuffix;
 
-				sInputSuffix = ["@",aValue[1]].join(""); // 用户输入的邮箱的后缀
+				sInputSuffix = ["@",aValue[1]].join(""); // 使用者輸入的郵箱的字尾
 
 				for(var i = 0; i < l; i ++) {
 					sSuffix = aSuffix[i];
@@ -417,9 +417,9 @@ M.addEventFns({
 					dLi.onclick = (function(dInput, sValue, sSuffix) {
 						return function(e) {
 							dInput.value = [ sValue, sSuffix ].join( "" );
-							// 选择完毕，状态为离开选择下拉条
+							// 選擇完畢，狀態為離開選擇下拉條
 							dTips.isEnter = 0;
-							// 自动验证
+							// 自動驗證
 							dInput.onblur();
 							return false;
 						};
@@ -443,7 +443,7 @@ M.addEventFns({
 			}, 200);
 		}
 	},
-	// 密码验证
+	// 密碼驗證
 	password: {
 		focus: function() {
 			this.className = 's-txt-focus';
@@ -483,13 +483,13 @@ M.addEventFns({
 
 			setInterval( function() {
 				var sValue = dPwd.value;
-				// 缓存值
+				// 快取值
 				if ( dPwd.sCacheValue === sValue ) {
 					return ;
 				} else {
 					dPwd.sCacheValue = sValue;
 				}
-				// 空值判断
+				// 空值判斷
 				if ( ! sValue ) {
 					dWeight.className = aLevel[0];
 					dWeight.setAttribute('className',aLevel[0]);
@@ -545,7 +545,7 @@ M.addEventFns({
 			this.className='s-txt';
 		}
 	},
-	// 昵称验证
+	// 昵稱驗證
 	uname: {
 		focus: function() {
 			this.className='s-txt-focus';
@@ -632,7 +632,7 @@ M.addEventFns({
 			try{
 				(function( node ) {
 					var parent = node.parentNode;
-					// 判断node 类型，防止意外循环
+					// 判斷node 類型，防止意外迴圈
 					if ( "FORM" === parent.nodeName ) {
 						if ( "false" === args.ajax ) {
 							( ( "function" !== typeof parent.onsubmit ) || ( false !== parent.onsubmit() ) ) && parent.submit();
@@ -657,12 +657,12 @@ M.addEventFns({
 	}
 });
 /**
- * 提示语Js对象
+ * 提示語Js物件
  */
 var tips = {
 	/**
-	 * 初始化，正确与错误提示
-	 * @param object D DOM对象
+	 * 初始化，正確與錯誤提示
+	 * @param object D DOM物件
 	 * @return void
 	 */
 	init: function(D) {
@@ -670,9 +670,9 @@ var tips = {
 		this._initSuccess(D);
 	},
 	/**
-	 * 调用错误接口
-	 * @param object D DOM对象
-	 * @param string txt 显示内容
+	 * 呼叫錯誤介面
+	 * @param object D DOM物件
+	 * @param string txt 顯示內容
 	 * @return void
 	 */
 	error: function(D, txt) {
@@ -687,8 +687,8 @@ var tips = {
 		}
 	},
 	/**
-	 * 调用成功接口
-	 * @param object D DOM对象
+	 * 呼叫成功介面
+	 * @param object D DOM物件
 	 * @return void
 	 */
 	success: function(D) {
@@ -697,8 +697,8 @@ var tips = {
 		D.dSuccess.style.display = "";
 	},
 	/**
-	 * 清除提示接口
-	 * @param object D DOM对象
+	 * 清除提示介面
+	 * @param object D DOM物件
 	 * @return void
 	 */
 	clear: function(D) {
@@ -707,26 +707,26 @@ var tips = {
 		D.dSuccess.style.display = "none";
 	},
 	/**
-	 * 初始化错误对象
-	 * @param object D DOM对象
+	 * 初始化錯誤物件
+	 * @param object D DOM物件
 	 * @return void
 	 * @private
 	 */
 	_initError: function(D) {
 		if (!D.dError || !D.dErrorText) {
-			// 创建DOM结构
+			// 創建DOM結構
 			var dFrag = document.createDocumentFragment();
 			var dText = document.createTextNode("");
 			var dB = document.createElement("b");
 			var dSpan = document.createElement("span");
 			var dDiv = document.createElement("div");
-			// 组装HTML结构 - DIV
+			// 組裝HTML結構 - DIV
 			D.dError = dFrag.appendChild(dDiv);
 			dDiv.className = "box-ver";
 			dDiv.style.display = "none";
-			// 组装HTML结构 - SPAN
+			// 組裝HTML結構 - SPAN
 			dDiv.appendChild( dSpan );
-			// 组装HTML结构 - B
+			// 組裝HTML結構 - B
 			dSpan.appendChild( dB );
 			dB.className = "ico-error";
 			D.dErrorText = dSpan.appendChild(dText);
@@ -741,17 +741,17 @@ var tips = {
 		}
 	},
 	/**
-	 * 初始化成功对象
-	 * @param object D DOM对象
+	 * 初始化成功物件
+	 * @param object D DOM物件
 	 * @return void
 	 * @private
 	 */
 	_initSuccess: function(D) {
 		if(!D.dSuccess) {
-			// 创建DOM结构
+			// 創建DOM結構
 			var dFrag = document.createDocumentFragment();
 			var dSpan = document.createElement("span");
-			// 组装HTML结构 - SPAN
+			// 組裝HTML結構 - SPAN
 			D.dSuccess = dFrag.appendChild(dSpan);
 			dSpan.className = "ico-ok";
 			dSpan.style.display = "none";
@@ -766,6 +766,6 @@ var tips = {
 		}
 	}
 };
-// 定义Window属性
+// 定義Window屬性
 window.tips = tips;
 })();

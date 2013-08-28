@@ -1,4 +1,4 @@
-/*图标*/
+/*圖示*/
 
 
 
@@ -7,7 +7,7 @@
 
 .channel-title{padding:20px;}
 .channel-title img{margin:0 10px 0 0;}
-.channel-title h4{color:#0F8CA8;font-size:20px;font-family:"微软雅黑"}
+.channel-title h4{color:#0F8CA8;font-size:20px;font-family:"微軟雅黑"}
 .channel-type a{width:95px;height:36px;line-height:36px;text-align:center;color:#333;font-size:14px;background:#e9ecee;margin:0 1px 0 0;display:inline-block;}
 .channel-type a.no-margin{margin:0;width:96px;}
 .channel-type a:hover,.channel-type a.current{background:#0F8CA8;color:#fff;}
@@ -54,8 +54,8 @@
 .weiba-post-title dt{}
 .weiba-post-title dd{}
 .Posts-content .content{_width:649px;_overflow:hidden;}
-.Posts-content .content h3{font-family:"微软雅黑";font-size:22px;margin:0 0 15px 0;}
-.Posts-content .content h3 i{font-family:"宋体";font-size:12px; line-height:14px; overflow:hidden; display:inline-block; vertical-align:middle;*vertical-align:1px;}
+.Posts-content .content h3{font-family:"微軟雅黑";font-size:22px;margin:0 0 15px 0;}
+.Posts-content .content h3 i{font-family:"宋體";font-size:12px; line-height:14px; overflow:hidden; display:inline-block; vertical-align:middle;*vertical-align:1px;}
 .Posts-content .content .ico-img{}
 .Posts-content .content .weiba-article{line-height:22px;font-size:14px;}
 .Posts-content .content .weiba-article img{margin:10px 0;max-width:649px;width:expression(this.width > 649? "649px":this.width );}
@@ -68,7 +68,7 @@
 .ico-bar-floor{background:#f3f3f3;color:#999;padding:2px 6px;border-radius:2px;-webkit-border-radius:2px;-zom-border-radius:2px;-kthml-border-radius:2px;font-style:normal;}
 .ico-bar-fine{background:#ebcdb1;color:#fff;padding:2px 6px;border-radius:2px;-webkit-border-radius:2px;-zom-border-radius:2px;-kthml-border-radius:2px;font-style:normal;}
 
-.search-content p{font-size:20px;margin:3px 20px 0 0;font-family:"微软雅黑";color:#0F8CA8;}
+.search-content p{font-size:20px;margin:3px 20px 0 0;font-family:"微軟雅黑";color:#0F8CA8;}
 
 /*微吧管理*/
 .weiba-manage .form-set{margin:20px 0;}
@@ -87,19 +87,19 @@
 .right-box .content p{line-height:20px}
 
 
-/*全部帖子列表&单个微吧内帖子列表*/
+/*全部帖子列表&單個微吧內帖子列表*/
 .weiba_postlist{}
 .weiba_postlist li{padding:15px 0 20px;border-bottom:1px dotted #ddd;}
 .weiba_postlist li:hover{background:#f6f6f6;}
 .weiba_postlist .name{margin:0 0 18px 0;}
 .weiba_postlist .name .num{color:#ff9722;border:1px solid #ccc;position:relative;background:#fcfcfc;padding:1px 8px;border-radius:2px;-webkit-border-radius:2px;-zom-border-radius:2px;-kthml-border-radius:2px;}
 .weiba_postlist .num .arrow-weiba{position:absolute;left:5px;bottom:-6px;}
-.weiba_postlist .name a{font-size:18px; font-family: "微软雅黑";}
-.weiba_postlist .name a i{font-family:"宋体";font-size:12px; line-height:14px; overflow:hidden; display:inline-block; vertical-align:middle;*vertical-align:-2px;}
+.weiba_postlist .name a{font-size:18px; font-family: "微軟雅黑";}
+.weiba_postlist .name a i{font-family:"宋體";font-size:12px; line-height:14px; overflow:hidden; display:inline-block; vertical-align:middle;*vertical-align:-2px;}
 .weiba_postlist .f9 a{color: #999;}
 
 .lh25{ line-height:25px;}
 
 /*微吧列表*/
 .weiba_name { margin-bottom:15px;}
-.weiba_name a{ font-size:18px; font-family:"微软雅黑";}
+.weiba_name a{ font-size:18px; font-family:"微軟雅黑";}

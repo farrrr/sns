@@ -1,12 +1,12 @@
 <?php
 /**
- * ThinkSNS API接口抽象类
+ * ThinkSNS API介面抽象類
  * @author lenghaoran
  * @version TS3.0
  */
 abstract class Api {
-    
-    var $mid; //当前登陆的用户ID
+
+    var $mid; //當前登陸的使用者ID
     var $since_id;
     var $max_id;
     var $page;
@@ -15,30 +15,30 @@ abstract class Api {
     var $user_name;
     var $id;
     var $data;
-    
-    private $_module_white_list = null; // 白名单模块
+
+    private $_module_white_list = null; // 白名單模組
 
     /**
-     * 架构函数
-     * @param boolean $location 是否本机调用，本机调用不需要认证
+     * 架構函數
+     * @param boolean $location 是否本機呼叫，本機呼叫不需要認證
      * @return void
      */
     public function __construct($location=false) {
         $this->_module_white_list = array('Oauth', 'Sitelist');
         //$this->mid = $_SESSION['mid'];
-        //外部接口调用
+        //外部介面呼叫
         if ($location == false) {
-            if (!$this->mid && !in_array(MODULE_NAME, $this->_module_white_list)){              
+            if (!$this->mid && !in_array(MODULE_NAME, $this->_module_white_list)){
                 $this->verifyUser();
             }
-        //本机调用
+            //本機呼叫
         } else {
             $this->mid = $_SESSION['mid'];
         }
-        
+
         $GLOBALS['ts']['mid'] = $this->mid;
-        
-        //默认参数处理
+
+        //默認參數處理
         $this->since_id   = $_REQUEST['since_id']   ? intval($_REQUEST['since_id']) : '';
         $this->max_id     = $_REQUEST['max_id']     ? intval($_REQUEST['max_id'])   : '';
         $this->page       = $_REQUEST['page']       ? intval($_REQUEST['page'])     : 1;
@@ -48,16 +48,16 @@ abstract class Api {
         $this->id         = $_REQUEST['id']         ? intval($_REQUEST['id'])       : 0;
         $this->data       = $_REQUEST;
 
-        //接口初始化钩子
+        //介面初始化鉤子
         Addons::hook('core_filter_init_api');
-        
+
         //控制器初始化
         if(method_exists($this,'_initialize'))
             $this->_initialize();
     }
 
     /**
-     * 用户身份认证
+     * 使用者身份認證
      * @return void
      */
     private function verifyUser() {
@@ -73,19 +73,19 @@ abstract class Api {
     }
 
     /**
-     * 输出API认证失败信息
+     * 輸出API認證失敗資訊
      * @return  object|json
      */
     protected function verifyError() {
-        $message['message'] = '认证失败';
+        $message['message'] = '認證失敗';
         $message['code']    = '00001';
         exit( json_encode( $message ) );
     }
 
     /**
-     * 通过api方法调用API时的赋值
+     * 通過api方法呼叫API時的賦值
      * api('WeiboStatuses')->data($data)->public_timeline();
-     * @param array $data 方法调用时的参数
+     * @param array $data 方法呼叫時的參數
      * @return void
      */
     public function data($data){

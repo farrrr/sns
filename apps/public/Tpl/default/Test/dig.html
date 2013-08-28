@@ -5,33 +5,33 @@
     <div id="main-wrap" class=" bd-not">
         <div class="extend">
             <div style="margin:50px 0">
-                资源ID：<input type="text" id="source_id" value="1" readonly="readonly" /><br />
-                资源表：<input type="text" id="source_table" value="task" readonly="readonly" /><br />
-                资源类型：<input type="text" id="source_type" value="0" readonly="readonly" /><br />
-                用户UID：<input type="text" id="source_uid" />例：11860<br />
-                <a href="javascript:void(0);" onclick="setData();">设置</a><br />
+                資源ID：<input type="text" id="source_id" value="1" readonly="readonly" /><br />
+                資源表：<input type="text" id="source_table" value="task" readonly="readonly" /><br />
+                資源類型：<input type="text" id="source_type" value="0" readonly="readonly" /><br />
+                使用者UID：<input type="text" id="source_uid" />例：11860<br />
+                <a href="javascript:void(0);" onclick="setData();">設定</a><br />
                 <span id="info"></span>
             </div>
             <div style="margin:50px 0">
                 <volist name="data" id="vo">
-                    <p>用户：{$vo['uid']}，类型{$vo['type']}，资源表{$vo[source_table]}，资源ID：{$vo['source_id']}，IP：{$vo['ip']}</p>
+                    <p>使用者：{$vo['uid']}，類型{$vo['type']}，資源表{$vo[source_table]}，資源ID：{$vo['source_id']}，IP：{$vo['ip']}</p>
                 </volist>
             </div>
             <div style="margin:50px 0">
-                {:W('Tips',array('source_id'=>'1','source_table'=>'task','type'=>0, 'display_text'=>'顶'))}
+                {:W('Tips',array('source_id'=>'1','source_table'=>'task','type'=>0, 'display_text'=>'頂'))}
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 {:W('Tips',array('source_id'=>'1','source_table'=>'task','type'=>1, 'display_text'=>'踩'))}
             </div>
             <div>
                 <pre>
-                调用：W('Tips',array('source_id'=>$source_id,'source_table'=>$source_table,'type'=>0,'display_text'=>'顶','count'=>10,'uid'=>11860))
-                参数说明：
-                source_id       资源ID
-                source_table    资源表
-                type            类型 0支持 1反对
-                display_text    显示的字
-                count           统计数目
-                uid             操作用户UID - 不填写为登录用户
+                呼叫：W('Tips',array('source_id'=>$source_id,'source_table'=>$source_table,'type'=>0,'display_text'=>'頂','count'=>10,'uid'=>11860))
+                參數說明：
+                source_id       資源ID
+                source_table    資源表
+                type            類型 0支援 1反對
+                display_text    顯示的字
+                count           統計數目
+                uid             操作使用者UID - 不填寫為登入使用者
                 </pre>
             </div>
         </div>
@@ -48,14 +48,14 @@ function setData() {
     var uid = $('#source_uid').val();
     uid = $.trim(uid);
     if(uid == '') {
-        ui.error('请输入用户UID');
+        ui.error('請輸入使用者UID');
         return false;
     }
 
     $('a[event-node="tipsExec"]').each(function(i) {
         switch(i) {
             case 0:
-                $(this).attr('event-args', 'sid=' + sid + '&stable=' + stable + '&type=0&text=顶&count=' + count0 + '&uid=' + uid);
+                $(this).attr('event-args', 'sid=' + sid + '&stable=' + stable + '&type=0&text=頂&count=' + count0 + '&uid=' + uid);
                 break;
             case 1:
                 $(this).attr('event-args', 'sid=' + sid + '&stable=' + stable + '&type=1&text=踩&count=' + count1 + '&uid=' + uid);
@@ -63,7 +63,7 @@ function setData() {
         }
     });
 
-    $('#info').html('资源ID：' + sid + '，资源表：' + stable + '，资源类型：' + type + '，用户UID：' + uid);
+    $('#info').html('資源ID：' + sid + '，資源表：' + stable + '，資源類型：' + type + '，使用者UID：' + uid);
 }
 </script>
 

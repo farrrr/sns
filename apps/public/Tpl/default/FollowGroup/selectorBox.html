@@ -1,4 +1,4 @@
-<!-- 关注成功后，设置分组弹窗 -->
+<!-- 關注成功後，設定分組彈窗 -->
 <div class="layer-follow pop">
     <div class="tit">
     	{:L('PUBLIC_PEOPLE_REMARK')}： 
@@ -49,8 +49,8 @@ $(function() {
 	}, 300);
 });
 /**
- * 显示编辑弹窗
- * @param integer gid 分组ID
+ * 顯示編輯彈窗
+ * @param integer gid 分組ID
  * @return void
  */
 var editGroup = function(gid) {
@@ -58,8 +58,8 @@ var editGroup = function(gid) {
 	$('#edit_'+gid).show();
 };
 /**
- * 保存分组操作
- * @param integer gid 分组ID
+ * 儲存分組操作
+ * @param integer gid 分組ID
  * @return void
  */
 var saveGroup = function(gid) {
@@ -85,15 +85,15 @@ var saveGroup = function(gid) {
 	cenSaveGroup(gid);
 };
 /**
- * 隐藏编辑弹窗
- * @param integer gid 分组ID
+ * 隱藏編輯彈窗
+ * @param integer gid 分組ID
  * @return void
  */
 var cenSaveGroup = function(gid) {
 	$('#title_'+gid).show();
 	$('#edit_'+gid).hide();
 };
-// 用户ID
+// 使用者ID
 var fid = '{$fid}';
 $(document).ready(function(){
 	<volist name="f_group_status" id="gs">
@@ -101,8 +101,8 @@ $(document).ready(function(){
 	</volist>
 });
 /**
- * 设置分组操作
- * @param integer gid 分组ID
+ * 設定分組操作
+ * @param integer gid 分組ID
  * @return void
  */
 var setFollowGroup = function(gid) {
@@ -112,11 +112,11 @@ var setFollowGroup = function(gid) {
 	}, 'json');
 };
 /**
- * 设置分组操作 - 多分组
+ * 設定分組操作 - 多分組
  * @return void
  */
 var setFollowGroups = function() {
-	// 获取选中的分组
+	// 獲取選中的分組
 	var checked = [];
 	$('input[name="gids[]"]').each(function(i, n) {
 		if($(this).attr('checked')) {
@@ -127,13 +127,13 @@ var setFollowGroups = function() {
 	// 	return false;
 	// }
 	var gids = checked.join(',');
-	// 设置分组操作
+	// 設定分組操作
 	$.post(U('public/FollowGroup/setFollowGroups'), {gids:gids, fid:fid}, function() {
 	}, 'json');
 };
 /**
- * 创建关注分组Tab显示
- * @param string action 操作类型
+ * 創建關注分組Tab顯示
+ * @param string action 操作類型
  * @return void
  */
 var createFollowGroupTab = function(action) {
@@ -143,7 +143,7 @@ var createFollowGroupTab = function(action) {
 		$('#createFollowGroup .btn-green-small').css('display','none');
 		$('#createFollowGroup .btn-cancel').css('display','none');
 		$('#createFollowGroup .openTab').css('display','inline-block');
-        // 隐藏弹窗
+        // 隱藏彈窗
         var len = $('#followGroupSelector').find("li").length;
         if(len > 9) {
             $('#openTab').css('display','none');
@@ -158,7 +158,7 @@ var createFollowGroupTab = function(action) {
 	}
 };
 /**
- * 创建关注分组操作
+ * 創建關注分組操作
  * @return void
  */
 var createFollowGroup = function() {
@@ -193,17 +193,17 @@ var createFollowGroup = function() {
 	});
 };
 /**
- * 保存备注信息
+ * 儲存備註資訊
  * @return void
  */
 var saveRemark = function() {
-	// 备注操作
+	// 備註操作
 	var remark = $('#remark').val();
 	if(getLength(remark) > 10) {
 		ui.error('{:L('PUBLIC_REMARK_CHARACTER_LIMIT')}');
 		return false;
 	}
-	// 设置关注分组
+	// 設定關注分組
 	setFollowGroups();
 	if($('#remark').val() =='' || $('#remark').val() =='{:L('PUBLIC_REMARK_SETTING')}'){
 		ui.success('{:L('PUBLIC_SAVE_SUCCESS')}');

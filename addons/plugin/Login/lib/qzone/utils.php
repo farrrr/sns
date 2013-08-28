@@ -117,7 +117,7 @@ function do_get($url, $appid, $appkey, $access_token, $access_token_secret, $ope
 {
 	$sigstr = "GET"."&".rawurlencode("$url")."&";
 
-	//必要参数, 不要随便更改!!
+	//必要參數, 不要隨便更改!!
 	$params = $_GET;
 	$params["oauth_version"]          = "1.0";
 	$params["oauth_signature_method"] = "HMAC-SHA1";
@@ -128,11 +128,11 @@ function do_get($url, $appid, $appkey, $access_token, $access_token_secret, $ope
 	$params["openid"]                 = $openid;
 	unset($params["oauth_signature"]);
 
-	//参数按照字母升序做序列化
+	//參數按照字母升序做序列化
 	$normalized_str = get_normalized_string($params);
 	$sigstr        .= rawurlencode($normalized_str);
 
-	//签名,确保php版本支持hash_hmac函数
+	//簽名,確保php版本支援hash_hmac函數
 	$key = $appkey."&".$access_token_secret;
 	$signature = get_signature($sigstr, $key);
 	$url      .= "?".$normalized_str."&"."oauth_signature=".rawurlencode($signature);
@@ -154,10 +154,10 @@ function do_get($url, $appid, $appkey, $access_token, $access_token_secret, $ope
  */
 function do_multi_post($url, $appid, $appkey, $access_token, $access_token_secret, $openid)
 {
-	//构造签名串.源串:方法[GET|POST]&uri&参数按照字母升序排列
+	//構造簽名串.源串:方法[GET|POST]&uri&參數按照字母升序排列
 	$sigstr = "POST"."&"."$url"."&";
 
-	//必要参数,不要随便更改!!
+	//必要參數,不要隨便更改!!
 	$params = $_POST;
 	$params["oauth_version"]          = "1.0";
 	$params["oauth_signature_method"] = "HMAC-SHA1";
@@ -169,7 +169,7 @@ function do_multi_post($url, $appid, $appkey, $access_token, $access_token_secre
 	unset($params["oauth_signature"]);
 
 
-	//获取上传图片信息
+	//獲取上傳圖片資訊
 	foreach ($_FILES as $filename => $filevalue)
 	{
 		if ($filevalue["error"] != UPLOAD_ERR_OK)
@@ -180,15 +180,15 @@ function do_multi_post($url, $appid, $appkey, $access_token, $access_token_secre
 		$params[$filename] = file_get_contents($filevalue["tmp_name"]);
 	}
 
-	//对参数按照字母升序做序列化
+	//對參數按照字母升序做序列化
 	$sigstr .= get_normalized_string($params);
 
-	//签名,需要确保php版本支持hash_hmac函数
+	//簽名,需要確保php版本支援hash_hmac函數
 	$key = $appkey."&".$access_token_secret;
 	$signature = get_signature($sigstr, $key);
 	$params["oauth_signature"] = $signature;
 
-	//处理上传图片
+	//處理上傳圖片
 	foreach ($_FILES as $filename => $filevalue)
 	{
 		$tmpfile = dirname($filevalue["tmp_name"])."/".$filevalue["name"];
@@ -212,7 +212,7 @@ function do_multi_post($url, $appid, $appkey, $access_token, $access_token_secre
 	//print_r($httpinfo);
 
 	curl_close($ch);
-	//删除上传临时文件
+	//刪除上傳臨時檔案
 	unlink($tmpfile);
 	return $ret;
 
@@ -220,10 +220,10 @@ function do_multi_post($url, $appid, $appkey, $access_token, $access_token_secre
 
 function do_post($url, $appid, $appkey, $access_token, $access_token_secret, $openid)
 {
-	//构造签名串.源串:方法[GET|POST]&uri&参数按照字母升序排列
+	//構造簽名串.源串:方法[GET|POST]&uri&參數按照字母升序排列
 	$sigstr = "POST"."&".rawurlencode($url)."&";
 
-	//必要参数,不要随便更改!!
+	//必要參數,不要隨便更改!!
 	$params = $_POST;
 	$params["oauth_version"]          = "1.0";
 	$params["oauth_signature_method"] = "HMAC-SHA1";
@@ -234,10 +234,10 @@ function do_post($url, $appid, $appkey, $access_token, $access_token_secret, $op
 	$params["openid"]                 = $openid;
 	unset($params["oauth_signature"]);
 
-	//对参数按照字母升序做序列化
+	//對參數按照字母升序做序列化
 	$sigstr .= rawurlencode(get_normalized_string($params));
 
-	//签名,需要确保php版本支持hash_hmac函数
+	//簽名,需要確保php版本支援hash_hmac函數
 	$key = $appkey."&".$access_token_secret;
 	$signature = get_signature($sigstr, $key);
 	$params["oauth_signature"] = $signature;
@@ -268,12 +268,12 @@ function do_post($url, $appid, $appkey, $access_token, $access_token_secret, $op
  */
 function get_request_token($appid, $appkey)
 {
-	//获取request token接口, 不要随便更改!!
+	//獲取request token介面, 不要隨便更改!!
 	$url    = "http://openapi.qzone.qq.com/oauth/qzoneoauth_request_token?";
-	//构造签名串.源串:方法[GET|POST]&uri&参数按照字母升序排列
+	//構造簽名串.源串:方法[GET|POST]&uri&參數按照字母升序排列
 	$sigstr = "GET"."&".rawurlencode("http://openapi.qzone.qq.com/oauth/qzoneoauth_request_token")."&";
 
-	//必要参数,不要随便更改!!
+	//必要參數,不要隨便更改!!
 	$params = array();
 	$params["oauth_version"]          = "1.0";
 	$params["oauth_signature_method"] = "HMAC-SHA1";
@@ -281,14 +281,14 @@ function get_request_token($appid, $appkey)
 	$params["oauth_nonce"]            = mt_rand();
 	$params["oauth_consumer_key"]     = $appid;
 
-	//对参数按照字母升序做序列化
+	//對參數按照字母升序做序列化
 	$normalized_str = get_normalized_string($params);
 	$sigstr        .= rawurlencode($normalized_str);
 
-	//签名,需要确保php版本支持hash_hmac函数
+	//簽名,需要確保php版本支援hash_hmac函數
 	$key = $appkey."&";
 	$signature = get_signature($sigstr, $key);
-	//构造请求url
+	//構造請求url
 	$url      .= $normalized_str."&"."oauth_signature=".rawurlencode($signature);
 
 	//echo "$sigstr\n";
@@ -310,12 +310,12 @@ function get_request_token($appid, $appkey)
  */
 function get_access_token($appid, $appkey, $request_token, $request_token_secret, $vericode)
 {
-    //获取access token接口，不要随便更改!!
+    //獲取access token介面，不要隨便更改!!
     $url    = "http://openapi.qzone.qq.com/oauth/qzoneoauth_access_token?";
-    //构造签名串.源串:方法[GET|POST]&uri&参数按照字母升序排列
+    //構造簽名串.源串:方法[GET|POST]&uri&參數按照字母升序排列
     $sigstr = "GET"."&".rawurlencode("http://openapi.qzone.qq.com/oauth/qzoneoauth_access_token")."&";
 
-    //必要参数，不要随便更改!!
+    //必要參數，不要隨便更改!!
     $params = array();
     $params["oauth_version"]          = "1.0";
     $params["oauth_signature_method"] = "HMAC-SHA1";
@@ -325,16 +325,16 @@ function get_access_token($appid, $appkey, $request_token, $request_token_secret
     $params["oauth_token"]            = $request_token;
     $params["oauth_vericode"]         = $vericode;
 
-    //对参数按照字母升序做序列化
+    //對參數按照字母升序做序列化
     $normalized_str = get_normalized_string($params);
     $sigstr        .= rawurlencode($normalized_str);
 
     //echo "sigstr = $sigstr";
 
-    //签名,确保php版本支持hash_hmac函数
+    //簽名,確保php版本支援hash_hmac函數
     $key = $appkey."&".$request_token_secret;
     $signature = get_signature($sigstr, $key);
-    //构造请求url
+    //構造請求url
     $url      .= $normalized_str."&"."oauth_signature=".rawurlencode($signature);
 
     return file_get_contents($url);

@@ -1,4 +1,4 @@
-/*图标*/
+/*圖示*/
 .ico-comment{background-position:-219px -66px;width:16px;height:16px;vertical-align:-6px;*vertical-align:-3px}
 .ico-forward{background-position:-219px 0;width:16px;height:16px;vertical-align:-5px;*vertical-align:-3px}
 .ico-favorites{background-position:-219px -33px;width:16px;height:16px;vertical-align:-4px;*vertical-align:-2px}
@@ -24,7 +24,7 @@
 
 .channel-title{padding:20px;}
 .channel-title img{margin:0 10px 0 0;}
-.channel-title h4{color:#0F8CA8;font-size:20px;font-family:"微软雅黑"}
+.channel-title h4{color:#0F8CA8;font-size:20px;font-family:"微軟雅黑"}
 .channel-type a{width:95px;height:36px;line-height:36px;text-align:center;color:#333;font-size:14px;background:#e9ecee;margin:0 1px 0 0;display:inline-block;}
 .channel-type a.no-margin{margin:0;width:96px;}
 .channel-type a:hover,.channel-type a.current{background:#0F8CA8;color:#fff;}
@@ -73,7 +73,7 @@
 .weiba-post-title dt{float:left;width:50px;height:50px;}
 .weiba-post-title dd{margin:0 0 0 60px;}
 /*.Posts-content .content{border-bottom:1px dotted #ddd;}*/
-.Posts-content .content h3{font-family:"微软雅黑";font-size:22px;margin:0 0 10px 0;}
+.Posts-content .content h3{font-family:"微軟雅黑";font-size:22px;margin:0 0 10px 0;}
 .Posts-content .content .ico-img{vertical-align:0;*vertical-align:5px;_vertical-align:-9px;}
 .Posts-content .content .weiba-article{line-height:22px;font-size:14px;}
 .Posts-content .content .weiba-article img{margin:10px 0;max-width:649px;width:expression(this.width > 649? "649px":this.width );}
@@ -86,7 +86,7 @@
 .ico-bar-floor{background:#f3f3f3;color:#999;padding:2px 6px;border-radius:2px;-webkit-border-radius:2px;-zom-border-radius:2px;-kthml-border-radius:2px;font-style:normal;}
 .ico-bar-fine{background:#f8bf52;color:#fff;padding:2px 6px;border-radius:2px;-webkit-border-radius:2px;-zom-border-radius:2px;-kthml-border-radius:2px;font-style:normal;}
 
-.search-content p{font-size:20px;margin:3px 20px 0 0;font-family:"微软雅黑";color:#0F8CA8;}
+.search-content p{font-size:20px;margin:3px 20px 0 0;font-family:"微軟雅黑";color:#0F8CA8;}
 
 /*微吧管理*/
 .weiba-manage .form-set{margin:20px 0;}
@@ -102,7 +102,7 @@
 .attention .content p{line-height:20px}
 
 
-/*群组列表*/
+/*群組列表*/
 .group-list li{border-bottom:1px dotted #ddd;padding:15px 0;overflow:hidden;*zoom:1;}
 .group-list li dl{width:307px;float:left;padding:0 17px 0 0;}
 .group-list dt{float:left;width:100px;height:100px;}
@@ -110,19 +110,19 @@
 .group-list dd a{font-size:14px;margin:0 0 5px 0;display:block;}
 .group-list dd p{line-height:21px;color:#999;}
 
-/*群组分类*/
+/*群組分類*/
 .group-type dl{border-bottom:1px dotted #ddd;padding:15px 0 5px 0;}
 .group-type dt{margin:0 0 10px 0;font-weight:bold;border-left:3px solid #aaa;}
 .group-type dt a{margin:0 0 0 5px;}
 .group-type dd a{margin:0 10px 10px 0;display:inline-block;}
 
-/*我的群组*/
+/*我的群組*/
 .my-group li dl{width:649px;float:none;}
 .my-group li dd{position:relative;}
 .my-group li .btn-cancel span{padding:5px 16px;}
 .my-group li .btn-cancel,.my-group li .btn-att-white{font-size:12px;position:absolute;right:0;top:40px;}
 
-/*群组排行榜*/
+/*群組排行榜*/
 .rank-cate{height:27px;line-height:27px;border-bottom:1px dotted #b9bcbd;overflow:hidden;zoom:1;color:#999;}
 .group-rank-list .rank-lists{border-bottom:0;}
 .rank-lists{height:44px;line-height:44px;border-bottom:1px dotted #b9bcbd;overflow:hidden;zoom:1;}
@@ -141,7 +141,7 @@
 .rank-lists .num.ico-piece{background-position:-266px 0;display:inline-block;width:4px;height:4px;vertical-align:middle;margin:0 5px 0 0;}
 .group-rank-list .rank-lists .num{margin:10px 10px 0 0;height:44px;float:left;}
 
-/*单个群组*/
+/*單個群組*/
 .weiba-sort .h{height:30px;line-height:30px;}
 .join-user a{margin:0 0 15px 0;display:block;}
 .group-info .group-l{margin:0 0 10px 0;}

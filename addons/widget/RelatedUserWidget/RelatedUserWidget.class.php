@@ -1,33 +1,33 @@
 <?php
 /**
- * 可能感兴趣的人Widget
+ * 可能感興趣的人Widget
  * @author zivss <guolee226@gmail.com>
  * @version TS3.0
  */
 class RelatedUserWidget extends Widget {
 
 	/**
-	 * 渲染可能感兴趣的人页面
-	 * @param array $data 配置相关数据
-	 * @return string 渲染页面的HTML
+	 * 渲染可能感興趣的人頁面
+	 * @param array $data 配置相關資料
+	 * @return string 渲染頁面的HTML
 	 */
 	public function render($data) {
 		//$var = $this->_getRelatedUser($data);
 		$var = $data;
-		// 用户ID
+		// 使用者ID
 		$var['uid'] = isset($data['uid']) ? intval($data['uid']) : $GLOBALS['ts']['mid']; 
-		// 显示相关人数
+		// 顯示相關人數
 		$var['limit'] = isset($data['limit']) ? intval($data['limit']) : 4;
-		// 标题信息
-		$var['title'] = isset($data['title']) ? t($data['title']) : '推荐关注';
+		// 標題資訊
+		$var['title'] = isset($data['title']) ? t($data['title']) : '推薦關注';
 		$content = $this->renderFile(dirname(__FILE__)."/relatedUser.html", $var);
 
 		return $content;
 	}
 
 	/**
-	 * 换一换数据处理
-	 * @return json 渲染页面所需的JSON数据
+	 * 換一換資料處理
+	 * @return json 渲染頁面所需的JSON資料
 	 */
 	public function changeRelate() {
 		$data['uid'] = intval($_POST['uid']);
@@ -38,18 +38,18 @@ class RelatedUserWidget extends Widget {
 	}
 
 	/**
-	 * 获取用户的相关数据
-	 * @param array $data 配置相关数据
-	 * @return array 显示所需数据
+	 * 獲取使用者的相關資料
+	 * @param array $data 配置相關資料
+	 * @return array 顯示所需資料
 	 */
 	private function _getRelatedUser($data) {
-		// 用户ID
+		// 使用者ID
 		$var['uid'] = isset($data['uid']) ? intval($data['uid']) : $GLOBALS['ts']['mid']; 
-		// 显示相关人数
+		// 顯示相關人數
 		$var['limit'] = isset($data['limit']) ? intval($data['limit']) : 4;
-		// 标题信息
-		$var['title'] = isset($data['title']) ? t($data['title']) : '推荐关注';
-		// 相关用户信息
+		// 標題資訊
+		$var['title'] = isset($data['title']) ? t($data['title']) : '推薦關注';
+		// 相關使用者資訊
 		$var['user'] = model('RelatedUser')->getRelatedUser($var['limit']);
 
 		return $var;

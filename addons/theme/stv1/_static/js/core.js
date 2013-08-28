@@ -1,16 +1,16 @@
 /**
- * ThinkSNS核心Js对象
+ * ThinkSNS核心Js物件
  * @author jason <yangjs17@yeah.net>
  * @version TS3.0
  */
 var _core = function() {
-	// 核心通用的加载源函数
+	// 核心通用的載入源函數
 	var obj = this;
-	// 加载文件方法
+	// 載入檔案方法
 	this._coreLoadFile = function() {
 		var temp = new Array();
 		var tempMethod = function(url, callback) {
-			// 第二次调用的时候就不=0了
+			// 第二次呼叫的時候就不=0了
 			var flag = 0;
 			for(i in temp) {
 				if(temp[i] == url) {
@@ -18,9 +18,9 @@ var _core = function() {
 				}
 			}
 			if(flag == 0) {
-				// 未载入过
+				// 未載入過
 				temp[temp.length] = url;	
-				// JQuery的ajax载入文件方式，如果有样式文件，同理在此引入相关样式文件
+				// JQuery的ajax載入檔案方式，如果有樣式檔案，同理在此引入相關樣式檔案
 				$.getScript(url, function() {	
 					if("undefined" != typeof(callback)) {
 						if("function" == typeof(callback)) {
@@ -32,19 +32,19 @@ var _core = function() {
 				});
 			} else {
 				if("undefined" != typeof(callback)) {
-					// 利用setTimeout 避免未定义错误
+					// 利用setTimeout 避免未定義錯誤
 					setTimeout(callback, 200);	
 				}
 			}
 		};
-		// 返回内部包函数，供外部调用并可以更改temp的值
+		// 返回內部包函數，供外部呼叫並可以更改temp的值
 		return tempMethod;
 	};
-	// 加载CSS文件
+	// 載入CSS檔案
 	this._loadCss = function() {
 		var temp = new Array();
 		var tempMethod = function(url) {
-			// 第二次调用的时候就不=0了
+			// 第二次呼叫的時候就不=0了
 			var flag = 0;
 			for(i in temp) {
 				if(temp[i] == url) {
@@ -52,28 +52,28 @@ var _core = function() {
 				}
 			}
 			if(flag == 0) {
-				// 未载入过
+				// 未載入過
 				temp[temp.length] = url;	
 				var css = '<link href="'+THEME_URL+'/js/tbox/box.css" rel="stylesheet" type="text/css">';
 				$('head').append(css);
 			}
 		};
-		// 返回内部包函数,供外部调用并可以更改temp的值
+		// 返回內部包函數,供外部呼叫並可以更改temp的值
 		return tempMethod;
 	};
 	/**
-	 * 时间插件源函数
-	 * 利用必包原理只载入一次js文件,其他类似功能都可以参照此方法
-	 * 需要提前引入jquery.js文件
+	 * 時間插件源函數
+	 * 利用必包原理只載入一次js檔案,其他類似功能都可以參照此方法
+	 * 需要提前引入jquery.js檔案
 	 * @author yangjs
 	 */
 	this._rcalendar = function(text, mode, refunc) {
-		// 标记值 
+		// 標記值 
 		var temp = 0;	
 		var tempMethod = function(t, m, r) {
-			// 第二次调用的时候就不=0了
+			// 第二次呼叫的時候就不=0了
 			if(temp == 0) {	
-				// JQuery的ajax载入文件方式，如果有样式文件，同理在此引入相关样式文件
+				// JQuery的ajax載入檔案方式，如果有樣式檔案，同理在此引入相關樣式檔案
 				$.getScript(THEME_URL+'/js/rcalendar.js', function() {	
 					rcalendar(t, m, r);
 				});
@@ -82,11 +82,11 @@ var _core = function() {
 			}
 			temp++;
 		};
-		// 返回内部包函数，供外部调用并可以更改temp的值
+		// 返回內部包函數，供外部呼叫並可以更改temp的值
 		return tempMethod;	
 	};
 	/**
-	 * 生成IMG的html块
+	 * 生成IMG的html塊
 	 */
 	this._createImageHtml = function() {
 		var _imgHtml = '';
@@ -107,27 +107,27 @@ var _core = function() {
 	};
 }
 
-// 核心对象
+// 核心物件
 var core = new _core();
 
 /**
  * 核心的插件列表
  */
 
-//微博加载文件，支持回调函数 调用方式core.loadFile(url,callback)
+//微博載入檔案，支援回撥函數 呼叫方式core.loadFile(url,callback)
 core.loadFile = core._coreLoadFile();
 core.loadCss = core._loadCss();
 
 /**
- * 核心插件自动生成的工厂函数
- * 这里用到了js的工厂模式等设计模式
+ * 核心插件自動生成的工廠函數
+ * 這裡用到了js的工廠模式等設計模式
  * 
- * 使用方法：将ｊｓ插件写到plugins/下的对应文件下，文件名必须与插件对象同名，如core.at.js
- * JS 插件里面需要有一个_init 函数，根据传入参数真正调用 init函数 
+ * 使用方法：將ｊｓ插件寫到plugins/下的對應檔案下，檔名必須與插件物件同名，如core.at.js
+ * JS 插件裡面需要有一個_init 函數，根據傳入參數真正呼叫 init函數 
  * 
  * 如：core.plugInit('searchUser',$(this))；
- * 其中searchUser表示插件的名称是core.searchUser.js
- * $(this) 为 init的第一个参数
+ * 其中searchUser表示插件的名稱是core.searchUser.js
+ * $(this) 為 init的第一個參數
  * 
  * @author yangjs
  */
@@ -144,14 +144,14 @@ core.plugInit = function() {
 		core.loadFile(file, back);
 	}
 };
-//与上面方法类似 只不过可以自己写回调函数（不主动执行init）
+//與上面方法類似 只不過可以自己寫回撥函數（不主動執行init）
 core.plugFunc = function(plugName,callback){
 	var file = THEME_URL+'/js/plugins/core.'+plugName+'.js';
 	core.loadFile(file,callback);
 };
 
 /**
- * 优化setTimeout函数
+ * 優化setTimeout函數
  * @param func
  * @param time
  */
@@ -168,16 +168,16 @@ core.setTimeout = function(func,time){
 //	}	
 
 };
-// 获取对象编辑框内的可输入数字
+// 獲取物件編輯框內的可輸入數字
 core.getLeftNums = function(obj) {
 	var str = obj.innerHTML;
-	// 替换br标签
+	// 替換br標籤
 	var imgNums = $(obj).find('img').size();
-	// 判断是否为空
+	// 判斷是否為空
 	var _str = str.replace(new RegExp("<br>","gm"),"");	
 	_str = _str.replace(/[ ]|(&nbsp;)*/g, "");
-	// 判断字数是否超过，一个空格算一个字
-	_str = str.replace(/<[^>]*>/g, "");		// 去掉所有HTML标签
+	// 判斷字數是否超過，一個空格算一個字
+	_str = str.replace(/<[^>]*>/g, "");		// 去掉所有HTML標籤
 	_str = trim(_str,' ');
 	
 	if(imgNums <1 ) {
@@ -186,29 +186,29 @@ core.getLeftNums = function(obj) {
 			return initNums;
 		}
 	}
-	_str = _str.replace(/&nbsp;/g,"a"); 	// 由于可编辑DIV的空格都是nbsp 所以这么算
+	_str = _str.replace(/&nbsp;/g,"a"); 	// 由於可編輯DIV的空格都是nbsp 所以這麼算
 
 	return initNums - getLength(_str) - imgNums;
 };
 core.getLength = function(str, shortUrl) {
 	str = str + '';
 	if (true == shortUrl) {
-		// 一个URL当作十个字长度计算
+		// 一個URL當作十個字長度計算
 		return Math.ceil(str.replace(/((news|telnet|nttp|file|http|ftp|https):\/\/){1}(([-A-Za-z0-9]+(\.[-A-Za-z0-9]+)*(\.[-A-Za-z]{2,5}))|([0-9]{1,3}(\.[0-9]{1,3}){3}))(:[0-9]*)?(\/[-A-Za-z0-9_\$\.\+\!\*\(\),;:@&=\?\/~\#\%]*)*/ig, 'xxxxxxxxxxxxxxxxxxxx')
 							.replace(/^\s+|\s+$/ig,'').replace(/[^\x00-\xff]/ig,'xx').length/2);
 	} else {
 		return Math.ceil(str.replace(/^\s+|\s+$/ig,'').replace(/[^\x00-\xff]/ig,'xx').length/2);
 	}
 };
-// 一些自定义的方法
-// 生成表情图片
+// 一些自定義的方法
+// 生成表情圖片
 core.createImageHtml = core._createImageHtml();
-//日期控件,调用方式 core.rcalendar(this,'full')
-//this 也可以替换为具体ID,full表示时间显示模式,也可以参考rcalendar.js内的其他模式
+//日期控制項,呼叫方式 core.rcalendar(this,'full')
+//this 也可以替換為具體ID,full表示時間顯示模式,也可以參考rcalendar.js內的其他模式
 core.rcalendar = core._rcalendar();	
 
 
-//临时存储机制 适用于分割开存储的内容
+//臨時存儲機制 適用於分割開存儲的內容
 
 core.stringDb = function(obj,inputname,tags){
     this.inputname = inputname;
@@ -283,12 +283,12 @@ core.stringDb.prototype = {
     }	
 };
 
-/*** 核心Js函数库 ***/
+/*** 核心Js函數庫 ***/
 /**
- * 模拟TS的U函数，需要预先定义JS全局变量SITE_URL和APPNAME
- * @param string url 链接地址
- * @param array params 链接参数
- * @return string 组装后的链接地址
+ * 模擬TS的U函數，需要預先定義JS全局變數SITE_URL和APPNAME
+ * @param string url 連結地址
+ * @param array params 連結參數
+ * @return string 組裝後的連結地址
  */
 var U = function(url, params) {
 	var website = SITE_URL+'/index.php';
@@ -307,14 +307,14 @@ var U = function(url, params) {
 	return website;
 };
 /**
- * 窗体对象，全站使用，统一窗体接口
+ * 窗體物件，全站使用，統一窗體介面
  */
 var ui = {
 	/**
-	 * 浮屏显示消息，提示信息框
-	 * @param string message 信息内容
-	 * @param integer error 是否是错误样式，1表示错误样式、0表示成功样式
-	 * @param integer lazytime 提示时间
+	 * 浮屏顯示訊息，提示資訊框
+	 * @param string message 資訊內容
+	 * @param integer error 是否是錯誤樣式，1表示錯誤樣式、0表示成功樣式
+	 * @param integer lazytime 提示時間
 	 * @return void
 	 */
 	showMessage: function(message, error, lazytime) {
@@ -329,17 +329,17 @@ var ui = {
 			}
 		    return true;
 		};
-		// 显示提示弹窗
+		// 顯示提示彈窗
 		ui.showblackout();
-		// 将弹窗加载到body后
+		// 將彈窗載入到body後
 		$(html).appendTo(document.body);
-		// 获取高宽
+		// 獲取高寬
 		var _h = $('#ui_messageBox').height();
 		var _w = $('#ui_messageBox').width();
-		// 获取定位值
+		// 獲取定位值
 		var left = ($('body').width() - _w)/2 ;
 		var top  = $(window).scrollTop() + ($(window).height()-_h)/2;
-		// 添加弹窗样式与动画效果（出现）
+		// 添加彈窗樣式與動畫效果（出現）
 		$('#ui_messageBox').css({
 			left:left + "px",
 			top:top + "px"
@@ -347,7 +347,7 @@ var ui = {
 			$('#ui_messageBox').prepend('<iframe style="z-index:;position: absolute;visibility:inherit;width:'+_w+'px;height:'+_h+'px;top:0;left:0;filter=\'progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)\'"'+
 		 	'src="about:blank"  border="0" frameborder="0"></iframe>');
 		});
-		// 添加弹窗动画效果（消失）
+		// 添加彈窗動畫效果（消失）
 		setTimeout(function() { 
 			$('#ui_messageBox').find('iframe').remove();
 			$('#ui_messageBox').fadeOut("fast", function() {
@@ -357,7 +357,7 @@ var ui = {
 		} , lazytime*1000);
 	},
 	/**
-	 * 添加弹窗
+	 * 添加彈窗
 	 * @return void
 	 */
 	showblackout: function() {
@@ -373,7 +373,7 @@ var ui = {
     	}
 	},
 	/**
-	 * 移除弹窗
+	 * 移除彈窗
 	 * @return void
 	 */
 	removeblackout: function() {
@@ -386,9 +386,9 @@ var ui = {
 		 }
 	},
 	/**
-	 *  操作成功显示API
-	 * @param string message 信息内容
-	 * @param integer time 展示时间
+	 *  操作成功顯示API
+	 * @param string message 資訊內容
+	 * @param integer time 展示時間
 	 * @return void
 	 */
 	success: function(message, time) {
@@ -396,9 +396,9 @@ var ui = {
 		ui.showMessage(message, 0, t);
 	},
 	/**
-	 * 操作出错显示API
-	 * @param string message 信息内容
-	 * @param integer time 展示时间
+	 * 操作出錯顯示API
+	 * @param string message 資訊內容
+	 * @param integer time 展示時間
 	 * @return void
 	 */
 	error: function(message, time) {
@@ -406,16 +406,16 @@ var ui = {
 		ui.showMessage(message, 1, t);
 	},
 	/**
-	 * 确认弹框显示API - 浮窗型
+	 * 確認彈框顯示API - 浮窗型
 	 * @example
-	 * 可以加入callback，回调函数
-	 * @param object o 定位对象
-	 * @param string text 提示语言
-	 * @param string|function _callback 回调函数名称
+	 * 可以加入callback，回撥函數
+	 * @param object o 定位物件
+	 * @param string text 提示語言
+	 * @param string|function _callback 回撥函數名稱
 	 * @return void
 	 */
 	confirm: function(o, text, _callback) {
-		// 判断弹窗是否存在
+		// 判斷彈窗是否存在
 		document.getElementById('ts_ui_confirm') !== null && $('#ts_ui_confirm').remove();
 		var callback = "undefined" == typeof(_callback) ? $(o).attr('callback') : _callback;
 		text = text || L('PUBLIC_ACCONT_TIPES');
@@ -428,13 +428,13 @@ var ui = {
 		$('#ts_ui_confirm').fadeIn("fast");
 		$("#ts_ui_confirm .btn-cancel").one('click',function(){
 			$('#ts_ui_confirm').fadeOut("fast");
-			// 修改原因: ts_ui_confirm .btn_b按钮会重复提交
+			// 修改原因: ts_ui_confirm .btn_b按鈕會重複提交
 			$('#ts_ui_confirm').remove();
 			return false;
 		});
 		$("#ts_ui_confirm .btn_ok").one('click',function(){
 			$('#ts_ui_confirm').fadeOut("fast");
-			// 修改原因: ts_ui_confirm .btn_b按钮会重复提交
+			// 修改原因: ts_ui_confirm .btn_b按鈕會重複提交
 			$('#ts_ui_confirm').remove();
 			if("undefined" == typeof(callback)){
 				return true;
@@ -452,10 +452,10 @@ var ui = {
 		return false;
 	},
 	/**
-	 * 确认框显示API - 弹窗型
-	 * @param string title 弹窗标题
-	 * @param string text 提示语言
-	 * @param string|function _callback 回调函数名称
+	 * 確認框顯示API - 彈窗型
+	 * @param string title 彈窗標題
+	 * @param string text 提示語言
+	 * @param string|function _callback 回撥函數名稱
 	 * @return void
 	 */
 	confirmBox: function(title, text, _callback) {
@@ -496,7 +496,7 @@ var ui = {
 		return false;
 	},
 	/**
-	 * 私信弹窗API
+	 * 私信彈窗API
 	 * @param string touid 收件人ID
 	 * @return void
 	 */
@@ -508,7 +508,7 @@ var ui = {
 		this.box.load(U('public/Message/post')+'&touid='+touid+'&editable='+editable, L('PUBLIC_SETPRIVATE_MAIL'));
 	},
 	/**
-	 * @Me弹窗API
+	 * @Me彈窗API
 	 * @param string touid @人ID
 	 * @return void
 	 */
@@ -517,9 +517,9 @@ var ui = {
 		this.box.load(U('public/Mention/at')+'&touid='+touid, '@TA');
 	},
 	/**
-	 * 弹窗发布微博
-	 * @param string title 弹窗标题
-	 * @param string initHTML 插入内容
+	 * 彈窗釋出微博
+	 * @param string title 彈窗標題
+	 * @param string initHTML 插入內容
 	 * @return void
 	 */
 	sendbox: function(title, initHtml,channelID) {
@@ -532,8 +532,8 @@ var ui = {
 		});
 	},
 	/**
-	 * 回复弹窗API
-	 * @param integer comment_id 评论ID
+	 * 回覆彈窗API
+	 * @param integer comment_id 評論ID
 	 * @return void
 	 */
 	reply: function(comment_id) {
@@ -543,13 +543,13 @@ var ui = {
 		this.box.load(U('group/Group/reply')+'&gid='+gid+'&comment_id='+comment_id,L('PUBLIC_RESAVE'),function (){$('#at-view').hide();});
 	},
 	/**
-	 * 选择部门弹窗API - 暂不使用
+	 * 選擇部門彈窗API - 暫不使用
 	 */
 	changeDepartment: function(hid,showname,sid,nosid,notop) {
 		this.box.load(U('widget/Department/change')+'&hid='+hid+'&showName='+showname+'&sid='+sid+'&nosid='+nosid+'&notop='+notop,L('PUBLIC_DEPATEMENT_SELECT'));
 	},
 	/**
-	 * 自定弹窗API接口
+	 * 自定彈窗API介面
 	 */
 	box: {
 		WRAPPER: '<div class="wrap-layer" id="tsbox" style="display:none">\
@@ -560,7 +560,7 @@ var ui = {
 		IE6: (jQuery.browser.msie && jQuery.browser.version < 7),
 		init: function(title, callback) {
 			this.callback = callback;
-			// 弹窗中隐藏小名片
+			// 彈窗中隱藏小名片
 			if("undefined" != typeof(core.facecard)){
 				core.facecard.dohide();
 			}
@@ -572,7 +572,7 @@ var ui = {
 			}
 			var url = THEME_URL+'/js/tbox/box.css';
 			core.loadCss(url);
-			// 添加头部
+			// 添加頭部
 			if("undefined" != typeof(title)) {
 				$("<div class='hd'>"+title+"<a class='ico-close' href='#'></a></div>").insertBefore($('#tsbox .layer-content'));
 			}
@@ -580,7 +580,7 @@ var ui = {
 			ui.showblackout();
 			
 			$('#tsbox').stop().css({width: '', height: ''});
-			// 添加键盘事件
+			// 添加鍵盤事件
 			jQuery(document.body).bind('keypress.tsbox', function(event) {
 				var key = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
 				if (key == 27) {
@@ -589,7 +589,7 @@ var ui = {
 					return false;
 				}
 			});
-			// 关闭弹窗，回调函数
+			// 關閉彈窗，回撥函數
 			$('#tsbox').find('.ico-close').click(function() {
 				ui.box.close(callback);
 				return false;
@@ -608,16 +608,16 @@ var ui = {
 			});
 		},
 		/**
-		 * 设置弹窗中的内容
-		 * @param string content 内容信息
+		 * 設定彈窗中的內容
+		 * @param string content 內容資訊
 		 * @return void
 		 */
 		setcontent: function(content) {
 			$('#layer-content').html(content);
 		},
 		/**
-		 * 关闭窗口
-		 * @param function fn 回调函数名称
+		 * 關閉視窗
+		 * @param function fn 回撥函數名稱
 		 * @return void
 		 */
 		close: function(fn) {
@@ -639,10 +639,10 @@ var ui = {
 			}
 		},
 		/**
-		 * 提示弹窗
-		 * @param string data 信息数据
-		 * @param string title 标题信息
-		 * @param function callback 回调函数
+		 * 提示彈窗
+		 * @param string data 資訊資料
+		 * @param string title 標題資訊
+		 * @param function callback 回撥函數
 		 * @return void
 		 */
 		alert:function(data,title,callback){
@@ -651,10 +651,10 @@ var ui = {
 			this.center();
 		},
 		/**
-		 * 显示弹窗
-		 * @param string content 信息数据
-		 * @param string title 标题信息
-		 * @param function callback 回调函数
+		 * 顯示彈窗
+		 * @param string content 資訊資料
+		 * @param string title 標題資訊
+		 * @param function callback 回撥函數
 		 * @return void
 		 */
 		show:function(content,title,callback){
@@ -663,12 +663,12 @@ var ui = {
 			this.center();
 		},
 		/**
-		 * 载入弹窗API
-		 * @param string requestUrl 请求地址
-		 * @param string title 弹窗标题
-		 * @param string callback 窗口关闭后的回调事件
+		 * 載入彈窗API
+		 * @param string requestUrl 請求地址
+		 * @param string title 彈窗標題
+		 * @param string callback 視窗關閉後的回撥事件
 		 * @param object requestData requestData
-		 * @param string type Ajax请求协议，默认为GET
+		 * @param string type Ajax請求協議，默認為GET
 		 * @return void
 		 */
 		load:function(requestUrl,title,callback,requestData,type) {
@@ -695,7 +695,7 @@ var ui = {
 			});
 		},	
 		/**
-		 * 弹窗定位
+		 * 彈窗定位
 		 * @return void
 		 */
 		_viewport: function() {
@@ -705,7 +705,7 @@ var ui = {
 				!ui.box._u(w.innerWidth) ? { width: w.innerWidth, height: w.innerHeight } : (!ui.box._u(d) && !ui.box._u(d.clientWidth) && d.clientWidth != 0 ? { width: d.clientWidth, height: d.clientHeight } : { width: b.clientWidth, height: b.clientHeight }) );
 		},
 		/**
-		 * 验证参数
+		 * 驗證參數
 		 * @return void
 		 */
 		_u: function() {
@@ -715,7 +715,7 @@ var ui = {
 			return true;
 		},
 		/**
-		 * 样式覆盖
+		 * 樣式覆蓋
 		 * @return void
 		 */
 		_cssForOverlay: function() {
@@ -726,8 +726,8 @@ var ui = {
 			}
 		},
 		/**
-		 * 中间定位
-		 * @param string axis 横向，纵向
+		 * 中間定位
+		 * @param string axis 橫向，縱向
 		 * @return void
 		 */
 		center: function(axis) {
@@ -738,8 +738,8 @@ var ui = {
 			return this;
 		},
 		/**
-		 * 横向移动
-		 * @param integer x 数值
+		 * 橫向移動
+		 * @param integer x 數值
 		 * @return void
 		 */
 		moveToX: function(x) {
@@ -748,8 +748,8 @@ var ui = {
 			return this;
 		},
 		/**
-		 * 纵向移动
-		 * @param integer y 数值
+		 * 縱向移動
+		 * @param integer y 數值
 		 * @return void
 		 */
 		moveToY: function(y) {

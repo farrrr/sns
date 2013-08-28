@@ -1,105 +1,105 @@
 /**
- * 取消推荐操作
- * @param integer rowId 资源ID
+ * 取消推薦操作
+ * @param integer rowId 資源ID
  * @return void
  */
 admin.cancelRecommended = function(rowId)
 {
-    // 检查参数
+    // 檢查參數
     if(typeof rowId == 'undefined') {
         rowId = admin.getChecked();
         rowId = rowId.join(',');
     }
     if(rowId == '') {
-        ui.error('请选择取消推荐内容');
+        ui.error('請選擇取消推薦內容');
         return false;
     }
-    // 回调函数
+    // 回撥函數
     var unRecommended = function()
     {
         $.post(U('channel/Admin/cancelRecommended'), {rowId:rowId}, function(msg) {
             if(msg.status == 1) {
-                ui.success('取消推荐成功');
+                ui.success('取消推薦成功');
                 location.href = location.href
                 return false;
             } else {
-                ui.error('取消推荐失败');
+                ui.error('取消推薦失敗');
                 return false;
             }
         }, 'json');
     };
-    if(confirm('确定取消推荐？')) {
+    if(confirm('確定取消推薦？')) {
         unRecommended();
     }
     return false;
 };
 /**
- * 驳回操作
- * @param integer rowId 资源ID
+ * 駁回操作
+ * @param integer rowId 資源ID
  * @return void
  */
 admin.rejectChannel = function(rowId)
 {
-    // 检查参数
+    // 檢查參數
     if(typeof rowId == 'undefined') {
         rowId = admin.getChecked();
         rowId = rowId.join(',');
     }
     if(rowId == '') {
-        ui.error('请选择驳回内容');
+        ui.error('請選擇駁回內容');
         return false;
     }
-    // 回调函数
+    // 回撥函數
     var unRecommended = function()
     {
         $.post(U('channel/Admin/cancelRecommended'), {rowId:rowId}, function(msg) {
             if(msg.status == 1) {
-                ui.success('驳回成功');
+                ui.success('駁回成功');
                 location.href = location.href;
                 return false;
             } else {
-                ui.error('驳回失败');
+                ui.error('駁回失敗');
                 return false;
             }
         }, 'json');
     };
-    if(confirm('确定驳回？')) {
+    if(confirm('確定駁回？')) {
         unRecommended();
     }
     return false;
 };
 /**
- * 审核操作
- * @param integer rowId 资源ID
+ * 稽覈操作
+ * @param integer rowId 資源ID
  * @return void
  */
 admin.auditChannelList = function(rowId, channelId)
 {
     var isBatch = false;
-    // 检查参数
+    // 檢查參數
     if(typeof rowId == 'undefined') {
         rowId = admin.getChecked();
         rowId = rowId.join(',');
         isBatch = true;
     }
     if(rowId == '') {
-        ui.error('请选择审核内容');
+        ui.error('請選擇稽覈內容');
         return false;
     }
-    // 查看是否提示编辑弹窗
+    // 檢視是否提示編輯彈窗
     if(isBatch) {
         $.post(U('channel/Admin/auditChannelList'), {rowId:rowId}, function(msg) {
             if(msg.status == 1) {
-                ui.success('审核成功');
+                ui.success('稽覈成功');
                 location.href = location.href;
                 return false;
             } else {
-                ui.error('审核失败');
+                ui.error('稽覈失敗');
                 return false;
             }
         }, 'json');
     } else {
-        // 编辑弹窗
-        ui.box.load(U('channel/Admin/editAdminBox'+'&feed_id='+rowId+'&channel_id='+channelId), '编辑频道');
+        // 編輯彈窗
+        ui.box.load(U('channel/Admin/editAdminBox'+'&feed_id='+rowId+'&channel_id='+channelId), '編輯頻道');
     }
 };

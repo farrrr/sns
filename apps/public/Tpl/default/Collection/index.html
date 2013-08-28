@@ -3,7 +3,7 @@
 <div id="page-wrap">
     <div id="main-wrap">
     	<div id="st-index-grid" class="st-grid">
-        	<!--左边 -->
+        	<!--左邊 -->
             <include file="__THEME__/public_left" />
             <div id="col8" class="st-section boxShadow content-bg">
             	<include file="__THEME__/public_right" />
@@ -12,7 +12,7 @@
 				<!--tab menu-->
                 <div class="feed-nav">
 				    <div class="my-feed-title">
-                        <h4>我的收藏(共<span id="follow_count" event-node="favorite_count" event-args="uid={$mid}">{$favoriteCount|default=0}</span>条)</h4>
+                        <h4>我的收藏(共<span id="follow_count" event-node="favorite_count" event-args="uid={$mid}">{$favoriteCount|default=0}</span>條)</h4>
                     </div>
                 </div>
 				<!--feed list-->
@@ -26,7 +26,7 @@
 							<p class="hd"><space uid="vl.source_user_info.uid">{uname}</space></p>
 							<p>
 								<eq name="vl.is_del" value="0">{$vl.source_data.body|format=true}</eq>
-								<eq name="vl.is_del" value="1"><span style="color:red;">（提示：原微博已被删除，你可以取消收藏）</span></eq></p>
+								<eq name="vl.is_del" value="1"><span style="color:red;">（提示：原微博已被刪除，你可以取消收藏）</span></eq></p>
 							<p class="info">
 							<span class="right">{:W('Collection',array('type'=>'collection','sid'=>$vl['source_id'],'stable'=>$vl['source_table_name'],'sapp'=>$vl['source_app']))}
 
@@ -42,7 +42,7 @@
 							<php>if(CheckPermission('core_normal','feed_share')){</php>
 								<i class="vline">|</i>
 								<php>if($vl['is_del'] == 1):</php>
-								<a href="javascript:;" style="color:gray;cursor:default;">转发</a>
+								<a href="javascript:;" style="color:gray;cursor:default;">轉發</a>
 								<php>else:</php>
 								<php>if($vl['is_repost'] == '1'):</php>
 								{:W('Share',array('sid'=>$vl['app_row_id'],'current_id'=>$vl['source_id'],'stable'=>$vl['app_row_table'],'current_table'=>$vl['source_table_name'],'initHTML'=>'','appname'=>$vl['source_app'],'is_repost'=>$vl['is_repost']))}

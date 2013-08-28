@@ -1,10 +1,10 @@
 <div class="so_main">
-  <div class="page_tit">同步发布配置</div>
+  <div class="page_tit">同步釋出配置</div>
   
   <div class="form2">
     <form method="post" action="{:Addons::adminUrl('savePublishConfig')}">
     <dl class="lineD">
-        <dt>开启同步发布功能：</dt>
+        <dt>開啟同步釋出功能：</dt>
         <dd>
             <php>foreach($data as $key=>$value){</php>
                 <php>
@@ -22,11 +22,11 @@
             <php>}</php>
             <input type='hidden' name="ispost" value="1">
             <br /><br />
-            <p>当开启对应的平台，用户可以发布时同步到对应的平台。注意，如果没有填写这些平台的key。此配置将无效。如果全部未选，前台将没有任何同步按钮</p>
+            <p>當開啟對應的平臺，使用者可以釋出時同步到對應的平臺。注意，如果沒有填寫這些平臺的key。此配置將無效。如果全部未選，前臺將沒有任何同步按鈕</p>
         </dd>
     </dl>
     <div class="page_btm">
-      <input type="submit" class="btn_b" value="确定" />
+      <input type="submit" class="btn_b" value="確定" />
     </div>
     </form>
   </div>

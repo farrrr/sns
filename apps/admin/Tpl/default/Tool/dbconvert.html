@@ -1,17 +1,17 @@
 <include file="../Public/_header" />
 
 <div class="so_main">
-  <div class="page_tit">数据转换</div>
+  <div class="page_tit">資料轉換</div>
   <div class="form2">
     <form method="post" action="{:U('admin/Tool/doDbconvert')}">
 	    <input type="hidden" name="doDbconvert" value="1">
-	    <h2>本转换程序仅适用与beta3升级至beta4的用户, 新安装用户不需要进行转换!</h2>
+	    <h2>本轉換程式僅適用與beta3升級至beta4的使用者, 新安裝使用者不需要進行轉換!</h2>
 	    <br />
-	    <h4>转换程序将会转换<php>echo C('DB_PREFIX');</php>comment表的数据. </h4>
-	    <h4>安全起见, 请先备份<php>echo C('DB_PREFIX');</php>comment表!!</h4>
+	    <h4>轉換程式將會轉換<php>echo C('DB_PREFIX');</php>comment表的資料. </h4>
+	    <h4>安全起見, 請先備份<php>echo C('DB_PREFIX');</php>comment表!!</h4>
 	    <br />
 	    <div class="page_btm">
-	      <input type="submit" class="btn_b" value="开始转换" />
+	      <input type="submit" class="btn_b" value="開始轉換" />
 	    </div>
     </form>
   </div>

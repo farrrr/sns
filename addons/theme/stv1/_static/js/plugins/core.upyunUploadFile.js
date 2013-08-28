@@ -2,11 +2,11 @@
  * uploadFile js 
  * @author jason
  * @exapmle <form><input type="file" name="attach" onchange="core.upyunUploadFile.upload(this,'','image')" urlquery='attach_type=feed_image'></form>
- *  如果自定义回调函数为myback　则<form><input type="file" name="attach" onchange="core.upyunUploadFile.upload(this,myback,'image')" urlquery='attach_type=feed_image'></form>
+ *  如果自定義回撥函數為myback　則<form><input type="file" name="attach" onchange="core.upyunUploadFile.upload(this,myback,'image')" urlquery='attach_type=feed_image'></form>
  *
  */
 core.upyunUploadFile = {
-		//给工厂调用的接口
+		//給工廠呼叫的介面
 		_init:function(attrs){
 			if(attrs.length == 6){
 				core.upyunUploadFile.upload(attrs[1],attrs[2],attrs[3],attrs[4],attrs[5]);
@@ -29,7 +29,7 @@ core.upyunUploadFile = {
 			this.obj = obj;
 			this.callback = "function" != typeof(callback)  ?  '' : callback;
 			this.type = "undefined"==typeof(type) || '' == type ? "all":type;
-			this.flag = "undefined"==typeof(flag) || '' == flag ? "0":"1";	//0 只能上传图片或者附件，1，允许同时上传附件和图片
+			this.flag = "undefined"==typeof(flag) || '' == flag ? "0":"1";	//0 只能上傳圖片或者附件，1，允許同時上傳附件和圖片
 			this.allowFileType = "undefined"==typeof(allowType) || '' == allowType ? "":allowType;
 			this.urlquery = $(obj).attr('urlquery');
 			this.action = $(obj).attr('action');
@@ -43,7 +43,7 @@ core.upyunUploadFile = {
 			}	
 	
 			
-			//结果展示 保留div
+			//結果展示 保留div
 			var hasCreateDiv = false;
 			var _this = this;
 			
@@ -61,7 +61,7 @@ core.upyunUploadFile = {
 					this.resultDiv = $(this.parentModel).parent().find('.input-content')[0];
 					return true;	
 				}
-				//未创建过DIV
+				//未創建過DIV
 				this.createResultDiv();
 			}
 
@@ -98,7 +98,7 @@ core.upyunUploadFile = {
 					return false;
 				}
 
-				//取消原来的
+				//取消原來的
 				$(_this.parentModel).parent().find('.input-content').each(function(){
 
 					if( $(this).attr('uploadcontent').length>0 ){
@@ -110,7 +110,7 @@ core.upyunUploadFile = {
 					}
 				});
 
-				//验证附件上传个数 不能大于4个
+				//驗證附件上傳個數 不能大於4個
 				if($(_this.resultDiv).find('li').size()>3){
 					ui.error( L('PUBLIC_UPLOAD_ISMAX') );
 					return false;
@@ -185,7 +185,7 @@ core.upyunUploadFile = {
 			
 			$(this.resultDiv).find('.loading').remove();	
 
-			//验证是否已经上传过了
+			//驗證是否已經上傳過了
 			var hasUpload = false;
 			for(var i in this.filehash){
 				if(this.filehash[i] == data.hash){
@@ -221,12 +221,12 @@ core.upyunUploadFile = {
 			
 			var func = "undefined" == typeof(callback) ?  '':callback;
 
-			//hash 处理
+			//hash 處理
 			this.filehash[data.attach_id] = data.hash;
 			
 			if('' !=func){
 				if('function'==typeof(func)){
-					func(data);//执行回调函数
+					func(data);//執行回撥函數
 				}
 			}else{
 				if(this.type=='image'){
@@ -287,7 +287,7 @@ core.upyunUploadFile = {
 				}
 			//});
 		},
-		//private 默认为父DIV的上一层div
+		//private 默認為父DIV的上一層div
 		getParentDiv:function(_parent){
 			var parent = "undefined" == typeof(_parent) ? this.obj.parentNode : _parent.parentNode;
 			if(parent.nodeName == 'SPAN' || parent.nodeName == 'DIV' || parent.nodeName =='UL'){

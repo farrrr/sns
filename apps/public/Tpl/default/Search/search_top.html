@@ -1,8 +1,8 @@
 <div class="search-box boxShadow mb20 extend-foot">
     <ul class="search-tab">
         <li <php>if($curType==2){</php>class="current"<php>}</php>><a href="{:U('public/Search/index',array('t'=>2,'a'=>'public','k'=>$keyword))}">微博</a></li>
-        <li <php>if($curType==1){</php>class="current"<php>}</php>><a href="{:U('public/Search/index',array('t'=>1,'a'=>'public','k'=>$keyword))}">用户</a></li>
-        <li <php>if($curType==3){</php>class="current"<php>}</php>><a href="{:U('public/Search/index',array('t'=>3,'a'=>'public','k'=>$keyword))}">标签</a></li>
+        <li <php>if($curType==1){</php>class="current"<php>}</php>><a href="{:U('public/Search/index',array('t'=>1,'a'=>'public','k'=>$keyword))}">使用者</a></li>
+        <li <php>if($curType==3){</php>class="current"<php>}</php>><a href="{:U('public/Search/index',array('t'=>3,'a'=>'public','k'=>$keyword))}">標籤</a></li>
     </ul>
     <div class="search-content clearfix">
         <div class="search-input">
@@ -15,7 +15,7 @@
         </form>
         </div>
         <php>if($keyword){</php>
-            <span class="ml15">共搜到{$searchResult.count}条结果</span>
+            <span class="ml15">共搜到{$searchResult.count}條結果</span>
         <php>}</php>
     </div>
 </div>

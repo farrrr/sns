@@ -1,5 +1,5 @@
 /**
- * public app下面用到的一些时间监听
+ * public app下面用到的一些時間監聽
  * 
  */
 
@@ -61,14 +61,14 @@ var install_app = function(obj){
 	},'json');
 	
 }
-//监听控制器
+//監聽控制器
 M.addEventFns({
-	uninstall_app:{// 卸载
+	uninstall_app:{// 解除安裝
 		click:function(){
 			uninstall_app(this);
 		}
 	},
-	install_app:{	//安装
+	install_app:{	//安裝
 		click:function(){
 			install_app(this);
 		}

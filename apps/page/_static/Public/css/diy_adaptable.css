@@ -17,7 +17,7 @@
 .line_D_R{ background:url(../images/vline.png) repeat-y right 0px;}
 #diy_adaptable{ background-color:#f7f7f7;width:212px; text-align:left; padding-bottom:10px;  z-index:9999;*width:230px;}
 
-/* 头部切换 */
+/* 頭部切換 */
 #diy_tab{ height:30px; margin:0 10px; padding-top:10px; background-image:url(../images/top_line_bg.gif); background-repeat:repeat-x; background-position:0px bottom;}
 	#diy_tab span{ float:right;}
 	#diy_tab span a{ margin-left:5px;}
@@ -26,7 +26,7 @@
 	#diy_tab li a{ color:#666; font-size:12px; text-decoration:none; font-weight:bold; white-space:nowrap; display:block; padding:1px 6px;}
 	#diy_tab li a.on{ color:#000; font-weight:bold; border:1px solid #E7E7E7;border-bottom:1px solid #fff; background-color:#FFF; padding:0 5px;}
 
-/*内容切换*/
+/*內容切換*/
 #controlcontent{ border:1px solid #E7E7E7; border-top:0px; margin:0 10px; background-color:#FFF; padding:5px;}
 #diy_nav{ border-bottom:4px solid #EDEDED; padding-bottom:10px;}
 #diy_nav a{ display:inline-block; width:80px;*width:75px; height:70px; text-align:center; color:#333; font-size:12px; text-decoration:none; margin-right:5px; *padding-left:5px}
@@ -90,14 +90,14 @@
 a.ico_diyedit{ background:url(../images/ico_edit.gif) no-repeat 0px 0px; height:16px; width:16px; overflow:hidden; text-indent:100px; display:inline-block; white-space:nowrap;}
 a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16px; width:16px; overflow:hidden; text-indent:100px; display:inline-block;white-space:nowrap;}
 
-/* 布局样式 */
+/* 佈局樣式 */
 /*.diy_layout_box{ border:1px solid #ddd;text-align:left;background-color:#FFF; overflow:hidden;}*/
 .tab{ margin-bottom:0}
 .diy_tab_box .diy_layout_box{ border-top:0px;}
 	.diy_layout_box .tit_bg{font-size:14px;}
 .diy_tab_box{padding:0 0 0 20px;}
 	
-	 /* 数据列表 */ 
+	 /* 資料列表 */ 
 	.diy_dataList{ padding:10px;}
 	.diy_dataList li.list_tit{ background-color:#F3F4F8;border:0 none;line-height:22px;margin-top:5px; height:22px; font-size:12px; color:#666;}
 	.diy_dataList li{height:30px;line-height:30px;border-bottom:1px dashed #DDDDDD; overflow:hidden;}
@@ -111,19 +111,19 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 	.diy_list li span{ float:right; color:#999}
 	.diy_list li span a,.diy_layout_box li span a:visited{ color:#999;}
 	
-	/* 头像列表 */
+	/* 頭像列表 */
 	.diy_userlist{overflow:hidden;display:inline-block}
 	.diy_userlist li{float:left;font-size:12px;height:80px;text-align:center;width:62px;}
 	.diy_userlist li span{}
 	.diy_userlist li span a,.diy_layout_box li span a:visited{ color:#666;}
 	
-	/*TOP关注榜*/
+	/*TOP關注榜*/
 	.diy_usertop{}
 	.diy_usertop li{padding:10px;border-top:1px solid #ddd; font-size:12px; text-align:left; +padding-top:8px;+padding-bottom:9px}
 	.diy_usertop_pic{width:50px; height:50px;}
 	.diy_usertop_pic img{border:1px solid #ccc; padding:1px;}
 	
-	/*知道问题分类*/
+	/*知道問題分類*/
 	.diy_ask_sort{ background-color:#F0F0F0; font-size:12px; padding-bottom:8px;line-height:23px;}
 	.diy_ask_sort h2{ color:#000; font-size:12px; line-height:25px; margin:0 10px;}
 	.diy_ask_sort li.lineB_D_D p{ margin-bottom:0;}
@@ -134,13 +134,13 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 	.diy_ask_sort ul li p{ margin-bottom:10px;}
 	.diy_ask_sort ul li p a,.diy_ask_sort ul li p a:visited{ color:#666; margin-right:5px; font-size:12px;}
 	
-	/*团队列表*/
+	/*團佇列表*/
 	.diy_group_list{overflow:hidden;clear:both;padding:5px 10px 0 10px;}
 	.diy_group_list li{display:block;clear:both;width:100%;font-size:12px;padding:8px 0;color:#999;line-height:18px;}
 	.diy_group_list .headpic50{}
 	.diy_group_list h4{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;}
 	.diy_group_list p{ padding:0; margin:0; }
-		/*我的团队列表*/
+		/*我的團佇列表*/
 		.diy_mygroup, .diy_mygroup_over{width:100%;border:1px solid #cfd8dc;overflow:hidden;position:absolute;background: #f5f8fa url(../images/ico_sj.gif) no-repeat right 9px; }
 		
 /*.diy_mygroup, .diy_mygroup_over{overflow:hidden;position:absolute;width:100%;}
@@ -152,7 +152,7 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 		.diy_mygroup{height:25px;}
 		.diy_mygroup_over{height:auto;}
 		
-	/*推荐团队列表*/
+	/*推薦團佇列表*/
 	.diy_groupCommend_list{overflow:hidden;clear:both;padding:0 10px; margin:10px 0;}
 	.diy_groupCommend_list li,.diy_groupcommend_list1 li{font-size:12px;color:#999;line-height:18px; display:block; float:left; padding-right:2%; height:80px; overflow:hidden;width:48%}
 	.diy_groupCommend_list li.bw,.diy_groupcommend_list1 li.wd{ width:100%}
@@ -162,10 +162,10 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 	.diy_groupCommend_list p em {color:#666666;font-size:12px;line-height:16px;}
 	.diy_groupcommend_list1 li{ width:auto;}
 	
-	/*博客top列表*/
+	/*部落格top列表*/
 	.diy_blog_top{}
 	.diy_blog_top li{padding:10px;border-top:1px solid #ddd; font-size:12px; text-align:left;}
-	.diy_blog_top .diy_gore_img {background:transparent url(../images/gore_icon.gif) no-repeat scroll 0 0;float:left;font-family:"宋体";font-size:16px;font-weight:bold;height:42px;padding-top:3px;text-align:center;width:45px; color:#FF6600}
+	.diy_blog_top .diy_gore_img {background:transparent url(../images/gore_icon.gif) no-repeat scroll 0 0;float:left;font-family:"宋體";font-size:16px;font-weight:bold;height:42px;padding-top:3px;text-align:center;width:45px; color:#FF6600}
 	.diy_blog_top h4{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%; display:block;}
 	.diy_blog_top h4 span{ font-weight: normal; float:right; font-size:12px}
 	.diy_blog_top p{ padding:0; margin:0; font-size:12px; color:#9c9c9c; line-height:25px;}
@@ -176,20 +176,20 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 	.diy_a_tab_list { padding-bottom:5px;}
 	.diy_a_tab_list li{ border-bottom:1px dashed #dedede; line-height:25px; font-size:12px; padding:0 10px;}
 	
-	/*百科分类*/
+	/*百科分類*/
 	.diy_wiki_sort{overflow:hidden;clear:both;padding:0 15px; margin:10px 0;}
 	.diy_wiki_sort li{width:48%;font-size:12px;color:#999;line-height:30px; display:block; float:left; padding-right:2%; overflow:hidden;white-space:nowrap; }
 	.diy_wiki_sort a{ margin-right:10px;}
 	.diy_wiki_sort strong{ font-size:14px;}
 	
-	/* 推荐词条 精华词条 */
+	/* 推薦詞條 精華詞條 */
 	.diy_tuwen_list { padding:5px 0;}
 	.diy_tuwen_list li{ padding:5px; margin:0 5px;}
 	.diy_tuwen_list li .img{ border:0; border:1px solid #DDDDDD;padding:2px;}
 	.diy_tuwen_list h4{ font-size:14px;}
 	.diy_tuwen_list p{ font-size:12px; line-height:20px; color:#636363;}
 	
-	/*热门词条排行榜*/
+	/*熱門詞條排行榜*/
 	.diy_hot_lemma{background:transparent url(../images/pop_icon.gif) no-repeat scroll 5px 2px;padding-left:25px; margin:10px;}
 	.diy_hot_lemma li{line-height:16px; font-size:12px; text-align:left;margin-bottom:6px;}
 	.diy_hot_lemma li a,.diy_hot_lemma li a:visited {color:#666666;}
@@ -200,14 +200,14 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 	.diy_myWiki .perfect_icon{background-position: 0 0;}
 	.diy_myWiki .edit_icon{background-position: 0 52%;}
 	
-	/*推荐专家空间*/
+	/*推薦專家空間*/
 	.diy_roll_userPic{overflow:hidden;}
 	.diy_roll_userPic li{width:76px;text-align:center; height:72px; margin:0px; display:block; float:left; font-size:12px; }
 	.diy_roll_userPic li a{display:block; clear:both;}
 	.diy_roll_userPic li img{border:1px solid #ddd; padding:1px; margin-bottom:5px;}
 
 
-/* ================新闻内容页面====================== */
+/* ================新聞內容頁面====================== */
 .diy_newbox{margin:10px auto;text-align:center;width:93%;}
 .diy_newbox .new_tit{ margin-bottom:20px; }
 .diy_newbox .new_tit h1{ font-size:24px; line-height:180%; color:#006699}
@@ -216,10 +216,10 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 .diy_newbox .new_C{ text-align:left;}
 
 
-/* ===============图片=============================== */
+/* ===============圖片=============================== */
 .diy_image_model img{ }
 
-/* === 左边5格轮播 === */
+/* === 左邊5格輪播 === */
  .leftslidershow{margin-bottom:10px; position:relative; background-color:#fafafa; width:100%;}
     .leftslidershow .slider_top {}
     .leftslidershow .contentslider {width:100%;}
@@ -232,9 +232,9 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
     .leftslidershow .pagination a{height:40px;overflow:hidden;color:#333;text-align:left;font-size:12px;line-height:38px;display: block; padding-left:5px; }
     .leftslidershow .pagination a:hover{text-decoration:none;}
     .leftslidershow .pagination li.on a{background-color:#069; color:#fff;text-decoration:none;background:url(../images/img_leftTab_li_on.gif) no-repeat;}
-/* === 左边5格轮播结束 === */
+/* === 左邊5格輪播結束 === */
 
-/* === 普通底部4格轮播 === */
+/* === 普通底部4格輪播 === */
  .slidershow{margin-bottom:10px; padding:1px; border:1px solid #ddd;}
     .slidershow .slider_top {}
     .slidershow .contentslider {width:100%;}
@@ -247,7 +247,7 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
     .slidershow .pagination a{margin:0 5px;height:28px;overflow:hidden;color:#333;text-align:center;font-size:12px;line-height:28px;display: block;}
     .slidershow .pagination a:hover{text-decoration:none;}
     .slidershow .pagination li.on a{background-color:#069; color:#fff;text-decoration:none;}
-/* === 普通底部4格轮播结束 === */
+/* === 普通底部4格輪播結束 === */
 	/*slider4*/
 .downWordFade {margin-bottom:10px;padding:1px; border:1px solid #ddd;}
 .downWordFade_plan {height:160px;}
@@ -264,15 +264,15 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 
 
 
-/*空间动态*/
+/*空間動態*/
 	.diy_list_01{ margin:10px;}
 	.diy_list_01 li{padding-left:10px; line-height:16px; font-size:12px; text-align:left; background: url(../images/icon_li.gif) no-repeat 0px 7px;margin-bottom:6px; }
 			#div_addModel .addModel{ background:url(../images/box_bg.gif) no-repeat; width:80px; line-height:25px; height:25px; margin-top:20px; float:left} 
 	
-/*tab切换*/
+/*tab切換*/
 .ui-tabs-hide { display: none !important; overflow:hidden}
 
-/*搜标签*/
+/*搜標籤*/
 .div_tit_sort_box{ padding:5px;}
 .diy_tit_sort{float:left; border-right:1px solid #ddd; line-height:22px; font-size:12px; padding:0 5px; margin:5px 0;}
 .diy_tit_sort a, diy_tit_sort a:visited{ color:#333; margin-right:5px;_margin-right:2px;+margin-right:2px;}
@@ -286,14 +286,14 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 .diy_ballot_btn{ padding:10px; text-align:center; padding-top:0;}
 
 
-/*团队列表*/
+/*團佇列表*/
 .diy_reg_list{clear:both;margin:0 15px;padding:0;}
 .diy_reg_list li{ padding:10 0;border-bottom:1px solid #DDDDDD;clear:both;margin:10px 0; padding-bottom:10px;}
 .diy_reg_list li img {border:1px solid #DDDDDD;padding:2px;}
 .diy_reg_list li p {color:#666666;font-size:12px;line-height:24px;margin:0;padding:0;}
 .diy_reg_list li h4 {font-size:14px;font-weight:bold;line-height:25px;}
 
-/*知道解决*/
+/*知道解決*/
 .list_cate_itemize{ float:left;width:100%;line-height:35px;width:100%;font-size:12px;text-align:center;}
 .list_cate_itemize li{ border-bottom:1px dashed #ddd;padding-left:10px;float:left;width:98%;line-height:30px;height:30px;}
 .list_cate_itemize .tit{ border-bottom:1px solid #ccc;padding-left:10px;float:left;width:98%;line-height:26px;}
@@ -320,13 +320,13 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 
 
 
-/*  团队内搜索 */
+/*  團隊內搜索 */
 .diy_tag{padding:10px;font-size:12px;}
 .diy_tag_hot{ font-size:12px; padding:10px; padding-top:0;}
 .diy_tag_hot a{ color:#666; margin-right:8px;}
 
 
-/*团队列表分类*/
+/*團佇列表分類*/
 .diy_list_box {clear:both;margin:0;padding:5px 5px 15px 5px;font-size:12px}
 .diy_list_box dt{border-bottom:1px solid #ddd;color:#666;display:block;height:25px;line-height:25px;margin:0;padding:5px 0px 0 5px;}
 .diy_list_box dd{border-bottom:1px dashed #DDDDDD;clear:both;color:#999999;line-height:28px;margin:0;padding:0 5px;white-space:nowrap;}
@@ -338,12 +338,12 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 .cr{float:left;overflow:hidden;text-align:right;}
 
 
-/*团队公告*/
+/*團隊公告*/
 .diy_call_R{ text-align:left;padding:10px;}
 .diy_call_R h3{font-size:14px; line-height:30px;}
 .diy_call_R p{ text-indent:20px; line-height:180%; color:#666; font-size:12px;}
 
-/*门户*/
+/*門戶*/
 
 .diy_adfont dt,.diy_news_icon,.diy_hot_icon,.but_tex,.slidershow_downNum_nav li,.slidershow_downNum_nav li.on,.diy_news li{ background:url(../images/3ms_icon.gif) no-repeat;}
 
@@ -356,7 +356,7 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 .diy_contents_min{float:left;text-align:left;}
 .diy_contents_right{width:210px;float:right;text-align:left;}
 
-/*常用链接*/
+/*常用連結*/
 .diy_Intell{clear:both;font-size:12px;padding-top:0;}
 .diy_Intell ul{margin-top:40px;}
 .diy_Intell li{/*background:url(../images/Intell_d_bg.gif) repeat-x bottom;*/ border-bottom:1px dotted #ddd;height:36px;line-height:36px;padding:0 0 0 7px;margin:0 3px}
@@ -368,20 +368,20 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 .diy_Intell li span a,.diy_Intell li span a:visited{color:#333;}
 .diy_list_01 li .clor_sty a,.diy_list_01 li .clor_sty a:visited{ color:#00679B}
 
-/*本周主题*/
+/*本週主題*/
 .diy_adfont dt a,.diy_adfont dt a:visited,.diy_adfont dd a,.diy_adfont dd a:visited{ color:#039}
 .diy_adfont{line-height:21px;}
 .diy_adfont dt{ background-position:-9px -1px;padding-left:22px; font-weight: bold; color:#000;}
 .diy_adfont dt a,.adfont dt a:visited,.adfont dd a,.adfont dd a:visited{ color:#039}
 .diy_adfont dd{ font-size:12px; line-height:22px;}
 
-/*公告栏*/
+/*公告欄*/
 .diy_news{clear:both;font-size:12px;padding-top:7px; text-align:left; margin-left:10px;}
 .diy_news_icon{ background-position:-9px -119px; padding-left:20px; font-size:14px; font-weight:bold; margin-left:10px;}
 .diy_news li{background-position:-9px -280px;padding-left:10px;height:25px;overflow:hidden;word-wrap:break-word;line-height:23px;}
 .diy_news li a, .news dd a:visited{color:#000;}
 
-/*广告图*/
+/*廣告圖*/
 .diy_pic_line{float:left;margin-left:10px;}
 .diy_pic_line img{ border:1px solid #c5c3c3}
 /*js*/
@@ -389,13 +389,13 @@ a.ico_diydel{ background:url(../images/ico_del.gif) no-repeat 0px 0px; height:16
 .slidershow_downNum_nav li {background-position:-38px -58px; font-size:14px; font-weight:bold; }
 .slidershow_downNum_nav li.on {background-position:-9px -55px; color:#000;font-size:14px; font-weight:bold;}
 
-/*首页*/
+/*首頁*/
 
 .diy_1_2_1_b_R .diy_layout_box{ background:none; border:0}
 .sea_box,.sea_box1 {height:24px;+height:23px;_height:24px;}
 
 
-/*发送微博发布框*/
+/*發送微博釋出框*/
 .diy-send-weibo{margin:0 auto;padding:8px 20px;border:1px solid #ccc;border-radius:2px;-webkit-border-radius:3px;-khtml-border-radius:3px;-moz-border-radius:3px;}
 .diy-send-weibo .input_tips{width:98.8%;}
 

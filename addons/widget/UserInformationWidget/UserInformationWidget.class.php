@@ -1,6 +1,6 @@
 <?php
 /**
- * 用户信息显示Widget
+ * 使用者資訊顯示Widget
  * @author guolee226@gmail.com
  * @version TS3.0
  */
@@ -8,17 +8,17 @@ class UserInformationWidget extends Widget {
 
 	/**
 	 * 模板渲染
-	 * @param array $data 相关数据
-	 * @return string 用户身份选择模板
+	 * @param array $data 相關資料
+	 * @return string 使用者身份選擇模板
 	 */
 	public function render($data) {
 		$var['uid'] = intval($data['uid']);
 		$var['tpl'] = t($data['tpl']);
-		// 是否有返回首页的链接
+		// 是否有返回首頁的連結
 		$var['isReturn'] = $data['isReturn'] ? true : false;
-		// 获取用户信息
+		// 獲取使用者資訊
 		$var['userInfo'] = model('User')->getUserInfo($var['uid']);
-		// 获取用户用户组信息
+		// 獲取使用者使用者組資訊
 		$userGids = model('UserGroupLink')->getUserGroup($var['uid']);
 		$userGroupData = model('UserGroup')->getUserGroupByGids($userGids[$var['uid']]);
 		foreach($userGroupData as $key => $value) {
@@ -29,37 +29,37 @@ class UserInformationWidget extends Widget {
 			$userGroupData[$key]['user_group_icon_url'] = THEME_PUBLIC_URL.'/image/usergroup/'.$value['user_group_icon'];
 		}
 		$var['userGroupData'] = $userGroupData;
-		// 获取相关的统计数目
+		// 獲取相關的統計數目
 		$var['userData'] = model('UserData')->getUserData();
 		foreach($var['userData'] as &$value) {
 			$value = $this->limitedNumbers($value, 99999);
 		}
-		// 获取用户积分信息
+		// 獲取使用者積分資訊
 		$var['userCredit'] = model('Credit')->getUserCredit($var['uid']);
-		// Tab选中类型
+		// Tab選中類型
 		$var['current'] = '';
 		strtolower(ACTION_NAME) == 'myfeed' && strtolower(MODULE_NAME) == 'index' && $var['current'] = 'myfeed';
 		strtolower(ACTION_NAME) == 'following' && strtolower(MODULE_NAME) == 'index' && $var['current'] = 'following';
 		strtolower(ACTION_NAME) == 'follower' && strtolower(MODULE_NAME) == 'index' && $var['current'] = 'follower';
 		strtolower(ACTION_NAME) == 'index' && strtolower(MODULE_NAME) == 'collection' && $var['current'] = 'collection';
-		// 用户分类信息
+		// 使用者分類資訊
 		$map['app'] = 'public';
 		$map['table'] = 'user';
 		$map['row_id'] = $var['uid'];
 		$var['userTags'] = D()->table(C('DB_PREFIX').'app_tag AS a LEFT JOIN '.C('DB_PREFIX').'tag AS b ON a.tag_id = b.tag_id')->where($map)->findAll();
-		// 获取关注状态
+		// 獲取關注狀態
 		$GLOBALS['ts']['mid'] != $var['uid'] && $var['follow_state'] = model('Follow')->getFollowState($GLOBALS['ts']['mid'], $var['uid']);
 
         // 渲染模版
         $content = $this->renderFile(dirname(__FILE__)."/".$var['tpl'].".html", $var);
-        // 输出数据
+        // 輸出資料
         return $content;
     }
 
     /**
-     * 将统计数据限定指定的数目
-     * @param integer $nums 指定的数目
-     * @param integer $limit 限定的数目
+     * 將統計資料限定指定的數目
+     * @param integer $nums 指定的數目
+     * @param integer $limit 限定的數目
      */
     private function limitedNumbers($nums, $limit = 99999) {
     	$nums > $limit && $nums = $limit.'+';

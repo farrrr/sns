@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 /* CSS Document */
 
 html {color: #333;}
@@ -45,12 +45,12 @@ li{list-style-type:none}
 #slide-title .current a{display:inline-block;width:18px;height:6px;overflow:hidden;background:#ccc;border:#888 solid 1px}
 /*.content .bg-blue{background:url(image/bg-blue.gif) repeat 0 0;}
 .content .bg-black{background:url(image/bg-black.gif) repeat 0 0;}*/
-/*登录*/
+/*登入*/
 .content .s-login-w{/*position:absolute;right:0;top:90px;background:#fff;border:#f2f2f2 solid 1px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius: 3px;-webkit-box-shadow: 0px 0px 10px;-moz-box-shadow: 0px 0px 10px;box-shadow: 0px 0px 10px;width:330px;*/}
 .content .s-login-w .s-login{margin:20px 0;position:relative;}
 
 .s-login{left: 0; opacity: 1; position: absolute; visibility: visible;}
-.s-login .login-bd a,.s-login .login-bd .s-row1 a:link,.s-login .login-bd .s-row1 a:visited{color:#fff;display:inline-block;font-size:14px;cursor:pointer;font-family: "微软雅黑";text-shadow:0 0 3px black;}
+.s-login .login-bd a,.s-login .login-bd .s-row1 a:link,.s-login .login-bd .s-row1 a:visited{color:#fff;display:inline-block;font-size:14px;cursor:pointer;font-family: "微軟雅黑";text-shadow:0 0 3px black;}
 .login-bd .btn-error{position:absolute;top:-4px;left:0}
 .login-bd .btn-error span{width:248px}
 .s-login .login-hd h1{height:18px;line-height:18px;font-size:14px;font-weight:300}
@@ -58,11 +58,11 @@ li{list-style-type:none}
 .s-login .login-bd #js_login_input{height:18px}
 .s-login .login-bd .btn-blue-big{width:100px}
 .s-login .login-bd .actionBtn{height:50px;width:140px;}
-.s-login .login-bd .btn-login{background-position:0 -316px;width:140px;height:46px;line-height:46px;display:inline-block;font-family:"微软雅黑";text-align:center;font-size:20px;}
+.s-login .login-bd .btn-login{background-position:0 -316px;width:140px;height:46px;line-height:46px;display:inline-block;font-family:"微軟雅黑";text-align:center;font-size:20px;}
 
 .s-login .login-bd .s-row{position:relative}
 .s-login .login-bd .s-row1{height:19px;line-height:19px;padding:17px 0 17px 2px;width:271px;}
-/*.s-login .login-bd li label{height:22px;line-height:16px;font-size:20px;color:#999;display:block;position:absolute;left:15px;top:15px;font-family:"微软雅黑"}*/
+/*.s-login .login-bd li label{height:22px;line-height:16px;font-size:20px;color:#999;display:block;position:absolute;left:15px;top:15px;font-family:"微軟雅黑"}*/
 .s-login .login-bd li .login-row{padding-top:8px;*padding-top:5px}
 /*.s-login .login-bd li .s-txt, .s-login .login-bd li .s-txt-focus{border:1px solid #7c8433;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;-khtml-border-radius:3px;box-shadow:0 1px 2px 0 #a7a7a7 inset;font-size:14px;height:30px;line-height:30px;margin:0;padding:10px 10px 10px 50px;width:240px;}*/
 .s-login .login-bd li label.auto{font-size:12px}
@@ -74,14 +74,14 @@ li{list-style-type:none}
 .s-login .login-bd .s-btn-enter span{background-position:right -32px;height:32px;line-height:32px;padding:0 20px 0 18px}
 /*.s-login .login-ft{margin:80px 10px 0;}*/
 
-/*引导语*/
-.login-guide p{font-family:"微软雅黑";font-size:56px;color:#fff;text-shadow:#b0b0b0 2px 2px 2px;margin:0 0 80px 0;}
-.login-guide span{font-size:40px;font-family:"微软雅黑";color:#fff;}
+/*引導語*/
+.login-guide p{font-family:"微軟雅黑";font-size:56px;color:#fff;text-shadow:#b0b0b0 2px 2px 2px;margin:0 0 80px 0;}
+.login-guide span{font-size:40px;font-family:"微軟雅黑";color:#fff;}
 
 
-/*第三方登录*/
+/*第三方登入*/
 
-/*.s-login .login-ft .third-party span{float:left;display:block;color:#f0f0f0;font-size:14px;font-family: "微软雅黑";}
+/*.s-login .login-ft .third-party span{float:left;display:block;color:#f0f0f0;font-size:14px;font-family: "微軟雅黑";}
 .third-party dd{float:left;text-align:center;margin:-3px 0 0;}*/
 .third-party dd a:link, .third-party dd a:visited{color:#999;display:inline-block;margin:0 10px 0 0;}
 .third-party a:hover{text-decoration:none;}
@@ -112,12 +112,12 @@ li{list-style-type:none}
 .third-party dd a:hover .ico-baidu{background-position:-282px -34px;}*/
 
 
-/*按钮*/
+/*按鈕*/
 .btn-enter, .btn-reg{background:url(image/btn.png) no-repeat 0 0;border:none 0;cursor:pointer}
 .btn-enter{width:130px;height:40px}
 .btn-reg{width:85px;height:40px;background-position:0 -50px}
 
-/*客户端*/
+/*客戶端*/
 #client{width:960px;margin:0 auto;padding:50px 0 0}
 #client ul{text-align:center}
 #client .mr{margin:0 30px 0 0} 
@@ -136,7 +136,7 @@ li{list-style-type:none}
 #footer .footer-wrap p{color:#999}
 
 
-/*注册*/
+/*註冊*/
 .reg-wrap{width:960px;margin:0 auto;position:relative}
 .reg-wrap .tit{font-size:16px;font-family: Microsoft YaHei;font-weight:300;}
 .reg-wrap .title{font-size:20px;font-family: Microsoft YaHei;font-weight:300;color:#333;margin:0 0 40px 0;border-bottom:2px solid #999;padding:0 0 10px 0;text-align:left}
@@ -238,7 +238,7 @@ li{list-style-type:none}
 .psw-state-strong .bar{width:152px}
 .psw-state-empty .txt span, .psw-state-poor .txt span, .psw-state-normal .txt span, .psw-state-strong .txt span{width:50px;display:block;float:left;text-align:center;padding:5px 0 0;_padding:0;}
 
-/*注册用户第二步*/
+/*註冊使用者第二步*/
 .reg-main .article-avatar{}
 .article-avatar .s-txt, .article-avatar .s-txt-focus{width:240px}
 .article-avatar .form-avatar .s-txt, .article-avatar .form-avatar .s-txt-focus{width:280px;*margin-left:0}
@@ -252,7 +252,7 @@ li{list-style-type:none}
 .article-avatar .item p{position:relative;padding:5px 0 0}
 .article-avatar .pass{float:right;height:14px;padding:6px 0}
 
-/*找回密码*/
+/*找回密碼*/
 .reg-wrap .item-find-psd{background:#fff;padding:20px;text-align:center;font-size:14px;height:300px;}
 .reg-wrap .item-find-psd strong{color:#545454;font-size:14px;font-weight:700;padding:0 5px}
 .reg-wrap .item-find-psd a:link,.reg-wrap .item-find-psd a:visited{color:#36C;font-size:14px}
@@ -265,7 +265,7 @@ li{list-style-type:none}
 .item-find-psd .search-find .btn-blue-r span{font-weight:700}
 .item-find-psd .box-ver{padding:0 0 0 225px;}
 
-/*图片用户列表*/
+/*圖片使用者列表*/
 .face_name_list{padding:30px 0 20px 0;/*background:#FBFBFB;*/overflow:hidden;*zoom:1}
 .face_name_list img{width:80px;height:80px;}
 .face_name_list ul{overflow:hidden;*zoom:1}
@@ -289,7 +289,7 @@ li{list-style-type:none}
 .form-avatar .mod-avatar div.cut-3{width:48px;padding:180px 0 0 15px}*/
 .form-avatar .btn-error{position:absolute;top:-30px}
 
-/*数字*/
+/*數字*/
 .num-1, .num-2, .num-3{background:url(image/num.png) no-repeat 0 0;width:20px;height:20px;display:inline-block;margin:0 10px 0 0;vertical-align: -6px;_vertical-align: 0px;}
 .num-1{background-position:0 -40px}
 .num-2{background-position:-70px -40px}
@@ -325,50 +325,50 @@ li{list-style-type:none}
 .arrow-mail{width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:8px solid #eee;position:absolute;top:-8px;left:20px;}
 .mail-box li{line-height:30px;}
 
-/*登录页面背景*/
+/*登入頁面背景*/
 /*body{background:url(../image/login-bg.png) repeat;}*/
 /*body{background:url(../image/body-b.jpg) repeat-x center 0 #e4f3f7;}*/
 #login-bg{position:relative;height:100%;text-align:left}
 .login-b{left:0;overflow:hidden;/*position:absolute;*/top:0;width:100%;z-index:-1;height:100%;position:absolute;}
 .s-row .input,.s-row .input1{background:url(image/login-input1.png) no-repeat;_background:url(image/login-input1.gif) no-repeat;border:0;}
 .s-login a:link,.s-login a:visited{outline: medium none; text-decoration: none;}
-.s-login .s-row .input{background-position:0 -3px;height:23px;padding:13px 20px 14px;line-height:23px;font-size:20px;font-family: "微软雅黑";color:#999;position:relative;}
-.s-login .s-row .input1{background-position:0 -62px;height:23px;padding:13px 20px 14px;line-height:23px;font-size:20px;font-family: "微软雅黑";color:#999;outline:none;position:relative;}
+.s-login .s-row .input{background-position:0 -3px;height:23px;padding:13px 20px 14px;line-height:23px;font-size:20px;font-family: "微軟雅黑";color:#999;position:relative;}
+.s-login .s-row .input1{background-position:0 -62px;height:23px;padding:13px 20px 14px;line-height:23px;font-size:20px;font-family: "微軟雅黑";color:#999;outline:none;position:relative;}
 .s-login .s-row .s-txt1{background:url(image/empty.png) repeat;left:12px;top:14px;position:absolute;outline:none;font-size:20px;border:0;width:250px;color:#aaa;}
-.s-login .s-row .input label,.s-login .s-row .input1 label{font-size:20px;color:#43474B;left:13px;top:14px;font-family: "微软雅黑";cursor:text;position:absolute;white-space:nowrap;}
+.s-login .s-row .input label,.s-login .s-row .input1 label{font-size:20px;color:#43474B;left:13px;top:14px;font-family: "微軟雅黑";cursor:text;position:absolute;white-space:nowrap;}
 .txt-list{background:#202326;position:absolute;left:1px;top:50px;padding:3px 1px;width:269px;line-height: 26px;text-align:left;z-index: 999;}
 
-.txt-list p{color:#fff;font-size:14px;font-family: "微软雅黑";color:#999;padding-left:12px;}
-.s-login .login-bd .txt-list ul li{display:block;height:26px;line-height: 26px;font-family: "微软雅黑";color:#fff;width:250px;padding:0 10px;margin:0;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.txt-list p{color:#fff;font-size:14px;font-family: "微軟雅黑";color:#999;padding-left:12px;}
+.s-login .login-bd .txt-list ul li{display:block;height:26px;line-height: 26px;font-family: "微軟雅黑";color:#fff;width:250px;padding:0 10px;margin:0;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .s-login .login-bd .txt-list ul li:hover{background:#2E3236;}
 .l-login {cursor: text;padding-left: 5px;}
 .on-changes {display: none;}
-.txt-list ul li.current {display:block;background:#2E3236;line-height: 26px;font-family: "微软雅黑";color:#fff;width:250px;padding:0 10px;font-size:14px;cursor:pointer;}
+.txt-list ul li.current {display:block;background:#2E3236;line-height: 26px;font-family: "微軟雅黑";color:#fff;width:250px;padding:0 10px;font-size:14px;cursor:pointer;}
 .s-login .login-bd .check,.s-login .login-bd .check-ok{background:url(image/checkbox2.png) no-repeat;_background:url(image/checkbox2.gif) no-repeat;}
 .s-login .login-bd .check{background-position:0 0;width:18px;height:17px;display:inline-block;margin:0 5px 0 0;vertical-align:middle;}
 .s-login .login-bd .check-ok{background-position:-26px 0;width:18px;height:17px;display:inline-block;margin:0 5px 0 0;vertical-align:middle;}
 
-/*错误提示框*/
+/*錯誤提示框*/
 .error-box{width:300px;height:40px;line-height:40px;text-align:center;background:#25282b;position:absolute;left:150px;top:120px;opacity: 0.8}
 .error-box p{color:#fff;}
 
-/*注册上传头像*/
+/*註冊上傳頭像*/
 .item-step2 .form-avatar{margin:30px 0 0 138px;}
 .item-step2 .form-avatar input{border:1px solid #abadb3;}
 .item-step2 .chanage{left:158px;}
 
-/*其他账号登录*/
+/*其他賬號登入*/
 .account-links dt{float:left;}
 .account-links dt img{padding:2px;border:1px solid #ccc;}
 .account-links dd{margin:0 0 0 70px;}
-.account-links dd h4{font-size:20px;font-family:"微软雅黑";margin:0 0 10px 0;}
-.account-links dd p{font-size:14px;font-family:"微软雅黑";}
+.account-links dd h4{font-size:20px;font-family:"微軟雅黑";margin:0 0 10px 0;}
+.account-links dd p{font-size:14px;font-family:"微軟雅黑";}
 
 .invite-reg{width:600px;margin:0 auto;}
 .invite-reg .tit{width:600px;text-align:center;margin:0 0 40px 0;background:url(image/reg-line.png) no-repeat center bottom;}
-.invite-reg .tit h4{font-size:18px;font-family:"微软雅黑";margin:0 0 40px 0;}
-.invite-reg .tit .btn-grey-white{text-align:center;margin:0 0 40px 0;font-size:18px;color:#333;font-family:"微软雅黑";}
-.invite-reg .login-other p{font-size:16px;font-family:"微软雅黑";margin:0 0 30px 0;text-align:center;}
+.invite-reg .tit h4{font-size:18px;font-family:"微軟雅黑";margin:0 0 40px 0;}
+.invite-reg .tit .btn-grey-white{text-align:center;margin:0 0 40px 0;font-size:18px;color:#333;font-family:"微軟雅黑";}
+.invite-reg .login-other p{font-size:16px;font-family:"微軟雅黑";margin:0 0 30px 0;text-align:center;}
 .invite-reg .login-other ul{margin:0 0 0 60px;}
 .invite-reg .login-other a{float:left;display:inline-block;margin:0 70px 20px 0;}
 .btn-sina,.btn-qq,.btn-tengxun,.btn-baidu,.btn-douban,.btn-renren,.btn-taobao{background:url(image/btn-login-method.png) no-repeat;width:200px;height:40px;display:inline-block;_background:url(image/btn-login-method.gif) no-repeat;}
@@ -387,7 +387,7 @@ li{list-style-type:none}
 .login-other .btn-taobao{background-position:0 -192px;}
 .login-other a:hover .btn-taobao{background-position:-239px -192px;}
 
-/*快速登录*/
+/*快速登入*/
 .reg-main .article .item.login-box{width:540px;}
 .reg-main .article .item.login-box .s-txt,.reg-main .article .item.login-box .s-txt-focus{width:300px;line-height:20px;height:20px;}
 .reg-main .article .item.login-box .mb8{margin-bottom:8px;}

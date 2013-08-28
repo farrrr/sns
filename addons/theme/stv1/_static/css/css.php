@@ -1,18 +1,18 @@
 <?php
 /* 
-	load: css, js 静态文件 
-	启用 gz压缩、缓存处理、过期处理、文件合并等优化操作
+	load: css, js 靜態檔案 
+	啟用 gz壓縮、快取處理、過期處理、檔案合併等優化操作
 */
 error_reporting(0);
 if(extension_loaded('zlib')){
-	//检查服务器是否开启了zlib拓展
+	//檢查伺服器是否開啟了zlib拓展
 	ob_start('ob_gzhandler');
 }
 
 $gettype = 'css';
 $allowed_content_types	=	array('css');
 $getfiles	= explode(',', strip_tags($_GET['f']));
-// $offset = 60 * 60 * 24 * 7; //过期7天
+// $offset = 60 * 60 * 24 * 7; //過期7天
 $offset = 1;
 
 
@@ -22,7 +22,7 @@ if($gettype=='css'){
 	$content_type	=	'application/x-javascript';
 }
 
-header ("content-type: ".$content_type."; charset: utf-8");		//注意修改到你的编码
+header ("content-type: ".$content_type."; charset: utf-8");		//注意修改到你的編碼
 // header ( "cache-control: must-revalidate" );
 header ( "cache-control: max-age=".$offset );
 header( "Last-Modified: " . gmdate ( "D, d M Y H:i:s", time () ) . "GMT");
@@ -32,7 +32,7 @@ set_cache_limit($offset);
 
 ob_start("compress");
 
-function compress($buffer) {//去除文件中的注释
+function compress($buffer) {//去除檔案中的註釋
 	$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
 	return $buffer;
 }
@@ -54,10 +54,10 @@ function set_cache_limit($second=1){
 	list( $time , $uri ) = explode ( "||" , $id );
 
 	if($time < (time()-$second))
-	{//过期了，发送新tag
+	{//過期了，發送新tag
 		header("Etag:$etag",true,200);
 	}else
-	{//未过期，发送旧tag
+	{//未過期，發送舊tag
 		header("Etag:$id",true,304);	    
 		exit(-1);
 	}
@@ -66,14 +66,14 @@ function set_cache_limit($second=1){
 foreach($getfiles as $file){
 	$fileType = strtolower( substr($file, strrpos($file, '.') + 1 ) );
 	if(in_array($fileType, $allowed_content_types)){
-		//包含你的全部css文档
+		//包含你的全部css文件
 		readfile(basename($file));
 	}else{
 		echo 'not allowed file type:'.$file;
 	}
 }
 
-//输出buffer中的内容，即压缩后的css文件
+//輸出buffer中的內容，即壓縮後的css檔案
 if(extension_loaded('zlib')){
 	ob_end_flush();
 }

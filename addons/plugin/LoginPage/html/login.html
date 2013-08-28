@@ -1,4 +1,4 @@
-<php>$site['site_name'] = '网站登录';
+<php>$site['site_name'] = '網站登入';
 if($logo['logo_site_title']){
 	$sitetitle = $logo['logo_site_title'];
 }else{
@@ -50,9 +50,9 @@ function slideIt() {
 };
 
 $('#ts_content').mouseover(function() {
-	clearInterval(slide);//当鼠标移上去的时候停止下滑
+	clearInterval(slide);//當滑鼠移上去的時候停止下滑
 }).mouseout(function() {
-	slide = setInterval(slideIt,interval);//当鼠标移开的时候继续下滑
+	slide = setInterval(slideIt,interval);//當滑鼠移開的時候繼續下滑
 });
 
 slideIt();
@@ -89,25 +89,25 @@ slideIt();
       </div>
       <form id="ajax_login_form" method="POST" action="{:U('public/Passport/doLogin')}" autocomplete="off">
       <div class="login-box">
-        <h4>欢迎来到<php>if($logo['logo_site_title']){</php>{$logo['logo_site_title']}<php>}else{</php>{$site_name}<php>}</php></h4>
+        <h4>歡迎來到<php>if($logo['logo_site_title']){</php>{$logo['logo_site_title']}<php>}else{</php>{$site_name}<php>}</php></h4>
 
             <div id="js_login_input" style="display:none" class="error-box"></div>
         <ul>
            <li class="input">
-              <label id="email">帐号：</label>
+              <label id="email">帳號：</label>
               <input type="text" id="account_input" onfocus="focuslogin(1)" onblur="blurlogin(1)" name="login_email" class="text"/>
            </li>
            <li class="input">
-              <label id="password">密码：</label>
+              <label id="password">密碼：</label>
               <input type="password" id="pwd_input" onfocus="focuslogin(2)" onblur="blurlogin(2)" name="login_password" class="text" />
            </li>
-           <li><a href="{:U('public/Passport/findPassword')}" class="right">忘记密码？</a><span class="left f3">
+           <li><a href="{:U('public/Passport/findPassword')}" class="right">忘記密碼？</a><span class="left f3">
            <input type="hidden" id="login_remember" name="login_remember" value="0" />
-           <input type="checkbox" class="checkbox" autocomplete="off" onclick="rememberlogin()"/>下次自动登录</span></li>
+           <input type="checkbox" class="checkbox" autocomplete="off" onclick="rememberlogin()"/>下次自動登入</span></li>
            <li>
-            <input type="submit" value="登录" class="left btn-login" style="border:0px;" />
+            <input type="submit" value="登入" class="left btn-login" style="border:0px;" />
             <php>if($register_type == 'open'){</php>
-            <a href="javascript:window.open('{:U('public/Register')}','_self')" class="right btn-reg">立即注册</a>
+            <a href="javascript:window.open('{:U('public/Register')}','_self')" class="right btn-reg">立即註冊</a>
             <php>}</php>
            </li>
         </ul>
@@ -133,7 +133,7 @@ slideIt();
     <div class="login-main clearfix">
       <div class="login-r">
           <div class="news mb20">
-              <h3>系统公告</h3>
+              <h3>系統公告</h3>
               <ul>
               <volist name="announcement" id="pv">
                  <li><i class="icon-notice left"></i><a target="_blank" href="{:U('public/Index/announcement','id='.$pv['id'])}">{$pv.title}</a></li>
@@ -156,7 +156,7 @@ slideIt();
           </div>
       </div>
       <div class="login-l">
-        <h3><php>if($feed['feed_title']){</php>{$feed.feed_title}<php>}else{</php>正在发生的<php>}</php></h3>
+        <h3><php>if($feed['feed_title']){</php>{$feed.feed_title}<php>}else{</php>正在發生的<php>}</php></h3>
         <div class="feed_lists" id="ts_content">
         <volist name="loginlastfeed" id="vl">
   <dl class="feed_list"  id ='feed{$vl.feed_id}' model-node='feed_list'>
@@ -197,7 +197,7 @@ slideIt();
          </volist>
       </div>
     <p>
-      <span class="right">Powered By <a href="http://www.thinksns.com" title="开源微博系统,开源微社区" target="_blank">ThinkSNS</a></span>
+      <span class="right">Powered By <a href="http://www.thinksns.com" title="開源微博系統,開源微社羣" target="_blank">ThinkSNS</a></span>
       {$GLOBALS.ts.site.site_footer}
     </p>
   </div>

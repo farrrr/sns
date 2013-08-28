@@ -1,6 +1,6 @@
 <?php
 /**
- * 签到WIDGET类
+ * 簽到WIDGET類
  * @author Stream
  *
  */
@@ -18,7 +18,7 @@ class CheckInWidget extends Widget{
          $map['uid'] = $uid;
          $map['ctime'] = array ( 'gt' , strtotime( date('Ymd') ) );
          $res = D('check_info')->where($map)->find();
-         //是否签到
+         //是否簽到
          $data['ischeck'] = $res ? true : false;
          
          $checkinfo = D('check_info')->where('uid='.$uid)->order('ctime desc')->limit(1)->find();
@@ -41,25 +41,25 @@ class CheckInWidget extends Widget{
       $week = date('w');
       switch ( $week ){
          case '0':
-            $week = '周日';
+            $week = '週日';
             break;
          case '1':
-            $week = '周一';
+            $week = '週一';
             break;
          case '2':
-            $week = '周二';
+            $week = '週二';
             break;
          case '3':
-            $week = '周三';
+            $week = '週三';
             break;
          case '4':
-            $week = '周四';
+            $week = '週四';
             break;
          case '5':
-            $week = '周五';
+            $week = '週五';
             break;
          case '6':
-            $week = '周六';
+            $week = '週六';
             break;
       }
       $data['week'] = $week;
@@ -68,24 +68,24 @@ class CheckInWidget extends Widget{
    }
 
    /*
-    *签到
+    *簽到
     */
    public function check_in(){
          $uid = $GLOBALS['ts']['mid'];
          $map['ctime'] = array ( 'gt' , strtotime( date('Ymd') ) );
          $map['uid'] = $uid;
          $ischeck = D('check_info')->where($map)->find();
-         //清理缓存
+         //清理快取
          model( 'Cache' )->set('check_info_'.$uid.'_'.date('Ymd') , null);
-         //是否重复签到
+         //是否重複簽到
          if ( !$ischeck ){
             $map['ctime'] = array( 'lt' , strtotime( date('Ymd') ) );
             $last = D('check_info')->where($map)->order('ctime desc')->find();
             $data['uid'] = $uid;
             $data['ctime'] = $_SERVER['REQUEST_TIME'];
-            //是否有签到记录
+            //是否有簽到記錄
             if ( $last ){
-               //是否是连续签到
+               //是否是連續簽到
                if ( $last['ctime'] > ( strtotime( date('Ymd') ) - 86400 ) ){
                   $data['con_num'] = $last['con_num'] + 1;
                } else {
@@ -97,7 +97,7 @@ class CheckInWidget extends Widget{
                $data['total_num'] = 1;
             }
             if ( D('check_info')->add($data) ){
-               //更新连续签到和累计签到的数据
+               //更新連續簽到和累計簽到的資料
                $connum = D('user_data')->where('uid='.$uid." and `key`='check_connum'")->find();
                if ( $connum ){
                   $connum = D('check_info')->where('uid='.$uid)->getField('max(con_num)');

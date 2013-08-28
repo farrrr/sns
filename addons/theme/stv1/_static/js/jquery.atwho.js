@@ -156,18 +156,18 @@ var keyname;
         format = function(value) {
           return value.replace(/</g, '&lt').replace(/>/g, '&gt').replace(/`/g, '&#96').replace(/"/g, '&quot').replace(/\r\n|\r|\n/g, "<br />");
         };
-        /* 克隆完inputor后将原来的文本内容根据
-          @的位置进行分块,以获取@块在inputor(输入框)里的position
+        /* 克隆完inputor後將原來的文字內容根據
+          @的位置進行分塊,以獲取@塊在inputor(輸入框)裡的position
         */
 
         start_range = $inputor.val().slice(0, this.pos - 1);
         html = "<span>" + format(start_range) + "</span>";
         html += "<span id='flag'>@</span>";
         /*
-                      将inputor的 offset(相对于document)
-                      和@在inputor里的position相加
-                      就得到了@相对于document的offset.
-                      当然,还要加上行高和滚动条的偏移量.
+                      將inputor的 offset(相對於document)
+                      和@在inputor裡的position相加
+                      就得到了@相對於document的offset.
+                      當然,還要加上行高和滾動條的偏移量.
         */
 
         offset = $inputor.offset();
@@ -196,8 +196,8 @@ var keyname;
         $inputor = this.$inputor;
         text = $inputor.val();
         caret_pos = $inputor.caretPos();
-        /* 向在插入符前的的文本进行正则匹配
-         * 考虑会有多个 @ 的存在, 匹配离插入符最近的一个
+        /* 向在插入符前的的文字進行正則匹配
+         * 考慮會有多個 @ 的存在, 匹配離插入符最近的一個
         */
 
         subtext = text.slice(0, caret_pos);

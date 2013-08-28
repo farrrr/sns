@@ -1,13 +1,13 @@
 /**
- * 核心Js函数库文件，目前已经在core中自动加载
+ * 核心Js函數庫檔案，目前已經在core中自動載入
  * @author jason <yangjs17@yeah.net>
  * @version TS3.0
  */
 
-// 字符串长度 - 中文和全角符号为1；英文、数字和半角为0.5
+// 字元串長度 - 中文和全形符號為1；英文、數字和半形為0.5
 var getLength = function(str, shortUrl) {
 	if (true == shortUrl) {
-		// 一个URL当作十个字长度计算
+		// 一個URL當作十個字長度計算
 		return Math.ceil(str.replace(/((news|telnet|nttp|file|http|ftp|https):\/\/){1}(([-A-Za-z0-9]+(\.[-A-Za-z0-9]+)*(\.[-A-Za-z]{2,5}))|([0-9]{1,3}(\.[0-9]{1,3}){3}))(:[0-9]*)?(\/[-A-Za-z0-9_\$\.\+\!\*\(\),;:@&=\?\/~\#\%]*)*/ig, 'xxxxxxxxxxxxxxxxxxxx')
 							.replace(/^\s+|\s+$/ig,'').replace(/[^\x00-\xff]/ig,'xx').length/2);
 	} else {
@@ -15,31 +15,31 @@ var getLength = function(str, shortUrl) {
 	}
 };
 
-// 截取字符串
+// 擷取字元串
 var subStr = function(str, len) {
     if(!str) {
     	return '';
     }
     len = len > 0 ? len * 2 : 280;
-    var count = 0;			// 计数：中文2字节，英文1字节
-	var temp = '';  		// 临时字符串
+    var count = 0;			// 計數：中文2位元組，英文1位元組
+	var temp = '';  		// 臨時字元串
     for(var i = 0; i < str.length; i ++) {
     	if(str.charCodeAt(i) > 255) {
         	count += 2;
         } else {
         	count ++;
         }
-        // 如果增加计数后长度大于限定长度，就直接返回临时字符串
+        // 如果增加計數後長度大於限定長度，就直接返回臨時字元串
         if(count > len) {
         	return temp;
         }
-        // 将当前内容加到临时字符串
+        // 將當前內容加到臨時字元串
 		temp += str.charAt(i);
     }
 
     return str;
 };
-// 异步请求页面
+// 非同步請求頁面
 var async_page = function(url, target, callback) {
 	if(!url) {
 		return false;
@@ -71,7 +71,7 @@ var async_page = function(url, target, callback) {
 
 	return true;
 };
-// 异步加载翻页
+// 非同步載入翻頁
 var async_turn_page = function(page_number, target) {
 	$(page_number).click(function(o) {
 		var $a = $(o.target);
@@ -83,14 +83,14 @@ var async_turn_page = function(page_number, target) {
 	});
 };
 
-//表单异步处理 
-/* 生效条件：包含 jquery.form.js */
-//TODO 优化jquery.form.js的加载机制
+//表單非同步處理 
+/* 生效條件：包含 jquery.form.js */
+//TODO 優化jquery.form.js的載入機制
 var async_form = function(form)
 {
 	var $form = form ? $(form) : $("form[ajax='ajax']");
 
-	//监听 form 表单提交
+	//監聽 form 表單提交
 	$form.bind('submit', function() {
 		var callback = $(this).attr('callback');
 		var options = {
@@ -116,7 +116,7 @@ var async_form = function(form)
 });
 };
 
-// 复制剪贴板
+// 複製剪貼簿
 var copy_clip = function (copy){
 	if (window.clipboardData) {
 		 window.clipboardData.setData("Text", copy);
@@ -151,18 +151,18 @@ var copy_clip = function (copy){
 	 ui.success( L('PUBLIC_EXPLORER_CTRL') );
 	 return true;	 
 };
-	//是否含有某个样式
+	//是否含有某個樣式
 	
 function hasClass(ele,cls) {
 	return $(ele).hasClass(cls);
 	//return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
 }
-	//添加某个样式
+	//添加某個樣式
 function addClass(ele,cls) {
 	$(ele).addClass(cls);
 	//if (!this.hasClass(ele,cls)) ele.className += " "+cls;
 }
-	//移除某个样式
+	//移除某個樣式
 function removeClass(ele,cls) {
 	$(ele).removeClass(cls);
 	//if (hasClass(ele,cls)) {
@@ -182,7 +182,7 @@ var toElement = function(){
 }();
 
 /**
- *	与php的implode方法用法一样
+ *	與php的implode方法用法一樣
  *	@from php.js  
  */
 
@@ -203,7 +203,7 @@ var implode  = function (glue, pieces) {
     }    return pieces;
 };
 /**
- * 与php的explode用法一致
+ * 與php的explode用法一致
  * @from php.js
  */
 var explode = function(delimiter, string, limit){
@@ -233,7 +233,7 @@ var explode = function(delimiter, string, limit){
     return partA;
 };
 /**
- *	与php的strlen方法用法一样
+ *	與php的strlen方法用法一樣
  *	@from php.js  
  */
 var strlen = function (string) {
@@ -274,7 +274,7 @@ var strlen = function (string) {
 };
 
 /**
- * 与PHP的substr一样的用法、
+ * 與PHP的substr一樣的用法、
  * @from php.js 
  */
 var substr = function(str, start, len) {
@@ -350,7 +350,7 @@ var trim = function(str,charlist){
 	  return str;
 };
 /**
- * 与php的rtrim函数用法一致
+ * 與php的rtrim函數用法一致
  * @from php.js
  */
 var rtrim = function(str, charlist) {
@@ -358,7 +358,7 @@ return str;
 };
 
 /**
- * 与PHP的ltrim用法一致
+ * 與PHP的ltrim用法一致
  * @from php.js
  */
 var ltrim = function(str, charlist) {
@@ -366,7 +366,7 @@ var ltrim = function(str, charlist) {
 };
 
 /**
- * 闪动对象背景
+ * 閃動物件背景
  * @param obj
  * @returns
  * @author yangjs
@@ -389,27 +389,27 @@ var flashTextarea = function(obj){
 	return false;
 };
 /**
- * 更新页面上监听的用户统计数目
+ * 更新頁面上監聽的使用者統計數目
  * @example
- * updateUserData('favorite_count', 1); 表示当前用户的收藏数+1
- * 页面结构例子:<strong event-node ="favorite_count" event-args ="uid={$uid}">{$_userData.favorite_count|default=0}</strong>
- * @param string key 监听的Key值
- * @param integer flag 改变的幅度值
- * @param integer uid 改变的用户ID
+ * updateUserData('favorite_count', 1); 表示當前使用者的收藏數+1
+ * 頁面結構例子:<strong event-node ="favorite_count" event-args ="uid={$uid}">{$_userData.favorite_count|default=0}</strong>
+ * @param string key 監聽的Key值
+ * @param integer flag 改變的幅度值
+ * @param integer uid 改變的使用者ID
  * @return boolean false
  */
 var updateUserData = function(key, flag, uid)
 {
-	// 获取所有Key监听的对象
+	// 獲取所有Key監聽的物件
 	var countObj = M.nodes.events[key];
-	// 判断数据类型
+	// 判斷資料類型
 	if("undefined" === typeof countObj) {
 		return false;
 	}
 	if("undefined" === typeof uid) {
 		uid = UID;
 	}
-	// 修改数值
+	// 修改數值
 	for(var i in countObj) {
 		var _wC = countObj[i];
 		var args = M.getEventArgs(_wC);
@@ -422,18 +422,18 @@ var updateUserData = function(key, flag, uid)
 };
 
 /**
- * 滚动到顶端
+ * 滾動到頂端
  */
 var scrolltotop={
-	//startline: 鼠标向下滚动了100px后出现#topcontrol
-	//scrollto: 它的值可以是整数，也可以是一个id标记。若为整数（假设为n），则滑动到距离top的n像素处；若为id标记，则滑动到该id标记所在的同等高处
-	//scrollduration:滑动的速度
-	//fadeduration:#topcontrol这个div的淡入淡出速度，第一个参数为淡入速度，第二个参数为淡出速度
-	//controlHTML:控制向上滑动的html源码，默认为<img src="up.png" style="width:48px; height:48px" />，可以自行更改。该处的html代码会被包含在一个id标记为#topcontrol的div中。
-	//controlattrs:控制#topcontrol这个div距离右下角的像素距离
-	//anchorkeyword:滑动到的id标签
-	/*state: isvisible:是否#topcontrol这个div为可见
-			shouldvisible:是否#topcontrol这个div该出现
+	//startline: 滑鼠向下滾動了100px後出現#topcontrol
+	//scrollto: 它的值可以是整數，也可以是一個id標記。若為整數（假設為n），則滑動到距離top的n畫素處；若為id標記，則滑動到該id標記所在的同等高處
+	//scrollduration:滑動的速度
+	//fadeduration:#topcontrol這個div的淡入淡出速度，第一個參數為淡入速度，第二個參數為淡出速度
+	//controlHTML:控制向上滑動的html源碼，默認為<img src="up.png" style="width:48px; height:48px" />，可以自行更改。該處的html程式碼會被包含在一個id標記為#topcontrol的div中。
+	//controlattrs:控制#topcontrol這個div距離右下角的畫素距離
+	//anchorkeyword:滑動到的id標籤
+	/*state: isvisible:是否#topcontrol這個div為可見
+			shouldvisible:是否#topcontrol這個div該出現
 	*/
 
 	setting: {startline:100, scrollto: 0, scrollduration:500, fadeduration:[500, 100]},
@@ -446,40 +446,40 @@ var scrolltotop={
 	scrollup:function(){
 		if (!this.cssfixedsupport) {
 			this.$control.css({opacity:0})
-		};//点击后隐藏#topcontrol这个div
+		};//點選後隱藏#topcontrol這個div
 		var dest=isNaN(this.setting.scrollto)? this.setting.scrollto : parseInt(this.setting.scrollto);
-		if (typeof dest=="string" && jQuery('#'+dest).length==1) { //检查若scrollto的值是一个id标记的话
+		if (typeof dest=="string" && jQuery('#'+dest).length==1) { //檢查若scrollto的值是一個id標記的話
 			dest=jQuery('#'+dest).offset().top;
-		} else { //检查若scrollto的值是一个整数
+		} else { //檢查若scrollto的值是一個整數
 			dest=this.setting.scrollto;
 		};
 		this.$body.animate({scrollTop: dest}, this.setting.scrollduration);
 	},
 
 	keepfixed:function(){
-		//获得浏览器的窗口对象
+		//獲得瀏覽器的視窗物件
 		var $window=jQuery(window);
-		//获得#topcontrol这个div的x轴坐标
+		//獲得#topcontrol這個div的x軸座標
 		var controlx=$window.scrollLeft() + $window.width() - this.$control.width() - this.controlattrs.offsetx;
-		//获得#topcontrol这个div的y轴坐标
+		//獲得#topcontrol這個div的y軸座標
 		var controly=$window.scrollTop() + $window.height() - this.$control.height() - this.controlattrs.offsety;
-		//随着滑动块的滑动#topcontrol这个div跟随着滑动
+		//隨著滑動塊的滑動#topcontrol這個div跟隨著滑動
 		this.$control.css({left:controlx+'px', top:controly+'px'});
 	},
 
 	togglecontrol:function(){
-		//当前窗口的滑动块的高度
+		//當前視窗的滑動塊的高度
 		var scrolltop=jQuery(window).scrollTop();
 		if (!this.cssfixedsupport) {
 			this.keepfixed();
 		};
-		//若设置了startline这个参数，则shouldvisible为true
+		//若設定了startline這個參數，則shouldvisible為true
 		this.state.shouldvisible=(scrolltop>=this.setting.startline)? true : false;
-		//若shouldvisible为true，且!isvisible为true
+		//若shouldvisible為true，且!isvisible為true
 		if (this.state.shouldvisible && !this.state.isvisible){
 			this.$control.stop().animate({opacity:1}, this.setting.fadeduration[0]);
 			this.state.isvisible=true;
-		} //若shouldvisible为false，且isvisible为false
+		} //若shouldvisible為false，且isvisible為false
 		else if (this.state.shouldvisible==false && this.state.isvisible){
 			this.$control.stop().animate({opacity:0}, this.setting.fadeduration[1]);
 			this.state.isvisible=false;
@@ -493,7 +493,7 @@ var scrolltotop={
 			mainobj.cssfixedsupport=!iebrws || iebrws && document.compatMode=="CSS1Compat" && window.XMLHttpRequest; //not IE or IE7+ browsers in standards mode
 			mainobj.$body=(window.opera)? (document.compatMode=="CSS1Compat"? $('html') : $('body')) : $('html,body');
 
-			//包含#topcontrol这个div
+			//包含#topcontrol這個div
 			mainobj.$control=$('<div id="topcontrol">'+mainobj.controlHTML+'</div>')
 				.css({position:mainobj.cssfixedsupport? 'fixed' : 'absolute', bottom:mainobj.controlattrs.offsety, right:mainobj.controlattrs.offsetx, opacity:0, cursor:'pointer'})
 				.attr({title:L('PUBLIC_MOVE_TOP')})
@@ -506,7 +506,7 @@ var scrolltotop={
 
 			mainobj.togglecontrol();
 
-			//点击控制
+			//點選控制
 			$('a[href="' + mainobj.anchorkeyword +'"]').click(function(){
 				mainobj.scrollup();
 				return false;
@@ -519,7 +519,7 @@ var scrolltotop={
 	}
 };
 scrolltotop.init();
-// JavaScript双语方法
+// JavaScript雙語方法
 function L(key, obj) {
 	if('undefined' == typeof(LANG[key])) {
 		return key;
@@ -535,9 +535,9 @@ function L(key, obj) {
 	}
 };
 /**
- * 数组去重
- * @param array arr 去重数组
- * @return array 已去重的数组
+ * 陣列去重
+ * @param array arr 去重陣列
+ * @return array 已去重的陣列
  */
 var unique = function(arr)
 {
@@ -886,9 +886,9 @@ $(function(){
     });
 });
 /**
- * 去掉字符串中的HTML标签
- * @param string str 需要处理的字符串
- * @return string 已去掉HTML的字符串
+ * 去掉字元串中的HTML標籤
+ * @param string str 需要處理的字元串
+ * @return string 已去掉HTML的字元串
  */
 var removeHTMLTag = function(str)
 {
@@ -896,9 +896,9 @@ var removeHTMLTag = function(str)
 	return str;
 };
 var quickLogin = function (){
-	ui.box.load(U('public/Passport/quickLogin'),'快速登录');
+	ui.box.load(U('public/Passport/quickLogin'),'快速登入');
 };
-/* 图片切换 */
+/* 圖片切換 */
 (function(){
 var fSwitchPic = function( oPicSection, nInterval ) {
 	try {
@@ -942,7 +942,7 @@ fSwitchPic.prototype = {
 		}
 		this.dPicNav.innerHTML = sPicNav;
 
-		// 追加属性和Event
+		// 追加屬性和Event
 		var dPicNavMenu = this.dPicNav.getElementsByTagName( "a" ),
 		    nL = dPicNavMenu.length;
 
@@ -1012,7 +1012,7 @@ var switchVideo = function(id,type,host,flashvar){
 	}
 }
 
-//显示视频
+//顯示視訊
 var showFlash = function ( host, flashvar) {
 	if(host=='youtube.com'){
 		var flashHtml = '<iframe width="560" height="315"  src="http://www.youtube.com/embed/'+flashvar+'" frameborder="0" allowfullscreen></iframe>';
@@ -1026,7 +1026,7 @@ var showFlash = function ( host, flashvar) {
 	return flashHtml;
 }
 
-//过滤html标签
+//過濾html標籤
 function strip_tags (input, allowed) {    
 allowed = (((allowed || "") + "").toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
     var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,

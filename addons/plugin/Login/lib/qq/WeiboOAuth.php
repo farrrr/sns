@@ -205,12 +205,12 @@ abstract class WeiboOAuth
     }
 
     /**
-     * Http请求接口
+     * Http請求介面
      *
      * @param string $url
-     * @param string $method 支持 GET / POST / DELETE
+     * @param string $method 支援 GET / POST / DELETE
      * @param string $postfields
-     * @param boolean $multi false:普通post true: 文件上传
+     * @param boolean $multi false:普通post true: 檔案上傳
      * @return string
      */
     function http($url, $method, $postfields = NULL , $multi = false)

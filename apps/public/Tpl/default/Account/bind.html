@@ -4,12 +4,12 @@
         <div id="main-wrap">
             <div id="col" class="st-grid content-bg">
             	<div id="col4" class="main-left">
-                    <!--tab菜单--><include file="_tabs" />
+                    <!--tab選單--><include file="_tabs" />
                 </div>
                 <div id="col7" class="main-right">
                     <div class="extend minh person-set">
                     	<div class="set-hd"><h3>{$tabName}</h3></div>
-                        <!--信息设置项---帐号安全-->
+                        <!--資訊設定項---帳號安全-->
                             <div class="set-item-info">
                                 <div class="bind-content">
                                     <ul>
@@ -19,17 +19,17 @@
                                         <div class="w2">{$vo.name}</div>
                                         <div class="w3">
                                         <neq name="vo.bind_user" value="">
-                                            <p>新浪网帐号：{$vo.bind_user}</p>
-                                            <p>绑定时间：{$vo.bind_time|friendlyDate}</p>
+                                            <p>新浪網帳號：{$vo.bind_user}</p>
+                                            <p>繫結時間：{$vo.bind_time|friendlyDate}</p>
                                         </neq>
                                         </div>
                                         <div class="w4">
                                         <eq name="vo.isBind" value="true">
                                             <eq name="vo.canSync" value="true">
                                                 <eq name="vo.isSync" value="true">
-                                                    <label><input type="checkbox" class="checkbox" onclick="setSync('unsync','{$vo.type}');" checked="checked">同步更新动态</label>
+                                                    <label><input type="checkbox" class="checkbox" onclick="setSync('unsync','{$vo.type}');" checked="checked">同步更新動態</label>
                                                 <else />
-                                                    <label><input type="checkbox" class="checkbox" onclick="setSync('sync','{$vo.type}');">同步更新动态</label>
+                                                    <label><input type="checkbox" class="checkbox" onclick="setSync('sync','{$vo.type}');">同步更新動態</label>
                                                 </eq>
                                             <else />
                                                 &nbsp;
@@ -40,9 +40,9 @@
                                         </div>
                                         <div class="w5">
                                         <eq name="vo.isBind" value="true">
-                                            <a href="javascript:void(0);" onclick="unbind('{$vo.name}','{$vo.type}','{$vo.addon}','{$vo.unbind_hook}');">解除绑定</a>
+                                            <a href="javascript:void(0);" onclick="unbind('{$vo.name}','{$vo.type}','{$vo.addon}','{$vo.unbind_hook}');">解除繫結</a>
                                         <else />
-                                            <a href="{:Addons::createAddonShow($vo['addon'],$vo['bind_hook'],array('type'=>$vo['type'],'do'=>'bind'))}" class="btn-grey-white">点击绑定</a>
+                                            <a href="{:Addons::createAddonShow($vo['addon'],$vo['bind_hook'],array('type'=>$vo['type'],'do'=>'bind'))}" class="btn-grey-white">點選繫結</a>
                                         </eq>
                                         </div>
                                     </li>
@@ -58,9 +58,9 @@
     </div>
 <script src="__THEME__/js/module.form.js"></script>
 <script>
-//取消新浪帐号绑定
+//取消新浪帳號繫結
 function unbind(name,type,addon,hooks){
-    if(confirm('确认要取消绑定'+name+'？')){
+    if(confirm('確認要取消繫結'+name+'？')){
         $.post( U('public/Widget/addonsRequest'),{addon:addon,hook:hooks,type:type},function(txt){
             if(txt){
                 location.reload();
@@ -70,7 +70,7 @@ function unbind(name,type,addon,hooks){
 }
 function setSync(sync,type){
     if(sync=='unsync'){
-        if(!confirm('确认要取消同步么？')){
+        if(!confirm('確認要取消同步麼？')){
             return false;
         }
         $.post( U('public/Widget/addonsRequest'),{addon:'Login',hook:'login_unbind_publish_weibo',type:type},function(txt){

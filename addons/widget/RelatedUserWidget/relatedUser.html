@@ -1,5 +1,5 @@
 <div class="right-box mb20 clearfix border-b" model-node="related_list">
-	<h3><a href="javascript:;" event-node="change_related" event-args="uid={$uid}&limit={$limit}" id="changerelated" class="right">换一换</a>{$title}</h3>
+	<h3><a href="javascript:;" event-node="change_related" event-args="uid={$uid}&limit={$limit}" id="changerelated" class="right">換一換</a>{$title}</h3>
     <volist name="user" id="vo">
     	<dl model-node="related_dl">
     		<dt><a event-node="face_card" uid="{$vo[userInfo]['uid']}" href="{$vo.userInfo.space_url}" class="face"><img src="{$vo.userInfo.avatar_small}" width="50" height="50"/></a></dt>
@@ -14,7 +14,7 @@
 </div>
 
 <script type="text/javascript">
-// 事件监听
+// 事件監聽
 M.addModelFns({
     related_list: {
         load: function() {
@@ -38,15 +38,15 @@ $(function (){
 		$('#changerelated').click();
 	},100)
 });
-// 事件绑定
+// 事件繫結
 M.addEventFns({
-    // 换一换操作
+    // 換一換操作
     change_related: {
         click: function() {
             var args = M.getEventArgs(this);
             var _model = M.getModels('related_list');
             $.post(U('widget/RelatedUser/changeRelate'), {uid:args.uid, limit:args.limit}, function(data) {
-                var html = '<h3><a href="javascript:;" event-node="change_related" event-args="uid={$uid}&limit={$limit}" class="right">换一换</a>{$title}</h3>';
+                var html = '<h3><a href="javascript:;" event-node="change_related" event-args="uid={$uid}&limit={$limit}" class="right">換一換</a>{$title}</h3>';
                 html += data;
                 $(_model).html(html);
                 M($(_model)[0]);
@@ -54,7 +54,7 @@ M.addEventFns({
             return false ;
         }
     },
-    // 显示更多信息操作
+    // 顯示更多資訊操作
     show_extend_msg: {
         click: function() {
             var extendMsgObj = $(this.parentModel).find('dd').last();

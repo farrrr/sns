@@ -1,5 +1,5 @@
 M.addModelFns({
-	announcement:{	//公告滚动JS
+	announcement:{	//公告滾動JS
 		mouseenter:function(){
 			this.start = false;
 			clearInterval(this.t);
@@ -65,7 +65,7 @@ M.addModelFns({
 			setTimeout(hide,200);
 		}
 	},
-	// 我关注的频道
+	// 我關注的頻道
 	mychannel: {
 		click: function() {
 			var x = $(this).offset();
@@ -106,7 +106,7 @@ M.addModelFns({
 }).addEventFns({
 	close_announcement:{
 		click:function(){
-			//关闭公告
+			//關閉公告
 			$(this.parentModel).hide('fast');
 		}
 	}

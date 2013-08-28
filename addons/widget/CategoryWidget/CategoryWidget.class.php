@@ -1,6 +1,6 @@
 <?php
 /**
- * 分类 widget
+ * 分類 widget
  * @example W('Category',array('app_name'=>'support','model_name'=>'SupportCategory','method'=>'getEnCate','tpl'=>'select','id'=>4,'inputname'=>'category_en'))
  * @author Jason 
  * @version TS3.0
@@ -8,15 +8,15 @@
 class CategoryWidget extends Widget {
 	
 	/**
-	  * @param app_name 此分类所在的应用名称
-      * @param model_name 分类model名称
-      * @param method 分类model中根据某个id获取对应分类信息的函数
-      * @param tpl 显示模版：分select和menu两种，select为选择分类形式，menu为菜单形式
-      * @param id 当前分类ID
-      * @param inputname 分类存储的input字段名称，只针对tpl=select 有效
-      * @param title 自定义点击项的名称，只针对tpl=select有效
-      * @param cate_url 分类的URL前缀，针对tpl=menu或者tpl=two有效
-      * @param pid 当前分类的父级ID，针对tpl=menu有效
+	  * @param app_name 此分類所在的應用名稱
+      * @param model_name 分類model名稱
+      * @param method 分類model中根據某個id獲取對應分類資訊的函數
+      * @param tpl 顯示模版：分select和menu兩種，select為選擇分類形式，menu為選單形式
+      * @param id 當前分類ID
+      * @param inputname 分類存儲的input欄位名稱，只針對tpl=select 有效
+      * @param title 自定義點選項的名稱，只針對tpl=select有效
+      * @param cate_url 分類的URL字首，針對tpl=menu或者tpl=two有效
+      * @param pid 當前分類的父級ID，針對tpl=menu有效
 	 */
 	public function render($data) {
 		$var['tpl'] = 'select';
@@ -47,7 +47,7 @@ class CategoryWidget extends Widget {
 	}
 
 	/**
-	 * 选择分类
+	 * 選擇分類
 	 */
 	private function select($data){
 		$model = D(ucfirst($data['model_name']),$data['app_name']);
@@ -59,7 +59,7 @@ class CategoryWidget extends Widget {
 	}
 
 	/**
-	 * 收藏分类
+	 * 收藏分類
 	 */
 	private function menu($data){
 		!isset($data['title']) && $data['title'] = L('PUBLIC_ALL_CATEGORIES');
@@ -110,7 +110,7 @@ class CategoryWidget extends Widget {
 	}
 
 	/**
-	 * 两级分类
+	 * 兩級分類
 	 */
 	private function two($data){
 		$model = D(ucfirst($data['model_name']),$data['app_name']);
@@ -120,7 +120,7 @@ class CategoryWidget extends Widget {
 	}
 
 	/**
-	 * 弹出窗
+	 * 彈出窗
 	 */
 	public function selectBox(){
 		$data = $_GET;
@@ -137,23 +137,23 @@ class CategoryWidget extends Widget {
 	}
 
 	/**
-	 * 获取某级下面的子集
+	 * 獲取某級下面的子集
 	 */
 	public function getChild(){
 		$data = $_GET;
 		$model = D(ucfirst($data['model_name']),$data['app_name']);
 		$select = $model->$data['method']($data['id'],true);
 		if(!empty($select['child'])){
-			echo json_encode(array('data'=>$select['child'],'status'=>1));//表示没有数据
+			echo json_encode(array('data'=>$select['child'],'status'=>1));//表示沒有資料
 		}else{
-			echo json_encode(array('data'=>'','status'=>0));//表示没有数据
+			echo json_encode(array('data'=>'','status'=>0));//表示沒有資料
 		}
 		exit();
 	}
 
 	/**
 	 * getCatePathById方法不存在？？？
-	 * @return 分类地址
+	 * @return 分類地址
 	 */
 	public function getCatePath(){
 		$data =$_GET;
@@ -164,7 +164,7 @@ class CategoryWidget extends Widget {
 	}
 
 	/**
-	 * 两级分类选择模板
+	 * 兩級分類選擇模板
 	 */ 
 	public function twochecked($data) {
 		$model = D(ucfirst($data['model_name']),$data['app_name']);
@@ -174,7 +174,7 @@ class CategoryWidget extends Widget {
 	}
 
 	/**
-	 * 两级分类带统计数目
+	 * 兩級分類帶統計數目
 	 */ 
 	public function twonums($data) {
 		$cid = empty($data['cid']) ? 0 : intval($data['cid']);
@@ -186,7 +186,7 @@ class CategoryWidget extends Widget {
 	}
 
 	/**
-	 * 浮动两级分类模板
+	 * 浮動兩級分類別範本
 	 */ 
 	public function twofloat($data) {
 		$model = D(ucfirst($data['model_name']),$data['app_name']);

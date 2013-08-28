@@ -5,9 +5,9 @@ function addDigg(feed_id){
        if(res==1){
 	       var num = $('#digg'+feed_id).attr('rel');
     	   num++;
-    	   $('#digg'+feed_id).html('已赞('+num+')');
+    	   $('#digg'+feed_id).html('已贊('+num+')');
 	   }else {
-	       ui.error('操作失败，如没有登录请先登录再操作');
+	       ui.error('操作失敗，如沒有登入請先登入再操作');
        }
    });
 }
@@ -15,19 +15,19 @@ function addDigg(feed_id){
 <div id="page-wrap">
   <div id="main-wrap">
     <div id="st-index-grid" class="st-grid">
-      <!--左边 -->
+      <!--左邊 -->
       <include file="__THEME__/public_left" />
       <div id="col8" class="st-section content-bg" style="width:auto">
         <div id="col4" class="main-left">
-          <!--tab菜单-->
+          <!--tab選單-->
           <div id="aside" class="pad">
             <dl class="nav-left mt10 border-no">
               <dd><a href="{:U('public/Mention')}">@提到我的</a></dd>
-              <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的评论</a></dd>
-              <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">发出的评论</a></dd>
+              <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'receive'))}">收到的評論</a></dd>
+              <dd><a href="{:U('public/Comment/index',array('app_name'=>t($_GET['app_name']),'type'=>'send'))}">發出的評論</a></dd>
               <dd><a href="{:U('public/Message')}">我的私信</a></dd>
-              <dd><a href="{:U('public/Message/notify')}">系统消息</a></dd>
-              <dd class="current"><a href="">赞</a></dd>
+              <dd><a href="{:U('public/Message/notify')}">系統訊息</a></dd>
+              <dd class="current"><a href="">贊</a></dd>
             </dl>
           </div>
         </div>
@@ -35,9 +35,9 @@ function addDigg(feed_id){
           <div class="extend minh person-set">
             <!--tab menu-->
             <div class="feed-nav">
-              <div class="set-hd"><h3>收到的赞</h3></div>
+              <div class="set-hd"><h3>收到的贊</h3></div>
               <div class="mod-feed-tab">
-                 <p>共2条</p>
+                 <p>共2條</p>
               </div>
             </div>
             <!--feed list-->
@@ -49,11 +49,11 @@ function addDigg(feed_id){
               </dt>
               <dd class="content">
                 <p class="hd">
-                   <a href="">thinksns</a>赞了你的微博
+                   <a href="">thinksns</a>讚了你的微博
                 </p>
-                <p class="hd"><span class="f9">对我的微博：</span>"哈哈哈"</p>
+                <p class="hd"><span class="f9">對我的微博：</span>"哈哈哈"</p>
                 <p class="info">
-                  <span><a class="date" date="{$vo.ctime}" href="{$vo.source_url}">30秒前</a><span>来自网站</span></span>
+                  <span><a class="date" date="{$vo.ctime}" href="{$vo.source_url}">30秒前</a><span>來自網站</span></span>
                 </p>
                 <div model-node="comment_detail" class="repeat clearfix" style="display:none;"></div>
               </dd>
@@ -65,11 +65,11 @@ function addDigg(feed_id){
               </dt>
               <dd class="content">
                 <p class="hd">
-                   <a href="">thinksns</a>赞了你的微博
+                   <a href="">thinksns</a>讚了你的微博
                 </p>
-                <p class="hd"><span class="f9">对我的微博：</span>"哈哈哈"</p>
+                <p class="hd"><span class="f9">對我的微博：</span>"哈哈哈"</p>
                 <p class="info">
-                  <span><a class="date" date="{$vo.ctime}" href="{$vo.source_url}">30秒前</a><span>来自网站</span></span>
+                  <span><a class="date" date="{$vo.ctime}" href="{$vo.source_url}">30秒前</a><span>來自網站</span></span>
                 </p>
                 <div model-node="comment_detail" class="repeat clearfix" style="display:none;"></div>
               </dd>
@@ -88,7 +88,7 @@ function addDigg(feed_id){
 <script type="text/javascript" src="__THEME__/js/core.weibo.js"></script>
 <script type="text/javascript">
 /**
- * 时间更新效果
+ * 時間更新效果
  * return void
  */
 $(document).ready(function() {

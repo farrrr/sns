@@ -34,7 +34,7 @@ img{border: 0px;}
 .form-login .s-txt, .form-login .s-txt-focus{width:200px}
 .form-login a{color:#36c;text-decoration:none}
 
-/*蓝色按钮*/
+/*藍色按鈕*/
 .btn-green-big{background:url(__APP__/image/btn-green.png) no-repeat;width:80px;height:30px;display:block}
 .btn-green-big span{color:#fff;display:block;line-height:30px;text-align:center}
 .btn-green-big:hover{background-position:0 -40px;}
@@ -49,7 +49,7 @@ function changeverify(){
     var url = "__ROOT__/public/captcha.php";
     $('#verifyimg').attr('src',url+'?'+ttime);
 };
-// 绑定回车事件
+// 繫結回車事件
 $(function() {
     $(this).bind('keydown', function(e) {
         var key = e.which;
@@ -93,7 +93,7 @@ $(function() {
                     <li>
                         <div class="form-tt">{:L('PUBLIC_VERIFICATION_CODE')}：</div>
                          <div class="form-row"><input id="login_verify" class="s-txt" onfocus="this.className='s-txt-focus'" onblur="this.className='s-txt'" name="verify" value="" style="width:100px" >
-                        <img src="__ROOT__/public/captcha.php" id="verifyimg" alt="{:L('PUBLIC_CHANGE_ONE')}"  style="vertical-align:middle;padding:0 5px 0 0" onclick="changeverify()"/><!--<a href="javascript:void(0);" onclick="changeverify()">看不清，换一张</a>--> </div>
+                        <img src="__ROOT__/public/captcha.php" id="verifyimg" alt="{:L('PUBLIC_CHANGE_ONE')}"  style="vertical-align:middle;padding:0 5px 0 0" onclick="changeverify()"/><!--<a href="javascript:void(0);" onclick="changeverify()">看不清，換一張</a>--> </div>
                     </li>
                     <li>
                     <div class="form-tt"></div>

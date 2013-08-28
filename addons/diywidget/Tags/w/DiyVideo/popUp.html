@@ -2,44 +2,44 @@
     <div class="pop_up_main">
         <div class="pop_up_tab">
             <div class="tab">
-                <a href="#" class="on">基本设置</a>
+                <a href="#" class="on">基本設定</a>
             </div>
         </div>
         <div class="pop_up_box">
             <ul class="pop_up_box_form">
             	<li class="slide-param">
-                    <div class="c1" style="width:100px;">视频地址：
+                    <div class="c1" style="width:100px;">視訊地址：
                     </div>
                     <div class="c2" style="width:370px;">
-						<input type="text" name="autoPlayInterval" id="video" class="param_post text in_mr5">(请输入完整地址)
+						<input type="text" name="autoPlayInterval" id="video" class="param_post text in_mr5">(請輸入完整地址)
                     </div>
                 </li>
 				<li class="slide-param">
-                    <div class="c1" style="width:100px;">宽度：
+                    <div class="c1" style="width:100px;">寬度：
                     </div>
                     <div class="c2" style="width:370px;">
-						<input type="text" name="autoPlayInterval" id="width" class="param_post text in_mr5" value="300">(单位：像素)
+						<input type="text" name="autoPlayInterval" id="width" class="param_post text in_mr5" value="300">(單位：畫素)
                     </div>
                 </li>
 				<li class="slide-param">
                     <div class="c1" style="width:100px;">高度：
                     </div>
                     <div class="c2" style="width:370px;">
-						<input type="text" name="autoPlayInterval" id="height" class="param_post text in_mr5" value="300">(单位：像素)
+						<input type="text" name="autoPlayInterval" id="height" class="param_post text in_mr5" value="300">(單位：畫素)
                     </div>
                 </li><!--                <li>
                     <div class="c1">
-                        缓存时间：
+                        快取時間：
                     </div>
                     <div class="c2">
                      	<select name="u" id="cache_timeout" class="param_post text">
-                        	<option value="60" >1分钟</option>
-                            <option value="180">3分钟</option>
-							<option value="300">5分钟</option>
-							<option value="600"   selected="selected">10分钟</option>
-							<option value="1800">30分钟</option>
-                            <option value="3600">1小时</option>
-                                                        <option value="0">不开启缓存</option>
+                        	<option value="60" >1分鐘</option>
+                            <option value="180">3分鐘</option>
+							<option value="300">5分鐘</option>
+							<option value="600"   selected="selected">10分鐘</option>
+							<option value="1800">30分鐘</option>
+                            <option value="3600">1小時</option>
+                                                        <option value="0">不開啟快取</option>
                             
                         </select>
                     </div>
@@ -83,10 +83,10 @@
                                     success: function(result){
     								$('#preview').html(result.html);
                                         var content = '<div id="diy_copyHtmlContent">\
-                                            		复制源代码:<input type="text" id="copyHtmlContent" onclick="select();" style="width:150px;" />\
+                                            		複製原始碼:<input type="text" id="copyHtmlContent" onclick="select();" style="width:150px;" />\
                                         		</div>'
 										var widget = '<div id="diy_copyHtmlContent">\
-                                            		复制标签:<input type="text" id="copyWidgetContent" onclick="select();" style="width:150px;" />\
+                                            		複製標籤:<input type="text" id="copyWidgetContent" onclick="select();" style="width:150px;" />\
                                         		</div>'		
                                         $('#preview').append(content);
 										$('#preview').append(widget);
@@ -120,10 +120,10 @@
                                     					.addClass('mb10')
                                     					.attr('id',id)
                                     					.attr('rel',namespace)
-                                    		 			.prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="设置">设置</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="删除">删除</a></div></div>');
+                                    		 			.prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="設定">設定</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="刪除">刪除</a></div></div>');
                             		        		 }else{
                             		    			 	$('#'+id).html(result['html']);
-                            		    				$('#'+id).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="设置">设置</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="删除">删除</a></div></div>');
+                            		    				$('#'+id).prepend('<div class="diy_edit"><div class="ico_edit"><a href="javascript:void(0)" onclick="updateDiyModel(\''+id+'\',\''+namespace+'\')" class="ico_diyedit" title="設定">設定</a> <a href="javascript:void(0)" class="ico_diydel" onclick="deleteDiy(\'' + id + '\')" title="刪除">刪除</a></div></div>');
                             		    
                             		    			 }
                                 				}

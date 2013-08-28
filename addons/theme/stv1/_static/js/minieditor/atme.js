@@ -1,4 +1,4 @@
-// 输入框 @用户 列表
+// 輸入框 @使用者 列表
 (function(){
 
 var config = {
@@ -10,9 +10,9 @@ var config = {
 		positionHTML:'<span id="autoUserTipsPosition">&nbsp;123</span>',
 		className:'autoSelected'
 	};
-//var html = '<div id="autoTalkBox" style="text-align:left;z-index:-2000;top:$top$px;left:$left$px;width:$width$px;height:$height$px;z-index:1;position:absolute;scroll-top:$SCTOP$px;overflow:hidden;overflow-y:auto;visibility:hidden;word-break:break-all;word-wrap:break-word;"><span id="autoTalkText" style="font-size:14px;margin:0;"></span></div><div id="recipientsTips" class="recipients-tips"><div style="font-size:12px;text-align:left;font-weight: bold;padding:2px;">格式：@+W3帐号、姓名</div><ul id="autoTipsUserList"></ul></div>';
+//var html = '<div id="autoTalkBox" style="text-align:left;z-index:-2000;top:$top$px;left:$left$px;width:$width$px;height:$height$px;z-index:1;position:absolute;scroll-top:$SCTOP$px;overflow:hidden;overflow-y:auto;visibility:hidden;word-break:break-all;word-wrap:break-word;"><span id="autoTalkText" style="font-size:14px;margin:0;"></span></div><div id="recipientsTips" class="recipients-tips"><div style="font-size:12px;text-align:left;font-weight: bold;padding:2px;">格式：@+W3帳號、姓名</div><ul id="autoTipsUserList"></ul></div>';
 //var listHTML = '<li style="text-align:left"><a title="$ACCOUNT$" rel="$ID$" >$REL$(@$SACCOUNT$)</a></li>';
-var html = '<div id="autoTalkBox" style="text-align:left;z-index:-2000;top:$top$px;left:$left$px;width:$width$px;height:$height$px;z-index:1;position:absolute;scroll-top:$SCTOP$px;overflow:hidden;overflow-y:auto;visibility:hidden;word-break:break-all;word-wrap:break-word;"><span id="autoTalkText" style="font-size:14px;margin:0;"></span></div><div id="recipientsTips" class="recipients-tips"><h4>格式：@用户昵称</h4><ul id="autoTipsUserList"></ul></div>';
+var html = '<div id="autoTalkBox" style="text-align:left;z-index:-2000;top:$top$px;left:$left$px;width:$width$px;height:$height$px;z-index:1;position:absolute;scroll-top:$SCTOP$px;overflow:hidden;overflow-y:auto;visibility:hidden;word-break:break-all;word-wrap:break-word;"><span id="autoTalkText" style="font-size:14px;margin:0;"></span></div><div id="recipientsTips" class="recipients-tips"><h4>格式：@使用者昵稱</h4><ul id="autoTipsUserList"></ul></div>';
 var listHTML = '<li style="text-align:left"><a href="$HREF$" rel="$REL$" data="$DATA$" onclick="return false;">@$SACCOUNT$</a></li>';
 var linkHTML = '<a href="$HREF$" contenteditable="false" data="$DATA$">@$REL$</a>'
 
@@ -60,11 +60,11 @@ var D = {
 };
 
 /*
- * TT textarea 操作函数
- * info(t) 基本信息
- * getCursorPosition(t) 光标位置
- * setCursorPosition(t, p) 设置光标位置
- * add(t,txt) 添加内容到光标处
+ * TT textarea 操作函數
+ * info(t) 基本資訊
+ * getCursorPosition(t) 游標位置
+ * setCursorPosition(t, p) 設定游標位置
+ * add(t,txt) 添加內容到游標處
  */
 var TT = {
 	
@@ -136,8 +136,8 @@ var TT = {
 
 
 /*
- * DS 数据查找
- * inquiry(data, str, num) 数据, 关键词, 个数
+ * DS 資料查找
+ * inquiry(data, str, num) 資料, 關鍵詞, 個數
  * 
  */
 
@@ -225,7 +225,7 @@ var AutoTips = function(A){
 			div.innerHTML = h;
 			var last = document.body.lastChild;
 			document.body.insertBefore(div,last);
-			//document.body.appendChild(div);	// IE6 下报错的问题
+			//document.body.appendChild(div);	// IE6 下報錯的問題
 		}else{
 			_this.updatePosstion();
 		}

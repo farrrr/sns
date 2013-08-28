@@ -19,7 +19,7 @@ jQuery.extend(ui.box, {
     IE6:                (jQuery.browser.msie && jQuery.browser.version < 7),
     init:function(title,callback){
     	
-    	//edit by yangjs 避免意外情况重载
+    	//edit by yangjs 避免意外情況過載
 		if( !this.inited ){
 		$('body').prepend( this.WRAPPER );
 			this.inited = true;
@@ -82,19 +82,19 @@ jQuery.extend(ui.box, {
 		this.setcontent(content);
 		this.center();
 	},
-	//requreUrl 请求地址
-	//title 弹窗标题
-	//callback 窗口关闭后的回调事件
-	//requestData 请求附带的参数
-	//type ajax请求协议 默认为GET
+	//requreUrl 請求地址
+	//title 彈窗標題
+	//callback 視窗關閉後的回撥事件
+	//requestData 請求附帶的參數
+	//type ajax請求協議 默認為GET
 	//edit by yangjs
 	
 	load:function(requestUrl,title,callback,requestData,type){
 	   
-//	   if("undefined" != typeof(_UID_)){ //需要才判断
-//		   //增加判断未登录时的登录操作,可能有些地方需要排除.允许弹窗.
-//		   if(_UID_<=0 && option.title!='快速登录'){
-//				option.title = '快速登录';
+//	   if("undefined" != typeof(_UID_)){ //需要才判斷
+//		   //增加判斷未登入時的登入操作,可能有些地方需要排除.允許彈窗.
+//		   if(_UID_<=0 && option.title!='快速登入'){
+//				option.title = '快速登入';
 //				data = U('home/Public/quick_login');
 //		   }
 //	   }

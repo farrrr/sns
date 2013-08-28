@@ -24,12 +24,12 @@
                 <li>示例1：{:W('Category',array('app_name'=>'support','model_name'=>'SupportCategory','method'=>'getCnCate','tpl'=>'select','id'=>0))}</li>
                 <li>示例2：{:W('Category',array('app_name'=>'support','model_name'=>'SupportCategory','method'=>'getEnCate','tpl'=>'select','id'=>4,'inputname'=>'category_en'))}</li>
                 <li>
-                    示例3,2级别展示：
+                    示例3,2級別展示：
                     {:W('Category',array('app_name'=>'support','model_name'=>'SupportCategory','method'=>'getCnTree','tpl'=>'two','id'=>4,'cate_url'=>'xxxx'))}
 
                 </li>
                 <li>
-                    示例4,菜单形式展示：<br/><br/>
+                    示例4,選單形式展示：<br/><br/>
                     {:W('Category',array('app_name'=>'support','model_name'=>'SupportCategory',
                     'method'=>'getCnCate','tpl'=>'menu','id'=>4,'cate_url'=>'xxxx','pid'=>0))}
 
@@ -38,17 +38,17 @@
             </div>
 <div>
     <pre>
-        调用：W('Category',array('app_name'=>'support','model_name'=>'SupportCategory','method'=>'getEnCate','tpl'=>'select','id'=>4,'inputname'=>'category_en'))
-        参数说明：具体使用请看此demo里面的源代码
-        app_name:   此分类所在的应用名称
-        model_name: 分类model名称
-        method      分类model中根据某个id获取对应分类信息的函数
-        tpl         显示模版：分select和menu两种，select为选择分类形式，menu为菜单形式
-        id          当前分类ID
-        inputname   分类存储的input字段名称，只针对tpl=select 有效
-        title       自定义点击项的名称，只针对tpl=select有效
-        cate_url    分类的URL前缀，针对tpl=menu或者tpl=two有效
-        pid         当前分类的父级ID，针对tpl=menu有效
+        呼叫：W('Category',array('app_name'=>'support','model_name'=>'SupportCategory','method'=>'getEnCate','tpl'=>'select','id'=>4,'inputname'=>'category_en'))
+        參數說明：具體使用請看此demo裡面的原始碼
+        app_name:   此分類所在的應用名稱
+        model_name: 分類model名稱
+        method      分類model中根據某個id獲取對應分類資訊的函數
+        tpl         顯示模版：分select和menu兩種，select為選擇分類形式，menu為選單形式
+        id          當前分類ID
+        inputname   分類存儲的input欄位名稱，只針對tpl=select 有效
+        title       自定義點選項的名稱，只針對tpl=select有效
+        cate_url    分類的URL字首，針對tpl=menu或者tpl=two有效
+        pid         當前分類的父級ID，針對tpl=menu有效
     </pre>
 </div>
         </div>

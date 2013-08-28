@@ -1,7 +1,7 @@
 <?php
 /*
- * 调用人人网RESTful API的客户端类，本类需要继承RESTClient类方可使用
- * 要求最低的PHP版本是5.2.0，并且还要支持以下库：cURL, Libxml 2.6.0
+ * 呼叫人人網RESTful API的客戶端類，本類需要繼承RESTClient類方可使用
+ * 要求最低的PHP版本是5.2.0，並且還要支援以下庫：cURL, Libxml 2.6.0
  * This class for invoke RenRen RESTful Webservice
  * It MUST be extends RESTClient
  * The requirement of PHP version is 5.2.0 or above, and support as below:
@@ -72,7 +72,7 @@
 	}
 
      /**
-      * POST wrapper，基于curl函数，需要支持curl函数才行
+      * POST wrapper，基於curl函數，需要支援curl函數才行
       * @param method String
       * @param parameters Array
       * @return mixed
@@ -105,7 +105,7 @@
 			$str = '';
 			foreach($arr AS $k=>$v){
 				$v=$this->convertEncoding($v,$this->_encode,"utf-8");
-				$arr[$k]=$v;//转码，你懂得
+				$arr[$k]=$v;//轉碼，你懂得
 				$str .= $k.'='.$v;
 			}
 			

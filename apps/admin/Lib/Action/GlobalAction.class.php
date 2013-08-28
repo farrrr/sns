@@ -11,8 +11,8 @@ class GlobalAction extends AdministratorAction {
         return true;
     }
 
-    /** 系统配置 - 积分配置 **/
-    //积分类别设置
+    /** 系統配置 - 積分配置 **/
+    //積分類別設定
     public function creditType(){
         $creditType = M('credit_type')->order('id ASC')->findAll();
         $this->assign('creditType',$creditType);
@@ -21,29 +21,29 @@ class GlobalAction extends AdministratorAction {
     public function editCreditType(){
         $type   = $_GET['type'];
         if($cid = intval($_GET['cid'])){
-            $creditType = M('credit_type')->where("`id`=$cid")->find();//积分类别
-            if (!$creditType) $this->error('无此积分类型');
+            $creditType = M('credit_type')->where("`id`=$cid")->find();//積分類別
+            if (!$creditType) $this->error('無此積分類型');
             $this->assign('creditType',$creditType);
         }
 
         $this->assign('type', $type);
-        
-        $typeArr = array('score', 'experience'); //这两个类型的积分类别名不能被修改
+
+        $typeArr = array('score', 'experience'); //這兩個類型的積分類別名不能被修改
         if(in_array($creditType['name'], $typeArr) && $type=='edit'){
-        	$this->assign('forbidEdit', true);
+            $this->assign('forbidEdit', true);
         }
 
         $this->display();
     }
     public function doAddCreditType(){
-        // if ( !$this->__isValidRequest('name') ) $this->error('数据不完整');
+        // if ( !$this->__isValidRequest('name') ) $this->error('資料不完整');
         $name = h(t($_POST['name']));
         $alias=h(t($_POST['alias']));
         if(empty($name) ){
-            $this->error('名称不能为空');
+            $this->error('名稱不能為空');
         }
         if(empty($alias) ){
-            $this->error('别名不能为空');
+            $this->error('別名不能為空');
         }
 
         $_POST = array_map('t',$_POST);
@@ -51,7 +51,7 @@ class GlobalAction extends AdministratorAction {
 
         $_LOG['uid'] = $this->mid;
         $_LOG['type'] = '1';
-        $data[] = '全局 - 积分配置  - 积分类型';
+        $data[] = '全局 - 積分配置  - 積分類型';
         if( $_POST['__hash__'] )unset( $_POST['__hash__'] );
         $data[] = $_POST;
         $_LOG['data'] = serialize($data);
@@ -64,43 +64,43 @@ class GlobalAction extends AdministratorAction {
             $model = M('');
             $setting = $model->query("ALTER TABLE {$db_prefix}credit_setting ADD {$_POST['name']} INT(11) DEFAULT 0;");
             $user    = $model->query("ALTER TABLE {$db_prefix}credit_user ADD {$_POST['name']} INT(11) DEFAULT 0;");
-			// 清缓存
+            // 清快取
             F('_service_credit_type', null);
-            // 数据表缓存
-            
+            // 資料表快取
+
             $this->assign('jumpUrl', U('admin/Global/creditType'));
-            $this->success('保存成功');
+            $this->success('儲存成功');
         }else {
-            $this->error('保存失败');
+            $this->error('儲存失敗');
         }
     }
     public function doEditCreditType(){
-        // if ( !$this->__isValidRequest('id,name') ) $this->error('数据不完整');
+        // if ( !$this->__isValidRequest('id,name') ) $this->error('資料不完整');
         $name = h(t($_POST['name']));
         $alias=h(t($_POST['alias']));
         if(empty($name) ){
-            $this->error('名称不能为空');
+            $this->error('名稱不能為空');
         }
         if(empty($alias) ){
-            $this->error('别名不能为空');
+            $this->error('別名不能為空');
         }
         $_POST = array_map('t',$_POST);
         $_POST = array_map('h',$_POST);
         $creditTypeDao = M('credit_type');
-        //获取原字段名
+        //獲取原欄位名
         $oldName = $creditTypeDao->find($_POST['id']);
-        
-        $typeArr = array('score', 'experience'); //这两个类型的积分类别名不能被修改
+
+        $typeArr = array('score', 'experience'); //這兩個類型的積分類別名不能被修改
         if(in_array($oldName, $typeArr)){
-        	unset($_POST['name']);
+            unset($_POST['name']);
         }
-        
-        //修改字段名
+
+        //修改欄位名
         $res = $creditTypeDao->save($_POST);
 
         $_LOG['uid'] = $this->mid;
         $_LOG['type'] = '3';
-        $data[] = '全局 - 积分配置 - 积分类型 ';
+        $data[] = '全局 - 積分配置 - 積分類型 ';
         $data[] = $oldName;
         if( $_POST['__hash__'] )unset( $_POST['__hash__'] );
         $data[] = $_POST;
@@ -113,12 +113,12 @@ class GlobalAction extends AdministratorAction {
             $model = M('');
             $setting = $model->query("ALTER TABLE {$db_prefix}credit_setting CHANGE {$oldName['name']} {$_POST['name']} INT(11);");
             $user    = $model->query("ALTER TABLE {$db_prefix}credit_user CHANGE {$oldName['name']} {$_POST['name']} INT(11);");
-			// 清缓存
+            // 清快取
             F('_service_credit_type', null);
             $this->assign('jumpUrl', U('admin/Global/creditType'));
-            $this->success('保存成功');
+            $this->success('儲存成功');
         }else {
-            $this->error('保存失败');
+            $this->error('儲存失敗');
         }
     }
     public function doDeleteCreditType(){
@@ -128,26 +128,26 @@ class GlobalAction extends AdministratorAction {
 
         $map['id'] = array('in', $ids);
         $creditTypeDao = M('credit_type');
-        //获取字段名
+        //獲取欄位名
         $typeName = $creditTypeDao->where($map)->findAll();
-        
-        $typeArr = array('score', 'experience'); // 这两个类型的积分类别名不能被修改
-		foreach ( $typeName as $type ) {
-			if (in_array ( $type['name'], $typeArr )) {
-				echo -2;
-				exit;
-			}
-		}
+
+        $typeArr = array('score', 'experience'); // 這兩個類型的積分類別名不能被修改
+        foreach ( $typeName as $type ) {
+            if (in_array ( $type['name'], $typeArr )) {
+                echo -2;
+                exit;
+            }
+        }
 
         $_LOG['uid'] = $this->mid;
         $_LOG['type'] = '2';
-        $data[] = '全局 - 积分配置 - 积分类型 ';
+        $data[] = '全局 - 積分配置 - 積分類型 ';
         $data[] = $typeName;
         $_LOG['data'] = serialize($data);
         $_LOG['ctime'] = time();
         M('AdminLog')->add($_LOG);
 
-        //清除type信息和对应字段
+        //清除type資訊和對應欄位
         $res = M('credit_type')->where($map)->delete();
         if ($res){
             $db_prefix  = C('DB_PREFIX');
@@ -156,14 +156,14 @@ class GlobalAction extends AdministratorAction {
                 $setting = $model->query("ALTER TABLE {$db_prefix}credit_setting DROP {$v['name']};");
                 $user    = $model->query("ALTER TABLE {$db_prefix}credit_user DROP {$v['name']};");
             }
-			// 清缓存
+            // 清快取
             F('_service_credit_type', null);
             echo 1;
         }else{
             echo 0;
         }
     }
-    //积分规则设置
+    //積分規則設定
     public function credit() {
         $list = M('credit_setting')->order('type ASC')->findPage(100);
         $creditType = M('credit_type')->order('id ASC')->findAll();
@@ -172,7 +172,7 @@ class GlobalAction extends AdministratorAction {
         $this->display();
     }
     public function addCredit() {
-        $creditType = M('credit_type')->order('id ASC')->findAll();//积分类别
+        $creditType = M('credit_type')->order('id ASC')->findAll();//積分類別
         $this->assign('creditType',$creditType);
         $this->assign('type','add');
         $this->display('editCredit');
@@ -180,9 +180,9 @@ class GlobalAction extends AdministratorAction {
     public function doAddCredit() {
         $name = trim($_POST['name']);
         if($name == "" && $_POST['name'] != ""){
-            $this->error('名称不能为空格');
+            $this->error('名稱不能為空格');
         }
-        if ( !$this->__isValidRequest('name') ) $this->error('数据不完整');
+        if ( !$this->__isValidRequest('name') ) $this->error('資料不完整');
 
         $_POST = array_map('t',$_POST);
         $_POST = array_map('h',$_POST);
@@ -190,13 +190,13 @@ class GlobalAction extends AdministratorAction {
         $creditType = M('credit_type')->order('id ASC')->findAll();
         foreach($creditType as $v){
             if(!is_numeric($_POST[$v['name']])){
-                $this->error($v['alias'].'的值必须为数字！');
+                $this->error($v['alias'].'的值必須為數字！');
             }
         }
 
         $_LOG['uid'] = $this->mid;
         $_LOG['type'] = '1';
-        $data[] = '全局 - 积分配置 - 积分规则 ';
+        $data[] = '全局 - 積分配置 - 積分規則 ';
         if( $_POST['__hash__'] )unset( $_POST['__hash__'] );
         $data[] = $_POST;
         $_LOG['data'] = serialize($data);
@@ -205,33 +205,33 @@ class GlobalAction extends AdministratorAction {
 
         $res = M('credit_setting')->add($_POST);
         if ($res) {
-			// 清缓存
+            // 清快取
             F('_service_credit_rules', null);
             $this->assign('jumpUrl', U('admin/Global/credit'));
-            $this->success('保存成功');
+            $this->success('儲存成功');
         }else {
-            $this->error('保存失败');
+            $this->error('儲存失敗');
         }
     }
     public function editCredit() {
         $cid    = intval($_GET['cid']);
         $credit = M('credit_setting')->where("`id`=$cid")->find();
-        if (!$credit) $this->error('无此积分规则');
+        if (!$credit) $this->error('無此積分規則');
 
-        $creditType = M('credit_type')->order('id ASC')->findAll();//积分类别
+        $creditType = M('credit_type')->order('id ASC')->findAll();//積分類別
         $this->assign('creditType',$creditType);
 
         $this->assign('credit', $credit);
         $this->assign('type', 'edit');
-               
+
         $this->display();
     }
     public function doEditCredit() {
         $name = trim($_POST['name']);
         if($name == "" && $_POST['name'] != ""){
-            $this->error('名称不能为空格');
+            $this->error('名稱不能為空格');
         }
-        if ( !$this->__isValidRequest('id,name') ) $this->error('数据不完整');
+        if ( !$this->__isValidRequest('id,name') ) $this->error('資料不完整');
 
         $_POST = array_map('t',$_POST);
         $_POST = array_map('h',$_POST);
@@ -239,13 +239,13 @@ class GlobalAction extends AdministratorAction {
         $creditType = M('credit_type')->order('id ASC')->findAll();
         foreach($creditType as $v){
             if(!is_numeric($_POST[$v['name']])){
-                $this->error($v['alias'].'的值必须为数字！');
+                $this->error($v['alias'].'的值必須為數字！');
             }
         }
 
         $_LOG['uid'] = $this->mid;
         $_LOG['type'] = '3';
-        $data[] = '全局 - 积分配置 - 积分规则 ';
+        $data[] = '全局 - 積分配置 - 積分規則 ';
         $credit_info = M('credit_setting')->where('id='.$_POST['id'])->find();
         $data[] = $credit_info;
         $_POST['info'] = $credit_info['info'];
@@ -258,12 +258,12 @@ class GlobalAction extends AdministratorAction {
         unset($_POST['id']);
         $res = M('credit_setting')->where('id='.$id)->save($_POST);
         if ($res) {
-			// 清缓存
+            // 清快取
             F('_service_credit_rules', null);
             $this->assign('jumpUrl', U('admin/Global/credit'));
-            $this->success('保存成功');
+            $this->success('儲存成功');
         }else {
-            $this->error('保存失败');
+            $this->error('儲存失敗');
         }
     }
     public function doDeleteCredit() {
@@ -275,7 +275,7 @@ class GlobalAction extends AdministratorAction {
 
         $_LOG['uid'] = $this->mid;
         $_LOG['type'] = '2';
-        $data[] = '全局 - 积分配置 - 积分规则 ';
+        $data[] = '全局 - 積分配置 - 積分規則 ';
         $data[] = M('credit_setting')->where($map)->findAll();
         $_LOG['data'] = serialize($data);
         $_LOG['ctime'] = time();
@@ -283,14 +283,14 @@ class GlobalAction extends AdministratorAction {
 
         $res = M('credit_setting')->where($map)->delete();
         if ($res) {
-			// 清缓存
+            // 清快取
             F('_service_credit_rules', null);
             echo 1;
         } else {
-        	echo 0;
+            echo 0;
         }
     }
-    //批量用户积分设置
+    //批量使用者積分設定
     public function creditUser(){
         $creditType = M('credit_type')->order('id ASC')->findAll();
         $this->assign('creditType',$creditType);
@@ -299,15 +299,15 @@ class GlobalAction extends AdministratorAction {
     }
     public function doCreditUser(){
         set_time_limit(0);
-        //查询用户ID
+        //查詢使用者ID
         $_POST['uId'] && $map['uid'] = array('in',explode(',',t($_POST['uId'])));
         $_POST['gId']!='all' && $map['user_group_id'] = intval($_POST['gId']);
         // $_POST['active']!='all' && $map['is_active'] = intval($_POST['active']);
         $user = M('user_group_link')->where($map)->field('uid')->findAll();
         if($user == false){
-            $this->error('查询失败，没有这样条件的人');
+            $this->error('查詢失敗，沒有這樣條件的人');
         }
-        //组装积分规则
+        //組裝積分規則
         $setCredit = model('Credit');
         $creditType = $setCredit->getCreditType();
         foreach($creditType as $v){
@@ -316,18 +316,18 @@ class GlobalAction extends AdministratorAction {
 
 
 
-        if($_POST['action'] == 'set'){//积分修改为
+        if($_POST['action'] == 'set'){//積分修改為
             foreach($user as $v){
                 if($v['uid'] != 0){
                     $setCredit->setUserCredit($v['uid'],$action,'reset');
-                    // if($setCredit->getInfo()===false)$this->error('保存失败');
+                    // if($setCredit->getInfo()===false)$this->error('儲存失敗');
                 }
             }
-        }else{//增减积分
+        }else{//增減積分
             foreach($user as $v){
                 if($v['uid'] != 0){
                     $setCredit->setUserCredit($v['uid'],$action);
-                    if($setCredit->getInfo()===false)$this->error('保存失败');
+                    if($setCredit->getInfo()===false)$this->error('儲存失敗');
                 }
             }
         }
@@ -337,9 +337,9 @@ class GlobalAction extends AdministratorAction {
         $_LOG['uid'] = $this->mid;
         $_LOG['type'] = '1';
         if( $_POST['action'] == 'set' ){
-            $data[] = '全局 - 积分配置 - 设置用户积分 - 积分修改操作 ';
+            $data[] = '全局 - 積分配置 - 設定使用者積分 - 積分修改操作 ';
         }else{
-            $data[] = '全局 - 积分配置 - 设置用户积分 - 积分增减操作 ';
+            $data[] = '全局 - 積分配置 - 設定使用者積分 - 積分增減操作 ';
         }
         $data['1'] = $action;
         $data['1']['uid'] = $_POST['uId'];
@@ -350,10 +350,10 @@ class GlobalAction extends AdministratorAction {
         $_LOG['ctime'] = time();
         M('AdminLog')->add($_LOG);
 
-        $this->success('保存成功');
+        $this->success('儲存成功');
     }
 
-    //积分等级设置    
+    //積分等級設定
     public function creditLevel(){
         $_REQUEST['tabHash'] = 'level';
         $this->pageTab[] = array('title'=>L('PUBLIC_SYSTEM_POINT_RULE'),'tabHash'=>'rule','url'=>U('admin/Global/credit'));
@@ -367,11 +367,11 @@ class GlobalAction extends AdministratorAction {
     }
 
     public function setCreditLevel(){
-        if(!empty($_POST)){ //添加&编辑积分类型
-           $res = model('Credit')->saveCreditLevel($_POST);
-           $this->assign('jumpUrl',U('admin/Global/creditLevel'));
-           $this->success();
-           exit();
+        if(!empty($_POST)){ //添加&編輯積分類型
+            $res = model('Credit')->saveCreditLevel($_POST);
+            $this->assign('jumpUrl',U('admin/Global/creditLevel'));
+            $this->success();
+            exit();
         }
 
         $_REQUEST['tabHash'] = 'level';
@@ -389,7 +389,7 @@ class GlobalAction extends AdministratorAction {
         $this->displayConfig($detailData);
     }
 
-        //保存积分规则
+    //儲存積分規則
     public function savecredit(){
         $res = model('Credit')->saveCreditSet($_POST['creditSet']);
         $this->success();
@@ -409,13 +409,13 @@ class GlobalAction extends AdministratorAction {
         $start = intval($_POST['start']);
         $end = intval($_POST['end']);
         // if(!$start || !$end){
-        //     $this->error('请填写积分值');
+        //     $this->error('請填寫積分值');
         // }
         $name = h(t($_POST['name']));
         // if(empty($name)){
-        //     $this->error('请填写等级名称');
+        //     $this->error('請填寫等級名稱');
         // }
-        
+
         $list = model('Xdata')->get('admin_Credit:level');
         foreach ($list as $key => $v) {
             $new_list[] = $v;
@@ -433,7 +433,7 @@ class GlobalAction extends AdministratorAction {
             $this->success('添加成功');
         }
         if(!$res){
-            $this->error('添加失败');
+            $this->error('添加失敗');
         }
     }
 
@@ -447,9 +447,9 @@ class GlobalAction extends AdministratorAction {
         $data[$level-1]['name'] = $_POST['name'];
         $res = model('Xdata')->put('admin_Credit:level',$data);
         if($res){
-            $this->success('编辑成功');
+            $this->success('編輯成功');
         }else{
-            $this->error('编辑失败');
+            $this->error('編輯失敗');
         }
     }
     public function doDeleteCreditLevel(){

@@ -7,7 +7,7 @@
 <script type="text/javascript">
 var SITE_URL ='<php> echo SITE_URL;</php>';
 var APPNAME   = '<php> echo APP_NAME;</php>';
-/* 按下F5时仅刷新iframe页面 */
+/* 按下F5時僅重新整理iframe頁面 */
 function inactiveF5(e) {
 	e=window.event||e;
 	var key = e.keyCode;
@@ -36,7 +36,7 @@ function nof5() {
 		} //END for()
 	} //END if()
 }
-//模拟ts U函数 需要预先定义JS全局变量 SITE_URL 和 APPNAME
+//模擬ts U函數 需要預先定義JS全局變數 SITE_URL 和 APPNAME
 
 var U =function(url,params){
 	var website = SITE_URL+'/index.php';
@@ -98,7 +98,7 @@ document.onkeydown=inactiveF5;
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td colspan="3">
-		<div class="header"><!-- 头部 begin -->
+		<div class="header"><!-- 頭部 begin -->
 		    <div class="logo">
 		    	<a href="{:U('admin/Index/index')}"><strong style="font-size:18px;">{:L('SYSTEM_MANAGEMENT_CENTER')}</strong></a>
 		    </div>
@@ -125,16 +125,16 @@ document.onkeydown=inactiveF5;
 		  $iterator = 1;
 		  $home_url = '';
 		</php>
-  		<!-- 第一级菜单，即大频道 -->
+  		<!-- 第一級選單，即大頻道 -->
   		<php>foreach($menu as $menu_1_name => $menu_2) {</php>
 	      	<ul class="MenuList" id="root_{$menu_1_name}" <neq name="menu_1_name" value="index">style="display:none;"</neq>>
-	      	<!-- 第二级菜单 -->
+	      	<!-- 第二級選單 -->
 	      	<php>foreach($menu_2 as $menu_2_name => $menu_3) {</php>
 		        <li class="treemenu">
 		          <a id="root_{$iterator}" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('{$iterator}');" hidefocus="true" style="outline:none;">{$menu_2_name}</a>
 		          <ul id="tree_{$iterator}" class="submenu">
 		            <php>++ $iterator;</php>
-		          	<!-- 第三级菜单 -->
+		          	<!-- 第三級選單 -->
 		          	<php>foreach($menu_3 as $menu_3_name => $menu_3_url) {</php>
                         <php>$home_url = empty($home_url) ? $menu_3_url : $home_url;</php>
 		            	<li><a id="menu_{$iterator}" href="javascript:void(0)" onClick="switch_sub_menu('{$iterator}', '{$menu_3_url}');" class="submenuA" hidefocus="true" style="outline:none;">{$menu_3_name}</a></li>
@@ -166,7 +166,7 @@ document.onkeydown=inactiveF5;
 		switchChannel('index');
 	});
 	
-	//切换频道（即头部的tab）
+	//切換頻道（即頭部的tab）
 	function switchChannel(channel) {
 
 		//if(current_channel == channel) return false;
@@ -180,7 +180,7 @@ document.onkeydown=inactiveF5;
 		
 		var tmp_menulist = $('#root_'+channel).find('a');
 		tmp_menulist.each(function(i, n) {
-			// 防止重复点击ROOT菜单
+			// 防止重複點選ROOT選單
 			if( i == 0 && $.inArray($(n).attr('id'), viewed_channel) == -1 ) {
 				$(n).click();
 				viewed_channel.push($(n).attr('id'));

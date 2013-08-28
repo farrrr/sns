@@ -1,7 +1,7 @@
 <?php
 /*
- * 调用远程RESTful的客户端类
- * 要求最低的PHP版本是5.2.0，并且还要支持以下库：cURL, Libxml 2.6.0
+ * 呼叫遠端RESTful的客戶端類
+ * 要求最低的PHP版本是5.2.0，並且還要支援以下庫：cURL, Libxml 2.6.0
  * This class for invoke remote RESTful Webservice
  * The requirement of PHP version is 5.2.0 or above, and support as below:
  * cURL, Libxml 2.6.0
@@ -180,7 +180,7 @@
 		return $source;
 	}
 	/**
-      * POST wrapper，不基于curl函数，环境可以不支持curl函数
+      * POST wrapper，不基於curl函數，環境可以不支援curl函數
       * @param method String
       * @param parameters Array
       * @return mixed
@@ -253,7 +253,7 @@
          $response = $this->do_post_request($url, $postdata, $files);
 		 return $this->json_foreach($this->parseResponse($response));
      }
-	 //将stdclass object转换成数组，并转换编码
+	 //將stdclass object轉換成陣列，並轉換編碼
 	 public function json_foreach($jsonArr)
 	 {
 		 if(is_object($jsonArr))

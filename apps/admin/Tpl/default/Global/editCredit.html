@@ -1,42 +1,42 @@
 <include file="../Public/_header" />
 <div class="so_main">
-  <div class="page_tit">积分设置</div>
+  <div class="page_tit">積分設定</div>
   <div class="tit_tab">
     <ul>
-    <li><a href="{:U('admin/Global/credit')}" class="on">积分规则</a></li>
-    <li><a href="{:U('admin/Global/creditType')}">积分类型</a></li>
-    <li><a href="{:U('admin/Global/creditUser')}">设置用户积分</a></li>
-    <li><a href="{:U('admin/Global/creditLevel')}">积分等级</a></li>
+    <li><a href="{:U('admin/Global/credit')}" class="on">積分規則</a></li>
+    <li><a href="{:U('admin/Global/creditType')}">積分類型</a></li>
+    <li><a href="{:U('admin/Global/creditUser')}">設定使用者積分</a></li>
+    <li><a href="{:U('admin/Global/creditLevel')}">積分等級</a></li>
     </ul>
   </div>  <div class="form2">
   	<eq name="type" value="add">
 	  	<form method="post" action="{:U('admin/Global/doAddCredit')}">
-	    <h3>添加积分规则</h3>
+	    <h3>添加積分規則</h3>
 	<else/>
 	  	<form method="post" action="{:U('admin/Global/doEditCredit')}">
-	    <h3>编辑积分规则</h3>
+	    <h3>編輯積分規則</h3>
 		<input type="hidden" name="id" value="{$credit['id']}">
 	</eq>
     <dl class="lineD">
-      <dt>名称：</dt>
+      <dt>名稱：</dt>
       <dd><input name="name" type="text" value="{$credit['name']}" class="s-txt"> *
-	  <p>英文名，保持唯一。推荐使用“应用_动作”，如“blog_add”</p>
+	  <p>英文名，保持唯一。推薦使用“應用_動作”，如“blog_add”</p>
     </dl>
     <dl class="lineD">
-      <dt>别名：</dt>
+      <dt>別名：</dt>
       <dd><input name="alias" type="text" value="{$credit['alias']}" class="s-txt">
-	  <p>如“发表博客”</p>
+	  <p>如“發表部落格”</p>
     </dl>
     <dl>
-      <dt>类型：</dt>
+      <dt>類型：</dt>
       <dd><input name="type" type="text" value="{$credit['type']}" class="s-txt"><p>如“blog”</p></dd>
     </dl>
 	<!--
     <dl class="lineD">
-      <dt>模板名称：</dt>
+      <dt>模板名稱：</dt>
       <dd>
         <input name="info" type="text" value="">
-		<p>{sign}:增加or减少、{action}:动作名、{alias}:别名、{score}:增减量</p>
+		<p>{sign}:增加or減少、{action}:動作名、{alias}:別名、{score}:增減量</p>
     </dl>
 	-->    
     <volist name="creditType" id="ct">  
@@ -44,11 +44,11 @@
           <dt>{$ct.alias}增量：</dt>
           <dd>
             <input name="{$ct.name}" type="text" value="{$credit[$ct['name']]|intval}" class="s-txt"> *
-            <p>正数为增加，负数为减少</p>
+            <p>正數為增加，負數為減少</p>
         </dl>
     </volist>
     <div class="page_btm">
-      <input type="submit" class="btn_b" value="确定" />
+      <input type="submit" class="btn_b" value="確定" />
     </div>
     </form>
   </div>

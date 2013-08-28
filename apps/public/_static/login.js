@@ -1,4 +1,4 @@
-// 提交表单
+// 提交表單
 $(document).ready(function() { 
     $('#ajax_login_form').submit(function(){
         $(this).ajaxSubmit({
@@ -8,7 +8,7 @@ $(document).ready(function() {
         }); 
         return false; 
     });
-    // 提交发布前验证
+    // 提交釋出前驗證
     var checkLoginForm = function() {
         if($('#account_input').val().length == 0) {
             $('#account_input').focus();
@@ -20,7 +20,7 @@ $(document).ready(function() {
         }
         return true;
     };
-    // 成功后的回调函数
+    // 成功後的回撥函數
     var loginCallback = function(i) {
         // var i = eval("("+e+")");
         if(i.status==1){
@@ -36,9 +36,9 @@ $(document).ready(function() {
     };
 }); 
 
-// 登录验证
+// 登入驗證
 var loginCheck = {};
-// 绑定验证事件
+// 繫結驗證事件
 loginCheck.bindKeyEvent = function(objInput, blurObjInput, objLabel) {
     objInput.bind('keydown', function(event) {
         if(event.which == 13) {
@@ -55,7 +55,7 @@ loginCheck.bindKeyEvent = function(objInput, blurObjInput, objLabel) {
         }
     }); 
 }
-// 输入框验证
+// 輸入框驗證
 loginCheck.inputChecked = function(objDiv, objInput, objLabel, blurObjInput) {
     objInput.bind({
         focus: function() {
@@ -79,11 +79,11 @@ loginCheck.inputChecked = function(objDiv, objInput, objLabel, blurObjInput) {
         }
     });
 };
-// 事件监听
+// 事件監聽
 M.addModelFns({
     login_input: {
         load: function() {
-            // 账号输入框
+            // 賬號輸入框
             var jAccount = $(this).find('li').eq(0);
             var jADiv = jAccount.find('div').eq(0);
             jADiv.attr('class', 'input');
@@ -92,12 +92,12 @@ M.addModelFns({
             var jALabel = jAccount.find('label').eq(0);
             jALabel.css('display', '');
             loginCheck.inputChecked(jADiv, jAInput, jALabel);
-            // 密码输入框
+            // 密碼輸入框
             var jPwd = jAccount.next();
             var jPDiv = jPwd.find('div').eq(0);
             jPDiv.attr('class', 'input');
             var jPInput = jPwd.find('input').eq(0);
-            // 动态改变密码域，IE6
+            // 動態改變密碼域，IE6
             if(!$.browser.msie) {
                 jPInput[0].type = 'password';
             }
@@ -105,7 +105,7 @@ M.addModelFns({
             var jPLabel = jPwd.find('label').eq(0);
             jPLabel.css('display', '');
             loginCheck.inputChecked(jPDiv, jPInput, jPLabel, jAInput);
-            // 联想框
+            // 聯想框
             $('#account_input').changeTips({
                 divTip: ".on-changes",
                 focusInput: jAInput,
@@ -138,19 +138,19 @@ M.addEventFns({
 });
 
 /**
- * 登录流程，JQuery插件，用于显示感知框
+ * 登入流程，JQuery插件，用於顯示感知框
  */
 (function($) {
     $.fn.extend({
         changeTips: function(value) {
-            // 初始化选择的类名
+            // 初始化選擇的類名
             value = $.extend({
                 divTip: ""
             }, value);
 
             var $this = $(this);
             var indexLi = 0;
-            // 绑定li点击事件
+            // 繫結li點選事件
             $(document).click(function(event) {
                 if($(event.target).is("li") && typeof($(event.target).attr('email')) != "undefined") {
                     var liVal = $(event.target).text();
@@ -164,7 +164,7 @@ M.addEventFns({
             var blus = function() {
                 $(value.divTip).hide();
             }
-            // 选中上下移动
+            // 選中上下移動
             var keyChange = function(up) {
                 if(up == "up") {
                     if(indexLi == 0) {
@@ -181,7 +181,7 @@ M.addEventFns({
                 }
                 $(value.divTip).find('li[rel="show"]').eq(indexLi).addClass("current").siblings().removeClass(); 
             }
-            // 改变输入框中的值
+            // 改變輸入框中的值
             var valChange = function() {
                 var tex = $this.val();
                 var fronts = "";
@@ -215,7 +215,7 @@ M.addEventFns({
                     });
                 }
             }
-            // 浏览器的输入的兼容性
+            // 瀏覽器的輸入的相容性
             if($.browser.msie && $.browser.version != '9.0') {
                 $(this).bind("propertychange", function() {
                     valChange();
@@ -225,11 +225,11 @@ M.addEventFns({
                     valChange();
                 });
             }
-            // 触碰后的样式
+            // 觸碰後的樣式
             $(value.divTip).find('li').hover(function() {
                 $(this).addClass("current").siblings().removeClass();
             });
-            // 绑定按键事件
+            // 繫結按鍵事件
             $this.keydown(function(event) {
                 if(event.which == 38) {
                     // 按上
@@ -238,11 +238,11 @@ M.addEventFns({
                     // 按下
                     keyChange();
                 } else if(event.which == 13) {
-                    // 按回车
+                    // 按回車
                     var liVal = $(value.divTip).find('li[rel="show"]').eq(indexLi).text();
                     $this.val(liVal);
                     blus();
-                    // 焦点定位
+                    // 焦點定位
                     typeof(value.nextFocus) != "undefined" && (value.focusInput.val().length != 0) && value.nextFocus.focus();
                 } else if(event.which == 9) {
                     blus();
@@ -252,12 +252,12 @@ M.addEventFns({
     });
 })(jQuery);
 
-// 页面在载入设置可视窗口宽度与高度
+// 頁面在載入設定可視視窗寬度與高度
 $(function () {
     changeSize();
 });
 
-// 改变浏览器可视窗口宽度与高度
+// 改變瀏覽器可視視窗寬度與高度
 $(window).resize(function () {
     changeSize();
 });

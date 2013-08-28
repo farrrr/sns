@@ -27,11 +27,11 @@
     })  
 })(jQuery);
 
-//字符串长度-中文和全角符号为1，英文、数字和半角为0.5
+//字元串長度-中文和全形符號為1，英文、數字和半形為0.5
 var getLength = function(str, shortUrl) {
 	str = str + '';
 	if (true == shortUrl) {
-		// 一个URL当作十个字长度计算
+		// 一個URL當作十個字長度計算
 		return Math.ceil(str.replace(/((news|telnet|nttp|file|http|ftp|https):\/\/){1}(([-A-Za-z0-9]+(\.[-A-Za-z0-9]+)*(\.[-A-Za-z]{2,5}))|([0-9]{1,3}(\.[0-9]{1,3}){3}))(:[0-9]*)?(\/[-A-Za-z0-9_\$\.\+\!\*\(\),;:@&=\?\/~\#\%]*)*/ig, 'xxxxxxxxxxxxxxxxxxxx')
 							.replace(/^\s+|\s+$/ig,'').replace(/[^\x00-\xff]/ig,'xx').length/2);
 	} else {
@@ -42,23 +42,23 @@ var getLength = function(str, shortUrl) {
 var subStr = function (str, len) {
     if(!str) { return ''; }
         len = len > 0 ? len*2 : 280;
-    var count = 0,	//计数：中文2字节，英文1字节
-        temp = '';  //临时字符串
+    var count = 0,	//計數：中文2位元組，英文1位元組
+        temp = '';  //臨時字元串
     for (var i = 0;i < str.length;i ++) {
     	if (str.charCodeAt(i) > 255) {
         	count += 2;
         } else {
         	count ++;
         }
-        //如果增加计数后长度大于限定长度，就直接返回临时字符串
+        //如果增加計數後長度大於限定長度，就直接返回臨時字元串
         if(count > len) { return temp; }
-        //将当前内容加到临时字符串
+        //將當前內容加到臨時字元串
          temp += str.charAt(i);
     }
     return str;
 };
 
-//异步请求页面
+//非同步請求頁面
 function async_page(url, target, callback)
 {
 	if (!url) {
@@ -91,7 +91,7 @@ function async_page(url, target, callback)
 	return true;
 }
 
-//异步加载翻页
+//非同步載入翻頁
 function async_turn_page(page_number, target)
 {
 	$(page_number).click(function(o){
@@ -104,12 +104,12 @@ function async_turn_page(page_number, target)
 	});
 }
 
-//表单异步处理 /* 生效条件：包含 jquery.form.js */
+//表單非同步處理 /* 生效條件：包含 jquery.form.js */
 function async_form(form)
 {
 	var $form = form ? $(form) : $("form[ajax='ajax']");
 
-	//监听 form 表单提交
+	//監聽 form 表單提交
 	$form.bind('submit', function() {
 		var callback = $(this).attr('callback');
 		var options = {
@@ -135,7 +135,7 @@ function async_form(form)
 });
 }
 
-// 复制剪贴板
+// 複製剪貼簿
 function copy_clip(copy){
 	var copy_clip = function(g){
 		if(window.clipboardData&&(jQuery.browser.msie && jQuery.browser.version < 7)){
@@ -182,36 +182,36 @@ function copy_clip(copy){
 		}
 	}
 	if ( copy_clip( copy ) ) {
-		ui.success( "复制成功！请Ctrl+V键粘贴到要加入的页面。" );
+		ui.success( "復製成功！請Ctrl+V鍵貼上到要加入的頁面。" );
 		return true;
 	} else {
-		ui.error("你的浏览器不支持脚本复制或你拒绝了浏览器安全确认，请尝试手动[Ctrl+C]复制。");
+		ui.error("你的瀏覽器不支援指令碼複製或你拒絕了瀏覽器安全確認，請嘗試手動[Ctrl+C]複製。");
 		return false;
 	}
 }
 
-//举报
+//舉報
 function denounce(from,aid,content,fuid,uid){
 	$.post(U('home/Widget/denounce'),{from:from,aid:aid,content:content,fuid:fuid,uid:uid},function(txt){
-		ui.box.show(txt, {title:'举报',closeable:true});
+		ui.box.show(txt, {title:'舉報',closeable:true});
 	});
 }
 
-//设置黑名单
+//設定黑名單
 function setBlacklist(uid,type){
 	$.post(U('home/Account/setBlackList') , {uid:uid,type:type} ,function(txt){
-		ui.success('设置成功');
+		ui.success('設定成功');
 		location.reload();
 	})
 }
 
-//空间关注操作
+//空間關注操作
 function dofollow(type,target,uid){
 	var html = '';
 	$('#follow_state').html( '<img src="'+ _THEME_+'/images/icon_waiting.gif" width="15">' );
 	$.post( U('weibo/Operate/follow') ,{uid:uid,type:type},function(txt){
 		if(txt=='14'){
-			ui.error('关注人数已超过设置最大数量，关注失败！');
+			ui.error('關注人數已超過設定最大數量，關註失敗！');
 		}
 		if(txt=='12'){
 			html = followState('havefollow');
@@ -220,10 +220,10 @@ function dofollow(type,target,uid){
 			html = followState('eachfollow');
 			followGroupSelectorBox(uid);
 		}else if(txt=='00'){
-			ui.error('对方不允许你关注');
+			ui.error('對方不允許你關注');
 			html = followState('unfollow',target,uid);
 		}else if(txt=='03'){
-			ui.error('不能关注自己');
+			ui.error('不能關注自己');
 			html = followState('unfollow',target,uid);
 		}else{
 			html = followState();
@@ -232,7 +232,7 @@ function dofollow(type,target,uid){
 	});
 }
 
-//列表关注操作
+//列表關注操作
 function dolistfollow(type,target,uid){
 	var html = '';
 	var target=target;
@@ -246,7 +246,7 @@ function dolistfollow(type,target,uid){
 			html = followState('eachfollow',target,uid);
 			followGroupSelectorBox(uid);
 		}else if(txt=='00'){
-			ui.error('对方不允许你关注');
+			ui.error('對方不允許你關注');
 			html = followState('unfollow',target,uid);
 		}else{
 			html = followState('',target,uid);
@@ -257,17 +257,17 @@ function dolistfollow(type,target,uid){
 	});
 }
 
-//关注状态
+//關注狀態
 function followState(type,target,uid){
 	target = target || 'dofollow';
 	uid    = uid    || _UID_;
 	if(type=='havefollow'){
-		html = '<div class="btn_relation"><span>已关注&nbsp;&nbsp;|&nbsp;&nbsp;</span><a href="javascript:void(0);" onclick="'+target+'(\'unflollow\',\''+target+'\','+uid+')">取消</a></div>';
+		html = '<div class="btn_relation"><span>已關注&nbsp;&nbsp;|&nbsp;&nbsp;</span><a href="javascript:void(0);" onclick="'+target+'(\'unflollow\',\''+target+'\','+uid+')">取消</a></div>';
 	}else if(type=='eachfollow'){
-		html = '<div class="btn_relation btn_relation2"><span>互相关注&nbsp;&nbsp;|&nbsp;&nbsp;</span><a href="javascript:void(0);" onclick="'+target+'(\'unflollow\',\''+target+'\','+uid+')">取消</a></div>';
+		html = '<div class="btn_relation btn_relation2"><span>互相關注&nbsp;&nbsp;|&nbsp;&nbsp;</span><a href="javascript:void(0);" onclick="'+target+'(\'unflollow\',\''+target+'\','+uid+')">取消</a></div>';
 	}else{
 		if(uid != 0){
-		html = '<a class="add_atn" href="javascript:void(0);" onclick="'+target+'(\'dofollow\',\''+target+'\','+uid+')">加关注</a>';
+		html = '<a class="add_atn" href="javascript:void(0);" onclick="'+target+'(\'dofollow\',\''+target+'\','+uid+')">加關注</a>';
 		}
 		if(uid == 0){
 		html = '';
@@ -276,7 +276,7 @@ function followState(type,target,uid){
 	return html;
 }
 
-//好友分组选择-下拉
+//好友分組選擇-下拉
 function followGroupSelector(fid){
 	if($('.followGroupStatus'+fid).css('display') == 'none'){
 		$.post(U('weibo/FollowGroup/selectorList'),{fid:fid},function(res){
@@ -285,17 +285,17 @@ function followGroupSelector(fid){
 		});
 	}
 }
-// 注释好友分组选择弹窗   程序自动搜索TS3 中的分组选择弹窗
-// //好友分组选择-弹窗
+// 註釋好友分組選擇彈窗   程式自動搜索TS3 中的分組選擇彈窗
+// //好友分組選擇-彈窗
 // function followGroupSelectorBox(fid){
-// 	// ui.box.load( U('weibo/FollowGroup/selectorBox')+'&fid='+fid,{title:'设置分组'});
+// 	// ui.box.load( U('weibo/FollowGroup/selectorBox')+'&fid='+fid,{title:'設定分組'});
 // 	ui.box.load(U('public/FollowGroup/selectorBox')+'&fid='+fid,{title:L('PUBLIC_FOLLOWING_SUCCESS')});
 // }
 
 // /**  TS3  JS
-//  * 好友分组选择，弹出框
-//  * @param integer fid 关注人ID
-//  * @param integer isrefresh 确定后是否刷新页面
+//  * 好友分組選擇，彈出框
+//  * @param integer fid 關注人ID
+//  * @param integer isrefresh 確定後是否重新整理頁面
 //  * @return void
 //  */
 // var followGroupSelectorBox = function(fid, isrefresh)
@@ -308,25 +308,25 @@ function followGroupSelector(fid){
 // 	ui.box.load(U('public/FollowGroup/selectorBox')+'&fid='+fid+'&isrefresh='+isrefresh, L('PUBLIC_FOLLOWING_SUCCESS'), r);
 // };
 
-//关闭好友分组选择
+//關閉好友分組選擇
 function followGroupSelectorClose(fid){
 	$('.followGroupStatus'+fid).hide();
 	$('.followGroupStatus'+fid).html('');
 }
 
-//添加关注分组
+//添加關注分組
 function setFollowGroupTab(gid){
-	var title = gid?'修改分组':'创建分组';
+	var title = gid?'修改分組':'創建分組';
 	gid = gid?'&gid='+gid:'';
 	ui.box.load( U('weibo/FollowGroup/setGroupTab') + gid,{title:title});
 }
 
-//添加关注话题
+//添加關注話題
 function addFollowTopic(){
 	var name = $("input[name='quick_name']").val();
 	    name = name.replace(/(^\s*)|(\s*$)/g, "");
 	if(name==''){
-		ui.error('请输入话题名称');
+		ui.error('請輸入話題名稱');
 		return false;
 	}
 	$.post(U('weibo/operate/followtopic'),{name:name},function(txt){
@@ -336,17 +336,17 @@ function addFollowTopic(){
 			$('.quick_win').hide(function (){
 				location.replace(location.href);
 			});
-			ui.success("添加关注话题成功");
+			ui.success("添加關注話題成功");
 		}else if(txt.code=='11'){
-			ui.error('已关注过此话题');
+			ui.error('已關注過此話題');
 		}else{
-			ui.error('关注失败');
+			ui.error('關註失敗');
 		}
 
 	});
 }
 
-//删除关注话题
+//刪除關注話題
 function deleteFollowTopic(o,key){
 	$.post(U('weibo/operate/unfollowtopic'),{topicId:key},function(txt){
 		$(o).parents("li").remove();
@@ -357,7 +357,7 @@ ui = window.ui ||{
 	success:function(message,error){
 		var style = (error==1)?"html_clew_box clew_error ":"html_clew_box";
 		var html   =   '<div class="" id="ui_messageBox" style="display:none;z-index:1000001">'
-					   + '<div class="html_clew_box_close"><a href="javascript:void(0)" onclick="$(this).parents(\'.html_clew_box\').hide()" title="关闭">关闭</a></div>'
+					   + '<div class="html_clew_box_close"><a href="javascript:void(0)" onclick="$(this).parents(\'.html_clew_box\').hide()" title="關閉">關閉</a></div>'
 					   + '<div class="html_clew_box_con" id="ui_messageContent">&nbsp;</div></div>';
 		var init      =  0;
 		
@@ -408,7 +408,7 @@ ui = window.ui ||{
 
 	load:function(){
 		var init = 0
-		var loadingBox = '<div class="html_clew_box" id="ui_loading" style="display:none"><div class="html_clew_box_con"><span class="ico_waiting">加载中……</span></div></div>';
+		var loadingBox = '<div class="html_clew_box" id="ui_loading" style="display:none"><div class="html_clew_box_con"><span class="ico_waiting">載入中……</span></div></div>';
 		if( !init ){
 			$('body').append( loadingBox );
 			init = 1;
@@ -428,20 +428,20 @@ ui = window.ui ||{
 	
 	quicklogin:function(){
 		setTimeout(function() {
-			ui.box.load( U('home/Public/quick_login') ,{title:'快速登录'});
+			ui.box.load( U('home/Public/quick_login') ,{title:'快速登入'});
 		}, '');
 	},
 	
 	sendmessage:function(touid){
 		touid = touid || '';
-		ui.box.load(U('home/Message/post',['touid='+touid]), {title:'发私信'});
+		ui.box.load(U('home/Message/post',['touid='+touid]), {title:'發私信'});
 	},
 	
 	confirm:function(o,text){
 		var callback = $(o).attr('callback');
-		text = text || '确定要做此项操作吗？';
-		this.html = '<div id="ts_ui_confirm" class="ts_confirm"><dl><a class="del" href="javascript:void(0)" onclick="$(\'.ts_confirm\').remove()"></a><dt class="txt"></dt><dd><input type="button" value="确定"  class="btn_b mr5"><input type="button" value="取消"  class="btn_w"></dd></dl></div>';
-		// 修改原因: ts_ui_confirm .btn_b按钮会重复提交
+		text = text || '確定要做此項操作嗎？';
+		this.html = '<div id="ts_ui_confirm" class="ts_confirm"><dl><a class="del" href="javascript:void(0)" onclick="$(\'.ts_confirm\').remove()"></a><dt class="txt"></dt><dd><input type="button" value="確定"  class="btn_b mr5"><input type="button" value="取消"  class="btn_w"></dd></dl></div>';
+		// 修改原因: ts_ui_confirm .btn_b按鈕會重複提交
 		//if( $('#ts_ui_confirm').html()==null ){
 			$('body').append(this.html);
 		//}
@@ -451,12 +451,12 @@ ui = window.ui ||{
 		$('#ts_ui_confirm').fadeIn("fast");
 		$("#ts_ui_confirm .btn_w").one('click',function(){
 			$('#ts_ui_confirm').fadeOut("fast");
-			// 修改原因: ts_ui_confirm .btn_b按钮会重复提交
+			// 修改原因: ts_ui_confirm .btn_b按鈕會重複提交
 			$('#ts_ui_confirm').remove();
 		});
 		$("#ts_ui_confirm .btn_b").one('click',function(){
 			$('#ts_ui_confirm').fadeOut("fast");
-			// 修改原因: ts_ui_confirm .btn_b按钮会重复提交
+			// 修改原因: ts_ui_confirm .btn_b按鈕會重複提交
 			$('#ts_ui_confirm').remove();
 			eval(callback);
 		});
@@ -477,7 +477,7 @@ ui = window.ui ||{
 				 + '<div style="position: relative; height: 7px; line-height: 3px;z-index:99">'
 				 + '<img src="' + _THEME_ + '/images/zw_img.gif" style="margin-left: 10px; position: absolute;" class="talkPop_arrow"></div>'
 				 + '<div class="talkPop_box">'
-				 + '<div class="close" style="height:30px;line-height:30px;background-color:#F8FAFC;padding:0 10px;position:relative;*width:420px"><a onclick=" $(\'#emotions\').remove()" class="del" href="javascript:void(0)" title="关闭"> </a><span>常用表情</span></div>'
+				 + '<div class="close" style="height:30px;line-height:30px;background-color:#F8FAFC;padding:0 10px;position:relative;*width:420px"><a onclick=" $(\'#emotions\').remove()" class="del" href="javascript:void(0)" title="關閉"> </a><span>常用表情</span></div>'
 				 + '<div class="faces_box" id="emot_content"><img src="'+ _THEME_+'/images/icon_waiting.gif" width="20" class="alM"></div></div></div>';
 		target_set = $o.attr('target_set');
 		$body.append(this.html);
@@ -495,7 +495,7 @@ ui = window.ui ||{
 			_this.showContent(this.emotdata);
 		};
 
-		this.showContent = function(data){  //显示表情内容
+		this.showContent = function(data){  //顯示錶情內容
 			var content ='';
 			$.each(data,function(i,n){
 				content+='<a href="javascript:void(0)" title="'+n.title+'" onclick="ui.emotions_c(\''+n.emotion+'\',\''+target_set+'\')"><img src="'+ _THEME_ +'/images/expression/'+n.type+'/'+ n.filename +'" width="24" height="24" /></a>';
@@ -522,27 +522,27 @@ ui = window.ui ||{
 		    var messageList =  $('.message_list_container');
 		    var messageSmallDiv = $('#message_list_container');
 		    var list = {
-                             comment:{url:U('home/user/comments'),name:"我的评论"},
+                             comment:{url:U('home/user/comments'),name:"我的評論"},
                              atme:{url:U('home/user/atme'),name:"新@提到我"},
                              message:{url:U('home/message/index'),name:"新的私信"},
-                             group_atme:{url:U('group/index/atme'),name:"群内@我的"},
-                             group_comment:{url:U('group/index/comment'),name:"群内评论"},
-                             group_bbs:{url:U('group/index/bbsNotify'),name:"群内帖子消息"},
-                             notify:{url:U('home/message/notify'),name:"系统通知"},
-                             appmessage:{url:U('home/message/appmessage'),name:"系统消息"}
+                             group_atme:{url:U('group/index/atme'),name:"群內@我的"},
+                             group_comment:{url:U('group/index/comment'),name:"群內評論"},
+                             group_bbs:{url:U('group/index/bbsNotify'),name:"群內帖子訊息"},
+                             notify:{url:U('home/message/notify'),name:"系統通知"},
+                             appmessage:{url:U('home/message/appmessage'),name:"系統訊息"}
                              };
 		    messageList.html("");
 			if(txt.total && txt.total!="0"){
 			   
 			    for(var one in list){
 			        if(txt[one] != undefined && parseInt(txt[one]) >0){
-			            //<li>两条新消息,<a href="#">查看消息</a></li>
+			            //<li>兩條新訊息,<a href="#">檢視訊息</a></li>
 			            var newLi = document.createElement('li');
-			            var newNode = document.createTextNode(txt[one]+"条"+list[one].name+"，");
+			            var newNode = document.createTextNode(txt[one]+"條"+list[one].name+"，");
 			            var newA = document.createElement('a');
 			            newA.href = list[one].url;
 			            newA.target = "";
-			            newA.innerHTML="查看消息";
+			            newA.innerHTML="檢視訊息";
 			            newA.className="message_list_"+one;
 			            
 			            newLi.appendChild(newNode);
@@ -595,13 +595,13 @@ ui = window.ui ||{
 	},
 	getarea:function(prefix,init_style,init_p,init_c){
 		var style = (init_style)?'class="'+init_style+'"':'';
-		var html = '<select name="'+prefix+'_province" '+style+'><option>省/直辖市</option></select> '+
+		var html = '<select name="'+prefix+'_province" '+style+'><option>省/直轄市</option></select> '+
 				'<select name="'+prefix+'_city" '+style+' style="width:180px"><option value=0>不限</option></select>';
 		document.write(html);
 		// _PUBLIC_+'/js/area.js'
 		$.getJSON(U('home/Public/getArea'), function(json){
 			json = json.provinces;
-			var province ='<option>省/直辖市</option>';
+			var province ='<option>省/直轄市</option>';
 			$.each(json,function(i,n){
 				var pselected='';
 				var cselected='';
@@ -666,7 +666,7 @@ function AutoResizeImage(maxWidth,maxHeight,objImg){
 	objImg.width = w;
 }
 
-//模拟ts U函数
+//模擬ts U函數
 function U(url,params){
 	var website = _ROOT_+'/index.php';
 	url = url.split('/');
@@ -689,7 +689,7 @@ function U(url,params){
  * http://www.openjs.com/scripts/events/keyboard_shortcuts/
  * Version : 1.00.A
  * By Binny V A
- * 键盘绑定事件
+ * 鍵盤繫結事件
  * License : BSD
  */
 function shortcut(shortcut,callback,opt) {
@@ -859,7 +859,7 @@ function shortcut(shortcut,callback,opt) {
 	else ele['on'+opt['type']] = func;
 }
 
-// 图片缩放
+// 圖片縮放
 function photo_resize(name,sizeNum){
 	var newWidth = $(name).width();
     $(name +" img").each(function(){
@@ -867,7 +867,7 @@ function photo_resize(name,sizeNum){
         var width = sizeNum || 590;
         var images = $(this);
         
-        //判断是否是IE
+        //判斷是否是IE
         if (-[1, ]) {
             image = new Image();
             image.src = $(this).attr('src');
@@ -897,7 +897,7 @@ function photo_resize(name,sizeNum){
     });
 }
 
-// 输入框 @用户 列表
+// 輸入框 @使用者 列表
 (function(){
 
 var config = {
@@ -909,9 +909,9 @@ var config = {
 		positionHTML:'<span id="autoUserTipsPosition">&nbsp;123</span>',
 		className:'autoSelected'
 	};
-//var html = '<div id="autoTalkBox" style="text-align:left;z-index:-2000;top:$top$px;left:$left$px;width:$width$px;height:$height$px;z-index:1;position:absolute;scroll-top:$SCTOP$px;overflow:hidden;overflow-y:auto;visibility:hidden;word-break:break-all;word-wrap:break-word;"><span id="autoTalkText" style="font-size:14px;margin:0;"></span></div><div id="recipientsTips" class="recipients-tips"><div style="font-size:12px;text-align:left;font-weight: bold;padding:2px;">格式：@+W3帐号、姓名</div><ul id="autoTipsUserList"></ul></div>';
+//var html = '<div id="autoTalkBox" style="text-align:left;z-index:-2000;top:$top$px;left:$left$px;width:$width$px;height:$height$px;z-index:1;position:absolute;scroll-top:$SCTOP$px;overflow:hidden;overflow-y:auto;visibility:hidden;word-break:break-all;word-wrap:break-word;"><span id="autoTalkText" style="font-size:14px;margin:0;"></span></div><div id="recipientsTips" class="recipients-tips"><div style="font-size:12px;text-align:left;font-weight: bold;padding:2px;">格式：@+W3帳號、姓名</div><ul id="autoTipsUserList"></ul></div>';
 //var listHTML = '<li style="text-align:left"><a title="$ACCOUNT$" rel="$ID$" >$NAME$(@$SACCOUNT$)</a></li>';
-var html = '<div id="autoTalkBox" style="text-align:left;z-index:-2000;top:$top$px;left:$left$px;width:$width$px;height:$height$px;z-index:1;position:absolute;scroll-top:$SCTOP$px;overflow:hidden;overflow-y:auto;visibility:hidden;word-break:break-all;word-wrap:break-word;"><span id="autoTalkText" style="font-size:14px;margin:0;"></span></div><div id="recipientsTips" class="recipients-tips"><h4>格式：@用户昵称</h4><ul id="autoTipsUserList"></ul></div>';
+var html = '<div id="autoTalkBox" style="text-align:left;z-index:-2000;top:$top$px;left:$left$px;width:$width$px;height:$height$px;z-index:1;position:absolute;scroll-top:$SCTOP$px;overflow:hidden;overflow-y:auto;visibility:hidden;word-break:break-all;word-wrap:break-word;"><span id="autoTalkText" style="font-size:14px;margin:0;"></span></div><div id="recipientsTips" class="recipients-tips"><h4>格式：@使用者昵稱</h4><ul id="autoTipsUserList"></ul></div>';
 var listHTML = '<li style="text-align:left"><a rel="$ID$" >@$SACCOUNT$</a></li>';
 
 
@@ -959,11 +959,11 @@ var D = {
 };
 
 /*
- * TT textarea 操作函数
- * info(t) 基本信息
- * getCursorPosition(t) 光标位置
- * setCursorPosition(t, p) 设置光标位置
- * add(t,txt) 添加内容到光标处
+ * TT textarea 操作函數
+ * info(t) 基本資訊
+ * getCursorPosition(t) 游標位置
+ * setCursorPosition(t, p) 設定游標位置
+ * add(t,txt) 添加內容到游標處
  */
 var TT = {
 	
@@ -1030,8 +1030,8 @@ var TT = {
 
 
 /*
- * DS 数据查找
- * inquiry(data, str, num) 数据, 关键词, 个数
+ * DS 資料查找
+ * inquiry(data, str, num) 資料, 關鍵詞, 個數
  * 
  */
 
@@ -1118,7 +1118,7 @@ var AutoTips = function(A){
 			div.innerHTML = h;
 			var last = document.body.lastChild;
 			document.body.insertBefore(div,last);
-			//document.body.appendChild(div);	// IE6 下报错的问题
+			//document.body.appendChild(div);	// IE6 下報錯的問題
 		}else{
 			_this.updatePosstion();
 		}
@@ -1263,7 +1263,7 @@ window.userAutoTips = function(args){
 	}
 })()
 
-//更换注册码
+//更換註冊碼
 function changeverify(){
     var date = new Date();
     var ttime = date.getTime();
@@ -1271,7 +1271,7 @@ function changeverify(){
     $('#verifyimg').attr('src',url+'?'+ttime);
 }
 
-/* 图片切换 */
+/* 圖片切換 */
 (function(){
 
 var fSwitchPic = function( oPicSection, nInterval ) {
@@ -1318,7 +1318,7 @@ fSwitchPic.prototype = {
 		}
 		this.dPicNav.innerHTML = sPicNav;
 
-		// 追加属性和Event
+		// 追加屬性和Event
 		var dPicNavMenu = this.dPicNav.getElementsByTagName( "a" ),
 		    nL = dPicNavMenu.length;
 

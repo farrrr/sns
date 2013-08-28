@@ -1,54 +1,54 @@
 <?php
 /**
- * ThinkSNS 数据库中间层，只支持MySQL
+ * ThinkSNS 資料庫中間層，只支援MySQL
  * @author  liuxiaoqing <liuxiaoqing@zhishisoft.com>
  * @version TS3.0
  */
 
-// 定义MySQL查询输出封装为多结果，必须用循环处理
+// 定義MySQL查詢輸出封裝為多結果，必須用迴圈處理
 define('CLIENT_MULTI_RESULTS', 131072);
 
 class Db extends Think
 {
 
     static private $_instance = null;
-    // 是否自动释放查询结果
+    // 是否自動釋放查詢結果
     protected $autoFree         = false;
-    // 是否显示调试信息 如果启用会在日志文件记录sql语句
+    // 是否顯示偵錯資訊 如果啟用會在日志檔案記錄sql語句
     public $debug             = false;
-    // 是否使用永久连接
+    // 是否使用永久連線
     protected $pconnect         = false;
-    // 当前SQL指令
+    // 當前SQL指令
     protected $queryStr          = '';
-    // 最后插入ID
+    // 最後插入ID
     protected $lastInsID         = null;
-    // 返回或者影响记录数
+    // 返回或者影響記錄數
     protected $numRows        = 0;
-    // 返回字段数
+    // 返回欄位數
     protected $numCols          = 0;
-    // 事务指令数
+    // 事務指令數
     protected $transTimes      = 0;
-    // 错误信息
+    // 錯誤資訊
     protected $error              = '';
-    // 当前连接ID
+    // 當前連線ID
     protected $linkID            =   null;
-    // 当前查询ID
+    // 當前查詢ID
     protected $queryID          = null;
-    // 是否已经连接数据库
+    // 是否已經連線資料庫
     protected $connected       = false;
-    // 数据库连接参数配置
+    // 資料庫連線參數配置
     protected $config             = '';
-    // SQL 执行时间记录
+    // SQL 執行時間記錄
     protected $beginTime;
-    // 数据库表达式
+    // 資料庫表示式
     protected $comparison      = array('eq'=>'=','neq'=>'!=','gt'=>'>','egt'=>'>=','lt'=>'<','elt'=>'<=','notlike'=>'NOT LIKE','like'=>'LIKE');
-    // 查询表达式
+    // 查詢表示式
     protected $selectSql  =     'SELECT%DISTINCT% %FIELDS% FROM %TABLE%%JOIN%%WHERE%%GROUP%%HAVING%%ORDER%%LIMIT%';
-    
+
     /**
-     * 架构函数
+     * 架構函數
      * @access public
-     * @param array $config 数据库配置数组
+     * @param array $config 資料庫配置陣列
      */
     public function __construct($config=''){
         if ( !extension_loaded('mysql') ) {
@@ -59,14 +59,14 @@ class Db extends Think
     }
 
     /**
-     * 连接数据库方法
+     * 連線資料庫方法
      * @access public
      * @throws ThinkExecption
      */
     public function connect() {
         if(!$this->connected) {
             $config =   $this->config;
-            // 处理不带端口号的socket连接情况
+            // 處理不帶埠號的socket連線情況
             $host = $config['hostname'].($config['hostport']?":{$config['hostport']}":'');
             if($this->pconnect) {
                 $this->linkID = mysql_pconnect( $host, $config['username'], $config['password'],CLIENT_MULTI_RESULTS);
@@ -78,22 +78,22 @@ class Db extends Think
             }
             $dbVersion = mysql_get_server_info($this->linkID);
             if ($dbVersion >= "4.1") {
-                //使用UTF8存取数据库 需要mysql 4.1.0以上支持
+                //使用UTF8存取資料庫 需要mysql 4.1.0以上支援
                 mysql_query("SET NAMES '".C('DB_CHARSET')."'", $this->linkID);
             }
-            //设置 sql_model
+            //設定 sql_model
             if($dbVersion >'5.0.1'){
                 mysql_query("SET sql_mode=''",$this->linkID);
             }
-            // 标记连接成功
+            // 標記連線成功
             $this->connected    =   true;
-            // 注销数据库连接配置信息
+            // 登出資料庫連線配置資訊
             unset($this->config);
         }
     }
 
     /**
-     * 释放查询结果
+     * 釋放查詢結果
      * @access public
      */
     public function free() {
@@ -102,8 +102,8 @@ class Db extends Think
     }
 
     /**
-     * 执行查询 主要针对 SELECT, SHOW 等指令
-     * 返回数据集
+     * 執行查詢 主要針對 SELECT, SHOW 等指令
+     * 返回資料集
      * @access protected
      * @param string $str  sql指令
      * @return mixed
@@ -113,27 +113,27 @@ class Db extends Think
         $this->connect();
         if ( !$this->linkID ) return false;
         if ( $str != '' ) $this->queryStr = $str;
-        //释放前次的查询结果
+        //釋放前次的查詢結果
         if ( $this->queryID ) {    $this->free();    }
         $this->Q(1);
         $this->queryID = mysql_query($this->queryStr, $this->linkID);
         $this->debug();
         if ( !$this->queryID ) {
-//             if ( $this->debug )
-//                 throw_exception($this->error());
-//             else
-                return false;
+            //             if ( $this->debug )
+            //                 throw_exception($this->error());
+            //             else
+            return false;
         } else {
             $this->numRows = mysql_num_rows($this->queryID);
             if(!empty($method)){
-            	return $this->$method($p,$p2);
+                return $this->$method($p,$p2);
             }
             return $this->getAll();
         }
     }
 
     /**
-     * 执行语句 针对 INSERT, UPDATE 以及DELETE
+     * 執行語句 針對 INSERT, UPDATE 以及DELETE
      * @access protected
      * @param string $str  sql指令
      * @return integer
@@ -143,16 +143,16 @@ class Db extends Think
         $this->connect();
         if ( !$this->linkID ) return false;
         if ( $str != '' ) $this->queryStr = $str;
-        //释放前次的查询结果
+        //釋放前次的查詢結果
         if ( $this->queryID ) {    $this->free();    }
         $this->W(1);
         $result =   mysql_query($this->queryStr, $this->linkID) ;
         $this->debug();
         if ( false === $result) {
-//             if ( $this->debug )
-//                 throw_exception($this->error());
-//             else
-                return false;
+            //             if ( $this->debug )
+            //                 throw_exception($this->error());
+            //             else
+            return false;
         } else {
             $this->numRows = mysql_affected_rows($this->linkID);
             $this->lastInsID = mysql_insert_id($this->linkID);
@@ -161,7 +161,7 @@ class Db extends Think
     }
 
     /**
-     * 启动事务
+     * 啟動事務
      * @access public
      * @return void
      * @throws ThinkExecption
@@ -169,7 +169,7 @@ class Db extends Think
     public function startTrans() {
         $this->connect(true);
         if ( !$this->linkID ) return false;
-        //数据rollback 支持
+        //資料rollback 支援
         if ($this->transTimes == 0) {
             mysql_query('START TRANSACTION', $this->linkID);
         }
@@ -178,7 +178,7 @@ class Db extends Think
     }
 
     /**
-     * 用于非自动提交状态下面的查询提交
+     * 用於非自動提交狀態下面的查詢提交
      * @access public
      * @return boolen
      * @throws ThinkExecption
@@ -196,7 +196,7 @@ class Db extends Think
     }
 
     /**
-     * 事务回滚
+     * 事務回滾
      * @access public
      * @return boolen
      * @throws ThinkExecption
@@ -214,7 +214,7 @@ class Db extends Think
     }
 
     /**
-     * 获得所有的查询数据
+     * 獲得所有的查詢資料
      * @access public
      * @return array
      * @throws ThinkExecption
@@ -224,7 +224,7 @@ class Db extends Think
             throw_exception($this->error());
             return false;
         }
-        //返回数据集
+        //返回資料集
         $result = array();
         if($this->numRows >0) {
             while($row = mysql_fetch_assoc($this->queryID)){
@@ -234,57 +234,57 @@ class Db extends Think
         }
         return $result;
     }
-    
+
     /**
-     * 获取以传入的参数的数据结果集合
+     * 獲取以傳入的參數的資料結果集合
      * @access public
      * @return array
      * @throws ThinkExecption
      */
     public function getAsFieldArray($field='*',$nouse='') {
-    	if ( !$this->queryID ) {
-    		throw_exception($this->error());
-    		return false;
-    	}
-    	//返回数据集
-    	$result = array();
-    	if($this->numRows >0) {
-    		while($row = mysql_fetch_assoc($this->queryID)){
-    			$result[]   =   $field =='*' ? $row : @$row[$field];
-    		}
-    		mysql_data_seek($this->queryID,0);
-    	}
-    	return $result;
+        if ( !$this->queryID ) {
+            throw_exception($this->error());
+            return false;
+        }
+        //返回資料集
+        $result = array();
+        if($this->numRows >0) {
+            while($row = mysql_fetch_assoc($this->queryID)){
+                $result[]   =   $field =='*' ? $row : @$row[$field];
+            }
+            mysql_data_seek($this->queryID,0);
+        }
+        return $result;
     }
 
     /**
-     * 获取以hashkey作为键值的hash数组
+     * 獲取以hashkey作為鍵值的hash陣列
      * @access public
      * @return array
      * @throws ThinkExecption
      */
     public function getHashList($hashKey='',$hashValue='*'){
-    	if ( !$this->queryID ) {
-    		throw_exception($this->error());
-    		return false;
-    	}
-    	//返回数据集
-    	$result = array();
-    	if($this->numRows >0) {
-    		while($row = mysql_fetch_assoc($this->queryID)){
-    			if(empty($hashKey)){
-    				$reuslt[] =  $hashValue =='*' ? $row : @$row[$hashValue];
-    			}else{
-    				$result[$row[$hashKey]]   =   $hashValue =='*' ? $row : @$row[$hashValue];
-    			}
-    		}
-    		mysql_data_seek($this->queryID,0);
-    	}
-    	return $result;
+        if ( !$this->queryID ) {
+            throw_exception($this->error());
+            return false;
+        }
+        //返回資料集
+        $result = array();
+        if($this->numRows >0) {
+            while($row = mysql_fetch_assoc($this->queryID)){
+                if(empty($hashKey)){
+                    $reuslt[] =  $hashValue =='*' ? $row : @$row[$hashValue];
+                }else{
+                    $result[$row[$hashKey]]   =   $hashValue =='*' ? $row : @$row[$hashValue];
+                }
+            }
+            mysql_data_seek($this->queryID,0);
+        }
+        return $result;
     }
 
     /**
-     * 取得数据表的字段信息
+     * 取得資料表的欄位資訊
      * @access public
      */
     public function getFields($tableName) {
@@ -304,14 +304,14 @@ class Db extends Think
     }
 
     /**
-     * 取得数据库的表信息
+     * 取得資料庫的表資訊
      * @access public
      */
     public function getTables($dbName='') {
         if(!empty($dbName)) {
-           $sql    = 'SHOW TABLES FROM '.$dbName;
+            $sql    = 'SHOW TABLES FROM '.$dbName;
         }else{
-           $sql    = 'SHOW TABLES ';
+            $sql    = 'SHOW TABLES ';
         }
         $result =   $this->query($sql);
         $info   =   array();
@@ -322,7 +322,7 @@ class Db extends Think
     }
 
     /**
-     * 关闭数据库
+     * 關閉資料庫
      * @access public
      * @throws ThinkExecption
      */
@@ -336,24 +336,24 @@ class Db extends Think
     }
 
     /**
-     * 数据库错误信息
-     * 并显示当前的SQL语句
+     * 資料庫錯誤資訊
+     * 並顯示當前的SQL語句
      * @access public
      * @return string
      */
     public function error() {
         $this->error = mysql_error($this->linkID);
         if($this->queryStr!=''){
-            $this->error .= "\n [ SQL语句 ] : ".$this->queryStr;
+            $this->error .= "\n [ SQL語句 ] : ".$this->queryStr;
         }
         return $this->error;
     }
-    
+
 
     /**
-     * SQL指令安全过滤
+     * SQL指令安全過濾
      * @access public
-     * @param string $str  SQL字符串
+     * @param string $str  SQL字元串
      * @return string
      */
     public function escape_string($str) {
@@ -363,39 +363,39 @@ class Db extends Think
     }
 
     /**
-     * 析构方法
+     * 析構方法
      * @access public
      */
     public function __destruct() {
-        // 关闭连接
+        // 關閉連線
         $this->close();
     }
 
     /**
-     * 取得数据库类实例
+     * 取得資料庫類例項
      * @static
      * @access public
-     * @return mixed 返回数据库驱动类
+     * @return mixed 返回資料庫驅動類
      */
     public static function getInstance($db_config='') {
-		if ( self::$_instance==null ){
-			self::$_instance = new Db($db_config);
-		}
-		return self::$_instance;
+        if ( self::$_instance==null ){
+            self::$_instance = new Db($db_config);
+        }
+        return self::$_instance;
     }
 
     /**
-     * 分析数据库配置信息，支持数组和DSN
+     * 分析資料庫配置資訊，支援陣列和DSN
      * @access private
-     * @param mixed $db_config 数据库配置信息
+     * @param mixed $db_config 資料庫配置資訊
      * @return string
      */
     private function parseConfig($db_config='') {
         if ( !empty($db_config) && is_string($db_config)) {
-            // 如果DSN字符串则进行解析
+            // 如果DSN字元串則進行解析
             $db_config = $this->parseDSN($db_config);
         }else if(empty($db_config)){
-            // 如果配置为空，读取配置文件设置
+            // 如果配置為空，讀取配置檔案設定
             $db_config = array (
                 'dbms'        =>   C('DB_TYPE'),
                 'username'  =>   C('DB_USER'),
@@ -420,44 +420,44 @@ class Db extends Think
      */
     public function parseDSN($dsnStr) {
         if( empty($dsnStr) ){return false;}
-        $info = parse_url($dsnStr);
+            $info = parse_url($dsnStr);
         if($info['scheme']){
             $dsn = array(
-            'dbms'        => $info['scheme'],
-            'username'  => isset($info['user']) ? $info['user'] : '',
-            'password'   => isset($info['pass']) ? $info['pass'] : '',
-            'hostname'  => isset($info['host']) ? $info['host'] : '',
-            'hostport'    => isset($info['port']) ? $info['port'] : '',
-            'database'   => isset($info['path']) ? substr($info['path'],1) : ''
+                'dbms'        => $info['scheme'],
+                'username'  => isset($info['user']) ? $info['user'] : '',
+                'password'   => isset($info['pass']) ? $info['pass'] : '',
+                'hostname'  => isset($info['host']) ? $info['host'] : '',
+                'hostport'    => isset($info['port']) ? $info['port'] : '',
+                'database'   => isset($info['path']) ? substr($info['path'],1) : ''
             );
         }else {
             preg_match('/^(.*?)\:\/\/(.*?)\:(.*?)\@(.*?)\:([0-9]{1, 6})\/(.*?)$/',trim($dsnStr),$matches);
             $dsn = array (
-            'dbms'        => $matches[1],
-            'username'  => $matches[2],
-            'password'   => $matches[3],
-            'hostname'  => $matches[4],
-            'hostport'    => $matches[5],
-            'database'   => $matches[6]
+                'dbms'        => $matches[1],
+                'username'  => $matches[2],
+                'password'   => $matches[3],
+                'hostname'  => $matches[4],
+                'hostport'    => $matches[5],
+                'database'   => $matches[6]
             );
         }
         return $dsn;
-     }
+    }
 
     /**
-     * 数据库调试 记录当前SQL
+     * 資料庫偵錯 記錄當前SQL
      * @access protected
      */
     protected function debug() {
-        // 记录操作结束时间
+        // 記錄操作結束時間
         if ( $this->debug )    {
             $runtime    =   number_format(microtime(TRUE) - $this->beginTime, 6);
-            Log::record(" RunTime:".$runtime."s SQL = ".$this->queryStr,Log::SQL,true);//强行记录SQL日志
+            Log::record(" RunTime:".$runtime."s SQL = ".$this->queryStr,Log::SQL,true);//強行記錄SQL日誌
         }
     }
 
     /**
-     * 设置锁机制
+     * 設定鎖機制
      * @access protected
      * @return string
      */
@@ -478,7 +478,7 @@ class Db extends Think
     protected function parseSet($data) {
         foreach ($data as $key=>$val){
             $value   =  $this->parseValue($val);
-            if(is_scalar($value)) // 过滤非标量数据
+            if(is_scalar($value)) // 過濾非標量資料
                 $set[]    = $this->addSpecialChar($key).'='.$value;
         }
         return ' SET '.implode(',',$set);
@@ -509,8 +509,8 @@ class Db extends Think
      */
     protected function parseField($fields) {
         if(is_array($fields)) {
-            // 完善数组方式传字段名的支持
-            // 支持 'field1'=>'field2' 这样的字段别名定义
+            // 完善陣列方式傳欄位名的支援
+            // 支援 'field1'=>'field2' 這樣的欄位別名定義
             $array   =  array();
             foreach ($fields as $key=>$field){
                 if(!is_numeric($key))
@@ -549,34 +549,34 @@ class Db extends Think
     protected function parseWhere($where) {
         $whereStr = '';
         if(is_string($where)) {
-            // 直接使用字符串条件
+            // 直接使用字元串條件
             $whereStr = $where;
-        }else{ // 使用数组条件表达式
+        }else{ // 使用陣列條件表示式
             if(array_key_exists('_logic',$where)) {
-                // 定义逻辑运算规则 例如 OR XOR AND NOT
+                // 定義邏輯運算規則 例如 OR XOR AND NOT
                 $operate    =   ' '.strtoupper($where['_logic']).' ';
                 unset($where['_logic']);
             }else{
-                // 默认进行 AND 运算
+                // 默認進行 AND 運算
                 $operate    =   ' AND ';
             }
             foreach ($where as $key=>$val){
                 $whereStr .= "( ";
                 if(0===strpos($key,'_')) {
-                    // 解析特殊条件表达式
+                    // 解析特殊條件表示式
                     $whereStr   .= $this->parseThinkWhere($key,$val);
                 }else{
                     $key = $this->addSpecialChar($key);
                     if(is_array($val)) {
                         if(is_string($val[0])) {
-                            if(preg_match('/^(EQ|NEQ|GT|EGT|LT|ELT|NOTLIKE|LIKE)$/i',$val[0])) { // 比较运算
+                            if(preg_match('/^(EQ|NEQ|GT|EGT|LT|ELT|NOTLIKE|LIKE)$/i',$val[0])) { // 比較運算
                                 $whereStr .= $key.' '.$this->comparison[strtolower($val[0])].' '.$this->parseValue($val[1]);
-                            }elseif('exp'==strtolower($val[0])){ // 使用表达式
+                            }elseif('exp'==strtolower($val[0])){ // 使用表示式
                                 $whereStr .= ' ('.$key.' '.$val[1].') ';
-                            }elseif(preg_match('/IN/i',$val[0])){ // IN 运算
+                            }elseif(preg_match('/IN/i',$val[0])){ // IN 運算
                                 $zone   =   is_array($val[1])? implode(',',$this->parseValue($val[1])):$val[1];
                                 $whereStr .= $key.' '.strtoupper($val[0]).' ('.$zone.')';
-                            }elseif(preg_match('/BETWEEN/i',$val[0])){ // BETWEEN运算
+                            }elseif(preg_match('/BETWEEN/i',$val[0])){ // BETWEEN運算
                                 $data = is_string($val[1])? explode(',',$val[1]):$val[1];
                                 $whereStr .=  ' ('.$key.' BETWEEN '.$data[0].' AND '.$data[1].' )';
                             }else{
@@ -602,7 +602,7 @@ class Db extends Think
                             $whereStr = substr($whereStr,0,-4);
                         }
                     }else {
-                        //对字符串类型字段采用模糊匹配
+                        //對字元串類型欄位採用模糊匹配
                         if(C('LIKE_MATCH_FIELDS') && preg_match('/('.C('LIKE_MATCH_FIELDS').')/i',$key)) {
                             $val = '%'.$val.'%';
                             $whereStr .= $key." LIKE ".$this->parseValue($val);
@@ -619,7 +619,7 @@ class Db extends Think
     }
 
     /**
-     * 特殊条件分析
+     * 特殊條件分析
      * @access protected
      * @param string $key
      * @param mixed $val
@@ -628,28 +628,28 @@ class Db extends Think
     protected function parseThinkWhere($key,$val) {
         $whereStr   = '';
         switch($key) {
-            case '_string':
-                // 字符串模式查询条件
-                $whereStr = $val;
-                break;
-            case '_complex':
-                // 复合查询条件
-                $whereStr   = substr($this->parseWhere($val),6);
-                break;
-            case '_query':
-                // 字符串模式查询条件
-                parse_str($val,$where);
-                if(array_key_exists('_logic',$where)) {
-                    $op   =  ' '.strtoupper($where['_logic']).' ';
-                    unset($where['_logic']);
-                }else{
-                    $op   =  ' AND ';
-                }
-                $array   =  array();
-                foreach ($where as $field=>$data)
-                    $array[] = $this->addSpecialChar($field).' = '.$this->parseValue($data);
-                $whereStr   = implode($op,$array);
-                break;
+        case '_string':
+            // 字元串模式查詢條件
+            $whereStr = $val;
+            break;
+        case '_complex':
+            // 複合查詢條件
+            $whereStr   = substr($this->parseWhere($val),6);
+            break;
+        case '_query':
+            // 字元串模式查詢條件
+            parse_str($val,$where);
+            if(array_key_exists('_logic',$where)) {
+                $op   =  ' '.strtoupper($where['_logic']).' ';
+                unset($where['_logic']);
+            }else{
+                $op   =  ' AND ';
+            }
+            $array   =  array();
+            foreach ($where as $field=>$data)
+                $array[] = $this->addSpecialChar($field).' = '.$this->parseValue($data);
+            $whereStr   = implode($op,$array);
+            break;
         }
         return $whereStr;
     }
@@ -728,16 +728,16 @@ class Db extends Think
     }
 
     /**
-     * 插入记录
+     * 插入記錄
      * @access public
-     * @param mixed $data 数据
-     * @param array $options 参数表达式
+     * @param mixed $data 資料
+     * @param array $options 參數表示式
      * @return false | integer
      */
     public function insert($data,$options=array()) {
         foreach ($data as $key=>$val){
             $value   =  $this->parseValue($val);
-            if(is_scalar($value)) { // 过滤非标量数据
+            if(is_scalar($value)) { // 過濾非標量資料
                 $values[]   =  $value;
                 $fields[]     =  $this->addSpecialChar($key);
             }
@@ -748,10 +748,10 @@ class Db extends Think
     }
 
     /**
-     * 更新记录
+     * 更新記錄
      * @access public
-     * @param mixed $data 数据
-     * @param array $options 表达式
+     * @param mixed $data 資料
+     * @param array $options 表示式
      * @return false | integer
      */
     public function update($data,$options) {
@@ -766,9 +766,9 @@ class Db extends Think
     }
 
     /**
-     * 删除记录
+     * 刪除記錄
      * @access public
-     * @param array $options 表达式
+     * @param array $options 表示式
      * @return false | integer
      */
     public function delete($options=array()) {
@@ -782,14 +782,14 @@ class Db extends Think
     }
 
     /**
-     * 查找记录
+     * 查找記錄
      * @access public
-     * @param array $options 表达式
+     * @param array $options 表示式
      * @return array
      */
     public function select($options=array(),$method='',$p='',$p2='') {
         if(isset($options['page'])) {
-            // 根据页数计算limit
+            // 根據頁數計算limit
             list($page,$listRows) =  explode(',',$options['page']);
             $listRows = $listRows?$listRows:($options['limit']?$options['limit']:20);
             $offset  =  $listRows*((int)$page-1);
@@ -810,13 +810,13 @@ class Db extends Think
             ),$this->selectSql);
 
         $sql   .= $this->parseLock(isset($options['lock'])?$options['lock']:false);
-        
+
         return $this->query($sql,$method,$p,$p2);
     }
 
     /**
-     * 字段和表名添加`
-     * 保证指令中使用关键字不出错 针对mysql
+     * 欄位和表名添加`
+     * 保證指令中使用關鍵字不出錯 針對mysql
      * @access protected
      * @param mixed $value
      * @return mixed
@@ -824,15 +824,15 @@ class Db extends Think
     protected function addSpecialChar(&$value) {
         $value   =  trim($value);
         if( false !== strpos($value,' ') || false !== strpos($value,',') || false !== strpos($value,'*') ||  false !== strpos($value,'(') || false !== strpos($value,'.') || false !== strpos($value,'`')) {
-            //如果包含* 或者 使用了sql方法 则不作处理
-        }else{
-            $value = '`'.$value.'`';
-        }
-        return $value;
+            //如果包含* 或者 使用了sql方法 則不作處理
+    }else{
+        $value = '`'.$value.'`';
+    }
+    return $value;
     }
 
     /**
-     * 查询次数更新或者查询
+     * 查詢次數更新或者查詢
      * @access public
      * @param mixed $times
      * @return void
@@ -841,15 +841,15 @@ class Db extends Think
         static $_times = 0;
         if(empty($times)) {
             return $_times;
-        }else{
-            $_times++;
-            // 记录开始执行时间
-            $this->beginTime = microtime(TRUE);
-        }
+    }else{
+        $_times++;
+        // 記錄開始執行時間
+        $this->beginTime = microtime(TRUE);
+    }
     }
 
     /**
-     * 写入次数更新或者查询
+     * 寫入次數更新或者查詢
      * @access public
      * @param mixed $times
      * @return void
@@ -858,15 +858,15 @@ class Db extends Think
         static $_times = 0;
         if(empty($times)) {
             return $_times;
-        }else{
-            $_times++;
-            // 记录开始执行时间
-            $this->beginTime = microtime(TRUE);
-        }
+    }else{
+        $_times++;
+        // 記錄開始執行時間
+        $this->beginTime = microtime(TRUE);
+    }
     }
 
     /**
-     * 获取最近一次查询的sql语句
+     * 獲取最近一次查詢的sql語句
      * @access public
      * @return string
      */
@@ -874,5 +874,5 @@ class Db extends Think
         return $this->queryStr;
     }
 
-}//类定义结束
+}//類定義結束
 ?>

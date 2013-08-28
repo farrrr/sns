@@ -4,12 +4,12 @@
         <div id="main-wrap">
             <div id="col" class="st-grid content-bg boxShadow">
             	<div id="col4" class="main-left">
-                    <!--tab菜单--><include file="_tabs" />
+                    <!--tab選單--><include file="_tabs" />
                 </div>
                 <div id="col7" class="main-right">
                     <div class="extend minh person-set">
                     	<div class="set-hd"><h3>{$tabName}</h3></div>
-                        <!--信息设置项---个性化域名-->
+                        <!--資訊設定項---個性化域名-->
                         <if condition="$user_domain">
                             <div class="item-set item-domain">
                                 <div class="set-item-info">{:U('public/Profile/index',array('uid'=>$user_domain))}</div>
@@ -17,8 +17,8 @@
                             </div>
                             <!-- <div class="item-set item-domain">
                                 <div class="item-set-border">
-                                    <h3><i class="ico-ok"></i>您已成功设置个性域名</h3>
-                                    <p>地址为：http://wwww.abc.com/nanzhi</p>
+                                    <h3><i class="ico-ok"></i>您已成功設定個性域名</h3>
+                                    <p>地址為：http://wwww.abc.com/nanzhi</p>
                                 </div>
                              </div> -->
                         <else />

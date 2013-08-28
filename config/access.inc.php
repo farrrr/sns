@@ -1,34 +1,34 @@
 <?php
 /*
- * 游客访问的黑/白名单，不需要开放的，可以注释掉
+ * 遊客訪問的黑/白名單，不需要開放的，可以註釋掉
  */
 return array (
 	"access" => array (
-		'public/Register/*' => true, // 注册
-		'public/Passport/*' => true, // 登录
+		'public/Register/*' => true, // 註冊
+		'public/Passport/*' => true, // 登入
 		'public/Widget/*'	=> true, // 插件
 		'page/Index/index'	=> true,
 		'api/*/*' => true, // API
 		                      
-		// 网站公告
+		// 網站公告
 		'public/Index/announcement' => true,
 		
-		// 个人主页
+		// 個人主頁
 		'public/Profile/index' => true,
 		'public/Profile/following' => true,
 		'public/Profile/follower' => true,
 		'public/Profile/data' => true,
 		
-		// 微博内容
+		// 微博內容
 		'public/Profile/feed' => true,
 		
-		// 微博话题
+		// 微博話題
 		'public/Topic/index' => true,
 
 		// 微博排行榜
 		'public/Rank/*' => true,
 		
-		// 频道
+		// 頻道
 		'channel/Index/*' => true,
 		
 		// 找人
@@ -41,7 +41,7 @@ return array (
 		'weiba/Index/postList' => true,
 		'weiba/Index/weibaList' => true,
 		
-		// 升级查询
+		// 升級查詢
 		'public/Tool/*' => true,
 		
 		'wap/*/*' => true,

@@ -41,10 +41,10 @@ function sureSearchDenounce(){
     </dl>
     
     <dl class="lineD">
-      <dt>被举报人ID：</dt>
+      <dt>被舉報人ID：</dt>
       <dd>
       	<input type="text" id="fuid" value="{$fuid}"  class="s-txt" style="width:300px"/>
-        <p>被举报人ID，多个时使用英文的“,”分割</p>
+        <p>被舉報人ID，多個時使用英文的“,”分割</p>
       </dd>
     </dl>
     <input type="hidden" value="{$state}" id="state" />
@@ -59,7 +59,7 @@ function sureSearchDenounce(){
         <span class="search_action"><neq name="isSearch" value="1">{:L('PUBLIC_SEARCH_REPORT')}<else/>{:L('PUBLIC_SEARCH_FINISHIED')}</neq></span>
     </a>
     <a href="javascript:void(0);" class="btn_a" onclick="passReview();"><span>{:L('PUBLIC_REVOKE_REPORT')}</span></a>
-    <a href="javascript:void(0);" class="btn_a" onclick="deleteRecord('', '{$state}');"><span>删除内容</span></a>
+    <a href="javascript:void(0);" class="btn_a" onclick="deleteRecord('', '{$state}');"><span>刪除內容</span></a>
   </div>
   <div class="list">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -96,13 +96,13 @@ function sureSearchDenounce(){
         <td>
         <eq name="state" value="0">
 	        <a href="javascript:void(0);" onclick="passReview('{$vo.id}');">{:L('PUBLIC_REVOKE_REPORT')}</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	        <a href="javascript:void(0);" onclick="deleteRecord('{$vo.id}')">删除内容</a>
+	        <a href="javascript:void(0);" onclick="deleteRecord('{$vo.id}')">刪除內容</a>
 	    </eq>
 	    <eq name="state" value="1">
 	        <a href="javascript:void(0);" onclick="passReview('{$vo.id}');">{:L('PUBLIC_REVOKE_REPORT')}</a>
 	    </eq>
 	    <eq name="state" value="2">
-	        <a href="javascript:void(0);" onclick="deleteRecord('{$vo.id}')">删除内容</a>
+	        <a href="javascript:void(0);" onclick="deleteRecord('{$vo.id}')">刪除內容</a>
 	    </eq>
         </td>
       </tr>
@@ -115,12 +115,12 @@ function sureSearchDenounce(){
         <span class="search_action"><neq name="isSearch" value="1">{:L('PUBLIC_SEARCH_REPORT')}<else/>{:L('PUBLIC_SEARCH_FINISHIED')}</neq></span>
     </a>
     <a href="javascript:void(0);" class="btn_a" onclick="passReview();"><span>{:L('PUBLIC_REVOKE_REPORT')}</span></a>
-    <a href="javascript:void(0);" class="btn_a" onclick="deleteRecord('', '{$state}');"><span>删除内容</span></a>
+    <a href="javascript:void(0);" class="btn_a" onclick="deleteRecord('', '{$state}');"><span>刪除內容</span></a>
   </div>
 </div>
 
 <script>
-    //鼠标移动表格效果
+    //滑鼠移動表格效果
     $(document).ready(function(){
         $("tr[overstyle='on']").hover(
           function () {
@@ -150,7 +150,7 @@ function sureSearchDenounce(){
         }
     }
 
-    //获取已选择用户的ID数组
+    //獲取已選擇使用者的ID陣列
     function getChecked() {
         var ids = new Array();
         $.each($('table input:checked'), function(i, n){
@@ -218,7 +218,7 @@ function sureSearchDenounce(){
         }
     }
     
-    //搜索用户
+    //搜索使用者
     var isSearchHidden = <neq name="isSearch" value="1">1<else/>0</neq>;
     function searchDenounce() {
         if(isSearchHidden == 1) {

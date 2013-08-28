@@ -17,15 +17,15 @@
                         <i class="arrow-nav-b" event-node='feed_tab_btn' title="{:L('PUBLIC_UNFOLD')}"></i>
                         <php>}</php>
                         </div>
-                            <h4>我的微博(共<span event-node="weibo_count" event-args="uid={$GLOBALS['ts']['mid']}" id="follow_count">{$feedCount|default=0}</span>条)</h4>
+                            <h4>我的微博(共<span event-node="weibo_count" event-args="uid={$GLOBALS['ts']['mid']}" id="follow_count">{$feedCount|default=0}</span>條)</h4>
                             <div class="mod-feed-tab mt10" id="mod-feed-tab" <php>if(!isset($_GET['feed_type']) && empty($_GET['feed_key'])){</php>style="display: none;"<php>}</php> >
                             <ul class="inner-feed-nav">
                                 <li <eq name='feedType' value=''>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>''))}">全部</a></li>
-                                <li <eq name='feedType' value='post'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'post'))}">原创</a></li>
-                                <li <eq name='feedType' value='repost'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'repost'))}">转发</a></li>
-                                <li <eq name='feedType' value='postimage'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'postimage'))}">图片</a></li>
+                                <li <eq name='feedType' value='post'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'post'))}">原創</a></li>
+                                <li <eq name='feedType' value='repost'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'repost'))}">轉發</a></li>
+                                <li <eq name='feedType' value='postimage'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'postimage'))}">圖片</a></li>
                                 <li <eq name='feedType' value='postfile'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'postfile'))}">附件</a></li>
-                                <li <eq name='feedType' value='postvideo'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'postvideo'))}">视频</a></li>
+                                <li <eq name='feedType' value='postvideo'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'postvideo'))}">視訊</a></li>
                             </ul>
                             </div>
                         </div>

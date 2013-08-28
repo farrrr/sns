@@ -1,6 +1,6 @@
 <?php
 /**
- * 用户身份选择Widget
+ * 使用者身份選擇Widget
  * @author zivss <guolee226@gmail.com>
  * @version TS3.0
  */
@@ -8,13 +8,13 @@ class UserCategoryWidget extends Widget {
 
 	/**
 	 * 模板渲染
-	 * @param array $data 相关数据
-	 * @return string 用户身份选择模板
+	 * @param array $data 相關資料
+	 * @return string 使用者身份選擇模板
 	 */
 	public function render($data) {
-        // 设置模板
+        // 設定模板
         $template = empty($data['tpl']) ? 'category' : t($data['tpl']);
-        // 选择模板数据
+        // 選擇模板資料
         switch($template) {
             case 'pop':
             case 'category':
@@ -26,12 +26,12 @@ class UserCategoryWidget extends Widget {
         }
         // 渲染模版
         $content = $this->renderFile(dirname(__FILE__)."/".$template.".html", $var);
-        // 输出数据
+        // 輸出資料
         return $content;
     }
 
     /**
-     * 添加用户与用户身份的关联信息
+     * 添加使用者與使用者身份的關聯資訊
      */
     public function addRelatedUser() {
     	$uid = intval($_POST['uid']);
@@ -42,7 +42,7 @@ class UserCategoryWidget extends Widget {
     }
 
     /**
-     * 删除用户与用户身份的关联信息
+     * 刪除使用者與使用者身份的關聯資訊
      */
     public function deleteRelateUser() {
     	$uid = intval($_POST['uid']);
@@ -53,12 +53,12 @@ class UserCategoryWidget extends Widget {
     }
 
     /**
-     * 登录页面，获取选择模板数据
-     * @param array $data 参数数据
-     * @return array 获取的模板数据
+     * 登入頁面，獲取選擇模板資料
+     * @param array $data 參數資料
+     * @return array 獲取的模板資料
      */
     private function _login($data) {
-        // 获取用户分类信息
+        // 獲取使用者分類資訊
         $uid = intval($data['uid']);
         $var['uid'] = $uid;
         $var['selected'] = model('UserCategory')->getRelatedUserInfo($uid);
@@ -76,16 +76,16 @@ class UserCategoryWidget extends Widget {
     }
 
     /**
-     * 人物分类页面，获取选择模板数据
-     * @param array $data 参数数据
-     * @return array 获取的模板数据
+     * 人物分類頁面，獲取選擇模板資料
+     * @param array $data 參數資料
+     * @return array 獲取的模板資料
      */
     public function _user($data) {
-        // 获取跳转链接
+        // 獲取跳轉連結
         !empty($data['url']) && $var['url'] = t($data['url']);
-        // 获取分类ID
+        // 獲取分類ID
         !empty($data['cid']) && $var['cid'] = intval($data['cid']);
-        // 获取用户分类信息
+        // 獲取使用者分類資訊
         $uid = intval($data['uid']);
         $var['uid'] = $uid;
         $var['selected'] = model('UserCategory')->getRelatedUserInfo($uid);

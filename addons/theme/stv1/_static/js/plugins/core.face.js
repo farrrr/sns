@@ -1,8 +1,8 @@
 /**
- * 表情选择
+ * 表情選擇
  */
 core.face = {
-		//给工厂调用的接口
+		//給工廠呼叫的介面
 		_init:function(attrs){
 			if(attrs.length == 4){
 				core.face.init(attrs[1],attrs[2],attrs[3]);
