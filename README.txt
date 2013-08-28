@@ -1,24 +1,24 @@
-﻿#
-# ThinkSNS 安装说明.txt
+#
+# ThinkSNS 安裝說明.txt
 #
 
-+ 常用路径
-  - 安装路径: http://yoursite/install
-  - 前台登录: http://yoursite
-  - 后台登录: http://yoursite/index.php?app=admin
++ 常用路徑
+  - 安裝路徑: http://yoursite/install
+  - 前臺登入: http://yoursite
+  - 後臺登入: http://yoursite/index.php?app=admin
 
-+ 其他说明
-  - 如果安装后遇到数据库链接错误、页面提示_NO_DB_CONFIG_可以执行 /cleancache.php
-  - 安装完成后，请到后台全局配置中，对网站logo、登录页图片进行配置管理
-  - 开启伪静态和个性化域名:  参见"开启URL伪静态的方法.txt"
++ 其他說明
+  - 如果安裝後遇到資料庫連結錯誤、頁面提示_NO_DB_CONFIG_可以執行 /cleancache.php
+  - 安裝完成後，請到後臺全局配置中，對網站logo、登入頁圖片進行配置管理
+  - 開啟偽靜態和個性化域名:  參見"開啟URL偽靜態的方法.txt"
 
-+ 注意事项
-  - PHP需要开启mysql, gd, curl, mbstring支持
-  - _runtime、data、config、install目录需要可写权限(777)
-  - 升级用户，请看升级说明（注意升级前做好备份）
++ 注意事項
+  - PHP需要開啟mysql, gd, curl, mbstring支援
+  - _runtime、data、config、install目錄需要可寫許可權(777)
+  - 升級使用者，請看升級說明（注意升級前做好備份）
 
-+ ThinkSNS V3 安装、升级说明
++ ThinkSNS V3 安裝、升級說明
   http://demo.thinksns.com/t3/index.php?app=weiba&mod=Index&act=postDetail&post_id=640#
 
-+ ThinkSNS V3 常见问题解答
++ ThinkSNS V3 常見問題解答
   http://demo.thinksns.com/t3/index.php?app=weiba&mod=Index&act=postDetail&post_id=641
