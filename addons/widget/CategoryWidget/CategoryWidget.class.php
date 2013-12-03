@@ -186,7 +186,7 @@ class CategoryWidget extends Widget {
 	}
 
 	/**
-	 * 浮動兩級分類別範本
+	 * 浮動兩級分類别範本
 	 */ 
 	public function twofloat($data) {
 		$model = D(ucfirst($data['model_name']),$data['app_name']);

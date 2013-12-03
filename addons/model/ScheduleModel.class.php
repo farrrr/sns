@@ -14,30 +14,30 @@
  * 實現任務的定時執行
  * 為各種任務的定期執行提供支援
  +------------------------------------------------------------------------------
- * @category    addons
- * @package     addons
+ * @category	addons
+ * @package		addons
  * @subpackage  services
- * @author      Daniel Yang <desheng.young@gmail.com>
- * @version     $Id$
+ * @author		Daniel Yang <desheng.young@gmail.com>
+ * @version		$Id$
  +------------------------------------------------------------------------------
  */
 
 class ScheduleModel extends Model {
-    private $MONTH_ARRAY    = array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
-    private $WEEK_ARRAY     = array('Mon','Tue','Wed','Thu','Fri','Sat','Sun');
+    private $MONTH_ARRAY 	= array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
+    private $WEEK_ARRAY  	= array('Mon','Tue','Wed','Thu','Fri','Sat','Sun');
 
     private $model;
-    private $schedule       = array();
-    private $scheduleList   = array();
+    private $schedule		= array();
+    private $scheduleList 	= array();
 
-    //  task_to_run     要執行任務的url
-    //  schedule_type   計劃類型：NOCE/MINUTE/HOURLY/DAILY/WEEKLY/MONTHLY
-    //  modifier        計劃頻率
-    //  dirlist         指定周或月的一天
-    //  month           指定年的一個月
-    //  start_datetime  計劃生效日期
-    //  end_datetime    計劃過期日期
-    //  last_run_time   上次運行時間
+    //	task_to_run 	要執行任務的url
+    //	schedule_type 	計劃類型：NOCE/MINUTE/HOURLY/DAILY/WEEKLY/MONTHLY
+    //	modifier 		計劃頻率
+    //	dirlist 		指定周或月的一天
+    //	month 			指定年的一個月
+    //	start_datetime  計劃生效日期
+    //	end_datetime 	計劃過期日期
+    //	last_run_time 	上次運行時間
 
     //判斷一個schedule是否有效
     public function isValidSchedule($schedule = '') {
@@ -89,6 +89,14 @@ class ScheduleModel extends Model {
 
     //執行任務計劃
     public function runSchedule($schedule) {
+        // 獲取後臺配置的計劃任務
+        $checkScheduleList = $this->getScheduleList();
+        $checkScheduleList = getSubByKey($checkScheduleList, 'task_to_run');
+        if (!in_array($schedule['task_to_run'], $checkScheduleList)) {
+            $str_log = "schedule_id = {$schedule['id']} 的任務不合法。";
+            $this->_log($str_log);
+            return false;
+        }
         //解析task類型, 並運行task
         $task_to_run = explode('/',$schedule['task_to_run']);
 
@@ -204,8 +212,8 @@ class ScheduleModel extends Model {
         if ($this->scheduleList === false) {
             $this->scheduleList = $this->order ( 'id' )->findAll ();
             S ( 'getScheduleList', $this->scheduleList, 604800 ); // 快取一週
-        }
-        return $this->scheduleList;
+    }
+    return $this->scheduleList;
     }
 
     //計算一個sechedule的下次執行時間
@@ -214,39 +222,39 @@ class ScheduleModel extends Model {
         //已過期
         if( (strtotime($schedule['end_datetime'])>0) && (strtotime($schedule['end_datetime']) < strtotime(date('Y-m-d H:i:s'))) ) {
             return false;
-        }
-        //還未啟動
-        if( strtotime($schedule['start_datetime']) > strtotime(date('Y-m-d H:i:s')) ) {
-            return false;
-        }
-        //已執行
-        if( strtotime($schedule['last_run_time']) > strtotime(date('Y-m-d H:i:s')) ) {
-            return false;
-        }
+    }
+    //還未啟動
+    if( strtotime($schedule['start_datetime']) > strtotime(date('Y-m-d H:i:s')) ) {
+        return false;
+    }
+    //已執行
+    if( strtotime($schedule['last_run_time']) > strtotime(date('Y-m-d H:i:s')) ) {
+        return false;
+    }
 
-        switch( strtoupper($schedule['schedule_type']) ) {
-        case 'ONCE':
-            $datetime =  $this->_calculateONCE($schedule);
-            break;
-        case 'MINUTE':
-            $datetime =  $this->_calculateMINUTE($schedule);
-            break;
-        case 'HOURLY':
-            $datetime =  $this->_calculateHOURLY($schedule);
-            break;
-        case 'DAILY':
-            $datetime =  $this->_calculateDAILY($schedule);
-            break;
-        case 'WEEKLY':
-            $datetime =  $this->_calculateWEEKLY($schedule);
-            break;
-        case 'MONTHLY':
-            $datetime =  $this->_calculateMONTHLY($schedule);
-            break;
-        default:
-            return false;
-        }
-        return date('Y-m-d H:i:s', $datetime);
+    switch( strtoupper($schedule['schedule_type']) ) {
+    case 'ONCE':
+        $datetime =  $this->_calculateONCE($schedule);
+        break;
+    case 'MINUTE':
+        $datetime =  $this->_calculateMINUTE($schedule);
+        break;
+    case 'HOURLY':
+        $datetime =  $this->_calculateHOURLY($schedule);
+        break;
+    case 'DAILY':
+        $datetime =  $this->_calculateDAILY($schedule);
+        break;
+    case 'WEEKLY':
+        $datetime =  $this->_calculateWEEKLY($schedule);
+        break;
+    case 'MONTHLY':
+        $datetime =  $this->_calculateMONTHLY($schedule);
+        break;
+    default:
+        return false;
+    }
+    return date('Y-m-d H:i:s', $datetime);
     }
 
     /*
@@ -270,18 +278,18 @@ class ScheduleModel extends Model {
         }else {
             return false;
         }
-    }
+        }
 
-    public function setTaskToRun($task_to_run) {
-        $this->schedule['task_to_run'] = $task_to_run;
-    }
+        public function setTaskToRun($task_to_run) {
+            $this->schedule['task_to_run'] = $task_to_run;
+        }
 
-    public function setScheduleType($schedule_type) {
-        $this->schedule['schedule_type'] = $schedule_type;
-    }
+        public function setScheduleType($schedule_type) {
+            $this->schedule['schedule_type'] = $schedule_type;
+        }
 
-    public function setModifier($modifier) {
-        $this->schedule['modifier'] = $modifier;
+        public function setModifier($modifier) {
+            $this->schedule['modifier'] = $modifier;
     }
 
     public function setDirlist($dirlist) {
@@ -309,33 +317,33 @@ class ScheduleModel extends Model {
     protected function _checkONCE($schedule) {
         if( !empty($schedule['start_datetime']) ) {
             return (bool)strtotime($schedule['start_datetime']);
-        }else {
-            return false;
-        }
+    }else {
+        return false;
+    }
     }
 
     protected function _checkMINUTE($schedule) {
         if( !empty($schedule['modifier']) && is_numeric($schedule['modifier']) ) {
             return ( ($schedule['modifier'] >= 1) && ($schedule['modifier'] <= 1439) );
-        }
+    }
 
-        return true;
+    return true;
     }
 
     protected function _checkHOURLY($schedule) {
         if( !empty($schedule['modifier']) ) {
             return ( is_numeric($schedule['modifier']) && ($schedule['modifier'] >= 1) && ($schedule['modifier'] <= 23) );
-        }
+    }
 
-        return true;
+    return true;
     }
 
     protected function _checkDAILY($schedule) {
         if( !empty($schedule['modifier']) ) {
             return ( is_numeric($schedule['modifier']) && ($schedule['modifier'] >= 1) && ($schedule['modifier'] <= 365) );
-        }
+    }
 
-        return true;
+    return true;
     }
 
     protected function _checkWEEKLY($schedule) {
@@ -343,24 +351,24 @@ class ScheduleModel extends Model {
         if( !empty($schedule['modifier']) ) {
             if( !is_numeric($schedule['modifier']) ) {
                 return false;
-            }
-            $flag = ($schedule['modifier'] >= 1) && ($schedule['modifier'] <= 52);
-        }
-        if( ($flag != false) && !empty($schedule['dirlist']) ) {
-            if($schedule['dirlist'] == '*') {
-                return true;
-            }else {
-                $dirlist = explode(',', str_replace(' ', '',$schedule['dirlist']));
-                foreach($dirlist as $v) {
-                    $flag = $flag && in_array($v, $this->WEEK_ARRAY);
-                    if($flag == false) {
-                        //                      dump($v);
-                        return false;
-                    }//End if
-                }//End foreach
-            }//End else
-        }
-        return $flag;
+    }
+    $flag = ($schedule['modifier'] >= 1) && ($schedule['modifier'] <= 52);
+    }
+    if( ($flag != false) && !empty($schedule['dirlist']) ) {
+        if($schedule['dirlist'] == '*') {
+            return true;
+    }else {
+        $dirlist = explode(',', str_replace(' ', '',$schedule['dirlist']));
+        foreach($dirlist as $v) {
+            $flag = $flag && in_array($v, $this->WEEK_ARRAY);
+            if($flag == false) {
+                //						dump($v);
+                return false;
+    }//End if
+    }//End foreach
+    }//End else
+    }
+    return $flag;
     }
 
     protected function _checkMONTHLY($schedule) {
@@ -372,62 +380,62 @@ class ScheduleModel extends Model {
             if( strtoupper($schedule['modifier']) == 'LASTDAY' ) {
                 if(empty($schedule['month'])) {
                     return false;
-                }
-            }else if( in_array(strtoupper($schedule['modifier']),array('FIRST','SECOND','THIRD','FOURTH','LAST')) ) {
-                //modifier為FIRST,SECOND,THIRD,FOURTH,LAST之一時，dirlist必須在MON～SUN、*中
-                if($schedule['dirlist'] == '*') {
-                    ;
-                }else {
-                    $flag = true;
-                    $dirlist = explode(',', str_replace(' ', '',$schedule['dirlist']));
-                    foreach($dirlist as $v) {
-                        $flag = $flag && in_array($v, $this->WEEK_ARRAY);
-                        if($flag == false) {
-                            //                          dump($v);
-                            return false;
-                        }//End if
-                    }//End foreach
-                }//End if...else
-            }elseif ( is_numeric($schedule['modifier']) && ($schedule['modifier'] >= 1) && ($schedule['modifier'] <= 12) ) {
-                //modifier為1～12時dirlist可選. 空、1～31為有效值（‘空’默認是1）
-                if( !empty($schedule['dirlist']) ) {
-                    $flag = true;
-                    $dirlist = explode(',', str_replace(' ', '',$schedule['dirlist']));
-                    foreach($dirlist as $v) {
-                        $flag = $flag && (is_numeric($v) && ($v >= 1) && ($v <= 31));
-                        if($flag == false) {
-                            //                          dump($v);
-                            return false;
-                        }
-                    }//End foreach
-                }
-                return true;
-            }else {
-                //modifier錯誤
+    }
+    }else if( in_array(strtoupper($schedule['modifier']),array('FIRST','SECOND','THIRD','FOURTH','LAST')) ) {
+        //modifier為FIRST,SECOND,THIRD,FOURTH,LAST之一時，dirlist必須在MON～SUN、*中
+        if($schedule['dirlist'] == '*') {
+            ;
+    }else {
+        $flag = true;
+        $dirlist = explode(',', str_replace(' ', '',$schedule['dirlist']));
+        foreach($dirlist as $v) {
+            $flag = $flag && in_array($v, $this->WEEK_ARRAY);
+            if($flag == false) {
+                //							dump($v);
                 return false;
-            }
+    }//End if
+    }//End foreach
+    }//End if...else
+    }elseif ( is_numeric($schedule['modifier']) && ($schedule['modifier'] >= 1) && ($schedule['modifier'] <= 12) ) {
+        //modifier為1～12時dirlist可選. 空、1～31為有效值（‘空’默認是1）
+        if( !empty($schedule['dirlist']) ) {
+            $flag = true;
+            $dirlist = explode(',', str_replace(' ', '',$schedule['dirlist']));
+            foreach($dirlist as $v) {
+                $flag = $flag && (is_numeric($v) && ($v >= 1) && ($v <= 31));
+                if($flag == false) {
+                    //							dump($v);
+                    return false;
+    }
+    }//End foreach
+    }
+    return true;
+    }else {
+        //modifier錯誤
+        return false;
+    }
 
-            //month的有效值為JAN～DEC和*(每個月).默認為*
-            if( !empty($schedule['month']) ) {
-                if($schedule['month'] == '*') {
-                    return true;
-                }else {
-                    $flag = true;
-                    $month = explode(',', str_replace(' ', '', $schedule['month']));
-                    foreach($month as $v) {
-                        $flag = $flag && in_array($v, $this->MONTH_ARRAY);
-                        if($flag == false) {
-                            return false;
-                        }
-                    }//End foreach
-                }//End if...else
-            }
+    //month的有效值為JAN～DEC和*(每個月).默認為*
+    if( !empty($schedule['month']) ) {
+        if($schedule['month'] == '*') {
+            return true;
+    }else {
+        $flag = true;
+        $month = explode(',', str_replace(' ', '', $schedule['month']));
+        foreach($month as $v) {
+            $flag = $flag && in_array($v, $this->MONTH_ARRAY);
+            if($flag == false) {
+                return false;
+    }
+    }//End foreach
+    }//End if...else
+    }
 
-        }else {
-            //modifier必須
-            return false;
-        }
-        return true;
+    }else {
+        //modifier必須
+        return false;
+    }
+    return true;
     }
 
     /*
@@ -444,11 +452,11 @@ class ScheduleModel extends Model {
         //當last_run_time不為空且大於start_datetime時，以last_run_time為基準時間。否則，以start_datetime為基準時間.
         if( !empty($schedule['last_run_time']) && (strtotime($schedule['last_run_time']) > strtotime($schedule['start_datetime']))) {
             $date = is_string($schedule['last_run_time']) ? strtotime($schedule['last_run_time']) : $schedule['last_run_time'];
-        }else {
-            $date = $this->_getStartDateTime($schedule);
-        }
+    }else {
+        $date = $this->_getStartDateTime($schedule);
+    }
 
-        return mktime(date('H',$date),date('i',$date) + $modifier,date('s',$date),date('m',$date),date('d',$date),date('Y',$date));
+    return mktime(date('H',$date),date('i',$date) + $modifier,date('s',$date),date('m',$date),date('d',$date),date('Y',$date));
     }
 
     protected function _calculateHOURLY($schedule) {
@@ -458,11 +466,11 @@ class ScheduleModel extends Model {
         //當last_run_time不為空時，根據last_run_time計算下次運行時間。否則，根據start_datetime計算.
         if( !empty($schedule['last_run_time']) && (strtotime($schedule['last_run_time']) > strtotime($schedule['start_datetime']))) {
             $date = is_string($schedule['last_run_time']) ? strtotime($schedule['last_run_time']) : $schedule['last_run_time'];
-        }else {
-            $date = $this->_getStartDateTime($schedule);
-        }
+    }else {
+        $date = $this->_getStartDateTime($schedule);
+    }
 
-        return mktime(date('H',$date) + $modifier,date('i',$date),date('s',$date),date('m',$date),date('d',$date),date('Y',$date));
+    return mktime(date('H',$date) + $modifier,date('i',$date),date('s',$date),date('m',$date),date('d',$date),date('Y',$date));
     }
 
     protected function _calculateDAILY($schedule) {
@@ -472,11 +480,11 @@ class ScheduleModel extends Model {
         //當last_run_time不為空時，根據last_run_time計算下次運行時間。否則，根據start_datetime計算.
         if( !empty($schedule['last_run_time']) && (strtotime($schedule['last_run_time']) > strtotime($schedule['start_datetime']))) {
             $date = is_string($schedule['last_run_time']) ? strtotime($schedule['last_run_time']) : $schedule['last_run_time'];
-        }else {
-            $date = $this->_getStartDateTime($schedule);
-        }
+    }else {
+        $date = $this->_getStartDateTime($schedule);
+    }
 
-        return mktime(date('H',$date),date('i',$date),date('s',$date),date('m',$date),date('d',$date) + $modifier,date('Y',$date));
+    return mktime(date('H',$date),date('i',$date),date('s',$date),date('m',$date),date('d',$date) + $modifier,date('Y',$date));
     }
 
     protected function _calculateWEEKLY($schedule) {
@@ -487,36 +495,36 @@ class ScheduleModel extends Model {
         if( !empty($schedule['last_run_time']) && (strtotime($schedule['last_run_time']) > strtotime($schedule['start_datetime'])) ) {
             $date = is_string($schedule['last_run_time']) ? strtotime($schedule['last_run_time']) : $schedule['last_run_time'];
             $base_time_type = 'last_run_time';
-        }else {
-            $date = $this->_getStartDateTime($schedule);
-            $base_time_type = 'start_datetime';
-        }
+    }else {
+        $date = $this->_getStartDateTime($schedule);
+        $base_time_type = 'start_datetime';
+    }
 
-        //判斷當前日期是否符合週數要求
-        //計算方法：((當前日期的週數 - 基準日期的週數) % modifier == 0)
-        if( (($this->_getWeekID() - $this->_getWeekID($date)) % $schedule['modifier']) == 0 ) {
-            //組裝dirlist陣列
-            if(empty($schedule['dirlist'])) {
-                //當dirlist為空時,默認為週一
-                $schedule['dirlist'] = array('Mon');
-            }elseif ($schedule['dirlist'] == '*') {
-                //當dirlist==*時，每天執行
-                $schedule['dirlist'] = $this->WEEK_ARRAY;
-            }else {
-                $schedule['dirlist'] = explode(',', str_replace(' ','',$schedule['dirlist']));
-            }
-            //判斷今天是否在dirlist中。
-            if( in_array(date('D'), $schedule['dirlist']) ) {
-                //判斷今天是否已經執行過當前計劃。如果否，根據基準時間計算執行時間（DATE為今天，TIME來自基準時間）
-                if( ($base_time_type == 'last_run_time') && ( date('Y-m-d',$date) == date('Y-m-d')) ) {
-                    ;
-                }else {
-                    return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d'),date('Y'));
-                }
-            }
-        }
-        //如果當前日期不符合週數或星期的要求、或今天已經執行過，返回明天的同一時間（保證該條計劃任務現在不被執行）
-        return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d') + 1,date('Y'));
+    //判斷當前日期是否符合週數要求
+    //計算方法：((當前日期的週數 - 基準日期的週數) % modifier == 0)
+    if( (($this->_getWeekID() - $this->_getWeekID($date)) % $schedule['modifier']) == 0 ) {
+        //組裝dirlist陣列
+        if(empty($schedule['dirlist'])) {
+            //當dirlist為空時,默認為週一
+            $schedule['dirlist'] = array('Mon');
+    }elseif ($schedule['dirlist'] == '*') {
+        //當dirlist==*時，每天執行
+        $schedule['dirlist'] = $this->WEEK_ARRAY;
+    }else {
+        $schedule['dirlist'] = explode(',', str_replace(' ','',$schedule['dirlist']));
+    }
+    //判斷今天是否在dirlist中。
+    if( in_array(date('D'), $schedule['dirlist']) ) {
+        //判斷今天是否已經執行過當前計劃。如果否，根據基準時間計算執行時間（DATE為今天，TIME來自基準時間）
+        if( ($base_time_type == 'last_run_time') && ( date('Y-m-d',$date) == date('Y-m-d')) ) {
+            ;
+    }else {
+        return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d'),date('Y'));
+    }
+    }
+    }
+    //如果當前日期不符合週數或星期的要求、或今天已經執行過，返回明天的同一時間（保證該條計劃任務現在不被執行）
+    return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d') + 1,date('Y'));
     }
 
     protected function _calculateMONTHLY($schedule) {
@@ -524,79 +532,79 @@ class ScheduleModel extends Model {
         if( !empty($schedule['last_run_time']) && (strtotime($schedule['last_run_time']) > strtotime($schedule['start_datetime'])) ) {
             $date = is_string($schedule['last_run_time']) ? strtotime($schedule['last_run_time']) : $schedule['last_run_time'];
             $base_time_type = 'last_run_time';
-        }else {
-            $date = $this->_getStartDateTime($schedule);
-            $base_time_type = 'start_datetime';
-        }
+    }else {
+        $date = $this->_getStartDateTime($schedule);
+        $base_time_type = 'start_datetime';
+    }
 
-        //設定month陣列
-        if( empty($schedule['month']) || $schedule['month'] == '*') {
-            $schedule['month'] = $this->MONTH_ARRAY;
-        }else {
-            $schedule['month'] = explode(',', str_replace(' ','',$schedule['month']));
-        }
+    //設定month陣列
+    if( empty($schedule['month']) || $schedule['month'] == '*') {
+        $schedule['month'] = $this->MONTH_ARRAY;
+    }else {
+        $schedule['month'] = explode(',', str_replace(' ','',$schedule['month']));
+    }
 
-        //modifier為LASTDAY時
-        if( strtoupper($schedule['modifier']) == 'LASTDAY' ) {
+    //modifier為LASTDAY時
+    if( strtoupper($schedule['modifier']) == 'LASTDAY' ) {
 
-            //判斷月份是否符合要求、且當前日期為月的最後一天
-            if( in_array(date('M'), $schedule['month']) && $this->_isLastDayOfMonth() ) {
-                //判斷今天是否已經執行過當前計劃。如果否，根據基準時間計算執行時間（DATE為今天，TIME來自基準時間）
-                if( ($base_time_type == 'last_run_time') && ( date('Y-m-d',$date) == date('Y-m-d')) ) {
-                    ;
-                }else {
-                    return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d'),date('Y'));
-                }
-            }
-            //modifier為FIRST,SECOND,THIRD,FOURTH,LAST之一時
-        }elseif ( in_array(strtoupper($schedule['modifier']),array('FIRST','SECOND','THIRD','FOURTH','LAST')) ) {
-            //判斷當前月份是否符合要求
-            if( in_array(date('M'), $schedule['month']) ) {
-                //設定dirlist陣列(星期)
-                if ($schedule['dirlist'] == '*') {
-                    $schedule['dirlist'] = $this->WEEK_ARRAY;
-                }else {
-                    $schedule['dirlist'] = explode(',', str_replace(' ','',$schedule['dirlist']));
-                }
+        //判斷月份是否符合要求、且當前日期為月的最後一天
+        if( in_array(date('M'), $schedule['month']) && $this->_isLastDayOfMonth() ) {
+            //判斷今天是否已經執行過當前計劃。如果否，根據基準時間計算執行時間（DATE為今天，TIME來自基準時間）
+            if( ($base_time_type == 'last_run_time') && ( date('Y-m-d',$date) == date('Y-m-d')) ) {
+                ;
+    }else {
+        return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d'),date('Y'));
+    }
+    }
+    //modifier為FIRST,SECOND,THIRD,FOURTH,LAST之一時
+    }elseif ( in_array(strtoupper($schedule['modifier']),array('FIRST','SECOND','THIRD','FOURTH','LAST')) ) {
+        //判斷當前月份是否符合要求
+        if( in_array(date('M'), $schedule['month']) ) {
+            //設定dirlist陣列(星期)
+            if ($schedule['dirlist'] == '*') {
+                $schedule['dirlist'] = $this->WEEK_ARRAY;
+    }else {
+        $schedule['dirlist'] = explode(',', str_replace(' ','',$schedule['dirlist']));
+    }
 
-                //判斷星期是否符合要求
-                if( in_array(date('D'), $schedule['dirlist']) ) {
-                    //判斷第x個是否符合要求
-                    if($this->_isDayIDOfMonth($schedule['modifier'])) {
-                        //判斷今天是否已經執行過當前計劃。如果否，根據基準時間計算執行時間（DATE為今天，TIME來自基準時間）
-                        if( ($base_time_type == 'last_run_time') && ( date('Y-m-d',$date) == date('Y-m-d')) ) {
-                            ;
-                        }else {
-                            return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d'),date('Y'));
-                        }
-                    }
-                }
-            }
-            //modifier為1～12時
-        }elseif ( is_numeric($schedule['modifier']) ) {
-            //判斷當前月份是否符合要求
-            if( ($this->_getMonthDif($date) % $schedule['modifier']) == 0 ) {
-                //組裝dirlist陣列
-                if(empty($schedule['dirlist'])) {
-                    $schedule['dirlist'] = array('1');
-                } else{
-                    $schedule['dirlist'] = explode(',', str_replace(' ','',$schedule['dirlist']));
-                }
+    //判斷星期是否符合要求
+    if( in_array(date('D'), $schedule['dirlist']) ) {
+        //判斷第x個是否符合要求
+        if($this->_isDayIDOfMonth($schedule['modifier'])) {
+            //判斷今天是否已經執行過當前計劃。如果否，根據基準時間計算執行時間（DATE為今天，TIME來自基準時間）
+            if( ($base_time_type == 'last_run_time') && ( date('Y-m-d',$date) == date('Y-m-d')) ) {
+                ;
+    }else {
+        return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d'),date('Y'));
+    }
+    }
+    }
+    }
+    //modifier為1～12時
+    }elseif ( is_numeric($schedule['modifier']) ) {
+        //判斷當前月份是否符合要求
+        if( ($this->_getMonthDif($date) % $schedule['modifier']) == 0 ) {
+            //組裝dirlist陣列
+            if(empty($schedule['dirlist'])) {
+                $schedule['dirlist'] = array('1');
+    } else{
+        $schedule['dirlist'] = explode(',', str_replace(' ','',$schedule['dirlist']));
+    }
 
-                //判斷當期日期是否符合要求
-                if( in_array(date('d'),$schedule['dirlist']) || in_array(date('j'),$schedule['dirlist']) ) {
-                    //判斷今天是否已經執行過當前計劃。如果否，根據基準時間計算執行時間（DATE為今天，TIME來自基準時間）
-                    if( ($base_time_type == 'last_run_time') && ( date('Y-m-d',$date) == date('Y-m-d')) ) {
-                        ;
-                    }else {
-                        return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d'),date('Y'));
-                    }
-                }
-            }
-        }
+    //判斷當期日期是否符合要求
+    if( in_array(date('d'),$schedule['dirlist']) || in_array(date('j'),$schedule['dirlist']) ) {
+        //判斷今天是否已經執行過當前計劃。如果否，根據基準時間計算執行時間（DATE為今天，TIME來自基準時間）
+        if( ($base_time_type == 'last_run_time') && ( date('Y-m-d',$date) == date('Y-m-d')) ) {
+            ;
+    }else {
+        return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d'),date('Y'));
+    }
+    }
+    }
+    }
 
-        //如果當前日期不符合月份/星期/日期的要求、或今天已經執行過，返回明天的同一時間（保證該條計劃任務現在不被執行）
-        return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d') + 1,date('Y'));
+    //如果當前日期不符合月份/星期/日期的要求、或今天已經執行過，返回明天的同一時間（保證該條計劃任務現在不被執行）
+    return mktime(date('H',$date),date('i',$date),date('s',$date),date('m'),date('d') + 1,date('Y'));
     }
 
     //獲取開始時間
@@ -604,53 +612,53 @@ class ScheduleModel extends Model {
     protected function _getStartDateTime($schedule) {
         if( !empty($schedule['start_datetime']) ) {
             return strtotime($schedule['start_datetime']);
-        }else {
-            return false;
-        }
+    }else {
+        return false;
+    }
     }
 
     //判斷當前日期是否為當前月的最後一天
     protected function _isLastDayOfMonth($date = '') {
         if (empty($date)) {
             $date = strtotime(date('Y-m-d H:i:s'));
-        }
-        $date = is_string($date) ? strtotime($date) : $date;
-        return ( date('m',$date) != date('m',mktime(date('H',$date),date('i',$date),date('s',$date),date('m',$date),date('d',$date) + 1,date('Y',$date))) );
+    }
+    $date = is_string($date) ? strtotime($date) : $date;
+    return ( date('m',$date) != date('m',mktime(date('H',$date),date('i',$date),date('s',$date),date('m',$date),date('d',$date) + 1,date('Y',$date))) );
     }
 
     //判斷當前日期是否為當前月的第x個星期x
     protected function _isDayIDOfMonth($key, $date = '') {
         if (empty($date)) {
             $date = strtotime(date('Y-m-d H:i:s'));
-        }
-        $date = is_string($date) ? strtotime($date) : $date;
+    }
+    $date = is_string($date) ? strtotime($date) : $date;
 
+    $index = 0;
+    switch( strtoupper($key) ) {
+    case 'FIRST':
+        $index = 1;
+        break;
+    case 'SECOND':
+        $index = 2;
+        break;
+    case 'THIRD':
+        $index = 3;
+        break;
+    case 'FOURTH':
+        $index = 4;
+        break;
+    case 'LAST':
         $index = 0;
-        switch( strtoupper($key) ) {
-        case 'FIRST':
-            $index = 1;
-            break;
-        case 'SECOND':
-            $index = 2;
-            break;
-        case 'THIRD':
-            $index = 3;
-            break;
-        case 'FOURTH':
-            $index = 4;
-            break;
-        case 'LAST':
-            $index = 0;
-            break;
-        default:
-            return false;
-        }
-        if($index != 0) {
-            return ((date('m',$date) == date('m',mktime(date('H',$date),date('i',$date),date('s',$date),date('m',$date),date('d',$date) - (7 * ($index-1)),date('Y',$date)))) &&
-                (date('m',$date) != date('m',mktime(date('H',$date),date('i',$date),date('s',$date),date('m',$date),date('d',$date) - (7 * ($index)),date('Y',$date)))));
-        }else {
-            return (date('m',$date) != date('m',mktime(date('H',$date),date('i',$date),date('s',$date),date('m',$date),date('d',$date) + 7,date('Y',$date))));
-        }
+        break;
+    default:
+        return false;
+    }
+    if($index != 0) {
+        return ((date('m',$date) == date('m',mktime(date('H',$date),date('i',$date),date('s',$date),date('m',$date),date('d',$date) - (7 * ($index-1)),date('Y',$date)))) &&
+            (date('m',$date) != date('m',mktime(date('H',$date),date('i',$date),date('s',$date),date('m',$date),date('d',$date) - (7 * ($index)),date('Y',$date)))));
+    }else {
+        return (date('m',$date) != date('m',mktime(date('H',$date),date('i',$date),date('s',$date),date('m',$date),date('d',$date) + 7,date('Y',$date))));
+    }
     }
 
     //返回自2007年01月01日來的週數
@@ -659,48 +667,48 @@ class ScheduleModel extends Model {
         //輸入日期為空時，使用當前時間
         if(empty($date)) {
             $date = strtotime(date('Y-m-d'));
-        }else {
-            $date = is_string($date) ? strtotime($date) : $date;
-        }
-        return (int)floor(($date - $date_base)/3600/24/7) + 1;
-        }
+    }else {
+        $date = is_string($date) ? strtotime($date) : $date;
+    }
+    return (int)floor(($date - $date_base)/3600/24/7) + 1;
+    }
 
-        //返回自2007年01月01日來的月數
-        protected function _getMonthDif($date1, $date2 = '') {
-            $date1 = is_string($date1) ? strtotime($date1) : $date1;
-            $date2 = empty($date2) ? date('Y-m-d') : $date2;
-            $date2 = is_string($date2) ? strtotime($date2) : $date2;
+    //返回自2007年01月01日來的月數
+    protected function _getMonthDif($date1, $date2 = '') {
+        $date1 = is_string($date1) ? strtotime($date1) : $date1;
+        $date2 = empty($date2) ? date('Y-m-d') : $date2;
+        $date2 = is_string($date2) ? strtotime($date2) : $date2;
 
-            return ((date('Y',$date2) - date('Y',$date1)) * 12 + (date('n',$date2) - date('n',$date1)) );
-        }
+        return ((date('Y',$date2) - date('Y',$date1)) * 12 + (date('n',$date2) - date('n',$date1)) );
+    }
 
-        //日志檔案
-        protected function _log($str) {
-            $filename = $this->getLogPath() . '/schedule_' . date('Y-m-d') . '.log';
+    //日志檔案
+    protected function _log($str) {
+        $filename = $this->getLogPath() . '/schedule_' . date('Y-m-d') . '.log';
 
-            $str = '[' . date('Y-m-d H:i:s') . '] ' . $str;
-            $str .= "\r\n";
+        $str = '[' . date('Y-m-d H:i:s') . '] ' . $str;
+        $str .= "\r\n";
 
-            $handle = fopen($filename, 'a');
-            fwrite($handle, $str);
-            fclose($handle);
-        }
+        $handle = fopen($filename, 'a');
+        fwrite($handle, $str);
+        fclose($handle);
+    }
 
-        //將給定時間的秒數置為0; 參數為空時，使用當前時間
-        protected function setSecondToZero($date_time = NULL) {
-            if(empty($date_time)) {
-                $date_time = date('Y-m-d H:i:s');
-        }
-        $date_time = is_string($date_time) ? strtotime($date_time) : $date_time;
-        return mktime(date('H', $date_time),
-                      date('i', $date_time),
+    //將給定時間的秒數置為0; 參數為空時，使用當前時間
+    protected function setSecondToZero($date_time = NULL) {
+        if(empty($date_time)) {
+            $date_time = date('Y-m-d H:i:s');
+    }
+    $date_time = is_string($date_time) ? strtotime($date_time) : $date_time;
+    return mktime(date('H', $date_time),
+        date('i', $date_time),
                       0,
                       date('m', $date_time),
                       date('d', $date_time),
                       date('Y', $date_time));
     }
 
-    //繼承實現父類函數
+//繼承實現父類函數
     public function run() {
         //鎖定自動執行 修正一下
         $lockfile = $this->getLogPath() . '/schedule.lock';
